@@ -1,7 +1,7 @@
 ![Logo](./images/screenshot.png)
 # ServerlessVideo: A Serverless and Event-Driven Video Streaming Application
 
-![ServerlessVideo arch](./images/sv-hero.png)
+![ServerlessVideo arch](./images/sv-hero2.png)
 
 ## Introduction
 
