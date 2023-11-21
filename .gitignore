@@ -5,3 +5,4 @@ node_modules/
 .env
 **/.aws-sam
 .vscode
+*.toml
