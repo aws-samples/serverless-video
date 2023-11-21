@@ -1,6 +1,6 @@
 openapi: "3.0.1"
 info:
-  title: "ServerlessFlixChannelServiceAPIService"
+  title: "ServerlessVideoChannelServiceAPIService"
   version: "1.3"
 servers:
 - url: "https://cehu8ctixi.execute-api.${AWS::Region}.amazonaws.com/{basePath}"
