@@ -1,6 +1,6 @@
 AWSTemplateFormatVersion: "2010-09-09"
 Transform: AWS::Serverless-2016-10-31
-Description: ServerlessFlix core stack.
+Description: ServerlessVideo core stack.
 
 Parameters:
   AuthDomainName:
@@ -27,7 +27,7 @@ Resources:
 #############################################
 # Resources for IoT Core realtime messaging # ${AWS::AccountId}
 #############################################
-  ServerlessFlixRealtime:
+  ServerlessVideoRealtime:
     Type: "AWS::IoT::Thing"
     Properties:
       ThingName: "serverlessFlix" 
@@ -78,7 +78,7 @@ Resources:
 Outputs:
   IoTRealtimeName:
     Description: IoTRealtime Name
-    Value: !Ref ServerlessFlixRealtime
+    Value: !Ref ServerlessVideoRealtime
 
   IotEndpointAddress:
     Description: IotEndpointAddress URL
