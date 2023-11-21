@@ -1,0 +1,38 @@
+version = 0.1
+
+[default.global.parameters]
+stack_name = "serverlessFlix-channelService"
+region = "us-west-2"
+
+
+[default.deploy.parameters]
+profile = "bstream"
+resolve_s3 = true
+s3_prefix = "serverlessFlix-channelService"
+capabilities = "CAPABILITY_IAM"
+image_repositories = []
+confirm_changeset = false
+parameter_overrides = "UserPoolARNParameter=\"arn:aws:cognito-idp:us-west-2:093675026797:userpool/us-west-2_7HDmAbUnB\" RegordingConfigArn=\"arn:aws:ivs:us-west-2:093675026797:recording-configuration/tIczo1M4YuYi\""
+
+
+[prod.deploy.parameters]
+stack_name = "serverlessFlix-channelService"
+resolve_s3 = true
+s3_prefix = "serverlessFlix-channelService"
+region = "us-west-2"
+profile = "stream"
+capabilities = "CAPABILITY_IAM"
+image_repositories = []
+confirm_changeset = true
+parameter_overrides = "UserPoolARNParameter=\"arn:aws:cognito-idp:us-west-2:832196373597:userpool/us-west-2_JIGELLAlX\" RegordingConfigArn=\"arn:aws:ivs:us-west-2:832196373597:recording-configuration/RVMAoX4utMuR\""
+
+
+[gitHub.deploy.parameters]
+stack_name = "serverlessFlix-channelService"
+resolve_s3 = true
+s3_prefix = "serverlessFlix-channelService"
+region = "us-west-2"
+capabilities = "CAPABILITY_IAM"
+image_repositories = []
+confirm_changeset = true
+parameter_overrides = "UserPoolARNParameter=\"arn:aws:cognito-idp:us-west-2:832196373597:userpool/us-west-2_JIGELLAlX\" RegordingConfigArn=\"arn:aws:ivs:us-west-2:832196373597:recording-configuration/RVMAoX4utMuR\""

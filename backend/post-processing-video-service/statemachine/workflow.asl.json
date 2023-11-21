@@ -1,0 +1,323 @@
+{
+  "Comment": "A description of my state machine",
+  "StartAt": "Parallel",
+  "States": {
+    "Parallel": {
+      "Type": "Parallel",
+      "Next": "is video longer than 20 minutes?",
+      "Branches": [
+        {
+          "StartAt": "ProcessingMp4Started",
+          "States": {
+            "ProcessingMp4Started": {
+              "Type": "Task",
+              "Resource": "arn:aws:states:::events:putEvents",
+              "Parameters": {
+                "Entries": [
+                  {
+                    "Detail": {
+                      "channel_name.$": "$.detail.channel_name",
+                      "id.$": "$.detail.stream_id"
+                    },
+                    "DetailType": "MP4ProcessingStarted",
+                    "EventBusName": "default",
+                    "Source": "serverlessFlix.videoManager"
+                  }
+                ]
+              },
+              "ResultPath": "$.ProcessingMp4Started",
+              "End": true
+            }
+          }
+        },
+        {
+          "StartAt": "Organize dDObject (1)",
+          "States": {
+            "Organize dDObject (1)": {
+              "Type": "Pass",
+              "Parameters": {
+                "playback_url": "",
+                "stream_url": "",
+                "thumbnail": "",
+                "channel_name.$": "$.detail.channel_name",
+                "id.$": "$.detail.stream_id",
+                "createdAt.$": "$$.Execution.StartTime",
+                "durationmillis.$": "$.detail.recording_duration_ms",
+                "height": "",
+                "width": ""
+              },
+              "ResultPath": "$.dbData",
+              "Next": "Get Channel Information (1)"
+            },
+            "Get Channel Information (1)": {
+              "Type": "Task",
+              "Resource": "arn:aws:states:::dynamodb:getItem",
+              "Parameters": {
+                "TableName": "${DDBTableChannel}",
+                "Key": {
+                  "PK": {
+                    "S.$": "$.detail.channel_name"
+                  }
+                }
+              },
+              "ResultPath": "$.ddbChannel",
+              "Next": "DynamoDB PutItem (1)"
+            },
+            "DynamoDB PutItem (1)": {
+              "Type": "Task",
+              "Resource": "arn:aws:states:::dynamodb:putItem",
+              "Parameters": {
+                "TableName": "${DDBTableVideos}",
+                "Item": {
+                  "PK": {
+                    "S.$": "$.detail.stream_id"
+                  },
+                  "EventId": {
+                    "S": "reinvent2023"
+                  },
+                  "ChannelID": {
+                    "S.$": "$.detail.channel_name"
+                  },
+                  "CreatedAt": {
+                    "S.$": "$$.Execution.StartTime"
+                  },
+                  "Author": {
+                    "S.$": "$.ddbChannel.Item.name.S"
+                  },
+                  "Data": {
+                    "S.$": "States.JsonToString($.dbData)"
+                  },
+                  "videoStatus": {
+                    "S": "processing"
+                  }
+                }
+              },
+              "ResultPath": "$.dbResult",
+              "End": true
+            }
+          }
+        }
+      ],
+      "OutputPath": "$[0]"
+    },
+    "is video longer than 20 minutes?": {
+      "Type": "Choice",
+      "Choices": [
+        {
+          "Variable": "$.detail.recording_duration_ms",
+          "NumericGreaterThan": 900000,
+          "Next": "ECS RunTask"
+        }
+      ],
+      "Default": "Lambda conversion Job"
+    },
+    "ECS RunTask": {
+      "Type": "Task",
+      "Resource": "arn:aws:states:::ecs:runTask.waitForTaskToken",
+      "Parameters": {
+        "LaunchType": "FARGATE",
+        "Cluster": "${Cluster}",
+        "TaskDefinition": "${TaskDefinition}",
+        "Overrides": {
+          "ContainerOverrides": [
+            {
+              "Name": "StepTask1",
+              "Environment": [
+                {
+                  "Name": "TaskToken",
+                  "Value.$": "$$.Task.Token"
+                },
+                {
+                  "Name": "Event",
+                  "Value.$": "States.JsonToString($)"
+                }
+              ]
+            }
+          ]
+        },
+        "NetworkConfiguration": {
+          "AwsvpcConfiguration": {
+            "Subnets": [
+              "${Subnet1}",
+              "${Subnet2}"
+            ],
+            "SecurityGroups": [
+              "${SecurityGroup}"
+            ]
+          }
+        }
+      },
+      "Next": "ProcessingMP4Complete ECS",
+      "TimeoutSeconds": 3000,
+      "ResultPath":"$.ReadJobResult.Payload.body"
+    },
+    "ProcessingMP4Complete ECS": {
+      "Type": "Task",
+      "Resource": "arn:aws:states:::events:putEvents",
+      "Parameters": {
+        "Entries": [
+          {
+            "Detail": {
+              "channel_name.$": "$.detail.channel_name",
+              "id.$": "$.detail.stream_id",
+              "compute": "ecs"
+            },
+            "DetailType": "MP4ProcessingComplete",
+            "EventBusName": "default",
+            "Source": "serverlessFlix.videoManager"
+          }
+        ]
+      },
+      "Next": "Organize dDObject",
+      "ResultPath": "$.ProcessingMP4Complete"
+    },
+    "Lambda conversion Job": {
+      "Type": "Task",
+      "Resource": "arn:aws:states:::lambda:invoke",
+      "Parameters": {
+        "Payload.$": "$",
+        "FunctionName": "${FunctionName}"
+      },
+      "Retry": [
+        {
+          "ErrorEquals": [
+            "Lambda.ServiceException",
+            "Lambda.AWSLambdaException",
+            "Lambda.SdkClientException",
+            "Lambda.TooManyRequestsException"
+          ],
+          "IntervalSeconds": 2,
+          "MaxAttempts": 6,
+          "BackoffRate": 2
+        },
+        {
+          "ErrorEquals": [
+            "States.ALL"
+          ],
+          "BackoffRate": 2,
+          "IntervalSeconds": 6,
+          "MaxAttempts": 2
+        }
+      ],
+      "Next": "ProcessingMP4Complete Lambda",
+      "ResultPath": "$.ReadJobResult"
+    },
+    "ProcessingMP4Complete Lambda": {
+      "Type": "Task",
+      "Resource": "arn:aws:states:::events:putEvents",
+      "Parameters": {
+        "Entries": [
+          {
+            "Detail": {
+              "channel_name.$": "$.detail.channel_name",
+              "id.$": "$.detail.stream_id",
+              "compute": "lambda"
+            },
+            "DetailType": "MP4ProcessingComplete",
+            "EventBusName": "default",
+            "Source": "serverlessFlix.videoManager"
+          }
+        ]
+      },
+      "Next": "Organize dDObject",
+      "ResultPath": "$.ProcessingMP4Complete"
+    },
+    "Organize dDObject": {
+      "Type": "Pass",
+      "Next": "Get Channel Information",
+      "Parameters": {
+        "playback_url.$": "$.ReadJobResult.Payload.body.playbackUrl",
+        "stream_url.$": "$.ReadJobResult.Payload.body.streamUrl",
+        "thumbnail.$": "$.ReadJobResult.Payload.body.thumbnailUrl",
+        "channel_name.$": "$.detail.channel_name",
+        "id.$": "$.detail.stream_id",
+        "createdAt.$": "$$.Execution.StartTime",
+        "durationmillis.$": "$.detail.recording_duration_ms",
+        "height.$": "$.ReadJobResult.Payload.body.height",
+        "width.$": "$.ReadJobResult.Payload.body.width"
+      },
+      "ResultPath": "$.dbData"
+    },
+    "Get Channel Information": {
+      "Type": "Task",
+      "Resource": "arn:aws:states:::dynamodb:getItem",
+      "Parameters": {
+        "TableName": "${DDBTableChannel}",
+        "Key": {
+          "PK": {
+            "S.$": "$.detail.channel_name"
+          }
+        }
+      },
+      "Next": "DynamoDB PutItem",
+      "ResultPath": "$.ddbChannel"
+    },
+    "DynamoDB PutItem": {
+      "Type": "Task",
+      "Resource": "arn:aws:states:::dynamodb:putItem",
+      "Parameters": {
+        "TableName": "${DDBTableVideos}",
+        "Item": {
+          "PK": {
+            "S.$": "$.detail.stream_id"
+          },
+          "EventId": {
+            "S": "reinvent2023"
+          },
+          "ChannelID": {
+            "S.$": "$.detail.channel_name"
+          },
+          "CreatedAt": {
+            "S.$": "$$.Execution.StartTime"
+          },
+          "Author": {
+            "S.$": "$.ddbChannel.Item.name.S"
+          },
+          "Data": {
+            "S.$": "States.JsonToString($.dbData)"
+          },
+          "videoStatus": {
+            "S": "processing"
+          },
+            "PostProcessingWorkflowExecutionId": {
+              "S.$": "$$.Execution.Id"
+            }
+        }
+      },
+      "Next": "EventBridge PutEvents",
+      "ResultPath": "$.dbResult"
+    },
+    "EventBridge PutEvents": {
+      "Type": "Task",
+      "Resource": "arn:aws:states:::events:putEvents",
+      "Parameters": {
+        "Entries": [
+          {
+            "Detail": {
+              "recording_status": "Recording Ready",
+              "recording_s3_key_prefix.$": "$.detail.recording_s3_key_prefix",
+              "stream_url.$": "$.ReadJobResult.Payload.body.streamUrl",
+              "playback_url.$": "$.ReadJobResult.Payload.body.playbackUrl",
+              "thumbnail.$": "$.ReadJobResult.Payload.body.thumbnailUrl",
+              "channel_name.$": "$.detail.channel_name",
+              "id.$": "$.detail.stream_id",
+              "createdAt.$": "$$.Execution.StartTime",
+              "durationmillis.$": "$.detail.recording_duration_ms",
+              "author.$": "$.ddbChannel.Item.name.S",
+              "height.$": "$.ReadJobResult.Payload.body.height",
+              "width.$": "$.ReadJobResult.Payload.body.width"
+            },
+            "DetailType": "recording-ready",
+            "EventBusName": "default",
+            "Source": "serverlessFlix.videoManager"
+          }
+        ]
+      },
+      "Next": "YES"
+    },
+    "YES": {
+      "Type": "Pass",
+      "End": true
+    }
+  }
+}

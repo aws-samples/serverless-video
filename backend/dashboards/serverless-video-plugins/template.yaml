@@ -1,0 +1,356 @@
+AWSTemplateFormatVersion: '2010-09-09'
+Transform: AWS::Serverless-2016-10-31
+
+Resources:
+  MyDashboard:
+    Type: "AWS::CloudWatch::Dashboard"
+    Properties:
+      DashboardName: "ServerlessVideo-Plugins-Dashboard"
+      DashboardBody: !Sub |
+        {
+            "widgets": [
+                {
+                    "height": 1,
+                    "width": 24,
+                    "y": 0,
+                    "x": 0,
+                    "type": "text",
+                    "properties": {
+                        "markdown": "# Plugin Lifecycle Workflow"
+                    }
+                },
+                {
+                    "height": 4,
+                    "width": 11,
+                    "y": 5,
+                    "x": 0,
+                    "type": "metric",
+                    "properties": {
+                        "metrics": [
+                            [ "ServerlessVideo", "invalid", "By EventHook", "preValidate", { "region": "${AWS::Region}", "color": "#d62728" } ]
+                        ],
+                        "sparkline": false,
+                        "view": "singleValue",
+                        "region": "${AWS::Region}",
+                        "period": 86400,
+                        "title": "Videos that failed validation",
+                        "stat": "Sum",
+                        "setPeriodToTimeRange": true,
+                        "trend": false
+                    }
+                },
+                {
+                    "height": 4,
+                    "width": 13,
+                    "y": 5,
+                    "x": 11,
+                    "type": "metric",
+                    "properties": {
+                        "sparkline": false,
+                        "view": "singleValue",
+                        "metrics": [
+                            [ "ServerlessVideo", "success", "By EventHook", "preValidate", { "region": "${AWS::Region}" } ]
+                        ],
+                        "region": "${AWS::Region}",
+                        "title": "Videos successfull validaiton",
+                        "period": 300,
+                        "setPeriodToTimeRange": true,
+                        "trend": false
+                    }
+                },
+                {
+                    "height": 1,
+                    "width": 24,
+                    "y": 9,
+                    "x": 0,
+                    "type": "text",
+                    "properties": {
+                        "markdown": "# Content Moderation Plugin (preValidate)"
+                    }
+                },
+                {
+                    "height": 5,
+                    "width": 11,
+                    "y": 13,
+                    "x": 0,
+                    "type": "metric",
+                    "properties": {
+                        "metrics": [
+                            [ "AWS/Lambda", "Invocations", "FunctionName", "serverlessVideo-plugin-content-moderation-downloader" ],
+                            [ ".", "Errors", ".", ".", { "color": "#d62728" } ]
+                        ],
+                        "view": "timeSeries",
+                        "stacked": false,
+                        "region": "${AWS::Region}",
+                        "stat": "Sum",
+                        "period": 300,
+                        "title": "Download video function"
+                    }
+                },
+                {
+                    "height": 3,
+                    "width": 24,
+                    "y": 10,
+                    "x": 0,
+                    "type": "metric",
+                    "properties": {
+                        "metrics": [
+                            [ "AWS/States", "ExecutionsStarted", "StateMachineArn", "arn:aws:states:${AWS::Region}:${AWS::AccountId}:stateMachine:${AWS::AccountId}-${AWS::Region}-content-moderation-plugin", { "region": "${AWS::Region}", "label": "Started moderation", "color": "#2ca02c" } ],
+                            [ ".", "ExecutionsSucceeded", ".", ".", { "region": "${AWS::Region}", "label": "Videos moderated", "color": "#2ca02c" } ],
+                            [ ".", "ExecutionsFailed", ".", ".", { "region": "${AWS::Region}", "label": "Moderation failed", "color": "#d62728" } ],
+                            [ ".", "ExecutionsAborted", ".", ".", { "region": "${AWS::Region}", "label": "Execution Aborted" } ]
+                        ],
+                        "view": "singleValue",
+                        "stacked": false,
+                        "region": "${AWS::Region}",
+                        "stat": "Sum",
+                        "period": 300,
+                        "title": "Content moderation",
+                        "setPeriodToTimeRange": true,
+                        "sparkline": false,
+                        "trend": false
+                    }
+                },
+                {
+                    "height": 5,
+                    "width": 13,
+                    "y": 13,
+                    "x": 11,
+                    "type": "metric",
+                    "properties": {
+                        "view": "timeSeries",
+                        "stacked": false,
+                        "metrics": [
+                            [ "AWS/Rekognition", "CallCount", "Operation", "GetContentModeration" ],
+                            [ ".", "SuccessfulRequestCount", ".", "." ],
+                            [ ".", "UserErrorCount", ".", "StartContentModeration" ]
+                        ],
+                        "region": "${AWS::Region}",
+                        "title": "Content Moderation API Calls"
+                    }
+                },
+                {
+                    "height": 1,
+                    "width": 24,
+                    "y": 18,
+                    "x": 0,
+                    "type": "text",
+                    "properties": {
+                        "markdown": "# Duration plugin (preValidate)"
+                    }
+                },
+                {
+                    "height": 5,
+                    "width": 11,
+                    "y": 19,
+                    "x": 0,
+                    "type": "metric",
+                    "properties": {
+                        "view": "timeSeries",
+                        "stacked": false,
+                        "metrics": [
+                            [ "AWS/Lambda", "Invocations", "FunctionName", "serverlessVideo-plugin-duration-checker" ],
+                            [ ".", "Errors", ".", "." ]
+                        ],
+                        "region": "${AWS::Region}",
+                        "title": "Duration plugin Lambda"
+                    }
+                },
+                {
+                    "height": 4,
+                    "width": 24,
+                    "y": 1,
+                    "x": 0,
+                    "type": "metric",
+                    "properties": {
+                        "metrics": [
+                            [ "AWS/States", "ExecutionsStarted", "StateMachineArn", "arn:aws:states:${AWS::Region}:${AWS::AccountId}:stateMachine:${AWS::AccountId}-${AWS::Region}-PluginLifecycleWorkflow", { "region": "${AWS::Region}", "label": "Videos started to be processed", "color": "#2ca02c" } ],
+                            [ ".", "ExecutionsSucceeded", ".", ".", { "region": "${AWS::Region}", "label": "Vidoes processed", "color": "#2ca02c" } ],
+                            [ ".", "ExecutionsFailed", ".", ".", { "region": "${AWS::Region}", "label": "Process failed", "color": "#d62728" } ],
+                            [ ".", "ExecutionsTimedOut", ".", ".", { "region": "${AWS::Region}", "label": "Timed out processing video" } ],
+                            [ ".", "ExecutionsAborted", ".", ".", { "region": "${AWS::Region}", "label": "Aborted processing", "color": "#d62728" } ]
+                        ],
+                        "sparkline": false,
+                        "view": "singleValue",
+                        "region": "${AWS::Region}",
+                        "period": 2592000,
+                        "stat": "Sum",
+                        "title": "Plugin Lifecycle SFN workflow",
+                        "setPeriodToTimeRange": true,
+                        "trend": false
+                    }
+                },
+                {
+                    "height": 1,
+                    "width": 24,
+                    "y": 24,
+                    "x": 0,
+                    "type": "text",
+                    "properties": {
+                        "markdown": "# Transcribe Plugin (Premetadata)"
+                    }
+                },
+                {
+                    "height": 3,
+                    "width": 24,
+                    "y": 25,
+                    "x": 0,
+                    "type": "metric",
+                    "properties": {
+                        "metrics": [
+                            [ "AWS/States", "ExecutionsStarted", "StateMachineArn", "arn:aws:states:${AWS::Region}:${AWS::AccountId}:stateMachine:video-transcription-workflow", { "label": "Start transcribe process", "region": "${AWS::Region}" } ],
+                            [ ".", "ExecutionsSucceeded", ".", ".", { "label": "Transcribe successful for video", "region": "${AWS::Region}" } ],
+                            [ ".", "ExecutionsFailed", ".", ".", { "label": "Transcribe failed for video", "color": "#d62728", "region": "${AWS::Region}" } ],
+                            [ ".", "ExecutionsTimedOut", ".", ".", { "label": "Transcribe timedout", "region": "${AWS::Region}" } ],
+                            [ ".", "ExecutionsAborted", ".", ".", { "color": "#d62728", "label": "Transcribe aborted", "region": "${AWS::Region}" } ]
+                        ],
+                        "sparkline": false,
+                        "view": "singleValue",
+                        "region": "${AWS::Region}",
+                        "stat": "Sum",
+                        "period": 2592000,
+                        "title": "Transcribe SFN workflow",
+                        "setPeriodToTimeRange": true,
+                        "trend": false
+                    }
+                },
+                {
+                    "height": 3,
+                    "width": 24,
+                    "y": 28,
+                    "x": 0,
+                    "type": "metric",
+                    "properties": {
+                        "metrics": [
+                            [ "AWS/Transcribe", "SuccessfulRequestCount", "ServiceType", "Batch", "Operation", "StartTranscriptionJob", "Domain", "Transcribe", { "region": "${AWS::Region}" } ],
+                            [ ".", "ThrottledCount", ".", ".", ".", ".", ".", ".", { "region": "${AWS::Region}" } ],
+                            [ ".", "LimitExceededCount", ".", ".", ".", ".", ".", ".", { "region": "${AWS::Region}" } ],
+                            [ ".", "SyncUserErrorCount", ".", ".", ".", ".", ".", ".", { "region": "${AWS::Region}" } ]
+                        ],
+                        "view": "singleValue",
+                        "stacked": false,
+                        "region": "${AWS::Region}",
+                        "stat": "Sum",
+                        "period": 86400,
+                        "sparkline": false,
+                        "title": "AWS Transcribe Requests",
+                        "setPeriodToTimeRange": true,
+                        "trend": false
+                    }
+                },
+                {
+                    "height": 1,
+                    "width": 24,
+                    "y": 31,
+                    "x": 0,
+                    "type": "text",
+                    "properties": {
+                        "markdown": "# Generate Tags (postMetadata)"
+                    }
+                },
+                {
+                    "height": 4,
+                    "width": 24,
+                    "y": 32,
+                    "x": 0,
+                    "type": "metric",
+                    "properties": {
+                        "metrics": [
+                            [ "AWS/Lambda", "Invocations", "FunctionName", "serverlessVideo-plugin-generate-tags", { "region": "${AWS::Region}" } ],
+                            [ ".", "AsyncEventsDropped", ".", ".", { "region": "${AWS::Region}" } ],
+                            [ ".", "Errors", ".", ".", { "region": "${AWS::Region}" } ],
+                            [ ".", "Duration", ".", ".", { "visible": false, "region": "${AWS::Region}" } ]
+                        ],
+                        "view": "singleValue",
+                        "stacked": false,
+                        "region": "${AWS::Region}",
+                        "stat": "Sum",
+                        "period": 3600,
+                        "title": "Genreate Tags Function",
+                        "setPeriodToTimeRange": true,
+                        "sparkline": false,
+                        "trend": false
+                    }
+                },
+                {
+                    "height": 4,
+                    "width": 24,
+                    "y": 36,
+                    "x": 0,
+                    "type": "metric",
+                    "properties": {
+                        "metrics": [
+                            [ "AWS/Lambda", "Invocations", "FunctionName", "serverlessVideo-plugin-generate-tags" ],
+                            [ ".", "AsyncEventsDropped", ".", "." ],
+                            [ ".", "Errors", ".", "." ],
+                            [ ".", "Duration", ".", ".", { "visible": false } ]
+                        ],
+                        "view": "timeSeries",
+                        "stacked": false,
+                        "region": "${AWS::Region}",
+                        "stat": "Sum",
+                        "period": 300,
+                        "title": "Genreate Tags Function"
+                    }
+                },
+                {
+                    "height": 1,
+                    "width": 24,
+                    "y": 40,
+                    "x": 0,
+                    "type": "text",
+                    "properties": {
+                        "markdown": "# Generate Title (postMetadata)"
+                    }
+                },
+                {
+                    "height": 4,
+                    "width": 24,
+                    "y": 41,
+                    "x": 0,
+                    "type": "metric",
+                    "properties": {
+                        "metrics": [
+                            [ "AWS/States", "ExecutionsStarted", "StateMachineArn", "arn:aws:states:${AWS::Region}:${AWS::AccountId}:stateMachine:${AWS::AccountId}-${AWS::Region}-generateTitleplugin", { "region": "${AWS::Region}", "color": "#2ca02c" } ],
+                            [ ".", "ExecutionsSucceeded", ".", ".", { "region": "${AWS::Region}", "color": "#2ca02c" } ],
+                            [ ".", "ExecutionsFailed", ".", ".", { "region": "${AWS::Region}", "color": "#d62728" } ],
+                            [ ".", "ExecutionsTimedOut", ".", ".", { "region": "${AWS::Region}" } ],
+                            [ ".", "ExecutionsAborted", ".", ".", { "region": "${AWS::Region}", "color": "#d62728" } ]
+                        ],
+                        "view": "singleValue",
+                        "stacked": false,
+                        "region": "${AWS::Region}",
+                        "stat": "Sum",
+                        "period": 3600,
+                        "title": "Genreate Title Function",
+                        "setPeriodToTimeRange": true,
+                        "sparkline": false,
+                        "trend": false
+                    }
+                },
+                {
+                    "height": 3,
+                    "width": 24,
+                    "y": 45,
+                    "x": 0,
+                    "type": "metric",
+                    "properties": {
+                        "metrics": [
+                            [ "AWS/Lambda", "Invocations", "FunctionName", "serverlessVideo-plugin-GenAi-generateTitle", { "region": "${AWS::Region}", "color": "#2ca02c" } ],
+                            [ ".", "Throttles", ".", ".", { "region": "${AWS::Region}" } ],
+                            [ ".", "Errors", ".", ".", { "region": "${AWS::Region}", "color": "#d62728" } ]
+                        ],
+                        "view": "singleValue",
+                        "stacked": false,
+                        "region": "${AWS::Region}",
+                        "stat": "Sum",
+                        "period": 21600,
+                        "title": "Generate title plugin",
+                        "setPeriodToTimeRange": true,
+                        "sparkline": false,
+                        "trend": false
+                    }
+                }
+            ]
+        }
+        

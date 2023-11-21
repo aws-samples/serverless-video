@@ -1,0 +1,66 @@
+AWSTemplateFormatVersion: 2010-09-09
+Transform: AWS::Serverless-2016-10-31
+Description: ServerlessFlixPublisher stack.
+Parameters:
+  IoTRealtimeParameter:
+    Type: String
+    Default: IoTRealtimeParameter
+
+
+
+Resources:
+  PublisherFunctionGlobal:
+    Type: AWS::Serverless::Function
+    Properties:
+      CodeUri: code/
+      Handler: publishToIOTGlobal.handler
+      Runtime: nodejs14.x
+      Timeout: 3
+      Environment:
+        Variables:
+          IOT_DATA_ENDPOINT: !Ref IoTRealtimeParameter
+          IOT_TOPIC: serverlessFlix-global
+      Policies:
+        - Statement:
+            - Effect: Allow
+              Resource: arn:aws:iot:*
+              Action:
+                - iot:Connect
+                - iot:Publish
+      Events:
+        GeneralIVSIotPub:
+          Type: EventBridgeRule
+          Properties:
+            EventBusName: default
+            Pattern:
+              source:
+                - aws.ivs
+              detail-type:
+                - prefix: IVS
+        PluginManagerCompleteToIOT:
+          Type: EventBridgeRule
+          Properties:
+            EventBusName: default
+            Pattern:
+              source:
+                - serverlessFlix.pluginManager
+              detail-type:
+                - prefix: LifeCycleComplete
+        VideoManagerCompleteToIOT:
+          Type: EventBridgeRule
+          Properties:
+            EventBusName: default
+            Pattern:
+              source:
+                - serverlessFlix.videoManager
+              detail-type:
+                - prefix: VideoStatusUpdated
+        streamViewCounter:
+          Type: EventBridgeRule
+          Properties:
+            EventBusName: default
+            Pattern:
+              source:
+                - serverlessFlix.viewCounter
+              detail-type:
+                - prefix: ViewCountUpdated

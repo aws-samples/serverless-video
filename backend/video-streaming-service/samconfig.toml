@@ -1,0 +1,32 @@
+version = 0.1
+
+[default.global.parameters]
+stack_name = "ServerlessFlix-streaming-service"
+region = "us-west-2"
+
+
+[default.deploy.parameters]
+profile = "bstream"
+resolve_s3 = true
+s3_prefix = "ServerlessFlix-streaming-service"
+capabilities = "CAPABILITY_IAM"
+image_repositories = []
+
+
+[prod.deploy.parameters]
+stack_name = "ServerlessFlix-streaming-service"
+resolve_s3 = true
+s3_prefix = "ServerlessFlix-streaming-service"
+region = "us-west-2"
+profile = "stream"
+capabilities = "CAPABILITY_IAM"
+image_repositories = []
+
+
+[gitHub.deploy.parameters]
+stack_name = "ServerlessFlix-streaming-service"
+resolve_s3 = true
+s3_prefix = "ServerlessFlix-streaming-service"
+region = "us-west-2"
+capabilities = "CAPABILITY_IAM"
+image_repositories = []

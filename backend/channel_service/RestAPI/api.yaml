@@ -1,0 +1,1314 @@
+openapi: "3.0.1"
+info:
+  title: "ServerlessFlixChannelServiceAPIService"
+  version: "1.3"
+servers:
+- url: "https://cehu8ctixi.execute-api.${AWS::Region}.amazonaws.com/{basePath}"
+  variables:
+    basePath:
+      default: "Prod"
+paths:
+  /video/{id}/history:
+    get:
+      parameters:
+      - name: "id"
+        in: "path"
+        required: true
+        schema:
+          type: "string"
+      responses:
+        "200":
+          description: "200 response"
+          headers:
+            Access-Control-Allow-Origin:
+              schema:
+                type: "string"
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Empty"
+      security:
+      - CognitoAuth: []
+      x-amazon-apigateway-integration:
+        credentials: 
+          Fn::GetAtt: [RESTApiRole, Arn]
+        httpMethod: "POST"
+        uri: "arn:aws:apigateway:us-west-2:dynamodb:action/Query"
+        responses:
+          default:
+            statusCode: "200"
+            responseParameters:
+              method.response.header.Access-Control-Allow-Origin: "'*'"
+            responseTemplates:
+              application/json: "#set($items = $input.path('$.Items')) \n{\n  \"data\"\
+                : [\n    #foreach($log in $items)\n        {\n            \"createdAt\"\
+                : \"$log.createdAt.S\",\n            \"type\": \"$log.type.S\",\n\
+                \            \"videoId\": \"$log.PK.S\",\n            \"key\": \"\
+                $log.key.S\",\n            #if($log.type.S != \"metric\")\n      \
+                \      \"parent\": \"$log.parent.S\",\n            #end\n        \
+                \    #if($log.type.S == \"metric\")\n            \"value\": \"$log.value.S\"\
+                ,\n            \"label\": \"$log.label.S\"\n            #end\n   \
+                \         #if($log.type.S != \"metric\")\n            \"icon\": \"\
+                $log.icon.S\",\n            \"subtitle\": \"$log.subtitle.S\",\n \
+                \           \"description\": \"$log.description.S\",\n           \
+                \ \"title\": \"$log.title.S\"\n            #end\n        }#if($foreach.hasNext),#end\n\
+                \    #end\n  ]\n}\n\n"
+        requestTemplates:
+          application/json: "#set($videoId = $input.params('id'))\n  {\n    \"TableName\"\
+            : \"serverlessFlix-video-history-table\",\n    \"KeyConditionExpression\"\
+            : \"PK = :videoId\",\n    \"ScanIndexForward\": true,\n    \"ExpressionAttributeValues\"\
+            : {\n      \":videoId\": {\"S\": \"$videoId\"}\n    }\n  }\n"
+        passthroughBehavior: "never"
+        type: "aws"
+    options:
+      parameters:
+      - name: "id"
+        in: "path"
+        required: true
+        schema:
+          type: "string"
+      responses:
+        "200":
+          description: "200 response"
+          headers:
+            Access-Control-Allow-Origin:
+              schema:
+                type: "string"
+            Access-Control-Allow-Methods:
+              schema:
+                type: "string"
+            Access-Control-Allow-Headers:
+              schema:
+                type: "string"
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Empty"
+      x-amazon-apigateway-integration:
+        responses:
+          default:
+            statusCode: "200"
+            responseParameters:
+              method.response.header.Access-Control-Allow-Methods: "'DELETE,GET,HEAD,OPTIONS,PATCH,POST,PUT'"
+              method.response.header.Access-Control-Allow-Headers: "'Content-Type,Authorization,X-Amz-Date,X-Api-Key,X-Amz-Security-Token'"
+              method.response.header.Access-Control-Allow-Origin: "'*'"
+        requestTemplates:
+          application/json: "{\"statusCode\": 200}"
+        passthroughBehavior: "when_no_match"
+        type: "mock"
+  /videos:
+    get:
+      parameters:
+      - name: "offset"
+        in: "query"
+        schema:
+          type: "string"
+      - name: "limit"
+        in: "query"
+        schema:
+          type: "string"
+      responses:
+        "200":
+          description: "200 response"
+          headers:
+            Access-Control-Allow-Origin:
+              schema:
+                type: "string"
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Empty"
+      security:
+      - CognitoAuth: []
+      x-amazon-apigateway-integration:
+        credentials: 
+           Fn::GetAtt: [RESTApiRole, Arn]
+        httpMethod: "POST"
+        uri: "arn:aws:apigateway:${AWS::Region}:dynamodb:action/Scan"
+        responses:
+          default:
+            statusCode: "200"
+            responseParameters:
+              method.response.header.Access-Control-Allow-Origin: "'*'"
+            responseTemplates:
+              application/json: >
+                #set($root = $input.path('$'))
+                {
+                  #if($root.LastEvaluatedKey != "")
+                    "nextPage": "$util.base64Encode($input.json('$.LastEvaluatedKey'))",
+                  #end
+                  "count": $root.Count,
+                  "data": [
+                    #foreach($item in $root.Items)
+                      #set($data = $util.parseJson($item.Data.S))
+                      {
+                        "id":"$item.PK.S",
+                        "channel":"$item.ChannelID.S",
+                        "author": {
+                          "username": "$item.Author.S"
+                        },
+                        "createdAt":"$data.createdAt",
+                        "thumbnail":"$data.thumbnail",
+                        "streamURL":"$data.stream_url",
+                        "playbackURL":"$data.playback_url",
+                        #if($item.plugins != "")
+                          #foreach($postMD in $item.plugins.M.postMetadata.L)
+                            #if($postMD.M.OutputKey.S == "plugin-generateTitlePlugin")
+                              #if($postMD.M.OutputValue.M.title.S != "")
+                                "title": "$postMD.M.OutputValue.M.title.S",
+                              #end
+                            #end
+                            #if($postMD.M.OutputKey.S == "plugin-generateTagsPlugin")
+                              #if($postMD.M.OutputValue.M.pluginData.M.tags != "")
+                              "tags":[#foreach($tag in $postMD.M.OutputValue.M.pluginData.M.tags.L)"$tag.S"#if($foreach.hasNext),#end #end],
+                              #end
+                            #end
+                          #end
+                          #foreach($preMD in $item.plugins.M.preMetadata.L)
+                            #if($preMD.M.OutputKey.S == "plugin-transcribeplugin")
+                              #if($preMD.M.OutputValue.M.TranscriptUrl.S != "")
+                                "transcriptURL": "$preMD.M.OutputValue.M.TranscriptUrl.S",
+                              #end
+                            #end
+                          #end
+                        #end
+                        "duration": $data.durationmillis
+                    }#if($foreach.hasNext),#end
+                    #end
+                  ]
+                }
+        requestTemplates:
+          application/json: >
+            #set($pageKey = $input.params('offset')) #set($pageSize=10) #if($input.params('limit') != "")
+            #set($pageSize=$input.params('limit'))
+            #end {
+              #if($pageKey.toString() != "")
+                "ExclusiveStartKey": $util.base64Decode($pageKey),
+              #end
+              "TableName": "serverlessFlix-Video-table",
+              "Limit": $pageSize,
+              "FilterExpression": "#status = :status",
+              "ExpressionAttributeNames":{
+                "#status": "videoStatus"
+              },
+              "ExpressionAttributeValues": {
+                ":status": {"S": "valid"}
+              }
+            }
+        passthroughBehavior: "never"
+        type: "aws"
+    options:
+      responses:
+        "200":
+          description: "200 response"
+          headers:
+            Access-Control-Allow-Origin:
+              schema:
+                type: "string"
+            Access-Control-Allow-Methods:
+              schema:
+                type: "string"
+            Access-Control-Allow-Headers:
+              schema:
+                type: "string"
+          content: {}
+      x-amazon-apigateway-integration:
+        responses:
+          default:
+            statusCode: "200"
+            responseParameters:
+              method.response.header.Access-Control-Allow-Methods: "'GET,PUT,POST,DELETE,OPTIONS'"
+              method.response.header.Access-Control-Allow-Headers: "'Content-Type,Authorization'"
+              method.response.header.Access-Control-Allow-Origin: "'*'"
+            responseTemplates:
+              application/json: "{}\n"
+        requestTemplates:
+          application/json: "{\n  \"statusCode\" : 200\n}\n"
+        passthroughBehavior: "when_no_match"
+        type: "mock"
+  /channel/videos:
+    get:
+      parameters:
+      - name: "offset"
+        in: "query"
+        schema:
+          type: "string"
+      - name: "limit"
+        in: "query"
+        schema:
+          type: "string"
+      responses:
+        "200":
+          description: "200 response"
+          headers:
+            Access-Control-Allow-Origin:
+              schema:
+                type: "string"
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Empty"
+      security:
+      - CognitoAuth: []
+      x-amazon-apigateway-integration:
+        credentials: 
+           Fn::GetAtt: [RESTApiRole, Arn]
+        httpMethod: "POST"
+        uri: "arn:aws:apigateway:${AWS::Region}:dynamodb:action/Query"
+        responses:
+          default:
+            statusCode: "200"
+            responseParameters:
+              method.response.header.Access-Control-Allow-Origin: "'*'"
+            responseTemplates:
+              application/json: >
+                #set($root = $input.path('$'))
+                {
+                  #if($root.LastEvaluatedKey != "")
+                    "nextPage": "$util.base64Encode($input.json('$.LastEvaluatedKey'))",
+                  #end
+                  "count": $root.Count,
+                  "data": [
+                  #foreach($item in $root.Items)
+                    #set($data = $util.parseJson($item.Data.S))
+                    {
+                      "id":"$item.PK.S",
+                      "channel":"$item.ChannelID.S",
+                      "createdAt":"$item.CreatedAt.S",
+                      "thumbnail":"$data.thumbnail",
+                      "streamURL":"$data.stream_url",
+                      "status":"$item.videoStatus.S",
+                      "playbackURL":"$data.playback_url",
+                      "author": {
+                          "username": "$item.Author.S"
+                      },
+                      #foreach($postMD in $item.plugins.M.postMetadata.L)
+                        #if($postMD.M.OutputKey.S == "plugin-generateTitlePlugin")
+                          #if($postMD.M.OutputValue.M.title.S != "")
+                            "title": "$postMD.M.OutputValue.M.title.S",
+                          #end
+                        #end
+                        #if($postMD.M.OutputKey.S == "plugin-generateTagsPlugin")
+                          #if($postMD.M.OutputValue.M.pluginData.M.tags != "")
+                          "tags":[#foreach($tag in $postMD.M.OutputValue.M.pluginData.M.tags.L)"$tag.S"#if($foreach.hasNext),#end #end],
+                          #end
+                        #end
+                      #end
+                      #foreach($preMD in $item.plugins.M.preMetadata.L)
+                        #if($preMD.M.OutputKey.S == "plugin-transcribeplugin")
+                          #if($preMD.M.OutputValue.M.TranscriptUrl.S != "")
+                              "transcriptURL": "$preMD.M.OutputValue.M.TranscriptUrl.S",
+                           #end
+                        #end
+                      #end
+                      "duration": $data.durationmillis
+                      }#if($foreach.hasNext),#end
+                  #end
+                  ]
+                }
+        requestTemplates:
+          application/json: >
+            #set($channelId = $context.authorizer.claims.sub)
+            #set($pageKey = $input.params('offset'))
+            #set($pageSize=10)
+            #if($input.params('limit') != "")
+            #set($pageSize=$input.params('limit'))
+            #end
+            {
+              #if($pageKey.toString() != "")
+                "ExclusiveStartKey": $util.base64Decode($pageKey),
+              #end
+              "TableName": "serverlessFlix-Video-table",
+              "Limit": $pageSize,
+              "IndexName": "GSI-channel",
+              "KeyConditionExpression": "#channel = :channel",
+              "ExpressionAttributeNames":{
+                "#channel": "ChannelID"
+              },
+              "ExpressionAttributeValues": {
+                ":channel": {"S": "$channelId"}
+              }
+            }
+        passthroughBehavior: "never"
+        type: "aws"
+    options:
+      parameters:
+      - name: "id"
+        in: "path"
+        required: true
+        schema:
+          type: "string"
+      responses:
+        "200":
+          description: "200 response"
+          headers:
+            Access-Control-Allow-Origin:
+              schema:
+                type: "string"
+            Access-Control-Allow-Methods:
+              schema:
+                type: "string"
+            Access-Control-Allow-Headers:
+              schema:
+                type: "string"
+          content: {}
+      x-amazon-apigateway-integration:
+        responses:
+          default:
+            statusCode: "200"
+            responseParameters:
+              method.response.header.Access-Control-Allow-Methods: "'GET,PUT,POST,DELETE,OPTIONS'"
+              method.response.header.Access-Control-Allow-Headers: "'Content-Type,Authorization'"
+              method.response.header.Access-Control-Allow-Origin: "'*'"
+            responseTemplates:
+              application/json: "{}\n"
+        requestTemplates:
+          application/json: "{\n  \"statusCode\" : 200\n}\n"
+        passthroughBehavior: "when_no_match"
+        type: "mock"
+  /channel/{id}:
+    get:
+      parameters:
+      - name: "id"
+        in: "path"
+        required: true
+        schema:
+          type: "string"
+      responses:
+        "200":
+          description: "200 response"
+          headers:
+            Access-Control-Allow-Origin:
+              schema:
+                type: "string"
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Empty"
+      security:
+      - CognitoAuth: []
+      x-amazon-apigateway-integration:
+        credentials: 
+           Fn::GetAtt: [RESTApiRole, Arn]
+        httpMethod: "POST"
+        uri: "arn:aws:apigateway:${AWS::Region}:dynamodb:action/GetItem"
+        responses:
+          default:
+            statusCode: "200"
+            responseParameters:
+              method.response.header.Access-Control-Allow-Origin: "'*'"
+            responseTemplates:
+              application/json: "#set($root = $input.path('$.Item'))\n#set($data =\
+                \ $root.data.S)\n#set($parsedData = $util.parseJson($data))\n{\n\n\
+                \    \"name\":\"$root.PK.S\",\n    \"username\":\"$root.name.S\",\n\
+                \    \"playbackURL\": \"$parsedData.Channel.PlaybackUrl\",\n    \"\
+                live\":\"$root.Live.BOOL\"\n}"
+        requestTemplates:
+          application/json: "#set($channelId = $input.params('id'))\n\n{ \n    \"\
+            TableName\": \"serverlessFlix-channels-table\",\n    \"Key\":{\n    \t\
+            \"PK\": {\n            \"S\": \"$channelId\"\n        }\n    }    \n}"
+        passthroughBehavior: "never"
+        type: "aws"
+    options:
+      parameters:
+      - name: "id"
+        in: "path"
+        required: true
+        schema:
+          type: "string"
+      responses:
+        "200":
+          description: "200 response"
+          headers:
+            Access-Control-Allow-Origin:
+              schema:
+                type: "string"
+            Access-Control-Allow-Methods:
+              schema:
+                type: "string"
+            Access-Control-Allow-Headers:
+              schema:
+                type: "string"
+          content: {}
+      x-amazon-apigateway-integration:
+        responses:
+          default:
+            statusCode: "200"
+            responseParameters:
+              method.response.header.Access-Control-Allow-Methods: "'GET,PUT,POST,DELETE,OPTIONS'"
+              method.response.header.Access-Control-Allow-Headers: "'Content-Type,Authorization'"
+              method.response.header.Access-Control-Allow-Origin: "'*'"
+            responseTemplates:
+              application/json: "{}"
+        requestTemplates:
+          application/json: "{\"statusCode\": 200}"
+        passthroughBehavior: "when_no_match"
+        type: "mock"
+  /videos/{event}:
+    get:
+      parameters:
+      - name: "limit"
+        in: "query"
+        schema:
+          type: "string"
+      - name: "event"
+        in: "path"
+        required: true
+        schema:
+          type: "string"
+      - name: "offset"
+        in: "query"
+        schema:
+          type: "string"
+      - name: "id"
+        in: "path"
+        required: true
+        schema:
+          type: "string"
+      responses:
+        "200":
+          description: "200 response"
+          headers:
+            Access-Control-Allow-Origin:
+              schema:
+                type: "string"
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Empty"
+      security:
+      - CognitoAuth: []
+      x-amazon-apigateway-integration:
+        credentials: 
+           Fn::GetAtt: [RESTApiRole, Arn]
+        httpMethod: "POST"
+        uri: "arn:aws:apigateway:${AWS::Region}:dynamodb:action/Query"
+        responses:
+          default:
+            statusCode: "200"
+            responseParameters:
+              method.response.header.Access-Control-Allow-Origin: "'*'"
+            responseTemplates:
+              application/json: >
+                #set($root = $input.path('$'))
+                {
+                  #if($root.LastEvaluatedKey != "")
+                  "nextPage": "$util.base64Encode($input.json('$.LastEvaluatedKey'))",
+                  #end
+                  "count": $root.Count,
+                  "data": [
+                    #foreach($item in $root.Items)
+                      #set($data = $util.parseJson($item.Data.S))
+                      {
+                        "id":"$item.PK.S",
+                        "channel":"$item.ChannelID.S",
+                        "author": {
+                          "username": "$item.Author.S"
+                        },
+                        "createdAt":"$data.createdAt",
+                        "thumbnail":"$data.thumbnail",
+                        "streamURL":"$data.stream_url",
+                        "playbackURL":"$data.playback_url",
+                        #foreach($postMD in $item.plugins.M.postMetadata.L)
+                          #if($postMD.M.OutputKey.S == "plugin-generateTitlePlugin")
+                            #if($postMD.M.OutputValue.M.title.S != "")
+                              "title": "$postMD.M.OutputValue.M.title.S",
+                            #end
+                          #end
+                          #if($postMD.M.OutputKey.S == "plugin-generateTagsPlugin")
+                              #if($postMD.M.OutputValue.M.pluginData.M.tags != "")
+                              "tags":[#foreach($tag in $postMD.M.OutputValue.M.pluginData.M.tags.L)"$tag.S"#if($foreach.hasNext),#end #end],
+                              #end
+                          #end
+                        #end
+                        #foreach($preMD in $item.plugins.M.preMetadata.L)
+                            #if($preMD.M.OutputKey.S == "plugin-transcribeplugin")
+                                #if($preMD.M.OutputValue.M.TranscriptUrl.S != "")
+                                "transcriptURL": "$preMD.M.OutputValue.M.TranscriptUrl.S",
+                                #end
+                            #end
+                        #end
+                        "duration": $data.durationmillis
+                      }#if($foreach.hasNext),#end
+                    #end
+                  ]
+                }
+        requestTemplates:
+          application/json: >
+            #set($pageKey = $input.params('offset'))
+            #set($event = $input.params('event'))
+            #set($pageSize=10)
+            #if($input.params('limit') != "")
+              #set($pageSize=$input.params('limit'))
+            #end {
+              #if($pageKey.toString() != "")
+                "ExclusiveStartKey": $util.base64Decode($pageKey),
+              #end
+              "TableName": "serverlessFlix-Video-table",
+              "IndexName": "GSI-EventId",
+              "ScanIndexForward": false,
+              "Limit": $pageSize,
+              "KeyConditionExpression": "#event_id = :event_id",
+              "FilterExpression": "#status = :status",
+              "ExpressionAttributeNames":{
+                "#event_id": "EventId",
+                "#status": "videoStatus"
+              },
+              "ExpressionAttributeValues": {
+                ":event_id": {"S": "$event"},
+                ":status": {"S": "valid"}
+              }
+            }
+        passthroughBehavior: "never"
+        type: "aws"
+    options:
+      parameters:
+      - name: "event"
+        in: "path"
+        required: true
+        schema:
+          type: "string"
+      responses:
+        "200":
+          description: "200 response"
+          headers:
+            Access-Control-Allow-Origin:
+              schema:
+                type: "string"
+            Access-Control-Allow-Methods:
+              schema:
+                type: "string"
+            Access-Control-Allow-Headers:
+              schema:
+                type: "string"
+          content: {}
+      x-amazon-apigateway-integration:
+        responses:
+          default:
+            statusCode: "200"
+            responseParameters:
+              method.response.header.Access-Control-Allow-Methods: "'GET,PUT,POST,DELETE,OPTIONS'"
+              method.response.header.Access-Control-Allow-Headers: "'Content-Type,Authorization'"
+              method.response.header.Access-Control-Allow-Origin: "'*'"
+            responseTemplates:
+              application/json: "{}\n"
+        requestTemplates:
+          application/json: "{\n  \"statusCode\" : 200\n}\n"
+        passthroughBehavior: "when_no_match"
+        type: "mock"
+  /channel:
+    get:
+      responses:
+        "200":
+          description: "200 response"
+          headers:
+            Access-Control-Allow-Origin:
+              schema:
+                type: "string"
+            Access-Control-Allow-Methods:
+              schema:
+                type: "string"
+            Access-Control-Allow-Headers:
+              schema:
+                type: "string"
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Empty"
+      security:
+      - CognitoAuth: []
+      x-amazon-apigateway-integration:
+        credentials: 
+           Fn::GetAtt: [RESTApiRole, Arn]
+        httpMethod: "POST"
+        uri: "arn:aws:apigateway:${AWS::Region}:dynamodb:action/GetItem"
+        responses:
+          default:
+            statusCode: "200"
+            responseParameters:
+              method.response.header.Access-Control-Allow-Methods: "'GET,OPTIONS'"
+              method.response.header.Access-Control-Allow-Headers: "'Content-Type,X-Amz-Date,Authorization,X-Api-Key,X-Amz-Security-Token'"
+              method.response.header.Access-Control-Allow-Origin: "'*'"
+            responseTemplates:
+              application/json: "#set($responseObj = $input.path('$'))\n#set($item\
+                \ = $responseObj.Item)\n#set($data = $item.data.S)\n#set($parsedData\
+                \ = $util.parseJson($data))\n\n{\n  \"name\": \"$item.PK.S\",\n  \"\
+                injestURL\": \"$parsedData.Channel.IngestEndpoint\",\n  \"streamKey\"\
+                : \"$parsedData.StreamKey.Value\",\n  \"playbackURL\": \"$parsedData.Channel.PlaybackUrl\"\
+                ,\n  \"username\": \"$item.name.S\",\n  \"live\":\"$item.Live.BOOL\"\
+                \n}\n"
+        requestTemplates:
+          application/json: "#set($channelId = $context.authorizer.claims.sub)\n\n\
+            { \n    \"TableName\": \"serverlessFlix-channels-table\",\n    \"Key\"\
+            :{\n    \t\"PK\": {\n                \"S\": \"$channelId\"\n         \
+            \       }\n    }    \n}"
+        passthroughBehavior: "when_no_templates"
+        type: "aws"
+    options:
+      parameters:
+      - name: "id"
+        in: "path"
+        required: true
+        schema:
+          type: "string"
+      responses:
+        "200":
+          description: "200 response"
+          headers:
+            Access-Control-Allow-Origin:
+              schema:
+                type: "string"
+            Access-Control-Allow-Methods:
+              schema:
+                type: "string"
+            Access-Control-Allow-Headers:
+              schema:
+                type: "string"
+          content: {}
+      x-amazon-apigateway-integration:
+        responses:
+          default:
+            statusCode: "200"
+            responseParameters:
+              method.response.header.Access-Control-Allow-Methods: "'GET,PUT,POST,DELETE,OPTIONS'"
+              method.response.header.Access-Control-Allow-Headers: "'Content-Type,Authorization'"
+              method.response.header.Access-Control-Allow-Origin: "'*'"
+            responseTemplates:
+              application/json: "{}\n"
+        requestTemplates:
+          application/json: "{\n  \"statusCode\" : 200\n}\n"
+        passthroughBehavior: "when_no_match"
+        type: "mock"
+  /video/{id}:
+    get:
+      parameters:
+      - name: "id"
+        in: "path"
+        required: true
+        schema:
+          type: "string"
+      responses:
+        "200":
+          description: "200 response"
+          headers:
+            Access-Control-Allow-Origin:
+              schema:
+                type: "string"
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Empty"
+      security:
+      - CognitoAuth: []
+      x-amazon-apigateway-integration:
+        credentials: 
+           Fn::GetAtt: [RESTApiRole, Arn]
+        httpMethod: "POST"
+        uri: "arn:aws:apigateway:${AWS::Region}:dynamodb:action/Query"
+        responses:
+          default:
+            statusCode: "200"
+            responseParameters:
+              method.response.header.Access-Control-Allow-Origin: "'*'"
+            responseTemplates:
+              application/json: > 
+                  #set($root = $input.path('$.Items[0]'))
+                  #set($data = $util.parseJson($input.path('$.Items[0].Data.S')))
+                  #if($root!= "")
+                      {
+                      
+                          "id":"$root.PK.S",
+                          "channel":"$root.ChannelID.S",
+                          "createdAt":"$data.createdAt",
+                          "thumbnail":"$data.thumbnail",
+                          "streamURL":"$data.stream_url",
+                        "playbackURL":"$data.playback_url",
+                          "author":{
+                              "username": "$root.Author.S"
+                          },
+                          #if($root.plugins != "")
+                              #foreach($postMD in $root.plugins.M.postMetadata.L)
+                                  #if($postMD.M.OutputKey.S == "plugin-generateTitlePlugin")
+                                      #if($postMD.M.OutputValue.M.title.S != "")
+                                      "title": "$postMD.M.OutputValue.M.title.S",
+                                      #end
+                                  #end
+                                  #if($postMD.M.OutputKey.S == "plugin-generateTagsPlugin")
+                                      #if($postMD.M.OutputValue.M.pluginData.M.tags != "")
+                                      "tags":[#foreach($tag in $postMD.M.OutputValue.M.pluginData.M.tags.L)"$tag.S"#if($foreach.hasNext),#end #end],
+                                      #end
+                                  #end
+                              #end
+                              #foreach($preMD in $root.plugins.M.preMetadata.L)
+                                  #if($preMD.M.OutputKey.S == "plugin-transcribeplugin")
+                                      #if($preMD.M.OutputValue.M.TranscriptUrl.S != "")
+                                      "transcriptURL": "$preMD.M.OutputValue.M.TranscriptUrl.S",
+                                      #end
+                                  #end
+                              #end
+                          #end
+                          "duration": $data.durationmillis
+                      }
+                  #end
+        requestTemplates:
+          application/json: > 
+            #set($videoId = $input.params('id'))
+              {
+                "TableName": "serverlessFlix-Video-table",
+                "KeyConditionExpression": "PK = :videoId",
+                "FilterExpression": "videoStatus = :status",
+                "ExpressionAttributeValues": {
+                  ":videoId": {"S": "$videoId"},
+                  ":status": {"S": "valid"}
+                }
+              }
+        passthroughBehavior: "never"
+        type: "aws"
+    delete:
+      parameters:
+      - name: "id"
+        in: "path"
+        required: true
+        schema:
+          type: "string"
+      responses:
+        "200":
+          description: "200 response"
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Empty"
+        "403":
+          description: "403 response"
+          content: {}
+      security:
+      - CognitoAuth: []
+      x-amazon-apigateway-integration:
+        credentials: 
+           Fn::GetAtt: [RESTApiRole, Arn]
+        httpMethod: "POST"
+        uri: "arn:aws:apigateway:${AWS::Region}:dynamodb:action/DeleteItem"
+        responses:
+          "4\\d{2}":
+            statusCode: "403"
+            responseTemplates:
+              application/json: "{\"message\":\"Not authorized to delete this video\"\
+                }"
+          default:
+            statusCode: "200"
+        requestTemplates:
+          application/json: "#set($channelId = $context.authorizer.claims.sub)\n#set($videoId\
+            \ = $input.params('id'))\n{ \n    \"TableName\": \"serverlessFlix-Video-table\"\
+            ,\n    \"Key\":{\n    \t\"PK\": {\n            \"S\": \"$videoId\"\n \
+            \       }\n    },\n    \"ExpressionAttributeNames\":{\n        \"#channel\"\
+            : \"ChannelID\"\n    },\n    \"ExpressionAttributeValues\": {\n      \
+            \  \":channel\": {\"S\": \"$channelId\"}\n    },\n    \"ConditionExpression\"\
+            : \"#channel = :channel\"\n}"
+        passthroughBehavior: "never"
+        type: "aws"
+    options:
+      parameters:
+      - name: "id"
+        in: "path"
+        required: true
+        schema:
+          type: "string"
+      responses:
+        "200":
+          description: "200 response"
+          headers:
+            Access-Control-Allow-Origin:
+              schema:
+                type: "string"
+            Access-Control-Allow-Methods:
+              schema:
+                type: "string"
+            Access-Control-Allow-Headers:
+              schema:
+                type: "string"
+          content: {}
+      x-amazon-apigateway-integration:
+        responses:
+          default:
+            statusCode: "200"
+            responseParameters:
+              method.response.header.Access-Control-Allow-Methods: "'GET,PUT,POST,DELETE,OPTIONS'"
+              method.response.header.Access-Control-Allow-Headers: "'Content-Type,Authorization'"
+              method.response.header.Access-Control-Allow-Origin: "'*'"
+            responseTemplates:
+              application/json: "{}\n"
+        requestTemplates:
+          application/json: "{\n  \"statusCode\" : 200\n}\n"
+        passthroughBehavior: "when_no_match"
+        type: "mock"
+  /channel/{id}/metadata:
+    post:
+      parameters:
+      - name: "id"
+        in: "path"
+        required: true
+        schema:
+          type: "string"
+      responses:
+        "200":
+          description: "200 response"
+          headers:
+            Access-Control-Allow-Origin:
+              schema:
+                type: "string"
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Empty"
+      security:
+      - CognitoAuth: []
+      x-amazon-apigateway-integration:
+        credentials: 
+           Fn::GetAtt: [RESTApiRole, Arn]
+        httpMethod: "POST"
+        uri:
+          Fn::Sub:
+            - 'arn:aws:apigateway:${AWS::Region}:sqs:path/${AWS::AccountId}/${queue}'
+            - queue:
+                Fn::GetAtt: [ServerlessFlixChannelQueue, QueueName]
+        responses:
+          default:
+            statusCode: "200"
+            responseParameters:
+              method.response.header.Access-Control-Allow-Origin: "'*'"
+        requestParameters:
+          integration.request.header.Content-Type: "'application/x-www-form-urlencoded'"
+        requestTemplates:
+          application/json: "Action=SendMessage&MessageBody={\"id\": \"$input.params('id')\"\
+            , \"message\": $input.body}\n"
+        passthroughBehavior: "when_no_match"
+        type: "aws"
+    options:
+      parameters:
+      - name: "id"
+        in: "path"
+        required: true
+        schema:
+          type: "string"
+      responses:
+        "200":
+          description: "200 response"
+          headers:
+            Access-Control-Allow-Origin:
+              schema:
+                type: "string"
+            Access-Control-Allow-Methods:
+              schema:
+                type: "string"
+            Access-Control-Allow-Headers:
+              schema:
+                type: "string"
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Empty"
+      x-amazon-apigateway-integration:
+        responses:
+          default:
+            statusCode: "200"
+            responseParameters:
+              method.response.header.Access-Control-Allow-Methods: "'OPTIONS,POST'"
+              method.response.header.Access-Control-Allow-Headers: "'Content-Type,X-Amz-Date,Authorization,X-Api-Key,X-Amz-Security-Token'"
+              method.response.header.Access-Control-Allow-Origin: "'*'"
+        requestTemplates:
+          application/json: "{\"statusCode\": 200}"
+        passthroughBehavior: "when_no_match"
+        type: "mock"
+  /channels:
+    get:
+      parameters:
+      - name: "offset"
+        in: "query"
+        schema:
+          type: "string"
+      - name: "limit"
+        in: "query"
+        schema:
+          type: "string"
+      responses:
+        "200":
+          description: "200 response"
+          headers:
+            Access-Control-Allow-Origin:
+              schema:
+                type: "string"
+            Access-Control-Allow-Methods:
+              schema:
+                type: "string"
+            Access-Control-Allow-Headers:
+              schema:
+                type: "string"
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Empty"
+      security:
+      - CognitoAuth: []
+
+      x-amazon-apigateway-integration:
+        credentials: 
+           Fn::GetAtt: [RESTApiRole, Arn]
+        httpMethod: "POST"
+        uri: "arn:aws:apigateway:${AWS::Region}:dynamodb:action/Scan"
+        responses:
+          default:
+            statusCode: "200"
+            responseParameters:
+              method.response.header.Access-Control-Allow-Methods: "'GET,OPTIONS'"
+              method.response.header.Access-Control-Allow-Headers: "'Content-Type,X-Amz-Date,Authorization,X-Api-Key,X-Amz-Security-Token'"
+              method.response.header.Access-Control-Allow-Origin: "'*'"
+            responseTemplates:
+              application/json: "#set($root = $input.path('$'))\n{\n    #if($root.LastEvaluatedKey\
+                \ != \"\")\n    \"nextPage\": \"$util.base64Encode($input.json('$.LastEvaluatedKey'))\"\
+                ,\n    #end\n    \"count\": $root.Count,\n    \"data\": [\n    #foreach($item\
+                \ in $root.Items)\n    #set($data = $util.parseJson($item.data.S))\n\
+                \        {\n            \"name\":\"$item.PK.S\",\n            \"playbackURL\"\
+                :\"$data.Channel.PlaybackUrl\",\n            \"live\":\"$item.Live.BOOL\"\
+                ,\n            \"username\":\"$item.name.S\"\n        }#if($foreach.hasNext),#end\n\
+                \    #end\n    ]\n}"
+        requestTemplates:
+          application/json: "#set($isLive = $input.params('live'))\n#set($pageKey\
+            \ = $input.params('offset'))\n#set($pageSize=10)\n#if($input.params('limit')\
+            \ != \"\")\n#set($pageSize=$input.params('limit'))\n#end\n{\n    #if($isLive\
+            \ == 'true')\n    \"FilterExpression\": \"#LIVE = :val\",\n    \"ExpressionAttributeNames\"\
+            : {\n        \"#LIVE\": \"Live\"\n    },\n    \"ExpressionAttributeValues\"\
+            : {\n        \":val\": {\n            \"BOOL\": true\n        }\n    },\n\
+            \    #end\n    #if($pageKey.toString() != \"\")\n    \"ExclusiveStartKey\"\
+            : $util.base64Decode($pageKey),\n    #end\n    #if($isLive != 'true')\n\
+            \    \"Limit\": $pageSize,\n    #end\n    \"TableName\": \"serverlessFlix-channels-table\"\
+            \n\n}\n"
+        passthroughBehavior: "when_no_templates"
+        type: "aws"
+    options:
+      responses:
+        "200":
+          description: "200 response"
+          headers:
+            Access-Control-Allow-Origin:
+              schema:
+                type: "string"
+            Access-Control-Allow-Methods:
+              schema:
+                type: "string"
+            Access-Control-Allow-Headers:
+              schema:
+                type: "string"
+          content: {}
+      x-amazon-apigateway-integration:
+        responses:
+          default:
+            statusCode: "200"
+            responseParameters:
+              method.response.header.Access-Control-Allow-Methods: "'GET,PUT,POST,DELETE,OPTIONS'"
+              method.response.header.Access-Control-Allow-Headers: "'Content-Type,Authorization'"
+              method.response.header.Access-Control-Allow-Origin: "'*'"
+            responseTemplates:
+              application/json: "{}\n"
+        requestTemplates:
+          application/json: "{\n  \"statusCode\" : 200\n}\n"
+        passthroughBehavior: "when_no_match"
+        type: "mock"
+  /channel/{id}/videos:
+    get:
+      parameters:
+      - name: "offset"
+        in: "query"
+        schema:
+          type: "string"
+      - name: "limit"
+        in: "query"
+        schema:
+          type: "string"
+      - name: "id"
+        in: "path"
+        required: true
+        schema:
+          type: "string"
+      responses:
+        "200":
+          description: "200 response"
+          headers:
+            Access-Control-Allow-Origin:
+              schema:
+                type: "string"
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Empty"
+      security:
+      - CognitoAuth: []
+      x-amazon-apigateway-integration:
+        credentials: 
+           Fn::GetAtt: [RESTApiRole, Arn]
+        httpMethod: "POST"
+        uri: "arn:aws:apigateway:${AWS::Region}:dynamodb:action/Query"
+        responses:
+          default:
+            statusCode: "200"
+            responseParameters:
+              method.response.header.Access-Control-Allow-Origin: "'*'"
+            responseTemplates:
+              application/json: >
+                #set($root = $input.path('$'))
+                {
+                  #if($root.LastEvaluatedKey != "")
+                    "nextPage": "$util.base64Encode($input.json('$.LastEvaluatedKey'))",
+                  #end
+                  "count": $root.Count,
+                  "data": [
+                    #foreach($item in $root.Items)
+                    #set($data = $util.parseJson($item.Data.S))
+                    {
+                      "id":"$item.PK.S",
+                      "channel":"$item.ChannelID.S",
+                      "createdAt":"$item.CreatedAt.S",
+                      "thumbnail":"$data.thumbnail",
+                      "streamURL":"$data.stream_url",
+                      "playbackURL":"$data.playback_url",
+                      "author": {
+                        "username": "$item.Author.S"
+                      },
+                      #foreach($postMD in $item.plugins.M.postMetadata.L)
+                        #if($postMD.M.OutputKey.S == "plugin-generateTitlePlugin")
+                          #if($postMD.M.OutputValue.M.title.S != "")
+                            "title": "$postMD.M.OutputValue.M.title.S",
+                          #end
+                        #end
+                        #if($postMD.M.OutputKey.S == "plugin-generateTagsPlugin")
+                          #if($postMD.M.OutputValue.M.pluginData.M.tags != "")
+                          "tags":[#foreach($tag in $postMD.M.OutputValue.M.pluginData.M.tags.L)"$tag.S"#if($foreach.hasNext),#end #end],
+                          #end
+                        #end
+                      #end
+                      #foreach($preMD in $item.plugins.M.preMetadata.L)
+                        #if($preMD.M.OutputKey.S == "plugin-transcribeplugin")
+                          #if($preMD.M.OutputValue.M.TranscriptUrl.S != "")
+                            "transcriptURL": "$preMD.M.OutputValue.M.TranscriptUrl.S",
+                           #end
+                        #end
+                      #end
+                      "duration": $data.durationmillis
+                    }#if($foreach.hasNext),#end
+                    #end
+                  ]
+                }
+        requestTemplates:
+          application/json: >
+                        #set($channelId = $input.params('id'))
+                        #set($pageKey = $input.params('offset'))
+                        #set($pageSize=10)
+                        #if($input.params('limit') != "")
+                          #set($pageSize=$input.params('limit'))
+                        #end
+                        {
+                          #if($pageKey.toString() != "")
+                            "ExclusiveStartKey": $util.base64Decode($pageKey),
+                          #end
+                          "TableName": "serverlessFlix-Video-table",
+                          "Limit": $pageSize,
+                          "IndexName": "GSI-channel",
+                          "KeyConditionExpression": "#channel = :channel",
+                          "FilterExpression": "#status = :status",
+                          "ExpressionAttributeNames": {
+                            "#channel": "ChannelID",
+                            "#status": "videoStatus"
+                          },
+                          "ExpressionAttributeValues": {
+                            ":channel": {"S": "$channelId"},
+                            ":status": {"S": "valid"}
+                          }
+                        }
+        passthroughBehavior: "never"
+        type: "aws"
+    options:
+      parameters:
+      - name: "id"
+        in: "path"
+        required: true
+        schema:
+          type: "string"
+      responses:
+        "200":
+          description: "200 response"
+          headers:
+            Access-Control-Allow-Origin:
+              schema:
+                type: "string"
+            Access-Control-Allow-Methods:
+              schema:
+                type: "string"
+            Access-Control-Allow-Headers:
+              schema:
+                type: "string"
+          content: {}
+      x-amazon-apigateway-integration:
+        responses:
+          default:
+            statusCode: "200"
+            responseParameters:
+              method.response.header.Access-Control-Allow-Methods: "'GET,PUT,POST,DELETE,OPTIONS'"
+              method.response.header.Access-Control-Allow-Headers: "'Content-Type,Authorization'"
+              method.response.header.Access-Control-Allow-Origin: "'*'"
+            responseTemplates:
+              application/json: "{}"
+        requestTemplates:
+          application/json: "{\"statusCode\": 200}"
+        passthroughBehavior: "when_no_match"
+        type: "mock"
+  /videos/{event}/preview:
+    get:
+      parameters:
+      - name: "limit"
+        in: "query"
+        schema:
+          type: "string"
+      - name: "event"
+        in: "path"
+        required: true
+        schema:
+          type: "string"
+      - name: "offset"
+        in: "query"
+        schema:
+          type: "string"
+      - name: "id"
+        in: "path"
+        required: true
+        schema:
+          type: "string"
+      responses:
+        "200":
+          description: "200 response"
+          headers:
+            Access-Control-Allow-Origin:
+              schema:
+                type: "string"
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Empty"
+
+      x-amazon-apigateway-integration:
+        credentials: 
+           Fn::GetAtt: [RESTApiRole, Arn]
+        httpMethod: "POST"
+        uri: "arn:aws:apigateway:${AWS::Region}:dynamodb:action/Query"
+        responses:
+          default:
+            statusCode: "200"
+            responseParameters:
+              method.response.header.Access-Control-Allow-Origin: "'*'"
+            responseTemplates:
+              application/json: >
+                #set($root = $input.path('$'))
+                {
+                  "count": $root.Count,
+                  "data": [
+                  #foreach($item in $root.Items)
+                    #set($data = $util.parseJson($item.Data.S))
+                    {
+                      "id":"$item.PK.S",
+                      "channel":"$item.ChannelID.S",
+                      "author": {
+                        "username": "$item.Author.S"
+                      },
+                      "createdAt":"$data.createdAt",
+                      "thumbnail":"$data.thumbnail",
+                      "streamURL":"$data.stream_url",
+                      "playbackURL":"$data.playback_url",
+                      #foreach($postMD in $item.plugins.M.postMetadata.L)
+                        #if($postMD.M.OutputKey.S == "plugin-generateTitlePlugin")
+                          #if($postMD.M.OutputValue.M.title.S != "")
+                            "title": "$postMD.M.OutputValue.M.title.S",
+                          #end
+                          #if($postMD.M.OutputKey.S == "plugin-generateTagsPlugin")
+                            #if($postMD.M.OutputValue.M.pluginData.M.tags != "")
+                            "tags":[#foreach($tag in $postMD.M.OutputValue.M.pluginData.M.tags.L)"$tag.S"#if($foreach.hasNext),#end #end],
+                            #end
+                          #end
+                        #end
+                      #end
+                      "duration": $data.durationmillis
+                    }#if($foreach.hasNext),#end
+                  #end
+                  ]
+                }
+        requestTemplates:
+          application/json: >
+            #set($pageKey = $input.params('offset')) #set($event = $input.params('event')) #set($pageSize=5) #if($input.params('limit') != "")
+              #set($pageSize=$input.params('limit'))
+            #end {
+              "TableName": "serverlessFlix-Video-table",
+              "Limit": $pageSize,
+              "IndexName": "GSI-EventId",
+              "ScanIndexForward": false,
+              "KeyConditionExpression": "#event_id = :event_id",
+              "FilterExpression": "#status = :status",
+              "ExpressionAttributeNames": {
+                "#event_id": "EventId",
+                "#status": "videoStatus"
+              },
+              "ExpressionAttributeValues": {
+                ":event_id": {"S": "$event"},
+                ":status": {"S": "valid"}
+              }
+            }
+        passthroughBehavior: "never"
+        type: "aws"
+    options:
+      parameters:
+      - name: "event"
+        in: "path"
+        required: true
+        schema:
+          type: "string"
+      responses:
+        "200":
+          description: "200 response"
+          headers:
+            Access-Control-Allow-Origin:
+              schema:
+                type: "string"
+            Access-Control-Allow-Methods:
+              schema:
+                type: "string"
+            Access-Control-Allow-Headers:
+              schema:
+                type: "string"
+          content: {}
+      x-amazon-apigateway-integration:
+        responses:
+          default:
+            statusCode: "200"
+            responseParameters:
+              method.response.header.Access-Control-Allow-Methods: "'GET,PUT,POST,DELETE,OPTIONS'"
+              method.response.header.Access-Control-Allow-Headers: "'Content-Type,Authorization'"
+              method.response.header.Access-Control-Allow-Origin: "'*'"
+            responseTemplates:
+              application/json: "{}\n"
+        requestTemplates:
+          application/json: "{\n  \"statusCode\" : 200\n}\n"
+        passthroughBehavior: "when_no_match"
+        type: "mock"
+components:
+  schemas:
+    Empty:
+      title: "Empty Schema"
+      type: "object"
+  securitySchemes:
+    CognitoAuth:
+      type: "apiKey"
+      name: "Authorization"
+      in: "header"
+      x-amazon-apigateway-authtype: "cognito_user_pools"
+      x-amazon-apigateway-authorizer:
+        providerARNs:
+        - Ref: UserPoolARNParameter
+        type: "cognito_user_pools"
+
+

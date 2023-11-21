@@ -1,0 +1,40 @@
+version = 0.1
+
+[default.global.parameters]
+stack_name = "ServerlessFlix-extensions-Service"
+region = "us-west-2"
+
+
+[default.deploy.parameters]
+profile = "bstream"
+resolve_s3 = true
+s3_prefix = "ServerlessFlix-extensions-Service"
+capabilities = "CAPABILITY_IAM"
+image_repositories = []
+confirm_changeset = false
+parameter_overrides = "DestinationBucket=\"serverlessflix-basecore-cdnstack-p6b-originbucket-qf6cyql0kb4m\""
+
+
+[prod.deploy.parameters]
+stack_name = "ServerlessFlix-extensions-Service"
+resolve_s3 = true
+s3_prefix = "ServerlessFlix-extensions-Service"
+region = "us-west-2"
+profile = "stream"
+capabilities = "CAPABILITY_IAM"
+image_repositories = []
+confirm_changeset = true
+parameter_overrides = "DestinationBucket=\"serverlessflix-basecore-cdnstack-1nj-originbucket-vufxhay1e3cf\""
+
+
+
+
+[gitHub.deploy.parameters]
+stack_name = "ServerlessFlix-extensions-Service"
+resolve_s3 = true
+s3_prefix = "ServerlessFlix-extensions-Service"
+region = "us-west-2"
+capabilities = "CAPABILITY_IAM"
+image_repositories = []
+confirm_changeset = true
+parameter_overrides = "DestinationBucket=\"serverlessflix-basecore-cdnstack-1nj-originbucket-vufxhay1e3cf\""

@@ -1,0 +1,172 @@
+AWSTemplateFormatVersion: '2010-09-09'
+Transform: AWS::Serverless-2016-10-31
+Description: Video history service
+
+# Define the resource section
+Resources:
+  VideoHistoryTable:
+    Type: AWS::DynamoDB::Table
+    Properties:
+      TableName: serverlessFlix-video-history-table
+      AttributeDefinitions:
+        - AttributeName: PK
+          AttributeType: S
+        - AttributeName: createdAt
+          AttributeType: S
+      KeySchema:
+        - AttributeName: PK
+          KeyType: HASH
+        - AttributeName: createdAt
+          KeyType: RANGE  
+      BillingMode: PAY_PER_REQUEST
+
+  # Define the AWS Lambda function resource.
+  VideoHistoryProcessor:
+    Type: AWS::Serverless::Function 
+    Properties:
+      CodeUri: functions/VideoHistoryProcessor
+      FunctionName: VideoHistoryProcessor
+      Handler: index.lambdaHandler
+      Runtime: nodejs18.x
+      Timeout: 30
+      MemorySize: 10240
+      Environment:
+        Variables:
+          TABLE_NAME: !Ref VideoHistoryTable
+      Policies:
+        - DynamoDBCrudPolicy:
+              TableName: !Ref VideoHistoryTable
+      Events: # Adding SQS event to the Lambda function
+        MySQSTrigger:
+          Type: SQS 
+          Properties:
+            Queue: !GetAtt VideoHistoryQueue.Arn
+
+  # SQS Queue for FIFO messages
+  VideoHistoryQueue:
+    Type: AWS::SQS::Queue
+    Properties:
+      QueueName: VideoHistoryQueue
+      VisibilityTimeout: 300
+      RedrivePolicy: # Define the dead-letter queue (DLQ) configuration
+        deadLetterTargetArn: !GetAtt VideoHistoryDLQ.Arn
+        maxReceiveCount: 5
+
+  # Define a DLQ for the FIFO queue
+  VideoHistoryDLQ:
+    Type: AWS::SQS::Queue
+    Properties:
+      QueueName: VideoHistoryDLQ
+      VisibilityTimeout: 300
+
+  BroadcastStartedRule:
+    Type: AWS::Events::Rule
+    Properties:
+      Description: "Broadcast started"
+      EventBusName: default
+      EventPattern:
+        source:
+          - aws.ivs
+        detail-type:
+          - IVS Recording State Change
+        detail:
+          recording_status: 
+            - Recording Start
+      State: 'ENABLED'
+      Targets:
+        - Arn: !GetAtt VideoHistoryQueue.Arn
+          Id: 'VideoHistoryQueue'  
+
+  BroadcastEndedRule:
+    Type: AWS::Events::Rule
+    Properties:
+      Description: "Broadcast ended"
+      EventBusName: default
+      EventPattern:
+        source:
+          - aws.ivs
+        detail-type:
+          - IVS Recording State Change
+        detail:
+          recording_status: 
+            - Recording End
+      State: 'ENABLED'
+      Targets:
+        - Arn: !GetAtt VideoHistoryQueue.Arn
+          Id: 'VideoHistoryQueue'  
+
+  LifeCycleStartRule:
+    Type: AWS::Events::Rule
+    Properties:
+      Description: "Video has started being processed by workflow"
+      EventBusName: default
+      EventPattern:
+        source:
+          - serverlessFlix.pluginManager
+        detail-type:
+          - prefix: LifeCycleStarted
+      State: 'ENABLED'
+      Targets:
+        - Arn: !GetAtt VideoHistoryQueue.Arn
+          Id: 'VideoHistoryQueue'  
+
+  LifeCycleCompleteRule:
+    Type: AWS::Events::Rule
+    Properties:
+      Description: "Video has finished being processed by workflow"
+      EventBusName: default
+      EventPattern:
+        source:
+          - serverlessFlix.pluginManager
+        detail-type:
+          - prefix: LifeCycleComplete
+      State: 'ENABLED'
+      Targets:
+        - Arn: !GetAtt VideoHistoryQueue.Arn
+          Id: 'VideoHistoryQueue'  
+
+  MP4ProcessingStarted:
+    Type: AWS::Events::Rule
+    Properties:
+      Description: "MP4 has started compute task"
+      EventBusName: default
+      EventPattern:
+        source:
+          - serverlessFlix.videoManager
+        detail-type:
+          - prefix: MP4ProcessingStarted
+      State: 'ENABLED'
+      Targets:
+        - Arn: !GetAtt VideoHistoryQueue.Arn
+          Id: 'VideoHistoryQueue'  
+
+  MP4ProcessingComplete:
+    Type: AWS::Events::Rule
+    Properties:
+      Description: "MP4 has finished compute tasks"
+      EventBusName: default
+      EventPattern:
+        source:
+          - serverlessFlix.videoManager
+        detail-type:
+          - prefix: MP4ProcessingComplete
+      State: 'ENABLED'
+      Targets:
+        - Arn: !GetAtt VideoHistoryQueue.Arn
+          Id: 'VideoHistoryQueue'  
+
+  EventBridgeSQSPolicy:
+    Type: AWS::SQS::QueuePolicy
+    Properties:
+      PolicyDocument:
+        Statement:
+        - Effect: Allow
+          Principal:
+            Service: events.amazonaws.com
+          Action: SQS:SendMessage
+          Resource: !GetAtt VideoHistoryQueue.Arn
+      Queues:
+        - !Ref VideoHistoryQueue
+    
+
+

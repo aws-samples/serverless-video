@@ -1,0 +1,20 @@
+{
+  "name": "cognito-triggers",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "MIT-0",
+  "dependencies": {
+    "@aws-sdk/client-dynamodb": "^3.405.0",
+    "@aws-sdk/client-eventbridge": "^3.363.0",
+    "@aws-sdk/client-iot-data-plane": "^3.413.0",
+    "@aws-sdk/client-ivs": "^3.405.0",
+    "@faker-js/faker": "^8.0.2",
+    "crypto-secure-random-digit": "^1.0.10"
+  }
+}

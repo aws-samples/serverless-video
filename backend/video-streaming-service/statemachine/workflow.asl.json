@@ -1,0 +1,53 @@
+{
+    "Comment": "The view publisher service",
+    "StartAt": "GetStream",
+    "States": {
+      "GetStream": {
+        "Type": "Task",
+        "Next": "Emit: Stream views Updated",
+        "Parameters": {
+          "ChannelArn.$": "$.resources[0]"
+        },
+        "Resource": "arn:aws:states:::aws-sdk:ivs:getStream",
+        "Catch": [
+          {
+            "ErrorEquals": [
+              "Ivs.ChannelNotBroadcastingException"
+            ],
+            "Next": "End",
+            "Comment": "Not live"
+          }
+        ],
+        "ResultPath": "$.res"
+      },
+      "Emit: Stream views Updated": {
+        "Type": "Task",
+        "Resource": "arn:aws:states:::events:putEvents",
+        "Parameters": {
+          "Entries": [
+            {
+              "Detail": {
+                "stream_id.$": "$.res.Stream.StreamId",
+                "view_count.$": "$.res.Stream.ViewerCount",
+                "channel_name.$": "$.detail.channel_name"
+              },
+              "DetailType": "ViewCountUpdated",
+              "EventBusName": "default",
+              "Source": "serverlessFlix.viewCounter"
+            }
+          ]
+        },
+        "Next": "Wait 15 seconds",
+        "ResultPath": null
+      },
+      "Wait 15 seconds": {
+        "Type": "Wait",
+        "Seconds": 15,
+        "Next": "GetStream"
+      },
+      "End": {
+        "Type": "Pass",
+        "End": true
+      }
+    }
+  }

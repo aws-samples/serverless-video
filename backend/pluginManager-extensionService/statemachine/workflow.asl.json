@@ -1,0 +1,677 @@
+{
+  "Comment": "The plugin Lifecycle manager",
+  "StartAt": "Parallel",
+  "States": {
+    "Parallel": {
+      "Type": "Parallel",
+      "Next": "organise data for final Event",
+      "Branches": [
+        {
+          "StartAt": "Emit LifeCycleStarted",
+          "States": {
+            "Emit LifeCycleStarted": {
+              "Type": "Task",
+              "Resource": "arn:aws:states:::events:putEvents",
+              "Parameters": {
+                "Entries": [
+                  {
+                    "Detail": {
+                      "playback_url.$": "$.detail.playback_url",
+                      "stream_url.$": "$.detail.stream_url",
+                      "channel_name.$": "$.detail.channel_name",
+                      "thumbnail.$": "$.detail.thumbnail",
+                      "id.$": "$.detail.id",
+                      "createdAt.$": "$.detail.createdAt",
+                      "durationmillis.$": "$.detail.durationmillis",
+                      "height.$": "$.detail.height",
+                      "width.$": "$.detail.width"
+                    },
+                    "DetailType": "LifeCycleStarted",
+                    "EventBusName": "default",
+                    "Source": "serverlessFlix.pluginManager"
+                  }
+                ]
+              },
+              "Next": "ScanPreValidate",
+              "ResultPath": "$.LifeCycleStarted"
+            },
+            "ScanPreValidate": {
+              "Type": "Task",
+              "Next": "ForEach-preValidate-Hook",
+              "Parameters": {
+                "TableName": "${DDBTable}",
+                "ExpressionAttributeValues": {
+                  ":pkValue": {
+                    "S": "preValidate"
+                  }
+                },
+                "FilterExpression": "PK = :pkValue"
+              },
+              "Resource": "arn:aws:states:::aws-sdk:dynamodb:scan",
+              "ResultPath": "$.validateItems"
+            },
+            "ForEach-preValidate-Hook": {
+              "Type": "Map",
+              "ItemProcessor": {
+                "ProcessorConfig": {
+                  "Mode": "INLINE"
+                },
+                "StartAt": "emit TT preValidate plugin",
+                "States": {
+                  "emit TT preValidate plugin": {
+                    "Type": "Task",
+                    "Resource": "arn:aws:states:::events:putEvents.waitForTaskToken",
+                    "Parameters": {
+                      "Entries": [
+                        {
+                          "Detail": {
+                            "video": {
+                              "id.$": "$$.Execution.Input.detail.id",
+                              "channel.$": "$$.Execution.Input.detail.channel_name",
+                              "author": {
+                                "username.$": "$$.Execution.Input.detail.author"
+                              },
+                              "createdAt.$": "$$.Execution.Input.detail.createdAt",
+                              "durationmillis.$": "$$.Execution.Input.detail.durationmillis",
+                              "thumbnail.$": "$$.Execution.Input.detail.thumbnail",
+                              "playbackUrl.$": "$$.Execution.Input.detail.playback_url",
+                              "streamUrl.$": "$$.Execution.Input.detail.stream_url",
+                              "recording_s3_key_prefix.$": "$$.Execution.Input.detail.recording_s3_key_prefix"
+                            },
+                            "taskToken.$": "$$.Task.Token"
+                          },
+                          "DetailType.$": "States.Format('{}.{}',$.value.PK.S, $.value.SK.S)",
+                          "EventBusName": "default",
+                          "Source": "ServerlessFlix.pluginManager"
+                        }
+                      ]
+                    },
+                    "Catch": [
+                      {
+                        "ErrorEquals": [
+                          "States.HeartbeatTimeout"
+                        ],
+                        "Next": "preValidate plugin fail"
+                      }
+                    ],
+                    "Next": "Organise preValidate plugin response",
+                    "ResultPath": "$.pluginOutput",
+                    "HeartbeatSeconds": 900
+                  },
+                  "Organise preValidate plugin response": {
+                    "Type": "Pass",
+                    "Parameters": {
+                      "OutputKey.$": "States.Format('plugin-{}', $.value.SK.S)",
+                      "OutputValue.$": "$.pluginOutput"
+                    },
+                    "Next": "valid?"
+                  },
+                  "valid?": {
+                    "Type": "Choice",
+                    "Choices": [
+                      {
+                        "Variable": "$.OutputValue.valid",
+                        "BooleanEquals": false,
+                        "Next": "invalid"
+                      }
+                    ],
+                    "Default": "Continue"
+                  },
+                  "failed": {
+                    "Type": "Fail",
+                    "Cause": "timedout",
+                    "Error": "failed"
+                  },
+                  "invalid": {
+                    "Type": "Fail",
+                    "Error": "invalid",
+                    "CausePath": "$.OutputKey"
+                  },
+                  "Continue": {
+                    "Type": "Pass",
+                    "End": true
+                  },
+                  "preValidate plugin fail": {
+                    "Type": "Task",
+                    "Resource": "arn:aws:states:::events:putEvents",
+                    "Parameters": {
+                      "Entries": [
+                        {
+                          "Detail": {
+                            "Message": "Plugin failed",
+                            "ExecutionId.$": "$$.Execution.Id"
+                          },
+                          "DetailType": "Plugin failed",
+                          "EventBusName": "default",
+                          "Source": "ServerlessFlix.pluginManager"
+                        }
+                      ]
+                    },
+                    "Next": "failed"
+                  }
+                }
+              },
+              
+              "Next": "PutMetricpreValidateSuccess",
+              "Label": "ForEach-PreValidate-Hook",
+              "MaxConcurrency": 1000,
+              "ResultPath": "$.plugins.preValidate",
+              "ItemsPath": "$.validateItems.Items",
+              "ItemSelector": {
+                "value.$": "$$.Map.Item.Value"
+              },
+              "Catch": [
+                {
+                  "ErrorEquals": [
+                    "States.ALL"
+                  ],
+                  "Next": "validation failed"
+                }
+              ]
+            },
+            
+            "validation failed": {
+              "Type": "Pass",
+              "Next": "PutMetricData Video failed pre validate",
+              "Parameters": {
+                "plugins": {
+                  "status.$": "$.Error",
+                  "cause.$": "$.Cause"
+                }
+              }
+            },
+
+
+            "PutMetricData Video failed pre validate": {
+              "Type": "Task",
+              "Parameters": {
+                "MetricData": [
+                  {
+                    "MetricName.$": "States.Format($.plugins.status)",
+                    "Value": 1,
+                    "Unit": "Count",
+                    "Dimensions":[
+                      {
+                        "Name":"By EventHook",
+                        "Value":"preValidate"
+                      }
+                    ]
+                  }
+                ],
+                "Namespace": "ServerlessVideo"
+              },
+              "Resource": "arn:aws:states:::aws-sdk:cloudwatch:putMetricData",
+              "End": true,
+              "ResultPath": null
+            },
+
+            "PutMetricpreValidateSuccess":{
+              "Type": "Task",
+              "Parameters": {
+                "MetricData": [
+                  {
+                    "MetricName": "success",
+                    "Value": 1,
+                    "Unit": "Count",
+                    "Dimensions": [
+                      {
+                        "Name": "By EventHook",
+                        "Value": "preValidate"
+                      }
+                    ]
+                  }
+                ],
+                "Namespace": "ServerlessVideo"
+              },
+              "Resource": "arn:aws:states:::aws-sdk:cloudwatch:putMetricData",
+              "Next": "ScanPostValidate",
+              "ResultPath": null
+            },
+
+            "ScanPostValidate": {
+              "Type": "Task",
+              "Next": "ForEach-postValidate-Hook",
+              "Parameters": {
+                "TableName": "${DDBTable}",
+                "ExpressionAttributeValues": {
+                  ":pkValue": {
+                    "S": "postValidate"
+                  }
+                },
+                "FilterExpression": "PK = :pkValue"
+              },
+              "Resource": "arn:aws:states:::aws-sdk:dynamodb:scan",
+              "ResultPath": "$.validateItems"
+            },
+            "ForEach-postValidate-Hook": {
+              "Type": "Map",
+              "ItemProcessor": {
+                "ProcessorConfig": {
+                  "Mode": "INLINE"
+                },
+                "StartAt": "emit TT postValidate plugin",
+                "States": {
+                  "emit TT postValidate plugin": {
+                    "Type": "Task",
+                    "Resource": "arn:aws:states:::events:putEvents.waitForTaskToken",
+                    "Parameters": {
+                      "Entries": [
+                        {
+                          "Detail": {
+                            "video": {
+                              "id.$": "$$.Execution.Input.detail.id",
+                              "channel.$": "$$.Execution.Input.detail.channel_name",
+                              "author": {
+                                "username.$": "$$.Execution.Input.detail.author"
+                              },
+                              "createdAt.$": "$$.Execution.Input.detail.createdAt",
+                              "durationmillis.$": "$$.Execution.Input.detail.durationmillis",
+                              "thumbnail.$": "$$.Execution.Input.detail.thumbnail",
+                              "playbackUrl.$": "$$.Execution.Input.detail.playback_url",
+                              "streamUrl.$": "$$.Execution.Input.detail.stream_url",
+                              "recording_s3_key_prefix.$":"$$.Execution.Input.detail.recording_s3_key_prefix"
+                            },
+                            "taskToken.$": "$$.Task.Token",
+                            "pluginData.$": "$.plugins"
+                          },
+                          "DetailType.$": "States.Format('{}.{}',$.value.PK.S, $.value.SK.S)",
+                          "EventBusName": "default",
+                          "Source": "ServerlessFlix.pluginManager"
+                        }
+                      ]
+                    },
+                    "Catch": [
+                      {
+                        "ErrorEquals": [
+                          "States.HeartbeatTimeout"
+                        ],
+                        "Next": "PutMetricpostValidateFail"
+                      }
+                    ],
+                    "HeartbeatSeconds": 30,
+                    "Next": "Organise postValidate plugin response",
+                    "ResultPath": "$.pluginOutput"
+                  },
+                  "Organise postValidate plugin response": {
+                    "Type": "Pass",
+                    "End": true,
+                    "Parameters": {
+                      "OutputKey.$": "States.Format('plugin-{}', $.value.SK.S)",
+                      "OutputValue.$": "$.pluginOutput"
+                    }
+                  },
+                  "PutMetricpostValidateFail":{
+                    "Type": "Task",
+                    "Parameters": {
+                      "MetricData": [
+                        {
+                          "MetricName": "fail",
+                          "Value": 1,
+                          "Unit": "Count",
+                          "Dimensions": [
+                            {
+                              "Name": "By EventHook",
+                              "Value": "postValidate"
+                            }
+                          ]
+                        }
+                      ],
+                      "Namespace": "ServerlessVideo"
+                    },
+                    "Resource": "arn:aws:states:::aws-sdk:cloudwatch:putMetricData",
+                    "End": true,
+                    "ResultPath": null
+                  }
+                }
+              },
+              "Next": "PutMetricpostValidateSuccess",
+              "Label": "ForEach-postValidate-Hook",
+              "MaxConcurrency": 1000,
+              "ResultPath": "$.plugins.postValidate",
+              "ItemsPath": "$.validateItems.Items",
+              "ItemSelector": {
+                "value.$": "$$.Map.Item.Value",
+                "plugins.$": "$.plugins"
+              }
+            },
+
+            "PutMetricpostValidateSuccess":{
+              "Type": "Task",
+              "Parameters": {
+                "MetricData": [
+                  {
+                    "MetricName": "success",
+                    "Value": 1,
+                    "Unit": "Count",
+                    "Dimensions": [
+                      {
+                        "Name": "By EventHook",
+                        "Value": "postValidate"
+                      }
+                    ]
+                  }
+                ],
+                "Namespace": "ServerlessVideo"
+              },
+              "Resource": "arn:aws:states:::aws-sdk:cloudwatch:putMetricData",
+              "Next": "ScanPreMetaData",
+              "ResultPath": null
+            },
+            "ScanPreMetaData": {
+              "Type": "Task",
+              "Next": "ForEach-PreMetaData-Hook",
+              "Parameters": {
+                "TableName": "${DDBTable}",
+                "ExpressionAttributeValues": {
+                  ":pkValue": {
+                    "S": "preMetadata"
+                  }
+                },
+                "FilterExpression": "PK = :pkValue"
+              },
+              "Resource": "arn:aws:states:::aws-sdk:dynamodb:scan",
+              "ResultPath": "$.metadataItems"
+            },
+            "ForEach-PreMetaData-Hook": {
+              "Type": "Map",
+              "ItemProcessor": {
+                "ProcessorConfig": {
+                  "Mode": "INLINE"
+                },
+                "StartAt": "emit TT preMetaData plugin",
+                "States": {
+                  "emit TT preMetaData plugin": {
+                    "Type": "Task",
+                    "Resource": "arn:aws:states:::events:putEvents.waitForTaskToken",
+                    "Parameters": {
+                      "Entries": [
+                        {
+                          "Detail": {
+                            "video": {
+                              "id.$": "$$.Execution.Input.detail.id",
+                              "channel.$": "$$.Execution.Input.detail.channel_name",
+                              "author": {
+                                "username.$": "$$.Execution.Input.detail.author"
+                              },
+                              "createdAt.$": "$$.Execution.Input.detail.createdAt",
+                              "durationmillis.$": "$$.Execution.Input.detail.durationmillis",
+                              "thumbnail.$": "$$.Execution.Input.detail.thumbnail",
+                              "playbackUrl.$": "$$.Execution.Input.detail.playback_url",
+                              "streamUrl.$": "$$.Execution.Input.detail.stream_url",
+                              "recording_s3_key_prefix.$":"$$.Execution.Input.detail.recording_s3_key_prefix"
+                            },
+                            "taskToken.$": "$$.Task.Token",
+                            "pluginData.$": "$.plugins"
+                          },
+                          "DetailType.$": "States.Format('{}.{}',$.value.PK.S, $.value.SK.S)",
+                          "EventBusName": "default",
+                          "Source": "ServerlessFlix.pluginManager"
+                        }
+                      ]
+                    },
+                    "Catch": [
+                      {
+                        "ErrorEquals": [
+                          "States.HeartbeatTimeout"
+                        ],
+                        "ResultPath": "$.NewVideoAdded",
+                        "Next": "PutMetricpreMetadataFail"
+                      }
+                    ],
+                    "HeartbeatSeconds": 600,
+                    "Next": "Organise preMetaData plugin response",
+                    "ResultPath": "$.pluginOutput"
+                  },
+
+
+                  "Organise preMetaData plugin response": {
+                    "Type": "Pass",
+                    "End": true,
+                    "Parameters": {
+                      "OutputKey.$": "States.Format('plugin-{}', $.value.SK.S)",
+                      "OutputValue.$": "$.pluginOutput"
+                    }
+                  },
+                  "PutMetricpreMetadataFail":{
+                    "Type": "Task",
+                    "Parameters": {
+                      "MetricData": [
+                        {
+                          "MetricName": "fail",
+                          "Value": 1,
+                          "Unit": "Count",
+                          "Dimensions": [
+                            {
+                              "Name": "By EventHook",
+                              "Value": "preMetaData"
+                            }
+                          ]
+                        }
+                      ],
+                      "Namespace": "ServerlessVideo"
+                    },
+                    "Resource": "arn:aws:states:::aws-sdk:cloudwatch:putMetricData",
+                    "End": true,
+                    "ResultPath": null
+                  }
+                }
+              },
+              "Label": "ForEach-preMetaData-Hook",
+              "MaxConcurrency": 1000,
+              "ResultPath": "$.plugins.preMetadata",
+              "Next": "PutPreMetadataMetricSuccess",
+              "ItemsPath": "$.metadataItems.Items",
+              "ItemSelector": {
+                "value.$": "$$.Map.Item.Value",
+                "plugins.$": "$.plugins"
+              }
+            },
+            "PutPreMetadataMetricSuccess":{
+              "Type": "Task",
+              "Parameters": {
+                "MetricData": [
+                  {
+                    "MetricName": "success",
+                    "Value": 1,
+                    "Unit": "Count",
+                    "Dimensions": [
+                      {
+                        "Name": "By EventHook",
+                        "Value": "preMetaData"
+                      }
+                    ]
+                  }
+                ],
+                "Namespace": "ServerlessVideo"
+              },
+              "Resource": "arn:aws:states:::aws-sdk:cloudwatch:putMetricData",
+              "Next": "ScanPostMetaData",
+              "ResultPath": null
+            },
+            "ScanPostMetaData": {
+              "Type": "Task",
+              "Next": "ForEach-PostMetaData-Hook",
+              "Parameters": {
+                "TableName": "${DDBTable}",
+                "ExpressionAttributeValues": {
+                  ":pkValue": {
+                    "S": "postMetadata"
+                  }
+                },
+                "FilterExpression": "PK = :pkValue"
+              },
+              "Resource": "arn:aws:states:::aws-sdk:dynamodb:scan",
+              "ResultPath": "$.metadataItems"
+            },
+            "ForEach-PostMetaData-Hook": {
+              "Type": "Map",
+              "ItemProcessor": {
+                "ProcessorConfig": {
+                  "Mode": "INLINE"
+                },
+                "StartAt": "emit TT postMetaData plugin",
+                "States": {
+                  "emit TT postMetaData plugin": {
+                    "Type": "Task",
+                    "Resource": "arn:aws:states:::events:putEvents.waitForTaskToken",
+                    "Parameters": {
+                      "Entries": [
+                        {
+                          "Detail": {
+                            "video": {
+                              "id.$": "$$.Execution.Input.detail.id",
+                              "channel.$": "$$.Execution.Input.detail.channel_name",
+                              "author": {
+                                "username.$": "$$.Execution.Input.detail.author"
+                              },
+                              "createdAt.$": "$$.Execution.Input.detail.createdAt",
+                              "durationmillis.$": "$$.Execution.Input.detail.durationmillis",
+                              "thumbnail.$": "$$.Execution.Input.detail.thumbnail",
+                              "playbackUrl.$": "$$.Execution.Input.detail.playback_url",
+                              "streamUrl.$": "$$.Execution.Input.detail.stream_url",
+                              "recording_s3_key_prefix.$":"$$.Execution.Input.detail.recording_s3_key_prefix"
+                            },
+                            "taskToken.$": "$$.Task.Token",
+                            "pluginData.$": "$.plugins"
+                          },
+                          "DetailType.$": "States.Format('{}.{}',$.value.PK.S, $.value.SK.S)",
+                          "EventBusName": "default",
+                          "Source": "ServerlessFlix.pluginManager"
+                        }
+                      ]
+                    },
+                    "Catch": [
+                      {
+                        "ErrorEquals": [
+                          "States.HeartbeatTimeout"
+                        ],
+                        "ResultPath": "$.NewVideoAdded",
+                        "Next": "PutMetricpostMetaDataFail"
+                      }
+                    ],
+                    "Next": "Organise postMetaData plugin response",
+                    "ResultPath": "$.pluginOutput",
+                    "HeartbeatSeconds": 600
+                  },
+                  "Organise postMetaData plugin response": {
+                    "Type": "Pass",
+                    "End": true,
+                    "Parameters": {
+                      "OutputKey.$": "States.Format('plugin-{}', $.value.SK.S)",
+                      "OutputValue.$": "$.pluginOutput"
+                    }
+                  },
+                  "PutMetricpostMetaDataFail":{
+                    "Type": "Task",
+                    "Parameters": {
+                      "MetricData": [
+                        {
+                          "MetricName": "fail",
+                          "Value": 1,
+                          "Unit": "Count",
+                          "Dimensions": [
+                            {
+                              "Name": "By EventHook",
+                              "Value": "postMetaData"
+                            }
+                          ]
+                        }
+                      ],
+                      "Namespace": "ServerlessVideo"
+                    },
+                    "Resource": "arn:aws:states:::aws-sdk:cloudwatch:putMetricData",
+                    "End": true,
+                    "ResultPath": null
+                  }
+                }
+              },
+              "Label": "ForEach-postMetaData-Hook",
+              "MaxConcurrency": 1000,
+              "ResultPath": "$.plugins.postMetadata",
+              "Next": "PutPostMetadataMetricSuccess",
+              "ItemsPath": "$.metadataItems.Items",
+              "ItemSelector": {
+                "value.$": "$$.Map.Item.Value",
+                "plugins.$": "$.plugins"
+              }
+            },
+            "PutPostMetadataMetricSuccess":{
+              "Type": "Task",
+              "Parameters": {
+                "MetricData": [
+                  {
+                    "MetricName": "success",
+                    "Value": 1,
+                    "Unit": "Count",
+                    "Dimensions": [
+                      {
+                        "Name": "By EventHook",
+                        "Value": "postMetaData"
+                      }
+                    ]
+                  }
+                ],
+                "Namespace": "ServerlessVideo"
+              },
+              "Resource": "arn:aws:states:::aws-sdk:cloudwatch:putMetricData",
+              "End": true,
+              "ResultPath": null
+            }
+          }
+        },
+       
+        {
+          "StartAt": "keep Invocation event Input",
+          "States": {
+            "keep Invocation event Input": {
+              "Type": "Pass",
+              "End": true,
+              "InputPath": "$.detail",
+              "ResultPath": "$.originalEvent"
+            }
+          }
+        }
+      ]
+    },
+
+    "organise data for final Event": {
+      "Type": "Pass",
+      "Parameters": {
+        "plugins.$": "$[0].plugins",
+        "originalEvent.$": "$[1].originalEvent"
+      },
+      "Next": "Emit LifeCycleComplete"
+    },
+    "Emit LifeCycleComplete": {
+      "Type": "Task",
+      "Resource": "arn:aws:states:::events:putEvents",
+      "Parameters": {
+        "Entries": [
+          {
+            "Detail": {
+              "plugins.$": "$.plugins",
+              "recording_status": "Recording Ready",
+              "playback_url.$": "$.originalEvent.playback_url",
+              "stream_url.$": "$.originalEvent.stream_url",
+              "channel_name.$": "$.originalEvent.channel_name",
+              "thumbnail.$": "$.originalEvent.thumbnail",
+              "id.$": "$.originalEvent.id",
+              "createdAt.$": "$.originalEvent.createdAt",
+              "durationmillis.$": "$.originalEvent.durationmillis",
+              "height.$": "$.originalEvent.height",
+              "width.$": "$.originalEvent.width",
+              "author": {
+                "username.$": "$$.Execution.Input.detail.author"
+              },
+              "pluginLifecycleWorkflowExecutionId.$": "$$.Execution.Id"
+            },
+            "DetailType": "LifeCycleComplete",
+            "EventBusName": "default",
+            "Source": "serverlessFlix.pluginManager"
+          }
+        ]
+      },
+      "End": true
+    }
+  }
+}

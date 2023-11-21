@@ -1,0 +1,59 @@
+{
+    "Comment": "A description of my state machine",
+    "StartAt": "ListExecutions",
+    "States": {
+      "ListExecutions": {
+        "Type": "Task",
+        "Parameters": {
+          "StateMachineArn": "${postProcessingWf}",
+          "StatusFilter": "SUCCEEDED",
+          "MaxResults.$": "$.max"
+        },
+        "Resource": "arn:aws:states:::aws-sdk:sfn:listExecutions",
+        "Next": "Map",
+        "OutputPath": "$.Executions"
+      },
+      "Map": {
+        "Type": "Map",
+        "ItemProcessor": {
+          "ProcessorConfig": {
+            "Mode": "DISTRIBUTED",
+            "ExecutionType": "STANDARD"
+          },
+          "StartAt": "GetExecutionHistory",
+          "States": {
+            "GetExecutionHistory": {
+              "Type": "Task",
+              "Parameters": {
+                "ExecutionArn.$": "$.ExecutionArn"
+              },
+              "Resource": "arn:aws:states:::aws-sdk:sfn:getExecutionHistory",
+              "OutputPath": "$.input",
+              "ResultSelector": {
+                "input.$": "States.StringToJson($.Events.[0].ExecutionStartedEventDetails.Input)"
+              },
+              "Next": "EventBridge PutEvents"
+            },
+            "EventBridge PutEvents": {
+              "Type": "Task",
+              "Resource": "arn:aws:states:::events:putEvents",
+              "Parameters": {
+                "Entries": [
+                  {
+                    "Detail.$": "$.detail",
+                    "DetailType": "IVS Recording State Change",
+                    "EventBusName": "default",
+                    "Source": "simulator"
+                  }
+                ]
+              },
+              "End": true
+            }
+          }
+        },
+        "End": true,
+        "Label": "Map",
+        "MaxConcurrency": 1000
+      }
+    }
+  }

@@ -1,0 +1,122 @@
+AWSTemplateFormatVersion: "2010-09-09"
+Transform: AWS::Serverless-2016-10-31
+Description: ServerlessFlix core stack.
+
+Parameters:
+  AuthDomainName:
+    Type: String
+    Description: Name for the hosted auth domain
+  API:
+    Type: String
+    Description: video manager API
+    Default: ""
+
+
+Resources:
+#############################################
+# Resources for CDN                         #
+#############################################
+
+  CDNStack:
+    Type: AWS::Serverless::Application
+    Properties:
+      Location: ./cdn.yaml
+      Parameters:
+        API: !Ref API
+
+#############################################
+# Resources for IoT Core realtime messaging # ${AWS::AccountId}
+#############################################
+  ServerlessFlixRealtime:
+    Type: "AWS::IoT::Thing"
+    Properties:
+      ThingName: "serverlessFlix" 
+      AttributePayload:
+        Attributes: {}
+  
+  GetIoTEndpointFunction:
+    Type: 'AWS::Serverless::Function'
+    Properties:
+      Handler: GetIoTEndpoint.handler
+      Runtime: nodejs14.x
+      CodeUri: ./
+      MemorySize: 128
+      Timeout: 3
+      Policies:
+        - Version: '2012-10-17'
+          Statement:
+          - Effect: Allow
+            Action:
+              - iot:DescribeEndpoint
+            Resource:
+              - '*'
+
+  GetIoTEndpointLogGroup:
+    Type: AWS::Logs::LogGroup
+    Properties:
+      LogGroupName: !Sub "/aws/lambda/${GetIoTEndpointFunction}"
+
+  IotEndpoint:
+    Type: 'Custom::IotEndpoint'
+    Properties:
+      ServiceToken: !GetAtt GetIoTEndpointFunction.Arn
+
+##########################################
+# Cognito Resources                      #
+##########################################
+  AuthStack:
+    Type: AWS::Serverless::Application
+    Properties:
+      Location: ./auth.yaml
+      Parameters:
+        AuthDomain: !Ref AuthDomainName
+
+##########################################
+# Outputs                                #
+##########################################
+
+Outputs:
+  IoTRealtimeName:
+    Description: IoTRealtime Name
+    Value: !Ref ServerlessFlixRealtime
+
+  IotEndpointAddress:
+    Description: IotEndpointAddress URL
+    Value: !GetAtt IotEndpoint.IotEndpointAddress
+    Export:
+      Name: !Sub "${AWS::StackName}-IotEndpointAddress"
+
+  IOTDataEndpoint:
+    Value: !GetAtt IotEndpoint.IotEndpointAddress
+
+  AuthIdentityPoolId:
+    Description: User pool id
+    Value: !GetAtt AuthStack.Outputs.IdentityPoolId
+
+  AuthUserPoolId:
+    Description: User pool id
+    Value: !GetAtt AuthStack.Outputs.UserPoolId
+
+  AuthUserPoolArn:
+    Description: User pool arn
+    Value: !GetAtt AuthStack.Outputs.UserPoolArn
+    Export:
+      Name: SF-UserPoolArn
+
+  AuthUserPoolClientId:
+    Description: User pool client id
+    Value: !GetAtt AuthStack.Outputs.UserPoolClientId
+
+  AuthHostedUi:
+    Description: User pool client id
+    Value: !GetAtt AuthStack.Outputs.AuthDomain
+
+  CDNOriginBucketName:
+    Description: Bucket name holding on demand MP4 for public consumption
+    Value: !GetAtt CDNStack.Outputs.OriginBucketName
+    Export:
+      Name: SF-CDNOriginBucketName
+
+  CDNDomainName:
+    Description: Domain name for CloudFront distro
+    Value: !GetAtt CDNStack.Outputs.DomainName

@@ -1,0 +1,288 @@
+AWSTemplateFormatVersion: "2010-09-09"
+Transform: AWS::Serverless-2016-10-31
+Description: >
+  serverlessFlix-ml-workflow-service
+
+  Sample SAM Template for serverlessFlix-ml-workflow-service
+Parameters:
+
+  UserPoolARNParameter:
+    Default: UserPoolARNParameter
+    Type: String
+
+  RegordingConfigArn:
+    Default: RegordingConfigArn
+    Type: String 
+
+
+Resources:
+
+##############################################################
+#  workflow triggerred Going Live or Ending Stream event
+##############################################################
+  StreanEventWF:
+    Type: AWS::Serverless::StateMachine # More info about State Machine Resource: https://docs.aws.amazon.com/serverless-application-model/latest/developerguide/sam-resource-statemachine.html
+    Properties:
+      Name: !Join ["",[!Ref "AWS::AccountId","-",!Ref "AWS::Region","-stream-event"]]
+      DefinitionUri: statemachine/StreamEventWF.asl.json
+      DefinitionSubstitutions:
+        DDBTable: !Ref ChannelTable
+      Policies:
+        - DynamoDBCrudPolicy:
+            TableName: !Ref ChannelTable
+      Events:
+        IVSEventEnd:
+          Type: EventBridgeRule
+          Properties:
+            EventBusName: default
+            Pattern:
+              source:
+                - aws.ivs
+              detail-type:
+                - IVS Recording State Change
+              detail:
+                recording_status: 
+                  - Recording End
+        IVSEventStart:
+          Type: EventBridgeRule
+          Properties:
+            EventBusName: default
+            Pattern:
+              source:
+                - aws.ivs
+              detail-type:
+                - IVS Recording State Change
+              detail:
+                recording_status: 
+                  - Recording Start
+  
+
+
+##############################################################
+#  workflow triggerred by confirmed User 
+##############################################################
+  channelCreationWF:
+    Type: AWS::Serverless::StateMachine # More info about State Machine Resource: https://docs.aws.amazon.com/serverless-application-model/latest/developerguide/sam-resource-statemachine.html
+    Properties:
+      Name: !Join ["",[!Ref "AWS::AccountId","-",!Ref "AWS::Region","-channel-creation"]]
+      DefinitionUri: statemachine/channelCreationWF.asl.json
+      DefinitionSubstitutions:
+        DDBTable: !Ref ChannelTable
+        RegordingConfigArn: !Ref RegordingConfigArn
+        GenerateChannelInfoFunctionName: !Ref GenerateChannelInfo
+      Events:
+        StateChange:
+          Type: EventBridgeRule
+          Properties:
+            EventBusName: default
+            Pattern:
+              source:
+                - serverlessFlix.Cognito
+              detail-type:
+                - BroadcastUserCreated
+      Policies:
+        - Version: 2012-10-17
+          Statement:
+            - Sid: IVSCHannels
+              Effect: Allow
+              Action:
+                - ivs:CreateChannel
+              Resource:
+                - !Sub arn:aws:ivs:*:${AWS::AccountId}:stream-key/*
+                - !Sub arn:aws:ivs:*:${AWS::AccountId}:channel/*
+            - Sid: DDBPUT
+              Effect: Allow
+              Action:
+                - dynamodb:PutItem
+              Resource:
+                -  !Sub arn:aws:dynamodb:*:${AWS::AccountId}:table/*
+        - LambdaInvokePolicy:
+            FunctionName: !Ref GenerateChannelInfo
+
+########## ABOVE finish adding IAM policy for the SFN workflow to create a new channel and save to ddb
+
+##############################################################
+# REST API TO GET AND SET CHANNEL DATA ###
+##############################################################
+  ChannelServiceRestAPI:
+      Type: AWS::Serverless::Api
+      Properties:
+        StageName: Prod
+        # Auth:
+        #   AddDefaultAuthorizerToCorsPreflight: False
+        #   DefaultAuthorizer: CognitoAuth
+        #   Authorizers:
+        #     CognitoAuth:
+        #       AuthType: COGNITO_USER_POOLS
+        #       UserPoolArn: !ImportValue SF-UserPoolArn
+        # Cors:
+        #   AllowOrigin: "'*'"
+        #   AllowHeaders: "'Content-Type,Authorization'"
+        #   AllowMethods: "'GET,PUT,POST,DELETE,OPTIONS'"
+        DefinitionBody: !Transform
+           Name: AWS::Include
+           Parameters:
+             Location: ./RestAPI/api.yaml
+  
+  RESTApiRole:
+    Type: AWS::IAM::Role
+    Properties:
+      AssumeRolePolicyDocument:
+        Version: 2012-10-17
+        Statement:
+          - Effect: Allow
+            Principal:
+              Service:
+                - apigateway.amazonaws.com
+            Action:
+              - sts:AssumeRole
+      Policies:
+        - PolicyName: DynamoDBinteraction
+          PolicyDocument:
+            Version: 2012-10-17
+            Statement:
+              - Effect: Allow
+                Action:
+                  - dynamodb:GetItem
+                  - dynamodb:Scan
+                Resource: !GetAtt ChannelTable.Arn
+              - Effect: Allow
+                Action:
+                  - dynamodb:Query
+                Resource: !Sub
+                  - ${tableArn}${index}
+                  - tableArn: !GetAtt ChannelTable.Arn
+                    index: /index/*
+              - Effect: Allow
+                Action:
+                  - dynamodb:GetItem
+                  - dynamodb:Scan
+                  - dynamodb:Query
+                  - dynamodb:DeleteItem
+                Resource: 
+                  - !Sub arn:aws:dynamodb:${AWS::Region}:${AWS::AccountId}:table/serverlessFlix-video-history-table
+              - Effect: Allow
+                Action:
+                  - dynamodb:GetItem
+                  - dynamodb:Scan
+                  - dynamodb:Query
+                  - dynamodb:DeleteItem
+                Resource: 
+                  - !Sub arn:aws:dynamodb:${AWS::Region}:${AWS::AccountId}:table/serverlessFlix-Video-table
+              - Effect: Allow
+                Action:
+                  - dynamodb:Query
+                Resource: 
+                  - !Sub arn:aws:dynamodb:${AWS::Region}:${AWS::AccountId}:table/serverlessFlix-Video-table/index/*
+        - PolicyName: SendMessagePolicy
+          PolicyDocument:
+            Version: '2012-10-17'
+            Statement:
+              - Effect: Allow
+                Action: sqs:SendMessage
+                Resource: !GetAtt ServerlessFlixChannelQueue.Arn # Specify the ARN of the SQS queue
+
+  GenerateChannelInfo:
+    Type: AWS::Serverless::Function
+    Properties:
+      FunctionName: serverlessVideo-channelService-GenerateChannelInfo
+      CodeUri: ./functions/
+      Handler: generate-channel-info.handler
+      Runtime: nodejs14.x
+
+
+    # Define the SQS queue
+  ServerlessFlixChannelQueue:
+    Type: AWS::SQS::Queue
+    Properties:
+      QueueName: serverlessFlix-channelService-ServerlessFlixChannelQueue
+
+ # Function to post metadata (Emojis) to IVS 
+  PostMetadataFunction:
+    Type: AWS::Serverless::Function
+    Properties:
+      FunctionName: serverlessVideo-channelService-PostMetadataFunction
+      CodeUri: ./functions/
+      Handler: metadata.handler
+      Runtime: nodejs16.x
+      Policies:
+        - Statement:
+          - Effect: Allow
+            Action: ivs:PutMetadata
+            Resource: 
+              - !Sub arn:aws:ivs:*:${AWS::AccountId}:stream-key/*
+              - !Sub arn:aws:ivs:*:${AWS::AccountId}:channel/*
+        - DynamoDBCrudPolicy:
+            TableName: !Ref ChannelTable
+        - Statement:
+            - Effect: Allow
+              Resource: arn:aws:iot:*
+              Action:
+                - iot:Connect
+                - iot:Publish
+      Events:
+        MySQSEvent:
+          Type: SQS
+          Properties:
+            Queue: !GetAtt ServerlessFlixChannelQueue.Arn
+            BatchSize: 5
+            MaximumBatchingWindowInSeconds: 5
+
+
+
+##############################################################
+# Lambda function.... no need for this yet but might need later
+##############################################################
+
+  ScanChannelsDBFunction:
+    Type: AWS::Serverless::Function
+    Properties:
+      CodeUri: ./functions/
+      Handler: app.handler
+      Runtime: nodejs14.x
+      Policies:
+        - DynamoDBReadPolicy:
+            TableName: !Ref ChannelTable
+
+
+##############################################################
+# DDB, we'll use this to persist channels
+##############################################################
+  ChannelTable:
+    Type: AWS::DynamoDB::Table
+    Properties:
+      TableName: serverlessFlix-channels-table
+      AttributeDefinitions:
+        - AttributeName: PK
+          AttributeType: S
+      KeySchema:
+        - AttributeName: PK
+          KeyType: HASH
+      BillingMode: PAY_PER_REQUEST
+
+Outputs:
+  QueueConsumerFunction:
+    Description: ServerlessFlixChannelQueue function name
+    Value: !Ref ServerlessFlixChannelQueue
+  
+  SQSqueueName:
+    Description: SNS queue name
+    Value: !GetAtt ServerlessFlixChannelQueue.QueueName
+
+  SQSqueueARN:
+    Description: SQS queue ARN
+    Value: !GetAtt ServerlessFlixChannelQueue.Arn
+
+  SQSqueueURL:
+    Description: SQS queue URL
+    Value: !Ref ServerlessFlixChannelQueue
+
+
+
+
+
+
+
+
+    #####
+    

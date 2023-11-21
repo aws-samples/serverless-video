@@ -1,0 +1,8 @@
+{
+  "name": "video-manager-service",
+  "version": "1.0.0",
+  "description": "",
+  "dependencies": {
+    "@aws-lambda-powertools/metrics": "^1.14.2"
+  }
+}

@@ -1,0 +1,214 @@
+AWSTemplateFormatVersion: '2010-09-09'
+Transform: AWS::Serverless-2016-10-31
+
+Resources:
+  MyDashboard:
+    Type: "AWS::CloudWatch::Dashboard"
+    Properties:
+      DashboardName: "ServerlessVideo-Producer-Dashboard"
+      DashboardBody: !Sub |
+        {
+            "variables": [
+                {
+                    "type": "property",
+                    "property": "Channel",
+                    "inputType": "input",
+                    "id": "Channel",
+                    "label": "Channel",
+                    "visible": true
+                }
+            ],
+            "start": "-PT5M",
+            "widgets": [
+                {
+                    "height": 3,
+                    "width": 24,
+                    "y": 0,
+                    "x": 0,
+                    "type": "text",
+                    "properties": {
+                        "markdown": "# Producer dashboard for ServerlessVideo\n\n\nWhen you are producing for ServerlessVideo, use this dashboard to get key metrics and data that might be useful during a live broadcast.\n(Remember to set the video and refresh rate to the desired rate you need for the broadcast).\n\n\n[View realtime GA information here](https://analytics.google.com/analytics/web/#/p414013319/realtime/overview?params=_u..nav%3Dmaui&collectionId=business-objectives)"
+                    }
+                },
+                {
+                    "height": 3,
+                    "width": 24,
+                    "y": 3,
+                    "x": 0,
+                    "type": "metric",
+                    "properties": {
+                        "metrics": [
+                            [ "AWS/IVS", "ConcurrentViews", "Channel", "9eNUUkm15tdJ", { "region": "us-west-2", "label": "Channel views (average)", "stat": "Average" } ],
+                            [ "...", { "region": "us-west-2", "label": "Max concurrent Views", "stat": "Maximum" } ],
+                            [ ".", "LiveInputTime", ".", ".", { "label": "Real-time duration served to customers", "region": "us-west-2" } ],
+                            [ ".", "RecordedTime", ".", ".", { "label": "Duration of recorded videos", "region": "us-west-2" } ]
+                        ],
+                        "sparkline": false,
+                        "view": "singleValue",
+                        "region": "us-west-2",
+                        "period": 900,
+                        "stat": "Sum",
+                        "setPeriodToTimeRange": true,
+                        "trend": false,
+                        "title": "By channel id"
+                    }
+                },
+                {
+                    "height": 2,
+                    "width": 24,
+                    "y": 6,
+                    "x": 0,
+                    "type": "text",
+                    "properties": {
+                        "markdown": "# ServerlessVideo overall metrics"
+                    }
+                },
+                {
+                    "height": 5,
+                    "width": 6,
+                    "y": 8,
+                    "x": 18,
+                    "type": "metric",
+                    "properties": {
+                        "metrics": [
+                            [ "AWS/IVS", "RecordedTime", { "region": "us-west-2" } ]
+                        ],
+                        "view": "singleValue",
+                        "stacked": false,
+                        "region": "us-west-2",
+                        "sparkline": false,
+                        "stat": "Sum",
+                        "period": 300,
+                        "title": "Total number of recorded time",
+                        "setPeriodToTimeRange": true,
+                        "trend": false
+                    }
+                },
+                {
+                    "height": 4,
+                    "width": 6,
+                    "y": 13,
+                    "x": 18,
+                    "type": "metric",
+                    "properties": {
+                        "metrics": [
+                            [ "AWS/IVS", "LiveDeliveredTime", "Channel", "8XyPI1Q0eckD", { "region": "us-west-2" } ]
+                        ],
+                        "view": "singleValue",
+                        "stacked": false,
+                        "region": "us-west-2",
+                        "sparkline": true,
+                        "stat": "Sum",
+                        "period": 3600,
+                        "setPeriodToTimeRange": true,
+                        "title": "Total number of live minutes watched"
+                    }
+                },
+                {
+                    "height": 3,
+                    "width": 6,
+                    "y": 17,
+                    "x": 18,
+                    "type": "metric",
+                    "properties": {
+                        "metrics": [
+                            [ "AWS/SQS", "NumberOfMessagesSent", "QueueName", "serverlessFlix-channelService-ServerlessFlixChannelQueue" ]
+                        ],
+                        "view": "singleValue",
+                        "stacked": false,
+                        "region": "us-west-2",
+                        "stat": "Sum",
+                        "period": 900,
+                        "setPeriodToTimeRange": true,
+                        "sparkline": false,
+                        "trend": false,
+                        "title": "Number of Emjois sent (SQS)"
+                    }
+                },
+                {
+                    "height": 5,
+                    "width": 18,
+                    "y": 8,
+                    "x": 0,
+                    "type": "metric",
+                    "properties": {
+                        "metrics": [
+                            [ "AWS/IVS", "RecordedTime", { "region": "us-west-2" } ]
+                        ],
+                        "view": "timeSeries",
+                        "stacked": false,
+                        "region": "us-west-2",
+                        "sparkline": true,
+                        "stat": "Sum",
+                        "period": 60,
+                        "title": "Total recorded time"
+                    }
+                },
+                {
+                    "height": 4,
+                    "width": 18,
+                    "y": 13,
+                    "x": 0,
+                    "type": "metric",
+                    "properties": {
+                        "metrics": [
+                            [ "AWS/IVS", "ConcurrentViews", { "region": "us-west-2" } ]
+                        ],
+                        "view": "timeSeries",
+                        "stacked": false,
+                        "region": "us-west-2",
+                        "sparkline": true,
+                        "stat": "Average",
+                        "period": 300,
+                        "setPeriodToTimeRange": true,
+                        "title": "Customers watching streams"
+                    }
+                },
+                {
+                    "height": 3,
+                    "width": 9,
+                    "y": 17,
+                    "x": 0,
+                    "type": "metric",
+                    "properties": {
+                        "metrics": [
+                            [ "AWS/Lambda", "Invocations", "FunctionName", "post-processing-wFFmpeg-service-StartConversion" ]
+                        ],
+                        "sparkline": false,
+                        "view": "singleValue",
+                        "region": "us-west-2",
+                        "liveData": false,
+                        "setPeriodToTimeRange": true,
+                        "trend": false,
+                        "stacked": true,
+                        "stat": "Sum",
+                        "period": 300,
+                        "title": "Videos processed with Lambda"
+                    }
+                },
+                {
+                    "height": 3,
+                    "width": 9,
+                    "y": 17,
+                    "x": 9,
+                    "type": "metric",
+                    "properties": {
+                        "metrics": [
+                            [ "AWS/Lambda", "Invocations", "FunctionName", "post-processing-wFFmpeg-service-StartConversion", { "region": "us-west-2", "visible": false } ],
+                            [ "AWS/Usage", "CallCount", "Type", "API", "Resource", "RunTask", "Service", "ECS", "Class", "None", { "region": "us-west-2" } ]
+                        ],
+                        "sparkline": false,
+                        "view": "singleValue",
+                        "region": "us-west-2",
+                        "liveData": false,
+                        "setPeriodToTimeRange": true,
+                        "trend": false,
+                        "stacked": true,
+                        "stat": "Sum",
+                        "period": 300,
+                        "title": "Videos processed with ECS"
+                    }
+                }
+            ]
+        }
+        

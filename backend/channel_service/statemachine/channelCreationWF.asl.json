@@ -1,0 +1,58 @@
+{
+  "Comment": "A description of my state machine",
+  "StartAt": "CreateChannel",
+  "States": {
+    "CreateChannel": {
+      "Type": "Task",
+      "Parameters": {
+        "Name.$": "$.detail.request.userAttributes.sub",
+        "RecordingConfigurationArn": "${RegordingConfigArn}",
+        "Type": "STANDARD"
+      },
+      "Resource": "arn:aws:states:::aws-sdk:ivs:createChannel",
+      "Next": "Generate channel info"
+    },
+    "Generate channel info": {
+      "Type": "Task",
+      "Resource": "arn:aws:states:::lambda:invoke",
+      "Parameters": {
+        "Payload.$": "$",
+        "FunctionName": "${GenerateChannelInfoFunctionName}"
+      },
+      "Retry": [
+        {
+          "ErrorEquals": [
+            "Lambda.ServiceException",
+            "Lambda.AWSLambdaException",
+            "Lambda.SdkClientException",
+            "Lambda.TooManyRequestsException"
+          ],
+          "IntervalSeconds": 2,
+          "MaxAttempts": 6,
+          "BackoffRate": 2
+        }
+      ],
+      "Next": "DynamoDB PutItem",
+      "ResultPath": "$.generated"
+    },
+    "DynamoDB PutItem": {
+      "Type": "Task",
+      "Resource": "arn:aws:states:::dynamodb:putItem",
+      "Parameters": {
+        "TableName": "serverlessFlix-channels-table",
+        "Item": {
+          "PK": {
+            "S.$": "$.Channel.Name"
+          },
+          "data": {
+            "S.$": "States.JsonToString($)"
+          },
+          "name": {
+            "S.$": "$.generated.Payload.username"
+          }
+        }
+      },
+      "End": true
+    }
+  }
+}

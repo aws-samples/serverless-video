@@ -1,0 +1,63 @@
+{
+    "Comment": "A description of my state machine",
+    "StartAt": "Parallel",
+    "States": {
+      "Parallel": {
+        "Type": "Parallel",
+        "Branches": [
+          {
+            "StartAt": "Map",
+            "States": {
+              "Map": {
+                "Type": "Map",
+                "ItemProcessor": {
+                  "ProcessorConfig": {
+                    "Mode": "DISTRIBUTED",
+                    "ExecutionType": "STANDARD"
+                  },
+                  "StartAt": "CopyObject",
+                  "States": {
+                    "CopyObject": {
+                      "Type": "Task",
+                      "End": true,
+                      "Parameters": {
+                        "Bucket": "${DestinationBucket}",
+                        "CopySource.$": "States.Format('{}/{}', $.Context.detail.recording_s3_bucket_name,$.Item.Key)",
+                        "Key.$": "$.Item.Key"
+                      },
+                      "Resource": "arn:aws:states:::aws-sdk:s3:copyObject"
+                    }
+                  }
+                },
+                "Label": "Map",
+                "MaxConcurrency": 1000,
+                "ItemReader": {
+                  "Resource": "arn:aws:states:::s3:listObjectsV2",
+                  "Parameters": {
+                    "Bucket.$": "$.detail.recording_s3_bucket_name",
+                    "Prefix.$": "$.detail.recording_s3_key_prefix"
+                  }
+                },
+                "ItemSelector": {
+                  "Context.$": "$",
+                  "Item.$": "$$.Map.Item.Value"
+                },
+                "End": true
+              }
+            }
+          },
+          {
+            "StartAt": "hold input",
+            "States": {
+              "hold input": {
+                "Type": "Pass",
+                "End": true
+              }
+            }
+          }
+        ],
+        "End": true
+      }
+      
+    }
+  }

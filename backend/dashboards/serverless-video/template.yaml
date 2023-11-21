@@ -1,0 +1,647 @@
+AWSTemplateFormatVersion: '2010-09-09'
+Transform: AWS::Serverless-2016-10-31
+
+Parameters:
+  UserpoolID:
+    Description: Cognito user pool id for ServerlessVideo
+    Type: String
+    Default: us-west-2_7HDmAbUnB
+  UserpoolClient:
+    Description: Userpool client id
+    Type: String
+    Default: 4vtcpti9c13oaerrdqf1f5hjsa
+  PersistVideoLogGroupName:
+    Description: Log group name for the persist lambda function
+    Type: String
+    Default: /aws/lambda/serverlessFlix-video-serv-LambdaFunctionPersistVid-Hgu8cxT3hDvZ
+
+Resources:
+  MyDashboard:
+    Type: "AWS::CloudWatch::Dashboard"
+    Properties:
+      DashboardName: "ServerlessVideo-Dashboard"
+      DashboardBody: !Sub |
+        {
+          "widgets": [
+            {
+                "height": 2,
+                "width": 24,
+                "y": 0,
+                "x": 0,
+                "type": "text",
+                "properties": {
+                    "markdown": "# ServerlessVideo Dashboard\n\nHigh level overview of ServerlessVideo. Use the [run book](https://quip-amazon.com/RuF8A9FhAaQi/ServerlessVideo-Run-book) to manage features and redirects."
+                }
+            },
+            {
+                "height": 5,
+                "width": 10,
+                "y": 31,
+                "x": 0,
+                "type": "log",
+                "properties": {
+                    "query": "SOURCE '${PersistVideoLogGroupName}' | fields `By VideoId`, _aws.CloudWatchMetrics.0.Metrics.0.Name ,@timestamp\n| filter _aws.CloudWatchMetrics.0.Metrics.0.Name = 'invalid'\n| sort @timestamp desc\n| limit 20",
+                    "region": "us-west-2",
+                    "stacked": false,
+                    "title": "Invalid videos",
+                    "view": "table"
+                }
+            },
+            {
+                "height": 6,
+                "width": 11,
+                "y": 9,
+                "x": 0,
+                "type": "metric",
+                "properties": {
+                    "metrics": [
+                        [ "AWS/ApiGateway", "4XXError", "ApiName", "ServerlessFlixChannelServiceAPI", { "stat": "Sum", "color": "#ff7f0e" } ],
+                        [ ".", "5XXError", ".", ".", { "color": "#d62728" } ]
+                    ],
+                    "view": "timeSeries",
+                    "stacked": false,
+                    "region": "${AWS::Region}",
+                    "stat": "Average",
+                    "period": 300,
+                    "title": "Channel Service - API Gateway errors"
+                }
+            },
+            {
+                "height": 1,
+                "width": 24,
+                "y": 48,
+                "x": 0,
+                "type": "text",
+                "properties": {
+                    "markdown": "# Channel API",
+                    "background": "solid"
+                }
+            },
+            {
+                "height": 6,
+                "width": 13,
+                "y": 56,
+                "x": 0,
+                "type": "metric",
+                "properties": {
+                    "metrics": [
+                        [ "AWS/ApiGateway", "Count", "ApiName", "ServerlessFlixChannelServiceAPI", { "region": "${AWS::Region}" } ]
+                    ],
+                    "sparkline": false,
+                    "view": "singleValue",
+                    "region": "${AWS::Region}",
+                    "stat": "Sum",
+                    "period": 900,
+                    "title": "Total number of requests to API",
+                    "setPeriodToTimeRange": true,
+                    "trend": false
+                }
+            },
+            {
+                "height": 6,
+                "width": 11,
+                "y": 3,
+                "x": 0,
+                "type": "metric",
+                "properties": {
+                    "metrics": [
+                        [ "AWS/States", "ExecutionsFailed", "StateMachineArn", "arn:aws:states:${AWS::Region}:${AWS::AccountId}:stateMachine:${AWS::AccountId}-${AWS::Region}-content-moderation-plugin", { "region": "${AWS::Region}", "visible": false } ],
+                        [ "...", "arn:aws:states:${AWS::Region}:${AWS::AccountId}:stateMachine:${AWS::AccountId}-${AWS::Region}-generateTitleplugin", { "region": "${AWS::Region}", "visible": false } ],
+                        [ "...", "arn:aws:states:${AWS::Region}:${AWS::AccountId}:stateMachine:${AWS::AccountId}-${AWS::Region}-PluginLifecycleWorkflow", { "region": "${AWS::Region}", "label": "Plugin Lifecycle" } ],
+                        [ "...", "arn:aws:states:${AWS::Region}:${AWS::AccountId}:stateMachine:${AWS::AccountId}-${AWS::Region}-PostProcessingStreamToMp4WLambda", { "region": "${AWS::Region}", "label": "Stream to MP4" } ],
+                        [ "...", "arn:aws:states:${AWS::Region}:${AWS::AccountId}:stateMachine:${AWS::AccountId}-${AWS::Region}-PostProcessingWFCopyStreamFilesToSFBucket", { "region": "${AWS::Region}", "label": "Copy stream files to S3", "visible": false } ],
+                        [ "...", "arn:aws:states:${AWS::Region}:${AWS::AccountId}:stateMachine:${AWS::AccountId}-${AWS::Region}-PostProcessingWFCopyStreamFilesToSFBucket/Map", { "region": "${AWS::Region}", "visible": false } ],
+                        [ "...", "arn:aws:states:${AWS::Region}:${AWS::AccountId}:stateMachine:channel-creation", { "region": "${AWS::Region}", "label": "Channel creator" } ],
+                        [ "...", "arn:aws:states:${AWS::Region}:${AWS::AccountId}:stateMachine:cognito-SFN", { "region": "${AWS::Region}", "label": "Cognito workflow", "visible": false } ],
+                        [ "...", "arn:aws:states:${AWS::Region}:${AWS::AccountId}:stateMachine:stream-event", { "region": "${AWS::Region}", "visible": false } ],
+                        [ "...", "arn:aws:states:${AWS::Region}:${AWS::AccountId}:stateMachine:translation-workflow", { "region": "${AWS::Region}", "visible": false } ],
+                        [ "...", "arn:aws:states:${AWS::Region}:${AWS::AccountId}:stateMachine:video-transcription-workflow", { "region": "${AWS::Region}", "visible": false } ]
+                    ],
+                    "view": "timeSeries",
+                    "stacked": false,
+                    "region": "${AWS::Region}",
+                    "stat": "Sum",
+                    "period": 300,
+                    "title": "Core Step Functions workflow errors",
+                    "annotations": {
+                        "horizontal": [
+                            {
+                                "label": "Threshold",
+                                "value": 1
+                            }
+                        ]
+                    }
+                }
+            },
+            {
+                "height": 6,
+                "width": 6,
+                "y": 3,
+                "x": 11,
+                "type": "metric",
+                "properties": {
+                    "view": "timeSeries",
+                    "stacked": false,
+                    "metrics": [
+                        [ "AWS/AmplifyHosting", "4xxErrors" ],
+                        [ ".", "5xxErrors" ]
+                    ],
+                    "region": "${AWS::Region}",
+                    "title": "Website 4xx/5xx errors"
+                }
+            },
+            {
+                "height": 4,
+                "width": 18,
+                "y": 42,
+                "x": 0,
+                "type": "metric",
+                "properties": {
+                    "metrics": [
+                        [ "AWS/IVS", "ConcurrentViews", { "region": "${AWS::Region}" } ]
+                    ],
+                    "view": "timeSeries",
+                    "stacked": false,
+                    "region": "${AWS::Region}",
+                    "sparkline": true,
+                    "stat": "Average",
+                    "period": 900,
+                    "setPeriodToTimeRange": true,
+                    "title": "Customers watching streams"
+                }
+            },
+            {
+                "height": 1,
+                "width": 24,
+                "y": 31,
+                "x": 0,
+                "type": "text",
+                "properties": {
+                    "markdown": "# IVS Metrics",
+                    "background": "solid"
+                }
+            },
+            {
+                "height": 5,
+                "width": 18,
+                "y": 37,
+                "x": 0,
+                "type": "metric",
+                "properties": {
+                    "metrics": [
+                        [ "AWS/IVS", "RecordedTime", { "region": "${AWS::Region}" } ]
+                    ],
+                    "view": "timeSeries",
+                    "stacked": false,
+                    "region": "${AWS::Region}",
+                    "sparkline": true,
+                    "stat": "Sum",
+                    "period": 60,
+                    "title": "Total recorded time"
+                }
+            },
+            {
+                "height": 6,
+                "width": 6,
+                "y": 9,
+                "x": 11,
+                "type": "metric",
+                "properties": {
+                    "metrics": [
+                        [ "AWS/Lambda", "Errors", "FunctionName", "serverlessVideo-channelService-GenerateChannelInfo", { "color": "#d62728" } ],
+                        [ ".", "Invocations", ".", "." ]
+                    ],
+                    "view": "timeSeries",
+                    "stacked": false,
+                    "region": "${AWS::Region}",
+                    "stat": "Average",
+                    "period": 60,
+                    "title": "Channel creation Lambda"
+                }
+            },
+            {
+                "height": 1,
+                "width": 24,
+                "y": 18,
+                "x": 0,
+                "type": "text",
+                "properties": {
+                    "markdown": "# Video processing"
+                }
+            },
+            {
+                "height": 7,
+                "width": 24,
+                "y": 49,
+                "x": 0,
+                "type": "metric",
+                "properties": {
+                    "metrics": [
+                        [ "AWS/ApiGateway", "Count", "ApiName", "ServerlessFlixChannelServiceAPI", { "region": "${AWS::Region}", "stat": "Sum" } ],
+                        [ ".", "Latency", ".", ".", { "region": "${AWS::Region}" } ],
+                        [ ".", "IntegrationLatency", ".", ".", { "region": "${AWS::Region}" } ]
+                    ],
+                    "view": "timeSeries",
+                    "stacked": false,
+                    "region": "${AWS::Region}",
+                    "period": 300,
+                    "stat": "Average"
+                }
+            },
+            {
+                "height": 6,
+                "width": 6,
+                "y": 3,
+                "x": 17,
+                "type": "metric",
+                "properties": {
+                    "metrics": [
+                        [ "AWS/Lambda", "Invocations", "FunctionName", "serverlessVideo-channelService-PostMetadataFunction", { "region": "${AWS::Region}" } ],
+                        [ ".", "Errors", ".", ".", { "region": "${AWS::Region}" } ],
+                        [ ".", "ConcurrentExecutions", ".", ".", { "region": "${AWS::Region}", "stat": "Maximum" } ],
+                        [ ".", "Throttles", ".", ".", { "region": "${AWS::Region}" } ]
+                    ],
+                    "view": "timeSeries",
+                    "stacked": false,
+                    "region": "${AWS::Region}",
+                    "period": 60,
+                    "stat": "Sum",
+                    "title": "Emjoi Lambda "
+                }
+            },
+            {
+                "height": 5,
+                "width": 6,
+                "y": 37,
+                "x": 18,
+                "type": "metric",
+                "properties": {
+                    "metrics": [
+                        [ "AWS/IVS", "RecordedTime", { "region": "${AWS::Region}" } ]
+                    ],
+                    "view": "singleValue",
+                    "stacked": false,
+                    "region": "${AWS::Region}",
+                    "sparkline": false,
+                    "stat": "Sum",
+                    "period": 300,
+                    "title": "Total number of recorded time",
+                    "setPeriodToTimeRange": true,
+                    "trend": false
+                }
+            },
+            {
+                "height": 4,
+                "width": 6,
+                "y": 42,
+                "x": 18,
+                "type": "metric",
+                "properties": {
+                    "metrics": [
+                        [ "AWS/IVS", "ConcurrentViews", { "region": "${AWS::Region}" } ]
+                    ],
+                    "view": "singleValue",
+                    "stacked": false,
+                    "region": "${AWS::Region}",
+                    "sparkline": true,
+                    "stat": "Sum",
+                    "period": 3600,
+                    "setPeriodToTimeRange": true,
+                    "title": "Total number of people watching streams"
+                }
+            },
+            {
+                "height": 2,
+                "width": 24,
+                "y": 46,
+                "x": 0,
+                "type": "metric",
+                "properties": {
+                    "sparkline": true,
+                    "view": "singleValue",
+                    "metrics": [
+                        [ "AWS/S3", "NumberOfObjects", "StorageType", "AllStorageTypes", "BucketName", "serverlessflix-ivs-video-archive-1", { "period": 86400 } ],
+                        [ ".", "BucketSizeBytes", ".", "StandardStorage", ".", ".", { "period": 86400 } ]
+                    ],
+                    "region": "${AWS::Region}"
+                }
+            },
+            {
+                "height": 5,
+                "width": 6,
+                "y": 32,
+                "x": 18,
+                "type": "metric",
+                "properties": {
+                    "metrics": [
+                        [ "AWS/Usage", "CallCount", "Type", "API", "Resource", "CreateChannel", "Service", "IVS", "Class", "None", { "region": "${AWS::Region}" } ],
+                        [ "...", "PutMetadata", ".", ".", ".", ".", { "visible": false, "period": 900, "region": "${AWS::Region}" } ]
+                    ],
+                    "sparkline": false,
+                    "view": "singleValue",
+                    "region": "${AWS::Region}",
+                    "stat": "Sum",
+                    "period": 2592000,
+                    "title": "Channels Created ",
+                    "setPeriodToTimeRange": true,
+                    "trend": false
+                }
+            },
+            {
+                "height": 3,
+                "width": 24,
+                "y": 15,
+                "x": 0,
+                "type": "metric",
+                "properties": {
+                    "metrics": [
+                        [ "AWS/States", "ExecutionsFailed", "StateMachineArn", "arn:aws:states:${AWS::Region}:${AWS::AccountId}:stateMachine:${AWS::AccountId}-${AWS::Region}-generateTitleplugin", { "region": "${AWS::Region}", "label": "SFN ExecutionsFailed", "color": "#d62728" } ],
+                        [ "AWS/Lambda", "Errors", "FunctionName", "serverlessVideo-plugin-GenAi-generateTitle", { "region": "${AWS::Region}", "label": "Errors from Lambda", "color": "#d62728" } ],
+                        [ "AWS/States", "ExecutionsTimedOut", "StateMachineArn", "arn:aws:states:${AWS::Region}:${AWS::AccountId}:stateMachine:${AWS::AccountId}-${AWS::Region}-generateTitleplugin", { "region": "${AWS::Region}", "label": "SFN ExecutionsTimedOut" } ],
+                        [ ".", "ExecutionsAborted", ".", ".", { "region": "${AWS::Region}", "label": "SFN ExecutionsAborted", "color": "#ff7f0e" } ],
+                        [ "AWS/Lambda", "Throttles", "FunctionName", "serverlessVideo-plugin-GenAi-generateTitle", { "region": "${AWS::Region}", "label": "Throttles from Lambda", "color": "#ff7f0e" } ]
+                    ],
+                    "sparkline": true,
+                    "view": "singleValue",
+                    "region": "${AWS::Region}",
+                    "stat": "Sum",
+                    "period": 300,
+                    "title": "AI Titles - Workflows and Function"
+                }
+            },
+            {
+                "height": 1,
+                "width": 24,
+                "y": 62,
+                "x": 0,
+                "type": "text",
+                "properties": {
+                    "markdown": "# Cognito",
+                    "background": "solid"
+                }
+            },
+            {
+                "height": 3,
+                "width": 24,
+                "y": 63,
+                "x": 0,
+                "type": "metric",
+                "properties": {
+                    "metrics": [
+                        [ "AWS/Cognito", "SignUpSuccesses", "UserPool", "${UserpoolID}", "UserPoolClient", "${UserpoolClient}", { "region": "${AWS::Region}" } ],
+                        [ ".", "SignInSuccesses", ".", ".", ".", ".", { "region": "${AWS::Region}" } ]
+                    ],
+                    "view": "singleValue",
+                    "stacked": false,
+                    "region": "${AWS::Region}",
+                    "stat": "Sum",
+                    "period": 2592000,
+                    "title": "Cognito Login"
+                }
+            },
+            {
+                "height": 3,
+                "width": 6,
+                "y": 19,
+                "x": 18,
+                "type": "metric",
+                "properties": {
+                    "metrics": [
+                        [ "AWS/Lambda", "Invocations", "FunctionName", "post-processing-wFFmpeg-service-StartConversion" ]
+                    ],
+                    "sparkline": false,
+                    "view": "singleValue",
+                    "region": "${AWS::Region}",
+                    "liveData": false,
+                    "setPeriodToTimeRange": true,
+                    "trend": false,
+                    "stacked": true,
+                    "stat": "Sum",
+                    "period": 300,
+                    "title": "Videos processed with Lambda"
+                }
+            },
+            {
+                "height": 3,
+                "width": 6,
+                "y": 22,
+                "x": 18,
+                "type": "metric",
+                "properties": {
+                    "metrics": [
+                        [ "AWS/Lambda", "Invocations", "FunctionName", "post-processing-wFFmpeg-service-StartConversion", { "region": "${AWS::Region}", "visible": false } ],
+                        [ "AWS/Usage", "CallCount", "Type", "API", "Resource", "RunTask", "Service", "ECS", "Class", "None", { "region": "${AWS::Region}" } ]
+                    ],
+                    "sparkline": false,
+                    "view": "singleValue",
+                    "region": "${AWS::Region}",
+                    "liveData": false,
+                    "setPeriodToTimeRange": true,
+                    "trend": false,
+                    "stacked": true,
+                    "stat": "Sum",
+                    "period": 300,
+                    "title": "Videos processed with ECS"
+                }
+            },
+            {
+                "height": 3,
+                "width": 6,
+                "y": 9,
+                "x": 17,
+                "type": "metric",
+                "properties": {
+                    "metrics": [
+                        [ "AWS/Lambda", "Errors", "FunctionName", "post-processing-wFFmpeg-service-StartConversion", { "color": "#d62728" } ],
+                        [ ".", "Throttles", ".", "." ]
+                    ],
+                    "sparkline": false,
+                    "view": "singleValue",
+                    "region": "${AWS::Region}",
+                    "stat": "Sum",
+                    "period": 900,
+                    "setPeriodToTimeRange": true,
+                    "trend": false,
+                    "title": "Lambda video processing"
+                }
+            },
+            {
+                "height": 3,
+                "width": 24,
+                "y": 25,
+                "x": 0,
+                "type": "metric",
+                "properties": {
+                    "metrics": [
+                        [ "AWS/States", "ExecutionsStarted", "StateMachineArn", "arn:aws:states:${AWS::Region}:${AWS::AccountId}:stateMachine:${AWS::AccountId}-${AWS::Region}-PluginLifecycleWorkflow", { "color": "#2ca02c" } ],
+                        [ ".", "ExecutionsSucceeded", ".", "." ],
+                        [ ".", "ExecutionsFailed", ".", ".", { "color": "#d62728" } ],
+                        [ ".", "ExecutionsTimedOut", ".", "." ]
+                    ],
+                    "sparkline": false,
+                    "view": "singleValue",
+                    "region": "${AWS::Region}",
+                    "setPeriodToTimeRange": true,
+                    "trend": false,
+                    "stat": "Sum",
+                    "period": 300,
+                    "title": "Plugin workflow (sfn)"
+                }
+            },
+            {
+                "height": 3,
+                "width": 24,
+                "y": 28,
+                "x": 0,
+                "type": "metric",
+                "properties": {
+                    "metrics": [
+                        [ "ServerlessVideo", "invalid", "By EventHook", "preValidate", { "region": "${AWS::Region}", "label": "Invalid video found" } ],
+                        [ ".", "success", ".", ".", { "region": "${AWS::Region}", "label": "Video passed validation (preValid)" } ],
+                        [ "...", "postValidate", { "region": "${AWS::Region}", "label": "postValidate-success" } ],
+                        [ "...", "preMetaData", { "region": "${AWS::Region}", "label": "preMetaData-success" } ],
+                        [ "...", "postMetaData", { "region": "${AWS::Region}", "label": "postMetaData-success" } ]
+                    ],
+                    "view": "singleValue",
+                    "stacked": false,
+                    "region": "${AWS::Region}",
+                    "stat": "Sum",
+                    "period": 60,
+                    "title": "Plugin lifecycle steps",
+                    "setPeriodToTimeRange": true,
+                    "sparkline": false,
+                    "trend": false
+                }
+            },
+            {
+                "height": 6,
+                "width": 18,
+                "y": 19,
+                "x": 0,
+                "type": "metric",
+                "properties": {
+                    "metrics": [
+                        [ "AWS/Lambda", "Invocations", "FunctionName", "post-processing-wFFmpeg-service-StartConversion", { "region": "${AWS::Region}" } ],
+                        [ ".", "Errors", ".", ".", { "color": "#d62728" } ],
+                        [ ".", "Throttles", ".", "." ],
+                        [ ".", "ConcurrentExecutions", ".", ".", { "color": "#2ca02c" } ],
+                        [ ".", "Duration", ".", ".", { "visible": false } ]
+                    ],
+                    "sparkline": false,
+                    "view": "timeSeries",
+                    "region": "${AWS::Region}",
+                    "liveData": false,
+                    "setPeriodToTimeRange": true,
+                    "trend": false,
+                    "stacked": false,
+                    "stat": "Sum",
+                    "period": 300,
+                    "title": "Videos processed with Lambda"
+                }
+            },
+            {
+                "height": 5,
+                "width": 18,
+                "y": 32,
+                "x": 0,
+                "type": "metric",
+                "properties": {
+                    "metrics": [
+                        [ "AWS/IVS", "ConcurrentStreams", { "region": "${AWS::Region}" } ]
+                    ],
+                    "view": "timeSeries",
+                    "stacked": false,
+                    "region": "${AWS::Region}",
+                    "sparkline": true,
+                    "stat": "Average",
+                    "period": 60,
+                    "setPeriodToTimeRange": true,
+                    "title": "Broadcasts"
+                }
+            },
+            {
+                "height": 3,
+                "width": 6,
+                "y": 12,
+                "x": 17,
+                "type": "metric",
+                "properties": {
+                    "metrics": [
+                        [ "AWS/SQS", "NumberOfMessagesSent", "QueueName", "serverlessFlix-channelService-ServerlessFlixChannelQueue" ]
+                    ],
+                    "view": "singleValue",
+                    "stacked": false,
+                    "region": "${AWS::Region}",
+                    "stat": "Sum",
+                    "period": 900,
+                    "setPeriodToTimeRange": true,
+                    "sparkline": false,
+                    "trend": false,
+                    "title": "Number of Emjois sent (SQS)"
+                }
+            },
+            {
+                "height": 1,
+                "width": 24,
+                "y": 2,
+                "x": 0,
+                "type": "text",
+                "properties": {
+                    "markdown": "# Critical metrics"
+                }
+            },
+            {
+                "height": 1,
+                "width": 24,
+                "y": 67,
+                "x": 0,
+                "type": "text",
+                "properties": {
+                    "markdown": "# Video History Service",
+                    "background": "solid"
+                }
+            },
+            {
+                "type": "metric",
+                "x": 0,
+                "y": 68,
+                "width": 13,
+                "height": 7,
+                "properties": {
+                    "metrics": [
+                        [ "AWS/Lambda", "Invocations", "FunctionName", "VideoHistoryProcessor" ],
+                        [ ".", "Errors", ".", "." ],
+                        [ ".", "Throttles", ".", "." ]
+                    ],
+                    "view": "timeSeries",
+                    "stacked": false,
+                    "region": "us-west-2",
+                    "stat": "Sum",
+                    "period": 300,
+                    "title": "Video History Processor (Lambda)"
+                }
+            },
+            {
+                "type": "metric",
+                "x": 13,
+                "y": 68,
+                "width": 11,
+                "height": 3,
+                "properties": {
+                    "metrics": [
+                        [ "AWS/SQS", "NumberOfMessagesSent", "QueueName", "VideoHistoryQueue", { "region": "us-west-2" } ],
+                        [ ".", "NumberOfMessagesReceived", ".", "VideoHistoryDLQ" ]
+                    ],
+                    "view": "singleValue",
+                    "stacked": true,
+                    "region": "us-west-2",
+                    "stat": "Sum",
+                    "period": 300,
+                    "setPeriodToTimeRange": true,
+                    "sparkline": false,
+                    "trend": false,
+                    "title": "History events sent to SQS for processing"
+                }
+            }
+          ]
+        }

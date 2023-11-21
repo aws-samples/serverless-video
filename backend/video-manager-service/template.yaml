@@ -1,0 +1,86 @@
+AWSTemplateFormatVersion: '2010-09-09'
+Transform: AWS::Serverless-2016-10-31
+Description: Generate MP4
+
+Resources:
+
+  ## Lambda functions
+  LambdaFunctionPersistVideo:
+      Type: AWS::Serverless::Function 
+      Properties:
+        CodeUri: functions/
+        Handler: app.lambdaHandler
+        Runtime: nodejs18.x
+        Timeout: 30
+        MemorySize: 10240
+        Environment:
+          Variables:
+            Table: !Ref VideoManagertable
+        Policies:
+          - EventBridgePutEventsPolicy:
+              EventBusName: "default"
+          - DynamoDBCrudPolicy:
+              TableName: !Ref VideoManagertable
+          - CloudWatchPutMetricPolicy: {}
+        Events:
+          PluginManagerUpdatePersistPluginIfo:
+            Type: EventBridgeRule
+            Properties:
+              EventBusName: default
+              Pattern:
+                source:
+                  - serverlessFlix.pluginManager
+                detail-type:
+                  - prefix: LifeCycleComplete
+##############################################################
+# DDB, we'll use this to persist VOD data
+##############################################################
+  VideoManagertable:
+    Type: AWS::DynamoDB::Table
+    Properties:
+      TableName: serverlessFlix-Video-table
+      AttributeDefinitions:
+        - AttributeName: PK
+          AttributeType: S
+        - AttributeName: ChannelID
+          AttributeType: S
+        - AttributeName: CreatedAt
+          AttributeType: S
+        - AttributeName: EventId
+          AttributeType: S
+      KeySchema:
+        - AttributeName: PK
+          KeyType: HASH
+      GlobalSecondaryIndexes:
+        - IndexName: GSI-channel
+          KeySchema:
+            - AttributeName: ChannelID
+              KeyType: HASH
+            - AttributeName: CreatedAt
+              KeyType: RANGE
+          Projection:
+            ProjectionType: ALL
+        - IndexName: GSI-EventId
+          KeySchema:
+            - AttributeName: EventId
+              KeyType: HASH
+            - AttributeName: CreatedAt
+              KeyType: RANGE
+          Projection:
+            ProjectionType: ALL
+      BillingMode: PAY_PER_REQUEST
+      StreamSpecification:
+        StreamViewType: NEW_AND_OLD_IMAGES
+
+Outputs:
+  VideoManagerTableName:
+    Description: Name for the video manager table
+    Value: !Ref VideoManagertable
+    Export:
+      Name: SF-VideoManagerTableName
+
+  VideoManagerTableArn:
+    Description: Arn for the video manager table
+    Value: !GetAtt VideoManagertable.Arn
+    Export:
+      Name: SF-VideoManagerTableArn

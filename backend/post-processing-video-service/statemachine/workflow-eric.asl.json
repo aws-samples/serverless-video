@@ -1,0 +1,53 @@
+{
+  "Comment": "A description of my state machine",
+  "StartAt": "ECS RunTask",
+  "States": {
+    "ECS RunTask": {
+      "Type": "Task",
+      "Resource": "arn:aws:states:::ecs:runTask.waitForTaskToken",
+      "Parameters": {
+        "LaunchType": "FARGATE",
+        "Cluster": "${Cluster}",
+        "TaskDefinition": "${TaskDefinition}",
+        "Overrides": {
+          "ContainerOverrides": [
+            {
+              "Name": "StepTask1",
+              "Environment": [
+                {
+                  "Name": "TaskToken",
+                  "Value.$": "$$.Task.Token"
+                },
+                {
+                  "Name": "Event",
+                  "Value.$": "States.JsonToString($)"
+                },
+                {
+                  "Name": "SourceBucket",
+                  "Value":"${SourceBucket}"
+                },
+                {
+                  "Name": "DestinationBucket",
+                  "Value":"${DestinationBucket}"
+                }
+              ]
+            }
+          ]
+        },
+        "NetworkConfiguration": {
+          "AwsvpcConfiguration": {
+            "Subnets": [
+              "${Subnet1}",
+              "${Subnet2}"
+            ],
+            "SecurityGroups": [
+              "${SecurityGroup}"
+            ]
+          }
+        }
+      },
+      "End": true,
+      "TimeoutSeconds": 90
+    }
+  }
+}

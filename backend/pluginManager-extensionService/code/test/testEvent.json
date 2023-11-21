@@ -1,0 +1,25 @@
+{
+    "version": "0",
+    "id": "ae258779-142f-2fef-7082-13e0c7aa6533",
+    "detail-type": "OrderManager.WaitingCompletion",
+    "source": "awsserverlessda.serverlesspresso",
+    "account": "468083054740",
+    "time": "2022-05-18T16:07:15Z",
+    "region": "us-east-1",
+    "resources": [],
+    "detail": {
+        "orderId": "wtU8IRSLMyUFTnbLs84Hm",
+        "orderNumber": "40",
+        "state": "ABC123-CREATED",
+        "drinkOrder": {
+            "userId": "750a9af3-e48a-420d-9da1-6bb03fe25d65",
+            "drink": "Americano",
+            "modifiers": [],
+            "icon": "barista-icons_americano"
+        },
+        "userId": "750a9af3-e48a-420d-9da1-6bb03fe25d65",
+        "robot": false,
+        "TS": 1652890034744,
+        "Message": "A Lambda function is invoked which stores the Step Functions Task Token in an Amazon DynamoDB table. The Task Token is later used to resume the workflow when the barista completes or cancels the order."
+    }
+}

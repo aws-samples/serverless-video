@@ -1,0 +1,20 @@
+version = 0.1
+
+[default.deploy.parameters]
+profile = "bstream"
+stack_name = "serverless-video-producer-dashboard"
+resolve_s3 = true
+s3_prefix = "serverless-video-producer-dashboard"
+region = "us-west-2"
+capabilities = "CAPABILITY_IAM"
+image_repositories = []
+confirm_changeset = false
+
+[gitHub.deploy.parameters]
+stack_name = "serverless-video-producer-dashboard"
+resolve_s3 = true
+s3_prefix = "serverless-video-producer-dashboard"
+region = "us-west-2"
+capabilities = "CAPABILITY_IAM"
+image_repositories = []
+confirm_changeset = true

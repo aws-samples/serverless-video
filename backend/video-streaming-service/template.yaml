@@ -1,0 +1,102 @@
+AWSTemplateFormatVersion: "2010-09-09"
+Transform: AWS::Serverless-2016-10-31
+Description: >
+  serverlessFlix
+
+  Sample SAM Template for serverlessFlix-video-streaming-service
+
+Resources:
+
+##############################################################
+# Default IVS Channel with Stream Key
+##############################################################
+  Channel:
+    Type: AWS::IVS::Channel
+    Properties:
+       Name: serverlessFlixChannel1
+       InsecureIngest: true
+       RecordingConfigurationArn: !GetAtt RecordingConfiguration.Arn
+
+  StreamKey:
+    Type: AWS::IVS::StreamKey
+    Properties:
+      ChannelArn: !Ref Channel
+
+
+##############################################################
+# S3 bucket for storing live streams post boradcast 093675026797
+##############################################################
+  S3Bucket:
+   Type: AWS::S3::Bucket
+   
+  BucketPolicy1:
+    Type: AWS::S3::BucketPolicy
+    Properties:
+      Bucket: !Ref S3Bucket
+      PolicyDocument:
+        Version: '2012-10-17'
+        Statement:
+          - Sid: AllowCloudFrontOAC
+            Effect: Allow
+            Principal:
+              Service: "cloudfront.amazonaws.com"
+            Action: s3:GetObject
+            Resource: !Join [ "", [ "arn:aws:s3:::", !Ref S3Bucket, "/*" ] ]
+
+##############################################################
+#  workflow triggerred Going Live stream
+##############################################################
+  StreanEventWF:
+    Type: AWS::Serverless::StateMachine # More info about State Machine Resource: https://docs.aws.amazon.com/serverless-application-model/latest/developerguide/sam-resource-statemachine.html
+    Properties:
+      Name: !Join ["",[!Ref "AWS::AccountId","-",!Ref "AWS::Region","-stream-event-live-counter"]]
+      DefinitionUri: statemachine/workflow.asl.json
+      Policies:
+        - Version: '2012-10-17'
+          Statement:
+            - Effect: Allow
+              Action:
+                - ivs:getStream
+              Resource:
+                - "*"
+        - EventBridgePutEventsPolicy:
+            EventBusName: "default"
+      Events:
+        IVSEventStartStreamCounter:
+          Type: EventBridgeRule
+          Properties:
+            EventBusName: default
+            Pattern:
+              source:
+                - aws.ivs
+              detail-type:
+                - IVS Recording State Change
+              detail:
+                recording_status: 
+                  - Recording Start
+##############################################################
+# Recording config for post broadcast 
+##############################################################
+  RecordingConfiguration:
+   Type: AWS::IVS::RecordingConfiguration
+   DependsOn: S3Bucket
+   Properties:
+     Name: serverlessFlixRecordingConfig
+     DestinationConfiguration:
+       S3:
+         BucketName: !Ref S3Bucket
+     ThumbnailConfiguration:
+       RecordingMode: INTERVAL
+       TargetIntervalSeconds: 60
+
+
+
+Outputs:
+   ChannelArn:
+     Value: !Ref Channel
+   ChannelIngestEndpoint:
+     Value: !GetAtt Channel.IngestEndpoint
+   ChannelPlaybackUrl:
+     Value: !GetAtt Channel.PlaybackUrl
+   StreamKeyArn:
+     Value: !Ref StreamKey

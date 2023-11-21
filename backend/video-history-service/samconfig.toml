@@ -1,0 +1,35 @@
+version = 0.1
+
+[default.global.parameters]
+stack_name = "serverlessFlix-video-history-service"
+region = "us-west-2"
+
+
+[default.deploy.parameters]
+profile = "bstream"
+resolve_s3 = true
+s3_prefix = "serverlessFlix-video-history-service"
+capabilities = "CAPABILITY_IAM"
+image_repositories = []
+confirm_changeset = false
+
+
+[prod.deploy.parameters]
+stack_name = "serverlessFlix-video-history-service"
+resolve_s3 = true
+s3_prefix = "serverlessFlix-video-history-service"
+region = "us-west-2"
+profile = "stream"
+capabilities = "CAPABILITY_IAM"
+image_repositories = []
+confirm_changeset = true
+
+
+[gitHub.deploy.parameters]
+stack_name = "serverlessFlix-video-history-service"
+resolve_s3 = true
+s3_prefix = "serverlessFlix-video-history-service"
+region = "us-west-2"
+capabilities = "CAPABILITY_IAM"
+image_repositories = []
+confirm_changeset = true

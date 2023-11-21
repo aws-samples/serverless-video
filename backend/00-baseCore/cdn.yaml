@@ -1,0 +1,146 @@
+AWSTemplateFormatVersion: "2010-09-09"
+Transform: AWS::Serverless-2016-10-31
+Description: ServerlessFlix CDN
+
+Parameters:
+  API:
+    Type: String
+
+Resources:
+  OriginBucket:
+    Type: AWS::S3::Bucket
+    Properties:
+      NotificationConfiguration:
+        EventBridgeConfiguration:
+          EventBridgeEnabled : True
+      CorsConfiguration: 
+        CorsRules:
+          - AllowedHeaders:
+              - '*'
+            AllowedMethods:
+              - GET
+            AllowedOrigins: 
+              - '*'
+
+  OriginBucketPolicy:
+    Type: AWS::S3::BucketPolicy
+    Properties:
+      Bucket: !Ref OriginBucket
+      PolicyDocument:
+        Statement:
+        - Action: s3:GetObject
+          Effect: Allow
+          Resource: !Sub ${OriginBucket.Arn}/*
+          Principal:
+            Service: cloudfront.amazonaws.com
+          Condition:
+            StringEquals:
+              AWS:SourceArn: !Sub arn:aws:cloudfront::${AWS::AccountId}:distribution/${CloudFrontDistro}
+        - Sid: commonPluginBucket
+          Principal: 
+            Service:
+              - lambda.amazonaws.com
+              - states.amazonaws.com
+          Effect: Allow
+          Action:
+            - s3:ListBucket
+            - s3:GetObject
+            - s3:PutObject
+          Resource: 
+            - !Sub ${OriginBucket.Arn}/*
+            - !Sub ${OriginBucket.Arn}
+          
+
+
+  CloudFrontDistroforAPIGateway:
+    Type: AWS::CloudFront::Distribution
+    Properties: 
+      DistributionConfig:
+        Comment: cloudFront API for ServerlessFlix
+        DefaultCacheBehavior:
+          AllowedMethods: ["GET", "HEAD", "OPTIONS"]
+          CachedMethods: ["GET", "HEAD"]
+          CachePolicyId: !Ref CustomCachePolicy
+          ResponseHeadersPolicyId: 5cc3b908-e619-4b99-88e5-2cf7f45965bd # Managed CORS-with-preflight policy
+          Compress: false
+          TargetOriginId: APIGW
+          # ForwardedValues:
+          #   QueryString: true
+          #   Headers:
+          #     - CloudFront-Viewer-Country
+          #     - Host  # Forward the Host header
+          ViewerProtocolPolicy: redirect-to-https
+        DefaultRootObject: 'index.html'
+        Enabled: true
+        Origins:
+          - DomainName: !Ref API
+            Id: APIGW
+            CustomOriginConfig:
+              HTTPPort: 80
+              HTTPSPort: 443
+              OriginProtocolPolicy: https-only
+              OriginReadTimeout: 30
+              OriginKeepaliveTimeout: 5
+              OriginSSLProtocols:
+                - TLSv1
+                - TLSv1.1
+                - TLSv1.2
+        
+  CustomCachePolicy:
+    Type: AWS::CloudFront::CachePolicy
+    Properties:
+      CachePolicyConfig:
+        DefaultTTL: 5
+        MaxTTL: 5
+        MinTTL: 5
+        Name: "APIGW_unauth_api_custom_cache_policy"
+        ParametersInCacheKeyAndForwardedToOrigin:
+          CookiesConfig:
+            CookieBehavior: none
+          HeadersConfig:
+            HeaderBehavior: none
+          QueryStringsConfig:
+            QueryStringBehavior: all
+          EnableAcceptEncodingGzip: False
+
+
+  CloudFrontDistro:
+    Type: AWS::CloudFront::Distribution
+    Properties: 
+      DistributionConfig:
+        Comment: CDN for ServerlessFlix
+        DefaultCacheBehavior:
+          AllowedMethods: ["GET", "HEAD", "OPTIONS"]
+          CachedMethods: ["GET", "HEAD"]
+          CachePolicyId: 658327ea-f89d-4fab-a63d-7e88639e58f6 # Managed optimized cache policy for S3
+          OriginRequestPolicyId: 88a5eaf4-2fd4-4709-b370-b4c650ea3fcf # Managed CORS-S3Origin policy
+          ResponseHeadersPolicyId: 5cc3b908-e619-4b99-88e5-2cf7f45965bd # Managed CORS-with-preflight policy
+          Compress: false
+          TargetOriginId: OnDemandApi
+          ViewerProtocolPolicy: redirect-to-https
+        DefaultRootObject: 'index.html'
+        Enabled: true
+        Origins:
+          - DomainName: !GetAtt OriginBucket.DomainName
+            Id: OnDemandApi
+            S3OriginConfig: # Do Not Remove!!!
+              OriginAccessIdentity: '' # Do not remove!!!
+            OriginAccessControlId: !GetAtt OriginAccessControl.Id
+
+  OriginAccessControl:
+    Type: AWS::CloudFront::OriginAccessControl
+    Properties: 
+      OriginAccessControlConfig:
+        Name: OriginBucketAccessControl
+        OriginAccessControlOriginType: s3
+        SigningBehavior: always
+        SigningProtocol: sigv4
+
+Outputs:
+  OriginBucketName:
+    Description: Bucket name holding on demand MP4 for public consumption
+    Value: !Ref OriginBucket
+
+  DomainName:
+    Description: Url for the cloudfront distro
+    Value: !GetAtt CloudFrontDistro.DomainName

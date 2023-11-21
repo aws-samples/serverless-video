@@ -1,0 +1,17 @@
+{
+  "name": "videohistoryprocessor",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "@aws-sdk/client-dynamodb": "^3.445.0",
+    "@aws-sdk/util-dynamodb": "^3.445.0",
+    "date-fns": "^2.30.0"
+  }
+}

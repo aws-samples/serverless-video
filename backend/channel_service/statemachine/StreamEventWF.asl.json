@@ -1,0 +1,56 @@
+
+{
+    "Comment": "A description of my state machine",
+    "StartAt": "Stream Starting or Ended?",
+    "States": {
+      "Stream Starting or Ended?": {
+        "Type": "Choice",
+        "Choices": [
+          {
+            "Variable": "$.detail.recording_status",
+            "StringEquals": "Recording Start",
+            "Next": "DynamoDB UpdateItem Live"
+          }
+        ],
+        "Default": "DynamoDB UpdateItem Off"
+      },
+      "DynamoDB UpdateItem Live": {
+        "Type": "Task",
+        "Resource": "arn:aws:states:::dynamodb:updateItem",
+        "Parameters": {
+          "TableName": "${DDBTable}",
+          "Key": {
+            "PK": {
+                "S.$": "$.detail.channel_name"
+              }
+          },
+          "UpdateExpression": "SET Live = :liveValue",
+            "ExpressionAttributeValues": {
+                ":liveValue": {
+                "BOOL": "true"
+                }
+            }
+        },
+        "End": true
+      },
+      "DynamoDB UpdateItem Off": {
+        "Type": "Task",
+        "Resource": "arn:aws:states:::dynamodb:updateItem",
+        "Parameters": {
+          "TableName": "${DDBTable}",
+          "Key": {
+            "PK": {
+              "S.$": "$.detail.channel_name"
+            }
+          },
+            "UpdateExpression": "SET Live = :liveValue",
+            "ExpressionAttributeValues": {
+                ":liveValue": {
+                "BOOL": "false"
+                }
+            }
+        },
+        "End": true
+      }
+    }
+  }
