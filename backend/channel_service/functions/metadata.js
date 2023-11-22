@@ -31,7 +31,7 @@ exports.handler = async (event) => {
         //  Fetch the channel info from ddb
         const { Item } = await dynamodb.send(
           new GetItemCommand({
-            TableName: 'serverlessFlix-channels-table',
+            TableName: 'serverlessVideo-channels-table',
             Key: {
               PK: { S: channelId },
             },
@@ -56,7 +56,7 @@ exports.handler = async (event) => {
       try {
         await iotClient.send(
           new PublishCommand({
-            topic: `serverlessFlix-${channelId}`,
+            topic: `serverlessVideo-${channelId}`,
             qos: 1,
             payload: JSON.stringify({
               type: 'StreamMetadataSent',

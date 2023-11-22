@@ -28,7 +28,7 @@
                     },
                     "DetailType": "LifeCycleStarted",
                     "EventBusName": "default",
-                    "Source": "serverlessFlix.pluginManager"
+                    "Source": "serverlessVideo.pluginManager"
                   }
                 ]
               },
@@ -82,7 +82,7 @@
                           },
                           "DetailType.$": "States.Format('{}.{}',$.value.PK.S, $.value.SK.S)",
                           "EventBusName": "default",
-                          "Source": "ServerlessFlix.pluginManager"
+                          "Source": "serverlessVideo.pluginManager"
                         }
                       ]
                     },
@@ -143,7 +143,7 @@
                           },
                           "DetailType": "Plugin failed",
                           "EventBusName": "default",
-                          "Source": "ServerlessFlix.pluginManager"
+                          "Source": "serverlessVideo.pluginManager"
                         }
                       ]
                     },
@@ -198,7 +198,7 @@
                     ]
                   }
                 ],
-                "Namespace": "ServerlessVideo"
+                "Namespace": "serverlessVideo"
               },
               "Resource": "arn:aws:states:::aws-sdk:cloudwatch:putMetricData",
               "End": true,
@@ -221,7 +221,7 @@
                     ]
                   }
                 ],
-                "Namespace": "ServerlessVideo"
+                "Namespace": "serverlessVideo"
               },
               "Resource": "arn:aws:states:::aws-sdk:cloudwatch:putMetricData",
               "Next": "ScanPostValidate",
@@ -276,7 +276,7 @@
                           },
                           "DetailType.$": "States.Format('{}.{}',$.value.PK.S, $.value.SK.S)",
                           "EventBusName": "default",
-                          "Source": "ServerlessFlix.pluginManager"
+                          "Source": "serverlessVideo.pluginManager"
                         }
                       ]
                     },
@@ -316,7 +316,7 @@
                           ]
                         }
                       ],
-                      "Namespace": "ServerlessVideo"
+                      "Namespace": "serverlessVideo"
                     },
                     "Resource": "arn:aws:states:::aws-sdk:cloudwatch:putMetricData",
                     "End": true,
@@ -351,7 +351,7 @@
                     ]
                   }
                 ],
-                "Namespace": "ServerlessVideo"
+                "Namespace": "serverlessVideo"
               },
               "Resource": "arn:aws:states:::aws-sdk:cloudwatch:putMetricData",
               "Next": "ScanPreMetaData",
@@ -405,7 +405,7 @@
                           },
                           "DetailType.$": "States.Format('{}.{}',$.value.PK.S, $.value.SK.S)",
                           "EventBusName": "default",
-                          "Source": "ServerlessFlix.pluginManager"
+                          "Source": "serverlessVideo.pluginManager"
                         }
                       ]
                     },
@@ -448,7 +448,7 @@
                           ]
                         }
                       ],
-                      "Namespace": "ServerlessVideo"
+                      "Namespace": "serverlessVideo"
                     },
                     "Resource": "arn:aws:states:::aws-sdk:cloudwatch:putMetricData",
                     "End": true,
@@ -482,7 +482,7 @@
                     ]
                   }
                 ],
-                "Namespace": "ServerlessVideo"
+                "Namespace": "serverlessVideo"
               },
               "Resource": "arn:aws:states:::aws-sdk:cloudwatch:putMetricData",
               "Next": "ScanPostMetaData",
@@ -536,7 +536,7 @@
                           },
                           "DetailType.$": "States.Format('{}.{}',$.value.PK.S, $.value.SK.S)",
                           "EventBusName": "default",
-                          "Source": "ServerlessFlix.pluginManager"
+                          "Source": "serverlessVideo.pluginManager"
                         }
                       ]
                     },
@@ -577,7 +577,7 @@
                           ]
                         }
                       ],
-                      "Namespace": "ServerlessVideo"
+                      "Namespace": "serverlessVideo"
                     },
                     "Resource": "arn:aws:states:::aws-sdk:cloudwatch:putMetricData",
                     "End": true,
@@ -611,7 +611,7 @@
                     ]
                   }
                 ],
-                "Namespace": "ServerlessVideo"
+                "Namespace": "serverlessVideo"
               },
               "Resource": "arn:aws:states:::aws-sdk:cloudwatch:putMetricData",
               "End": true,
@@ -667,7 +667,7 @@
             },
             "DetailType": "LifeCycleComplete",
             "EventBusName": "default",
-            "Source": "serverlessFlix.pluginManager"
+            "Source": "serverlessVideo.pluginManager"
           }
         ]
       },

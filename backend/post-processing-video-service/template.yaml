@@ -14,12 +14,12 @@ Parameters:
   SourceBucket:
     Type: String
     Description: Bucket where all media is stored
-  ServerlessFlixVideosTable:
+  serverlessVideoVideosTable:
     Type: String
-    Default: serverlessFlix-Video-table
-  ServerlessFlixChannelsTable:
+    Default: serverlessVideo-Video-table
+  serverlessVideoChannelsTable:
     Type: String
-    Default: serverlessFlix-channels-table
+    Default: serverlessVideo-channels-table
   cdnUrl:
     Type: String
     Default: dmpdx8pmqxo3f.cloudfront.net
@@ -322,8 +322,8 @@ Resources:
         ]
       DefinitionUri: statemachine/workflow.asl.json
       DefinitionSubstitutions:
-        DDBTableChannel: !Ref ServerlessFlixChannelsTable
-        DDBTableVideos: !Ref ServerlessFlixVideosTable
+        DDBTableChannel: !Ref serverlessVideoChannelsTable
+        DDBTableVideos: !Ref serverlessVideoVideosTable
         FunctionName: !Ref StartConversion
         MergeFunctionName: !Ref mergeChunks
         Cluster: !GetAtt Cluster.Arn
@@ -342,9 +342,9 @@ Resources:
         - LambdaInvokePolicy:
             FunctionName: !Ref mergeChunks
         - DynamoDBWritePolicy:
-            TableName: !Ref ServerlessFlixVideosTable
+            TableName: !Ref serverlessVideoVideosTable
         - DynamoDBReadPolicy:
-            TableName: !Ref ServerlessFlixChannelsTable
+            TableName: !Ref serverlessVideoChannelsTable
         - EventBridgePutEventsPolicy:
             EventBusName: "default"
         - S3CrudPolicy:

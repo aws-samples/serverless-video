@@ -1,0 +1,41 @@
+type Leaderboard {
+  items: [ Entry ]
+  nextToken: String
+}
+
+interface Entry {
+  channel: ID!
+  username: String
+  rank: Int
+}
+
+type DurationEntry implements Entry {
+  channel: ID!
+  username: String
+  rank: Int
+  totalSeconds: Float
+}
+
+type StreamsEntry implements Entry {
+  channel: ID!
+  username: String
+  rank: Int
+  count: Int
+}
+
+enum LeaderType {
+  DURATION
+  STREAMS
+}
+
+type Query {
+  listLeaders(
+    by: LeaderType!
+    limit: Int
+    nextToken: String
+  ) : Leaderboard
+}
+
+schema {
+  query: Query
+}

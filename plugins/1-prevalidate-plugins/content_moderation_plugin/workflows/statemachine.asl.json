@@ -1,0 +1,191 @@
+{
+  "Comment": "A State Machine that moderates the content of a video file",
+  "StartAt": "S3 Bucket provided?",
+  "States": {
+    "S3 Bucket provided?": {
+      "Type": "Choice",
+      "Choices": [
+        {
+          "And": [
+            {
+              "Variable": "$.detail.video.playbackUrl",
+              "IsPresent": true
+            },
+            {
+              "Variable": "$.detail.video.recording_s3_key_prefix",
+              "IsPresent": true
+            }
+          ],
+          "Next": "GetBucketAndKeyInfo"
+        }
+      ],
+      "Default": "DownloadVideo"
+    },
+    "GetBucketAndKeyInfo": {
+      "Type": "Pass",
+      "Parameters": {
+        "Bucket": "${OnDemandVideosBucketName}",
+        "Key.$": "States.Format('{}/{}', $.detail.video.recording_s3_key_prefix, 'media/hls/720p30/output.mp4')" 
+      },
+      "ResultPath": "$.bucketInfo",
+      "Next": "StartContentModeration"
+    },
+    "StartContentModeration": {
+      "Type": "Task",
+      "Parameters": {
+        "MinConfidence": 20,
+        "Video": {
+          "S3Object": {
+            "Bucket.$": "$.bucketInfo.Bucket",
+            "Name.$": "$.bucketInfo.Key"
+          }
+        }
+      },
+      "Resource": "arn:aws:states:::aws-sdk:rekognition:startContentModeration",
+      "ResultSelector": {
+        "job.$": "$"
+      },
+      "ResultPath": "$.results",
+      "Next": "WaitForSuccessStatus"
+    },
+    "DownloadVideo": {
+      "Type": "Task",
+      "Resource": "arn:aws:states:::lambda:invoke",
+      "Parameters": {
+        "Payload.$": "$",
+        "FunctionName": "${CloudFrontDownloaderFunction}"
+      },
+      "Retry": [
+        {
+          "ErrorEquals": [
+            "Lambda.ServiceException",
+            "Lambda.AWSLambdaException",
+            "Lambda.SdkClientException",
+            "Lambda.TooManyRequestsException"
+          ],
+          "IntervalSeconds": 2,
+          "MaxAttempts": 3,
+          "BackoffRate": 2
+        }
+      ],
+      "ResultSelector": {
+        "Bucket": "${S3BucketName}",
+        "Key.$": "$.Payload.body"
+      },
+      "ResultPath": "$.bucketInfo",
+      "Next": "StartContentModeration"
+    },
+    "Is Content moderation done?": {
+      "Choices": [
+        {
+          "Next": "Offensive Content Present?",
+          "StringEquals": "SUCCEEDED",
+          "Variable": "$.results.moderation.result.JobStatus"
+        }
+      ],
+      "Default": "WaitForSuccessStatus",
+      "Type": "Choice"
+    },
+    "WaitForSuccessStatus": {
+      "Next": "GetContentModeration",
+      "Seconds": 10,
+      "Type": "Wait"
+    },
+    "GetContentModeration": {
+      "Type": "Task",
+      "Next": "Is Content moderation done?",
+      "Parameters": {
+        "JobId.$": "$.results.job.JobId",
+        "MaxResults": 5
+      },
+      "Resource": "arn:aws:states:::aws-sdk:rekognition:getContentModeration",
+      "ResultSelector": {
+        "result.$": "$",
+        "size.$": "States.ArrayLength($.ModerationLabels)",
+        "categories.$": "States.ArrayUnique($.ModerationLabels[*].ModerationLabel.Name)",
+        "isRudeGesture.$": "States.ArrayContains($.ModerationLabels[*].ModerationLabel.Name, 'Rude Gestures')",
+        "isNudity.$": "States.ArrayContains($.ModerationLabels[*].ModerationLabel.Name, 'Explicit Nudity')",
+        "isViolence.$": "States.ArrayContains($.ModerationLabels[*].ModerationLabel.Name, 'Violence')",
+        "isSuggestive.$": "States.ArrayContains($.ModerationLabels[*].ModerationLabel.Name, 'Suggestive')",
+        "isHateSymbol.$": "States.ArrayContains($.ModerationLabels[*].ModerationLabel.Name, 'Hate Symbols')"
+      },
+      "ResultPath": "$.results.moderation"
+    },
+    "Offensive Content Present?": {
+      "Type": "Choice",
+      "Choices": [
+        {
+          "And": [
+            {
+              "Variable": "$.results.moderation.size",
+              "NumericGreaterThan": 0
+            },
+            {
+              "Or": [
+                {
+                  "Variable": "$.results.moderation.isRudeGesture",
+                  "BooleanEquals": true
+                },
+                {
+                  "Variable": "$.results.moderation.isNudity",
+                  "BooleanEquals": true
+                },
+                {
+                  "Variable": "$.results.moderation.isViolence",
+                  "BooleanEquals": true
+                },
+                {
+                  "Variable": "$.results.moderation.isSuggestive",
+                  "BooleanEquals": true
+                },
+                {
+                  "Variable": "$.results.moderation.isHateSymbol",
+                  "BooleanEquals": true
+                }
+              ]
+            }
+          ],
+          "Next": "OffensiveContentEventPayload"
+        }
+      ],
+      "Default": "NoOffensiveContentEventPayload"
+    },
+    "OffensiveContentEventPayload": {
+      "Type": "Pass",
+      "Parameters": {
+        "valid": false,
+        "reason": "video has offensive content",
+        "moderationLabels.$": "$.results.moderation.categories"
+      },
+      "ResultPath": "$.results",
+      "Next": "EventBridge PutEvents"
+    },
+    "NoOffensiveContentEventPayload": {
+      "Parameters": {
+        "valid": true,
+        "reason": "No offensive content found in video"
+      },
+      "Type": "Pass",
+      "ResultPath": "$.results",
+      "Next": "EventBridge PutEvents"
+    },
+    "EventBridge PutEvents": {
+      "Type": "Task",
+      "Resource": "arn:aws:states:::events:putEvents",
+      "Parameters": {
+        "Entries": [
+          {
+            "Detail": {
+              "Message.$": "$.results",
+              "TaskToken.$": "$.detail.taskToken"
+            },
+            "DetailType": "plugin-complete",
+            "EventBusName": "default",
+            "Source": "serverlessVideo.plugin.content_moderation_plugin"
+          }
+        ]
+      },
+      "End": true
+    }
+  }
+}

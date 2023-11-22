@@ -1,0 +1,134 @@
+# Workflow to translate serverlessVideo transcripts to other languages
+# Expected input:
+# {
+#   "transcriptUri": "s3://somebucket/...",
+#   "destinationBucket": "somebucket",
+#   "taskToken": "....."
+# }
+Comment: serverlessVideo - Translation plugin workflow
+StartAt: IterateOnJobs
+States:
+  IterateOnJobs:
+    Type: Map
+    ItemProcessor:
+      ProcessorConfig:
+        Mode: INLINE
+      StartAt: SetJobId
+      States:
+        SetJobId:
+          Type: Pass
+          Parameters:
+            id.$: States.UUID()
+          ResultPath: $.job
+          Next: Parallel
+        Parallel:
+          Type: Parallel
+          Next: PutJobId
+          Branches:
+            - StartAt: PassParamsToEnd
+              States:
+                PassParamsToEnd:
+                  Type: Pass
+                  End: true
+                  Parameters:
+                    dBucket.$: $.desinationBucket
+                    dKey.$: $.desinationKey
+                    taskToken.$: $.taskToken
+            - StartAt: CopyTranscriptToLocalBucket
+              States:
+                CopyTranscriptToLocalBucket:
+                  Type: Task
+                  Parameters:
+                    CopySource.$: $.transcriptUri
+                    Bucket: ${TranslateTempBucket}
+                    Key.$: States.Format('input/{}/transcript.json', $.job.id)
+                  Resource: arn:aws:states:::aws-sdk:s3:copyObject
+                  ResultPath: null
+                  Next: TransformParameters
+                TransformParameters:
+                  Type: Pass
+                  Parameters:
+                    job:
+                      id.$: $.job.id
+                    transcript:
+                      orig:
+                        bucket.$: $.tempBucket
+                        key.$: States.Format('input/{}/transcript.json', $.job.id)
+                  Next: CleanUpTranscript
+                CleanUpTranscript:
+                  Type: Task
+                  Resource: arn:aws:states:::lambda:invoke
+                  Parameters:
+                    Payload.$: $
+                    FunctionName: ${CleanTranscriptFunction}
+                  Retry:
+                    - ErrorEquals:
+                        - Lambda.ServiceException
+                        - Lambda.AWSLambdaException
+                        - Lambda.SdkClientException
+                        - Lambda.TooManyRequestsException
+                      IntervalSeconds: 1
+                      MaxAttempts: 3
+                      BackoffRate: 2
+                  ResultSelector:
+                    bucket.$: $.Payload.bucket
+                    key.$: $.Payload.key
+                  ResultPath: $.transcript.text
+                  Next: DeleteOriginalTranscript
+                DeleteOriginalTranscript:
+                  Type: Task
+                  Parameters:
+                    Bucket.$: $.transcript.orig.bucket
+                    Key.$: $.transcript.orig.key
+                  Resource: arn:aws:states:::aws-sdk:s3:deleteObject
+                  ResultPath: null
+                  Next: TranslateText
+                TranslateText:
+                  Type: Task
+                  Parameters:
+                    ClientToken.$: $.job.id
+                    DataAccessRoleArn: ${TranslateDataAccessRoleArn}
+                    InputDataConfig:
+                      ContentType: text/plain
+                      S3Uri.$: >-
+                        States.Format('s3://{}/input/{}', $.transcript.text.bucket, $.job.id)
+                    OutputDataConfig:
+                      S3Uri.$: >-
+                        States.Format('s3://{}/output/{}', $.transcript.text.bucket, $.job.id)
+                    SourceLanguageCode: en
+                    TargetLanguageCodes:
+                      - es
+                  Resource: arn:aws:states:::aws-sdk:translate:startTextTranslationJob
+                  ResultPath: $.translate
+                  End: true
+        PutJobId:
+          Type: Task
+          Resource: arn:aws:states:::aws-sdk:dynamodb:putItem
+          Parameters:
+            TableName: ${TranslateJobIdTable}
+            Item:
+              pk:
+                S.$: $.[1].translate.JobId
+              jobId:
+                S.$: $.[1].job.id
+              dBucket:
+                S.$: $.[0].dBucket
+              dKey:
+                S.$: $.[0].dKey
+              src:
+                S.$: States.Format('s3://{}/output/{}', $[1].transcript.text.bucket, $[1].job.id)
+          ResultPath: null
+          Next: ReturnToMain
+        ReturnToMain:
+          Type: Task
+          Resource: arn:aws:states:::events:putEvents
+          Parameters:
+            Entries:
+              - Detail:
+                  Message: Translation complete
+                  TaskToken.$: $.[0].taskToken
+                DetailType: plugin-complete
+                EventBusName: default
+                Source: serverlessVideo.plugin.translatePlugin
+          End: true
+    End: true

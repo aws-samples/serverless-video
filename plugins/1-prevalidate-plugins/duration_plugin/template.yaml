@@ -1,0 +1,35 @@
+AWSTemplateFormatVersion: "2010-09-09"
+Transform: AWS::Serverless-2016-10-31
+Description: >
+  serverlessVideo-plugin-ExamplePlugin
+
+  Sample SAM Template for serverlessVideo-plugin-duration_plugin
+
+Resources:
+
+##############################################################
+#  function to check duration and return TT
+##############################################################
+  ExamplePluginFunction:
+    Type: AWS::Serverless::Function
+    Properties:
+      FunctionName: serverlessVideo-plugin-duration-checker
+      CodeUri: functions/
+      Handler: app.lambdaHandler
+      Runtime: nodejs18.x
+      Timeout: 30
+      MemorySize: 10240
+      Policies:
+          - EventBridgePutEventsPolicy:
+              EventBusName: default
+      Events:
+        pluginTrigger:
+          Type: EventBridgeRule
+          Properties:
+            EventBusName: default # a rule for the default event bus
+            Pattern:
+              source:
+                - serverlessVideo.pluginManager
+              detail-type:
+                  - preValidate.duration_plugin # this will be trigerred on the metadata hook event
+            

@@ -1,6 +1,6 @@
 openapi: "3.0.1"
 info:
-  title: "ServerlessFlixChannelServiceAPIService"
+  title: "serverlessVideoChannelServiceAPIService"
   version: "1.3"
 servers:
 - url: "https://cehu8ctixi.execute-api.${AWS::Region}.amazonaws.com/{basePath}"
@@ -55,7 +55,7 @@ paths:
                 \    #end\n  ]\n}\n\n"
         requestTemplates:
           application/json: "#set($videoId = $input.params('id'))\n  {\n    \"TableName\"\
-            : \"serverlessFlix-video-history-table\",\n    \"KeyConditionExpression\"\
+            : \"serverlessVideo-video-history-table\",\n    \"KeyConditionExpression\"\
             : \"PK = :videoId\",\n    \"ScanIndexForward\": true,\n    \"ExpressionAttributeValues\"\
             : {\n      \":videoId\": {\"S\": \"$videoId\"}\n    }\n  }\n"
         passthroughBehavior: "never"
@@ -185,7 +185,7 @@ paths:
               #if($pageKey.toString() != "")
                 "ExclusiveStartKey": $util.base64Decode($pageKey),
               #end
-              "TableName": "serverlessFlix-Video-table",
+              "TableName": "serverlessVideo-Video-table",
               "Limit": $pageSize,
               "FilterExpression": "#status = :status",
               "ExpressionAttributeNames":{
@@ -318,7 +318,7 @@ paths:
               #if($pageKey.toString() != "")
                 "ExclusiveStartKey": $util.base64Decode($pageKey),
               #end
-              "TableName": "serverlessFlix-Video-table",
+              "TableName": "serverlessVideo-Video-table",
               "Limit": $pageSize,
               "IndexName": "GSI-channel",
               "KeyConditionExpression": "#channel = :channel",
@@ -405,7 +405,7 @@ paths:
                 live\":\"$root.Live.BOOL\"\n}"
         requestTemplates:
           application/json: "#set($channelId = $input.params('id'))\n\n{ \n    \"\
-            TableName\": \"serverlessFlix-channels-table\",\n    \"Key\":{\n    \t\
+            TableName\": \"serverlessVideo-channels-table\",\n    \"Key\":{\n    \t\
             \"PK\": {\n            \"S\": \"$channelId\"\n        }\n    }    \n}"
         passthroughBehavior: "never"
         type: "aws"
@@ -544,7 +544,7 @@ paths:
               #if($pageKey.toString() != "")
                 "ExclusiveStartKey": $util.base64Decode($pageKey),
               #end
-              "TableName": "serverlessFlix-Video-table",
+              "TableName": "serverlessVideo-Video-table",
               "IndexName": "GSI-EventId",
               "ScanIndexForward": false,
               "Limit": $pageSize,
@@ -639,7 +639,7 @@ paths:
                 \n}\n"
         requestTemplates:
           application/json: "#set($channelId = $context.authorizer.claims.sub)\n\n\
-            { \n    \"TableName\": \"serverlessFlix-channels-table\",\n    \"Key\"\
+            { \n    \"TableName\": \"serverlessVideo-channels-table\",\n    \"Key\"\
             :{\n    \t\"PK\": {\n                \"S\": \"$channelId\"\n         \
             \       }\n    }    \n}"
         passthroughBehavior: "when_no_templates"
@@ -754,7 +754,7 @@ paths:
           application/json: > 
             #set($videoId = $input.params('id'))
               {
-                "TableName": "serverlessFlix-Video-table",
+                "TableName": "serverlessVideo-Video-table",
                 "KeyConditionExpression": "PK = :videoId",
                 "FilterExpression": "videoStatus = :status",
                 "ExpressionAttributeValues": {
@@ -798,7 +798,7 @@ paths:
             statusCode: "200"
         requestTemplates:
           application/json: "#set($channelId = $context.authorizer.claims.sub)\n#set($videoId\
-            \ = $input.params('id'))\n{ \n    \"TableName\": \"serverlessFlix-Video-table\"\
+            \ = $input.params('id'))\n{ \n    \"TableName\": \"serverlessVideo-Video-table\"\
             ,\n    \"Key\":{\n    \t\"PK\": {\n            \"S\": \"$videoId\"\n \
             \       }\n    },\n    \"ExpressionAttributeNames\":{\n        \"#channel\"\
             : \"ChannelID\"\n    },\n    \"ExpressionAttributeValues\": {\n      \
@@ -870,7 +870,7 @@ paths:
           Fn::Sub:
             - 'arn:aws:apigateway:${AWS::Region}:sqs:path/${AWS::AccountId}/${queue}'
             - queue:
-                Fn::GetAtt: [ServerlessFlixChannelQueue, QueueName]
+                Fn::GetAtt: [serverlessVideoChannelQueue, QueueName]
         responses:
           default:
             statusCode: "200"
@@ -980,7 +980,7 @@ paths:
             : {\n        \":val\": {\n            \"BOOL\": true\n        }\n    },\n\
             \    #end\n    #if($pageKey.toString() != \"\")\n    \"ExclusiveStartKey\"\
             : $util.base64Decode($pageKey),\n    #end\n    #if($isLive != 'true')\n\
-            \    \"Limit\": $pageSize,\n    #end\n    \"TableName\": \"serverlessFlix-channels-table\"\
+            \    \"Limit\": $pageSize,\n    #end\n    \"TableName\": \"serverlessVideo-channels-table\"\
             \n\n}\n"
         passthroughBehavior: "when_no_templates"
         type: "aws"
@@ -1109,7 +1109,7 @@ paths:
                           #if($pageKey.toString() != "")
                             "ExclusiveStartKey": $util.base64Decode($pageKey),
                           #end
-                          "TableName": "serverlessFlix-Video-table",
+                          "TableName": "serverlessVideo-Video-table",
                           "Limit": $pageSize,
                           "IndexName": "GSI-channel",
                           "KeyConditionExpression": "#channel = :channel",
@@ -1243,7 +1243,7 @@ paths:
             #set($pageKey = $input.params('offset')) #set($event = $input.params('event')) #set($pageSize=5) #if($input.params('limit') != "")
               #set($pageSize=$input.params('limit'))
             #end {
-              "TableName": "serverlessFlix-Video-table",
+              "TableName": "serverlessVideo-Video-table",
               "Limit": $pageSize,
               "IndexName": "GSI-EventId",
               "ScanIndexForward": false,

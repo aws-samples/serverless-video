@@ -1,0 +1,270 @@
+---
+AWSTemplateFormatVersion: "2010-09-09"
+
+Transform: AWS::Serverless-2016-10-31
+
+Description: >
+  serverlessVideo-plugin-TranslatePlugin
+
+  Provides a utility to translate serverlessVideo transcripts to other languages.
+
+Parameters:
+  PluginName:
+    Description: Identifier for this plugin
+    Type: String
+    Default: translatePlugin
+  DataBucket:
+    Description: coreSVideoBucket.
+    Type: String
+    MinLength: 1
+    MaxLength: 950
+
+Globals:
+  Function:
+    Architectures:
+      - arm64
+    CodeUri: functions/
+    MemorySize: 256
+    Runtime: nodejs18.x
+    Timeout: 10
+    Tracing: Active
+    Environment:
+      Variables:
+        PLUGIN_NAME: !Ref PluginName
+        POWERTOOLS_SERVICE_NAME: serverlessVideo-leaderboard
+        POWERTOOLS_METRICS_NAMESPACE: serverlessVideo-leaderboard
+
+Resources:
+  # EventBridge Rule - matches event and pushes to SQS queue
+  StartTranslationWorkflowRule:
+    Type: AWS::Events::Rule
+    Properties:
+      Description: Initiates the translation workflow for post metadata event
+      EventBusName: default
+      EventPattern:
+        source:
+          - serverlessVideo.pluginManager
+        detail-type:
+          - postMetadata.translatePlugin
+      Targets:
+        - Arn: !GetAtt TranslateQueue.Arn
+          Id: TranslationQueue
+          DeadLetterConfig:
+            Arn: !GetAtt Dlq.Arn
+
+  # SQS Queue - target for rule; messages will be handled by EventBridge Pipe
+  TranslateQueue:
+    Type: AWS::SQS::Queue
+  
+  Dlq:
+    Type: AWS::SQS::Queue
+  
+  TranslateQueuePolicy:
+    Type: AWS::SQS::QueuePolicy
+    Properties:
+      PolicyDocument:
+        Statement:
+          - Action: sqs:SendMessage
+            Effect: Allow
+            Resource:
+              - !GetAtt TranslateQueue.Arn
+              - !GetAtt Dlq.Arn
+            Principal:
+              Service: events.amazonaws.com
+            Condition:
+              ArnEquals:
+                aws:SourceArn: !GetAtt StartTranslationWorkflowRule.Arn
+      Queues:
+        - !Ref Dlq
+        - !Ref TranslateQueue
+
+  # EventBridge Pipe - enriches (really simplifies) original event before starting workflow
+  EnrichmentPipe:
+    Type: AWS::Pipes::Pipe
+    Properties:
+      Description: >-
+        Enrichment pipe to clean up inbound event and simplify state machine.
+      RoleArn: !GetAtt EnrichmentPipeRole.Arn
+      Source: !GetAtt TranslateQueue.Arn
+      SourceParameters:
+        SqsQueueParameters:
+          # keep to batch size of 1, though workflow and enrichment can handle batches
+          BatchSize: 1
+      Enrichment: !GetAtt EnrichmentFunction.Arn
+      Target: !Ref PluginHookWorkflow
+      TargetParameters:
+        StepFunctionStateMachineParameters:
+          InvocationType: FIRE_AND_FORGET
+
+  EnrichmentPipeRole:
+    Type: AWS::IAM::Role
+    Properties:
+      AssumeRolePolicyDocument:
+        Version: "2012-10-17"
+        Statement:
+          - Effect: Allow
+            Principal:
+              Service:
+                - pipes.amazonaws.com
+            Action: "sts:AssumeRole"
+            Condition:
+              ArnLike:
+                aws:SourceArn: !Sub "arn:aws:pipes:${AWS::Region}:${AWS::AccountId}:pipe/*"
+              StringEquals:
+                aws:SourceAccount: !Sub "${AWS::AccountId}"
+      Policies:
+        - PolicyName: WriteToCloudwatch
+          PolicyDocument:
+            Version: "2012-10-17"
+            Statement:
+              - Effect: Allow
+                Action: 
+                  - logs:CreateLogGroup
+                  - logs:CreateLogStream
+                  - logs:PutLogEvents
+                Resource: "*"
+        - PolicyName: ReadSQS
+          PolicyDocument:
+            Version: "2012-10-17"
+            Statement:
+              - Effect: Allow
+                Action: 
+                  - sqs:ReceiveMessage
+                  - sqs:DeleteMessage
+                Resource:
+                  - !GetAtt TranslateQueue.Arn
+              - Effect: Allow
+                Action: sqs:GetQueueAttributes
+                Resource: '*'
+        - PolicyName: InvokeEnrichmentFunction
+          PolicyDocument:
+            Version: "2012-10-17"
+            Statement:
+              - Effect: Allow
+                Action: lambda:InvokeFunction
+                Resource:
+                  - !GetAtt EnrichmentFunction.Arn
+        - PolicyName: StartWorkflow
+          PolicyDocument:
+            Version: "2012-10-17"
+            Statement:
+              - Effect: Allow
+                Action: states:StartExecution
+                Resource: !GetAtt PluginHookWorkflow.Arn
+
+  # Called by EventBridge Pipe to enrich input
+  EnrichmentFunction:
+    Type: AWS::Serverless::Function
+    Properties:
+      Handler: enrichment.handler
+      Policies:
+        S3CrudPolicy:
+          BucketName: !Ref TempStorageBucket
+      Environment:
+        Variables:
+          TEMP_STORAGE_BUCKET: !Ref TempStorageBucket
+
+  PluginHookWorkflow:
+    Type: AWS::Serverless::StateMachine
+    Properties:
+      Type: STANDARD
+      Name: translation-workflow
+      Tracing:
+        Enabled: true
+      DefinitionSubstitutions:
+        CleanTranscriptFunction: !GetAtt CleanTranscriptFunction.Arn
+        TranslateDataAccessRoleArn: !GetAtt TranslateDataAccessRole.Arn
+        TranslateJobIdTable: !Ref JobIdTable
+        TranslateTempBucket: !Ref TempStorageBucket
+      DefinitionUri: workflow/translate.asl.yaml
+      Policies:
+        - EventBridgePutEventsPolicy:
+            EventBusName: default
+        - DynamoDBWritePolicy:
+            TableName: !Ref JobIdTable
+        - LambdaInvokePolicy:
+            FunctionName: !Ref CleanTranscriptFunction
+        - S3CrudPolicy:
+            BucketName: !Ref TempStorageBucket
+        - S3CrudPolicy:
+            BucketName: !Ref DataBucket
+        - Statement:
+            Effect: Allow
+            Action:
+              - translate:StartTextTranslationJob
+            Resource: "*"
+        - Statement:
+            Effect: Allow
+            Action: iam:PassRole
+            Resource: !GetAtt TranslateDataAccessRole.Arn
+
+  TempStorageBucket:
+    Type: AWS::S3::Bucket
+    Properties:
+      BucketEncryption:
+        ServerSideEncryptionConfiguration:
+          - ServerSideEncryptionByDefault:
+              SSEAlgorithm: AES256
+      # automatically expire in 3 days -- this should delete
+      LifecycleConfiguration:
+        Rules:
+          - Id: DeleteIn3Days
+            ExpirationInDays: 3
+            Status: Enabled
+
+  # Helps get the bits we need from the result of the transcription job
+  CleanTranscriptFunction:
+    Type: AWS::Serverless::Function
+    Properties:
+      Handler: clean-transcript.handler
+      Policies:
+        S3CrudPolicy:
+          BucketName: !Ref TempStorageBucket
+      Environment:
+        Variables:
+          TEMP_STORAGE_BUCKET: !Ref TempStorageBucket
+
+  JobIdTable:
+    Type: AWS::DynamoDB::Table
+    Properties:
+      AttributeDefinitions:
+        - AttributeName: pk
+          AttributeType: S
+      KeySchema:
+        - AttributeName: pk
+          KeyType: HASH
+      BillingMode: PAY_PER_REQUEST
+
+  # @see https://docs.aws.amazon.com/translate/latest/dg/async-prereqs.html
+  TranslateDataAccessRole:
+    Type: AWS::IAM::Role
+    Properties:
+      AssumeRolePolicyDocument:
+        Version: "2012-10-17"
+        Statement:
+          - Effect: Allow
+            Principal:
+              Service:
+                - translate.amazonaws.com
+            Action: "sts:AssumeRole"
+            Condition:
+              ArnLike:
+                aws:SourceArn: !Sub "arn:aws:translate:*:${AWS::AccountId}:*"
+              StringEquals:
+                aws:SourceAccount: !Sub "${AWS::AccountId}"
+      Policies:
+        - PolicyName: TranslateDataAccess
+          PolicyDocument:
+            Version: "2012-10-17"
+            Statement:
+              - Effect: Allow
+                Action:
+                  - s3:GetObject
+                  - s3:PutObject
+                Resource:
+                  - !Sub "${TempStorageBucket.Arn}/*"
+              - Effect: Allow
+                Action: s3:ListBucket
+                Resource:
+                  - !GetAtt TempStorageBucket.Arn
+            

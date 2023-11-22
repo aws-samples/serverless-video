@@ -1,0 +1,15 @@
+{
+    "name": "leaderboardPlugin",
+    "description": "Tracks statistics and builds a leaderboard",
+    "author": "Josh Kahn",
+    "version": "1.0.0",
+    "tags": [ "video", "streaming", "AWS", "serverless" ],
+    "eventHook": "postMetadata",
+    "average_completion_time": "30 seconds",
+    "services": [ "AppSync", "Lambda", "MemoryDB" ],
+    "deployment_template": "template.yaml",
+    "output_example":{
+      "success": true,
+      "reason": "processed"
+    }
+  }

@@ -1,9 +1,9 @@
 AWSTemplateFormatVersion: "2010-09-09"
 Transform: AWS::Serverless-2016-10-31
 Description: >
-  serverlessFlix
+  serverlessVideo
 
-  Sample SAM Template for serverlessFlix-video-streaming-service
+  Sample SAM Template for serverlessVideo-video-streaming-service
 
 Resources:
 
@@ -13,7 +13,7 @@ Resources:
   Channel:
     Type: AWS::IVS::Channel
     Properties:
-       Name: serverlessFlixChannel1
+       Name: serverlessVideoChannel1
        InsecureIngest: true
        RecordingConfigurationArn: !GetAtt RecordingConfiguration.Arn
 
@@ -81,7 +81,7 @@ Resources:
    Type: AWS::IVS::RecordingConfiguration
    DependsOn: S3Bucket
    Properties:
-     Name: serverlessFlixRecordingConfig
+     Name: serverlessVideoRecordingConfig
      DestinationConfiguration:
        S3:
          BucketName: !Ref S3Bucket

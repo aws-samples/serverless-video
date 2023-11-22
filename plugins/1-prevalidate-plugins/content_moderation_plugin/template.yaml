@@ -1,0 +1,137 @@
+AWSTemplateFormatVersion: "2010-09-09"
+Transform: AWS::Serverless-2016-10-31
+Description: Sample SAM Template for serverlessVideo-content_moderation_plugin
+
+Parameters:
+  OnDemandVideosBucketName:
+    Type: String
+    Default: serverlessVideo-basecore-cdnstack-p6b-originbucket-qf6cyql0kb4m
+
+Resources:
+  ModerateContentLogGroup:
+    Type: AWS::Logs::LogGroup
+    DeletionPolicy: Delete
+    UpdateReplacePolicy: Delete
+    Properties:
+      LogGroupName: !Join ["/",["/aws/vendedlogs/states", !Ref "AWS::AccountId",!Ref "AWS::Region","content-moderation-plugin-workflow"]]
+      RetentionInDays: 5
+      
+  StateMachineModerateContentWF:
+    Type: AWS::Serverless::StateMachine
+    Properties:    
+      Type: "STANDARD"
+      Role: !GetAtt ApplicationRole.Arn
+      Name: !Join ["",[!Ref "AWS::AccountId","-",!Ref "AWS::Region","-content-moderation-plugin"]]
+      DefinitionSubstitutions:
+        OnDemandVideosBucketName: !Ref OnDemandVideosBucketName
+        S3BucketName: !Ref DataBucket
+        ApplicationRoleArn: !GetAtt ApplicationRole.Arn
+        CloudFrontDownloaderFunction: !Ref CloudFrontDownloaderFunction
+      DefinitionUri: workflows/statemachine.asl.json
+      Tracing:
+        Enabled: true
+      Logging:
+        IncludeExecutionData: true
+        Level: ALL
+        Destinations:
+          - CloudWatchLogsLogGroup:
+              LogGroupArn: !GetAtt ModerateContentLogGroup.Arn
+      Events:
+        pluginTrigger:
+          Type: EventBridgeRule
+          Properties:
+            EventBusName: default
+            Pattern:
+              source:
+                - serverlessVideo.pluginManager
+              detail-type:
+                - preValidate.content_moderation_plugin
+
+  CloudFrontDownloaderFunction:
+    Type: AWS::Serverless::Function
+    Properties:
+        FunctionName: serverlessVideo-plugin-content-moderation-downloader
+        CodeUri: functions/
+        Handler: downloader.handler
+        Runtime: nodejs18.x
+        Timeout: 30
+        MemorySize: 512
+        Architectures:
+          - arm64
+        Environment:
+          Variables:
+            BucketName: !Ref DataBucket
+        Policies:
+          - S3WritePolicy:
+              BucketName: !Ref DataBucket            
+  
+  ApplicationRole:
+    Type: AWS::IAM::Role
+    Properties:
+      AssumeRolePolicyDocument: 
+        Version: "2012-10-17"
+        Statement: 
+          - 
+            Effect: "Allow"
+            Principal: 
+              Service: 
+                - "states.amazonaws.com"
+                - "rekognition.amazonaws.com"
+            Action: 
+              - "sts:AssumeRole"
+      Policies:
+        - PolicyName: AppPolicy
+          PolicyDocument:
+            Version: 2012-10-17
+            Statement:
+              -
+                Effect: Allow
+                Action:
+                - logs:CreateLogDelivery
+                - logs:CreateLogStream
+                - logs:GetLogDelivery
+                - logs:UpdateLogDelivery
+                - logs:DeleteLogDelivery
+                - logs:ListLogDeliveries
+                - logs:PutLogEvents
+                - logs:PutResourcePolicy
+                - logs:DescribeResourcePolicies
+                - logs:DescribeLogGroups
+                - xray:PutTraceSegments
+                - xray:PutTelemetryRecords
+                - xray:GetSamplingRules
+                - xray:GetSamplingTargets
+                - rekognition:StartContentModeration
+                - rekognition:GetContentModeration
+                Resource: '*'
+              -
+                Effect: Allow
+                Action:
+                - s3:*
+                Resource: '*'
+              -
+                Effect: Allow
+                Action:
+                  - lambda:InvokeFunction
+                Resource: !GetAtt CloudFrontDownloaderFunction.Arn
+              -
+                Effect: Allow
+                Action:
+                  - events:PutEvents
+                Resource: '*'
+
+  DataBucket:
+    Type: AWS::S3::Bucket
+    UpdateReplacePolicy: Delete
+    DeletionPolicy: Delete
+    Properties:  
+      BucketName : !Join ["",[!Ref "AWS::AccountId","-",!Ref "AWS::Region","-content-moderation-plugin"]]
+      PublicAccessBlockConfiguration:
+        BlockPublicAcls: true
+        RestrictPublicBuckets: true
+        BlockPublicPolicy: true
+        IgnorePublicAcls: true
+      BucketEncryption:
+        ServerSideEncryptionConfiguration:
+          - ServerSideEncryptionByDefault:
+              SSEAlgorithm: AES256

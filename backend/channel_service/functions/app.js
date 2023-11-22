@@ -4,7 +4,7 @@ exports.handler = async (event) => {
   const dynamodb = new AWS.DynamoDB({ apiVersion: '2012-08-10' });
 
   const params = {
-    TableName: 'serverlessFlix-channels-table',
+    TableName: 'serverlessVideo-channels-table',
     FilterExpression: '#L = :val',
     ExpressionAttributeNames: {
       '#L': 'Live',

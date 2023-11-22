@@ -226,7 +226,7 @@ const lifeCycleCompleteToHistoryEvent = (event) => {
       icon: 'eventbridge',
       title: 'Amazon EventBridge',
       subtitle: `Tell downstream consumers video is ready`,
-      description:`A 'LifeCycleComplete' event is raised. This tells downstream consumers that a new ServerlessVideo is ready.`,
+      description:`A 'LifeCycleComplete' event is raised. This tells downstream consumers that a new serverlessVideo is ready.`,
       createdAt: addSeconds(new Date(event.time), 2).toISOString(),
     },
     {
@@ -369,7 +369,7 @@ const lifeCycleCompleteToHistoryEvent = (event) => {
       parent: 'LifeCycleStarted',
       title: 'AWS AppSync',
       subtitle: `Plugin: Leaderboard plugin`,
-      description: `This broadcaster has uploaded ${count} videos to ServerlessVideo. The video was added to the leaderboard service.`,
+      description: `This broadcaster has uploaded ${count} videos to serverlessVideo. The video was added to the leaderboard service.`,
       createdAt: addSeconds(new Date(event.time), 12).toISOString(),
     });
   }
@@ -386,10 +386,10 @@ const lifeCycleCompleteToHistoryEvent = (event) => {
       key: 'LifeCycleCompleteRollupStatusPlugin',
       parent: 'LifeCycleStarted',
       title: 'Amazon DynamoDB',
-      subtitle: `Plugin: ServerlessVideo stats`,
-      description: `At the date of this video processing, ${totalVideoCount} videos have been uploaded to ServerlessVideo. ${totalHoursOfVideo.toFixed(
+      subtitle: `Plugin: serverlessVideo stats`,
+      description: `At the date of this video processing, ${totalVideoCount} videos have been uploaded to serverlessVideo. ${totalHoursOfVideo.toFixed(
         2
-      )} total hours of video have been uploaded to ServerlessVideo. `,
+      )} total hours of video have been uploaded to serverlessVideo. `,
       createdAt: addSeconds(new Date(event.time), 13).toISOString(),
     });
 

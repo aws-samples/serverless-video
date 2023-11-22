@@ -1,0 +1,111 @@
+{
+  "Comment": "A State Machine that processes a video file",
+  "StartAt": "Parallel",
+  "States": {
+    "Parallel": {
+      "Type": "Parallel",
+      "Next": "EventBridge PutEvents",
+      "Branches": [
+        {
+          "StartAt": "Organise Payload",
+          "States": {
+            "Organise Payload": {
+              "Type": "Pass",
+              "Next": "StartTranscriptionJob",
+              "Parameters": {
+                "inputKey.$": "States.Format('s3://${S3BucketName}/{}/media/hls/720p30/output.mp4', $.detail.video.recording_s3_key_prefix)",
+                "outputKey.$": "States.Format('{}/transcribe.json',$.detail.video.recording_s3_key_prefix)"
+              },
+              "ResultPath": "$.video"
+            },
+            "CheckIfTranscriptionDone": {
+              "Next": "IsTranscriptionDone?",
+              "Parameters": {
+                "TranscriptionJobName.$": "$.TranscriptionJobName"
+              },
+              "Resource": "arn:aws:states:::aws-sdk:transcribe:getTranscriptionJob",
+              "Type": "Task"
+            },
+            "IsTranscriptionDone?": {
+              "Choices": [
+                {
+                  "Next": "PrepareS3FilePointers",
+                  "StringEquals": "COMPLETED",
+                  "Variable": "$.TranscriptionJob.TranscriptionJobStatus"
+                }
+              ],
+              "Default": "Wait20Seconds",
+              "Type": "Choice"
+            },
+            "PrepareS3FilePointers": {
+              "End": true,
+              "Parameters": {
+                "TranscriptFileUri.$": "$.TranscriptionJob.Transcript.TranscriptFileUri",
+                "SubtitleFileUris.$": "$.TranscriptionJob.Subtitles.SubtitleFileUris"
+              },
+              "Type": "Pass"
+            },
+            "StartTranscriptionJob": {
+              "Next": "Wait20Seconds",
+              "Parameters": {
+                "LanguageCode": "en-US",
+                "Media": {
+                  "MediaFileUri.$": "$.video.inputKey"
+                },
+                "OutputBucketName": "${S3BucketName}",
+                "OutputKey.$":  "$.video.outputKey",
+                "Subtitles": {
+                  "Formats": ["vtt"],
+                  "OutputStartIndex": 1
+                },
+                "TranscriptionJobName.$": "$$.Execution.Name"
+              },
+              "Resource": "arn:aws:states:::aws-sdk:transcribe:startTranscriptionJob",
+              "Type": "Task"
+            },
+            "Wait20Seconds": {
+              "Next": "CheckIfTranscriptionDone",
+              "OutputPath": "$.TranscriptionJob",
+              "Seconds": 20,
+              "Type": "Wait"
+            }
+          }
+        },
+        {
+          "StartAt": "Keep Task Token",
+          "States": {
+            "Keep Task Token": {
+              "Type": "Pass",
+              "End": true,
+              "Parameters": {
+                "taskToken.$": "$.detail.taskToken",
+                "cloudFrontUrl.$": "States.Format('${CDN}/{}/transcribe.json',$.detail.video.recording_s3_key_prefix)"
+              }
+            }
+          }
+        }
+      ]
+    },
+    "EventBridge PutEvents": {
+      "Type": "Task",
+      "Resource": "arn:aws:states:::events:putEvents",
+      "Parameters": {
+        "Entries": [
+          {
+            "Detail": {
+              "Message": {
+                "TranscriptFilePointers.$": "$[0]",
+                "TranscriptUrl.$": "$[1].cloudFrontUrl"
+              },
+              "TaskToken.$": "$[1].taskToken"
+            },
+            "DetailType": "plugin-complete",
+            "EventBusName": "default",
+            "Source": "serverlessVideo.plugin.transcribeplugin"
+          }
+        ]
+      },
+      "End": true
+    }
+  }
+}

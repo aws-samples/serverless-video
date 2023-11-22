@@ -1,0 +1,7504 @@
+[
+	{
+		"Transcript": {
+			"Results": []
+		}
+	},
+	{
+		"Transcript": {
+			"Results": []
+		}
+	},
+	{
+		"Transcript": {
+			"Results": []
+		}
+	},
+	{
+		"Transcript": {
+			"Results": []
+		}
+	},
+	{
+		"Transcript": {
+			"Results": []
+		}
+	},
+	{
+		"Transcript": {
+			"Results": [
+				{
+					"Alternatives": [
+						{
+							"Items": [
+								{
+									"Content": "It",
+									"EndTime": 2.7975,
+									"StartTime": 2.5775,
+									"Type": "pronunciation",
+									"VocabularyFilterMatch": false
+								},
+								{
+									"Content": "was",
+									"EndTime": 3.0075,
+									"StartTime": 2.7975,
+									"Type": "pronunciation",
+									"VocabularyFilterMatch": false
+								},
+								{
+									"Content": "the",
+									"EndTime": 3.1175,
+									"StartTime": 3.0075,
+									"Type": "pronunciation",
+									"VocabularyFilterMatch": false
+								},
+								{
+									"Content": "best",
+									"EndTime": 3.345,
+									"StartTime": 3.1175,
+									"Type": "pronunciation",
+									"VocabularyFilterMatch": false
+								}
+							],
+							"Transcript": "It was the best"
+						}
+					],
+					"ChannelId": "ch_0",
+					"EndTime": 3.345,
+					"IsPartial": true,
+					"ResultId": "d4f14fee-883a-4d96-af2b-67a663749857",
+					"StartTime": 2.33
+				}
+			]
+		}
+	},
+	{
+		"Transcript": {
+			"Results": [
+				{
+					"Alternatives": [
+						{
+							"Items": [
+								{
+									"Content": "It",
+									"EndTime": 2.7975,
+									"StartTime": 2.5775,
+									"Type": "pronunciation",
+									"VocabularyFilterMatch": false
+								},
+								{
+									"Content": "was",
+									"EndTime": 3.0075,
+									"StartTime": 2.7975,
+									"Type": "pronunciation",
+									"VocabularyFilterMatch": false
+								},
+								{
+									"Content": "the",
+									"EndTime": 3.1175,
+									"StartTime": 3.0075,
+									"Type": "pronunciation",
+									"VocabularyFilterMatch": false
+								},
+								{
+									"Content": "best",
+									"EndTime": 3.5075,
+									"StartTime": 3.1175,
+									"Type": "pronunciation",
+									"VocabularyFilterMatch": false
+								},
+								{
+									"Content": "of",
+									"EndTime": 3.6275,
+									"StartTime": 3.5075,
+									"Type": "pronunciation",
+									"VocabularyFilterMatch": false
+								},
+								{
+									"Content": "times",
+									"EndTime": 3.845,
+									"StartTime": 3.6275,
+									"Type": "pronunciation",
+									"VocabularyFilterMatch": false
+								},
+								{
+									"Content": ".",
+									"EndTime": 3.845,
+									"StartTime": 3.845,
+									"Type": "punctuation",
+									"VocabularyFilterMatch": false
+								}
+							],
+							"Transcript": "It was the best of times."
+						}
+					],
+					"ChannelId": "ch_0",
+					"EndTime": 3.845,
+					"IsPartial": true,
+					"ResultId": "d4f14fee-883a-4d96-af2b-67a663749857",
+					"StartTime": 2.33
+				}
+			]
+		}
+	},
+	{
+		"Transcript": {
+			"Results": []
+		}
+	},
+	{
+		"Transcript": {
+			"Results": [
+				{
+					"Alternatives": [
+						{
+							"Items": [
+								{
+									"Content": "It",
+									"EndTime": 2.7975,
+									"StartTime": 2.5775,
+									"Type": "pronunciation",
+									"VocabularyFilterMatch": false
+								},
+								{
+									"Content": "was",
+									"EndTime": 3.0075,
+									"StartTime": 2.7975,
+									"Type": "pronunciation",
+									"VocabularyFilterMatch": false
+								},
+								{
+									"Content": "the",
+									"EndTime": 3.1175,
+									"StartTime": 3.0075,
+									"Type": "pronunciation",
+									"VocabularyFilterMatch": false
+								},
+								{
+									"Content": "best",
+									"EndTime": 3.5075,
+									"StartTime": 3.1175,
+									"Type": "pronunciation",
+									"VocabularyFilterMatch": false
+								},
+								{
+									"Content": "of",
+									"EndTime": 3.6275,
+									"StartTime": 3.5075,
+									"Type": "pronunciation",
+									"VocabularyFilterMatch": false
+								},
+								{
+									"Content": "times",
+									"EndTime": 4.345,
+									"StartTime": 3.6275,
+									"Type": "pronunciation",
+									"VocabularyFilterMatch": false
+								},
+								{
+									"Content": ".",
+									"EndTime": 4.345,
+									"StartTime": 4.345,
+									"Type": "punctuation",
+									"VocabularyFilterMatch": false
+								}
+							],
+							"Transcript": "It was the best of times."
+						}
+					],
+					"ChannelId": "ch_0",
+					"EndTime": 4.345,
+					"IsPartial": true,
+					"ResultId": "d4f14fee-883a-4d96-af2b-67a663749857",
+					"StartTime": 2.33
+				}
+			]
+		}
+	},
+	{
+		"Transcript": {
+			"Results": [
+				{
+					"Alternatives": [
+						{
+							"Items": [
+								{
+									"Content": "It",
+									"EndTime": 2.7975,
+									"StartTime": 2.5775,
+									"Type": "pronunciation",
+									"VocabularyFilterMatch": false
+								},
+								{
+									"Content": "was",
+									"EndTime": 3.0075,
+									"StartTime": 2.7975,
+									"Type": "pronunciation",
+									"VocabularyFilterMatch": false
+								},
+								{
+									"Content": "the",
+									"EndTime": 3.1175,
+									"StartTime": 3.0075,
+									"Type": "pronunciation",
+									"VocabularyFilterMatch": false
+								},
+								{
+									"Content": "best",
+									"EndTime": 3.5075,
+									"StartTime": 3.1175,
+									"Type": "pronunciation",
+									"VocabularyFilterMatch": false
+								},
+								{
+									"Content": "of",
+									"EndTime": 3.6275,
+									"StartTime": 3.5075,
+									"Type": "pronunciation",
+									"VocabularyFilterMatch": false
+								},
+								{
+									"Content": "times",
+									"EndTime": 4.5125,
+									"StartTime": 3.6275,
+									"Type": "pronunciation",
+									"VocabularyFilterMatch": false
+								},
+								{
+									"Content": "it",
+									"EndTime": 4.6875,
+									"StartTime": 4.5125,
+									"Type": "pronunciation",
+									"VocabularyFilterMatch": false
+								},
+								{
+									"Content": "was",
+									"EndTime": 4.845,
+									"StartTime": 4.6875,
+									"Type": "pronunciation",
+									"VocabularyFilterMatch": false
+								}
+							],
+							"Transcript": "It was the best of times it was"
+						}
+					],
+					"ChannelId": "ch_0",
+					"EndTime": 4.845,
+					"IsPartial": true,
+					"ResultId": "d4f14fee-883a-4d96-af2b-67a663749857",
+					"StartTime": 2.33
+				}
+			]
+		}
+	},
+	{
+		"Transcript": {
+			"Results": [
+				{
+					"Alternatives": [
+						{
+							"Items": [
+								{
+									"Content": "It",
+									"EndTime": 2.7975,
+									"StartTime": 2.5775,
+									"Type": "pronunciation",
+									"VocabularyFilterMatch": false
+								},
+								{
+									"Content": "was",
+									"EndTime": 3.0075,
+									"StartTime": 2.7975,
+									"Type": "pronunciation",
+									"VocabularyFilterMatch": false
+								},
+								{
+									"Content": "the",
+									"EndTime": 3.1175,
+									"StartTime": 3.0075,
+									"Type": "pronunciation",
+									"VocabularyFilterMatch": false
+								},
+								{
+									"Content": "best",
+									"EndTime": 3.5075,
+									"StartTime": 3.1175,
+									"Type": "pronunciation",
+									"VocabularyFilterMatch": false
+								},
+								{
+									"Content": "of",
+									"EndTime": 3.6275,
+									"StartTime": 3.5075,
+									"Type": "pronunciation",
+									"VocabularyFilterMatch": false
+								},
+								{
+									"Content": "times",
+									"EndTime": 4.5125,
+									"StartTime": 3.6275,
+									"Type": "pronunciation",
+									"VocabularyFilterMatch": false
+								},
+								{
+									"Content": ".",
+									"EndTime": 4.5125,
+									"StartTime": 4.5125,
+									"Type": "punctuation",
+									"VocabularyFilterMatch": false
+								},
+								{
+									"Content": "It",
+									"EndTime": 4.6875,
+									"StartTime": 4.5125,
+									"Type": "pronunciation",
+									"VocabularyFilterMatch": false
+								},
+								{
+									"Content": "was",
+									"EndTime": 4.8675,
+									"StartTime": 4.6875,
+									"Type": "pronunciation",
+									"VocabularyFilterMatch": false
+								},
+								{
+									"Content": "the",
+									"EndTime": 4.9975,
+									"StartTime": 4.8675,
+									"Type": "pronunciation",
+									"VocabularyFilterMatch": false
+								},
+								{
+									"Content": "worst",
+									"EndTime": 5.345,
+									"StartTime": 4.9975,
+									"Type": "pronunciation",
+									"VocabularyFilterMatch": false
+								},
+								{
+									"Content": ".",
+									"EndTime": 5.345,
+									"StartTime": 5.345,
+									"Type": "punctuation",
+									"VocabularyFilterMatch": false
+								}
+							],
+							"Transcript": "It was the best of times. It was the worst."
+						}
+					],
+					"ChannelId": "ch_0",
+					"EndTime": 5.345,
+					"IsPartial": true,
+					"ResultId": "d4f14fee-883a-4d96-af2b-67a663749857",
+					"StartTime": 2.33
+				}
+			]
+		}
+	},
+	{
+		"Transcript": {
+			"Results": []
+		}
+	},
+	{
+		"Transcript": {
+			"Results": [
+				{
+					"Alternatives": [
+						{
+							"Items": [
+								{
+									"Content": "It",
+									"EndTime": 2.7975,
+									"StartTime": 2.5775,
+									"Type": "pronunciation",
+									"VocabularyFilterMatch": false
+								},
+								{
+									"Content": "was",
+									"EndTime": 3.0075,
+									"StartTime": 2.7975,
+									"Type": "pronunciation",
+									"VocabularyFilterMatch": false
+								},
+								{
+									"Content": "the",
+									"EndTime": 3.1175,
+									"StartTime": 3.0075,
+									"Type": "pronunciation",
+									"VocabularyFilterMatch": false
+								},
+								{
+									"Content": "best",
+									"EndTime": 3.5075,
+									"StartTime": 3.1175,
+									"Type": "pronunciation",
+									"VocabularyFilterMatch": false
+								},
+								{
+									"Content": "of",
+									"EndTime": 3.6275,
+									"StartTime": 3.5075,
+									"Type": "pronunciation",
+									"VocabularyFilterMatch": false
+								},
+								{
+									"Content": "times",
+									"EndTime": 4.5125,
+									"StartTime": 3.6275,
+									"Type": "pronunciation",
+									"VocabularyFilterMatch": false
+								},
+								{
+									"Content": "it",
+									"EndTime": 4.6875,
+									"StartTime": 4.5125,
+									"Type": "pronunciation",
+									"VocabularyFilterMatch": false
+								},
+								{
+									"Content": "was",
+									"EndTime": 4.8675,
+									"StartTime": 4.6875,
+									"Type": "pronunciation",
+									"VocabularyFilterMatch": false
+								},
+								{
+									"Content": "the",
+									"EndTime": 4.9975,
+									"StartTime": 4.8675,
+									"Type": "pronunciation",
+									"VocabularyFilterMatch": false
+								},
+								{
+									"Content": "worst",
+									"EndTime": 5.4275,
+									"StartTime": 4.9975,
+									"Type": "pronunciation",
+									"VocabularyFilterMatch": false
+								},
+								{
+									"Content": "of",
+									"EndTime": 5.5475,
+									"StartTime": 5.4275,
+									"Type": "pronunciation",
+									"VocabularyFilterMatch": false
+								},
+								{
+									"Content": "times",
+									"EndTime": 5.845,
+									"StartTime": 5.5475,
+									"Type": "pronunciation",
+									"VocabularyFilterMatch": false
+								},
+								{
+									"Content": ".",
+									"EndTime": 5.845,
+									"StartTime": 5.845,
+									"Type": "punctuation",
+									"VocabularyFilterMatch": false
+								}
+							],
+							"Transcript": "It was the best of times it was the worst of times."
+						}
+					],
+					"ChannelId": "ch_0",
+					"EndTime": 5.845,
+					"IsPartial": true,
+					"ResultId": "d4f14fee-883a-4d96-af2b-67a663749857",
+					"StartTime": 2.33
+				}
+			]
+		}
+	},
+	{
+		"Transcript": {
+			"Results": []
+		}
+	},
+	{
+		"Transcript": {
+			"Results": [
+				{
+					"Alternatives": [
+						{
+							"Items": [
+								{
+									"Content": "It",
+									"EndTime": 2.7975,
+									"StartTime": 2.5775,
+									"Type": "pronunciation",
+									"VocabularyFilterMatch": false
+								},
+								{
+									"Content": "was",
+									"EndTime": 3.0075,
+									"StartTime": 2.7975,
+									"Type": "pronunciation",
+									"VocabularyFilterMatch": false
+								},
+								{
+									"Content": "the",
+									"EndTime": 3.1175,
+									"StartTime": 3.0075,
+									"Type": "pronunciation",
+									"VocabularyFilterMatch": false
+								},
+								{
+									"Content": "best",
+									"EndTime": 3.5075,
+									"StartTime": 3.1175,
+									"Type": "pronunciation",
+									"VocabularyFilterMatch": false
+								},
+								{
+									"Content": "of",
+									"EndTime": 3.6275,
+									"StartTime": 3.5075,
+									"Type": "pronunciation",
+									"VocabularyFilterMatch": false
+								},
+								{
+									"Content": "times",
+									"EndTime": 4.5125,
+									"StartTime": 3.6275,
+									"Type": "pronunciation",
+									"VocabularyFilterMatch": false
+								},
+								{
+									"Content": "it",
+									"EndTime": 4.6875,
+									"StartTime": 4.5125,
+									"Type": "pronunciation",
+									"VocabularyFilterMatch": false
+								},
+								{
+									"Content": "was",
+									"EndTime": 4.8675,
+									"StartTime": 4.6875,
+									"Type": "pronunciation",
+									"VocabularyFilterMatch": false
+								},
+								{
+									"Content": "the",
+									"EndTime": 4.9975,
+									"StartTime": 4.8675,
+									"Type": "pronunciation",
+									"VocabularyFilterMatch": false
+								},
+								{
+									"Content": "worst",
+									"EndTime": 5.4275,
+									"StartTime": 4.9975,
+									"Type": "pronunciation",
+									"VocabularyFilterMatch": false
+								},
+								{
+									"Content": "of",
+									"EndTime": 5.5475,
+									"StartTime": 5.4275,
+									"Type": "pronunciation",
+									"VocabularyFilterMatch": false
+								},
+								{
+									"Content": "times",
+									"EndTime": 6.345,
+									"StartTime": 5.5475,
+									"Type": "pronunciation",
+									"VocabularyFilterMatch": false
+								},
+								{
+									"Content": ".",
+									"EndTime": 6.345,
+									"StartTime": 6.345,
+									"Type": "punctuation",
+									"VocabularyFilterMatch": false
+								}
+							],
+							"Transcript": "It was the best of times it was the worst of times."
+						}
+					],
+					"ChannelId": "ch_0",
+					"EndTime": 6.345,
+					"IsPartial": true,
+					"ResultId": "d4f14fee-883a-4d96-af2b-67a663749857",
+					"StartTime": 2.33
+				}
+			]
+		}
+	},
+	{
+		"Transcript": {
+			"Results": [
+				{
+					"Alternatives": [
+						{
+							"Items": [
+								{
+									"Content": "It",
+									"EndTime": 2.7975,
+									"StartTime": 2.5775,
+									"Type": "pronunciation",
+									"VocabularyFilterMatch": false
+								},
+								{
+									"Content": "was",
+									"EndTime": 3.0075,
+									"StartTime": 2.7975,
+									"Type": "pronunciation",
+									"VocabularyFilterMatch": false
+								},
+								{
+									"Content": "the",
+									"EndTime": 3.1175,
+									"StartTime": 3.0075,
+									"Type": "pronunciation",
+									"VocabularyFilterMatch": false
+								},
+								{
+									"Content": "best",
+									"EndTime": 3.5075,
+									"StartTime": 3.1175,
+									"Type": "pronunciation",
+									"VocabularyFilterMatch": false
+								},
+								{
+									"Content": "of",
+									"EndTime": 3.6275,
+									"StartTime": 3.5075,
+									"Type": "pronunciation",
+									"VocabularyFilterMatch": false
+								},
+								{
+									"Content": "times",
+									"EndTime": 4.5125,
+									"StartTime": 3.6275,
+									"Type": "pronunciation",
+									"VocabularyFilterMatch": false
+								},
+								{
+									"Content": ".",
+									"EndTime": 4.5125,
+									"StartTime": 4.5125,
+									"Type": "punctuation",
+									"VocabularyFilterMatch": false
+								},
+								{
+									"Content": "It",
+									"EndTime": 4.6875,
+									"StartTime": 4.5125,
+									"Type": "pronunciation",
+									"VocabularyFilterMatch": false
+								},
+								{
+									"Content": "was",
+									"EndTime": 4.8675,
+									"StartTime": 4.6875,
+									"Type": "pronunciation",
+									"VocabularyFilterMatch": false
+								},
+								{
+									"Content": "the",
+									"EndTime": 4.9975,
+									"StartTime": 4.8675,
+									"Type": "pronunciation",
+									"VocabularyFilterMatch": false
+								},
+								{
+									"Content": "worst",
+									"EndTime": 5.4275,
+									"StartTime": 4.9975,
+									"Type": "pronunciation",
+									"VocabularyFilterMatch": false
+								},
+								{
+									"Content": "of",
+									"EndTime": 5.5475,
+									"StartTime": 5.4275,
+									"Type": "pronunciation",
+									"VocabularyFilterMatch": false
+								},
+								{
+									"Content": "times",
+									"EndTime": 6.4075,
+									"StartTime": 5.5475,
+									"Type": "pronunciation",
+									"VocabularyFilterMatch": false
+								},
+								{
+									"Content": "it",
+									"EndTime": 6.6575,
+									"StartTime": 6.4975,
+									"Type": "pronunciation",
+									"VocabularyFilterMatch": false
+								},
+								{
+									"Content": "was",
+									"EndTime": 6.845,
+									"StartTime": 6.6575,
+									"Type": "pronunciation",
+									"VocabularyFilterMatch": false
+								}
+							],
+							"Transcript": "It was the best of times. It was the worst of times it was"
+						}
+					],
+					"ChannelId": "ch_0",
+					"EndTime": 6.845,
+					"IsPartial": true,
+					"ResultId": "d4f14fee-883a-4d96-af2b-67a663749857",
+					"StartTime": 2.33
+				}
+			]
+		}
+	},
+	{
+		"Transcript": {
+			"Results": []
+		}
+	},
+	{
+		"Transcript": {
+			"Results": [
+				{
+					"Alternatives": [
+						{
+							"Items": [
+								{
+									"Content": "It",
+									"EndTime": 2.7975,
+									"StartTime": 2.5775,
+									"Type": "pronunciation",
+									"VocabularyFilterMatch": false
+								},
+								{
+									"Content": "was",
+									"EndTime": 3.0075,
+									"StartTime": 2.7975,
+									"Type": "pronunciation",
+									"VocabularyFilterMatch": false
+								},
+								{
+									"Content": "the",
+									"EndTime": 3.1175,
+									"StartTime": 3.0075,
+									"Type": "pronunciation",
+									"VocabularyFilterMatch": false
+								},
+								{
+									"Content": "best",
+									"EndTime": 3.5075,
+									"StartTime": 3.1175,
+									"Type": "pronunciation",
+									"VocabularyFilterMatch": false
+								},
+								{
+									"Content": "of",
+									"EndTime": 3.6275,
+									"StartTime": 3.5075,
+									"Type": "pronunciation",
+									"VocabularyFilterMatch": false
+								},
+								{
+									"Content": "times",
+									"EndTime": 4.5125,
+									"StartTime": 3.6275,
+									"Type": "pronunciation",
+									"VocabularyFilterMatch": false
+								},
+								{
+									"Content": ".",
+									"EndTime": 4.5125,
+									"StartTime": 4.5125,
+									"Type": "punctuation",
+									"VocabularyFilterMatch": false
+								},
+								{
+									"Content": "It",
+									"EndTime": 4.6875,
+									"StartTime": 4.5125,
+									"Type": "pronunciation",
+									"VocabularyFilterMatch": false
+								},
+								{
+									"Content": "was",
+									"EndTime": 4.8675,
+									"StartTime": 4.6875,
+									"Type": "pronunciation",
+									"VocabularyFilterMatch": false
+								},
+								{
+									"Content": "the",
+									"EndTime": 4.9975,
+									"StartTime": 4.8675,
+									"Type": "pronunciation",
+									"VocabularyFilterMatch": false
+								},
+								{
+									"Content": "worst",
+									"EndTime": 5.4275,
+									"StartTime": 4.9975,
+									"Type": "pronunciation",
+									"VocabularyFilterMatch": false
+								},
+								{
+									"Content": "of",
+									"EndTime": 5.5475,
+									"StartTime": 5.4275,
+									"Type": "pronunciation",
+									"VocabularyFilterMatch": false
+								},
+								{
+									"Content": "times",
+									"EndTime": 6.4075,
+									"StartTime": 5.5475,
+									"Type": "pronunciation",
+									"VocabularyFilterMatch": false
+								},
+								{
+									"Content": ".",
+									"EndTime": 6.4075,
+									"StartTime": 6.4075,
+									"Type": "punctuation",
+									"VocabularyFilterMatch": false
+								},
+								{
+									"Content": "It",
+									"EndTime": 6.6575,
+									"StartTime": 6.4975,
+									"Type": "pronunciation",
+									"VocabularyFilterMatch": false
+								},
+								{
+									"Content": "was",
+									"EndTime": 6.8175,
+									"StartTime": 6.6575,
+									"Type": "pronunciation",
+									"VocabularyFilterMatch": false
+								},
+								{
+									"Content": "the",
+									"EndTime": 7.0175,
+									"StartTime": 6.8175,
+									"Type": "pronunciation",
+									"VocabularyFilterMatch": false
+								},
+								{
+									"Content": "age",
+									"EndTime": 7.345,
+									"StartTime": 7.0175,
+									"Type": "pronunciation",
+									"VocabularyFilterMatch": false
+								},
+								{
+									"Content": ".",
+									"EndTime": 7.345,
+									"StartTime": 7.345,
+									"Type": "punctuation",
+									"VocabularyFilterMatch": false
+								}
+							],
+							"Transcript": "It was the best of times. It was the worst of times. It was the age."
+						}
+					],
+					"ChannelId": "ch_0",
+					"EndTime": 7.345,
+					"IsPartial": true,
+					"ResultId": "d4f14fee-883a-4d96-af2b-67a663749857",
+					"StartTime": 2.33
+				}
+			]
+		}
+	},
+	{
+		"Transcript": {
+			"Results": [
+				{
+					"Alternatives": [
+						{
+							"Items": [
+								{
+									"Content": "It",
+									"EndTime": 2.7975,
+									"StartTime": 2.5775,
+									"Type": "pronunciation",
+									"VocabularyFilterMatch": false
+								},
+								{
+									"Content": "was",
+									"EndTime": 3.0075,
+									"StartTime": 2.7975,
+									"Type": "pronunciation",
+									"VocabularyFilterMatch": false
+								},
+								{
+									"Content": "the",
+									"EndTime": 3.1175,
+									"StartTime": 3.0075,
+									"Type": "pronunciation",
+									"VocabularyFilterMatch": false
+								},
+								{
+									"Content": "best",
+									"EndTime": 3.5075,
+									"StartTime": 3.1175,
+									"Type": "pronunciation",
+									"VocabularyFilterMatch": false
+								},
+								{
+									"Content": "of",
+									"EndTime": 3.6275,
+									"StartTime": 3.5075,
+									"Type": "pronunciation",
+									"VocabularyFilterMatch": false
+								},
+								{
+									"Content": "times",
+									"EndTime": 4.5125,
+									"StartTime": 3.6275,
+									"Type": "pronunciation",
+									"VocabularyFilterMatch": false
+								},
+								{
+									"Content": ".",
+									"EndTime": 4.5125,
+									"StartTime": 4.5125,
+									"Type": "punctuation",
+									"VocabularyFilterMatch": false
+								},
+								{
+									"Content": "It",
+									"EndTime": 4.6875,
+									"StartTime": 4.5125,
+									"Type": "pronunciation",
+									"VocabularyFilterMatch": false
+								},
+								{
+									"Content": "was",
+									"EndTime": 4.8675,
+									"StartTime": 4.6875,
+									"Type": "pronunciation",
+									"VocabularyFilterMatch": false
+								},
+								{
+									"Content": "the",
+									"EndTime": 4.9975,
+									"StartTime": 4.8675,
+									"Type": "pronunciation",
+									"VocabularyFilterMatch": false
+								},
+								{
+									"Content": "worst",
+									"EndTime": 5.4275,
+									"StartTime": 4.9975,
+									"Type": "pronunciation",
+									"VocabularyFilterMatch": false
+								},
+								{
+									"Content": "of",
+									"EndTime": 5.5475,
+									"StartTime": 5.4275,
+									"Type": "pronunciation",
+									"VocabularyFilterMatch": false
+								},
+								{
+									"Content": "times",
+									"EndTime": 6.4075,
+									"StartTime": 5.5475,
+									"Type": "pronunciation",
+									"VocabularyFilterMatch": false
+								},
+								{
+									"Content": ".",
+									"EndTime": 6.4075,
+									"StartTime": 6.4075,
+									"Type": "punctuation",
+									"VocabularyFilterMatch": false
+								},
+								{
+									"Content": "It",
+									"EndTime": 6.6575,
+									"StartTime": 6.4975,
+									"Type": "pronunciation",
+									"VocabularyFilterMatch": false
+								},
+								{
+									"Content": "was",
+									"EndTime": 6.8175,
+									"StartTime": 6.6575,
+									"Type": "pronunciation",
+									"VocabularyFilterMatch": false
+								},
+								{
+									"Content": "the",
+									"EndTime": 7.0175,
+									"StartTime": 6.8175,
+									"Type": "pronunciation",
+									"VocabularyFilterMatch": false
+								},
+								{
+									"Content": "age",
+									"EndTime": 7.3375,
+									"StartTime": 7.0175,
+									"Type": "pronunciation",
+									"VocabularyFilterMatch": false
+								},
+								{
+									"Content": "of",
+									"EndTime": 7.425,
+									"StartTime": 7.3375,
+									"Type": "pronunciation",
+									"VocabularyFilterMatch": false
+								}
+							],
+							"Transcript": "It was the best of times. It was the worst of times. It was the age of"
+						}
+					],
+					"ChannelId": "ch_0",
+					"EndTime": 7.845,
+					"IsPartial": true,
+					"ResultId": "d4f14fee-883a-4d96-af2b-67a663749857",
+					"StartTime": 2.33
+				}
+			]
+		}
+	},
+	{
+		"Transcript": {
+			"Results": [
+				{
+					"Alternatives": [
+						{
+							"Items": [
+								{
+									"Content": "It",
+									"EndTime": 2.7975,
+									"StartTime": 2.5775,
+									"Type": "pronunciation",
+									"VocabularyFilterMatch": false
+								},
+								{
+									"Content": "was",
+									"EndTime": 3.0075,
+									"StartTime": 2.7975,
+									"Type": "pronunciation",
+									"VocabularyFilterMatch": false
+								},
+								{
+									"Content": "the",
+									"EndTime": 3.1175,
+									"StartTime": 3.0075,
+									"Type": "pronunciation",
+									"VocabularyFilterMatch": false
+								},
+								{
+									"Content": "best",
+									"EndTime": 3.5075,
+									"StartTime": 3.1175,
+									"Type": "pronunciation",
+									"VocabularyFilterMatch": false
+								},
+								{
+									"Content": "of",
+									"EndTime": 3.6275,
+									"StartTime": 3.5075,
+									"Type": "pronunciation",
+									"VocabularyFilterMatch": false
+								},
+								{
+									"Content": "times",
+									"EndTime": 4.5125,
+									"StartTime": 3.6275,
+									"Type": "pronunciation",
+									"VocabularyFilterMatch": false
+								},
+								{
+									"Content": ".",
+									"EndTime": 4.5125,
+									"StartTime": 4.5125,
+									"Type": "punctuation",
+									"VocabularyFilterMatch": false
+								},
+								{
+									"Content": "It",
+									"EndTime": 4.6875,
+									"StartTime": 4.5125,
+									"Type": "pronunciation",
+									"VocabularyFilterMatch": false
+								},
+								{
+									"Content": "was",
+									"EndTime": 4.8675,
+									"StartTime": 4.6875,
+									"Type": "pronunciation",
+									"VocabularyFilterMatch": false
+								},
+								{
+									"Content": "the",
+									"EndTime": 4.9975,
+									"StartTime": 4.8675,
+									"Type": "pronunciation",
+									"VocabularyFilterMatch": false
+								},
+								{
+									"Content": "worst",
+									"EndTime": 5.4275,
+									"StartTime": 4.9975,
+									"Type": "pronunciation",
+									"VocabularyFilterMatch": false
+								},
+								{
+									"Content": "of",
+									"EndTime": 5.5475,
+									"StartTime": 5.4275,
+									"Type": "pronunciation",
+									"VocabularyFilterMatch": false
+								},
+								{
+									"Content": "times",
+									"EndTime": 6.4075,
+									"StartTime": 5.5475,
+									"Type": "pronunciation",
+									"VocabularyFilterMatch": false
+								},
+								{
+									"Content": "it",
+									"EndTime": 6.6575,
+									"StartTime": 6.4975,
+									"Type": "pronunciation",
+									"VocabularyFilterMatch": false
+								},
+								{
+									"Content": "was",
+									"EndTime": 6.8175,
+									"StartTime": 6.6575,
+									"Type": "pronunciation",
+									"VocabularyFilterMatch": false
+								},
+								{
+									"Content": "the",
+									"EndTime": 7.0175,
+									"StartTime": 6.8175,
+									"Type": "pronunciation",
+									"VocabularyFilterMatch": false
+								},
+								{
+									"Content": "age",
+									"EndTime": 7.3375,
+									"StartTime": 7.0175,
+									"Type": "pronunciation",
+									"VocabularyFilterMatch": false
+								},
+								{
+									"Content": "of",
+									"EndTime": 7.4775,
+									"StartTime": 7.3375,
+									"Type": "pronunciation",
+									"VocabularyFilterMatch": false
+								},
+								{
+									"Content": "wisdom",
+									"EndTime": 8.1875,
+									"StartTime": 7.4775,
+									"Type": "pronunciation",
+									"VocabularyFilterMatch": false
+								},
+								{
+									"Content": ".",
+									"EndTime": 8.1875,
+									"StartTime": 8.1875,
+									"Type": "punctuation",
+									"VocabularyFilterMatch": false
+								}
+							],
+							"Transcript": "It was the best of times. It was the worst of times it was the age of wisdom."
+						}
+					],
+					"ChannelId": "ch_0",
+					"EndTime": 8.345,
+					"IsPartial": true,
+					"ResultId": "d4f14fee-883a-4d96-af2b-67a663749857",
+					"StartTime": 2.33
+				}
+			]
+		}
+	},
+	{
+		"Transcript": {
+			"Results": []
+		}
+	},
+	{
+		"Transcript": {
+			"Results": [
+				{
+					"Alternatives": [
+						{
+							"Items": [
+								{
+									"Content": "It",
+									"EndTime": 2.7975,
+									"StartTime": 2.5775,
+									"Type": "pronunciation",
+									"VocabularyFilterMatch": false
+								},
+								{
+									"Content": "was",
+									"EndTime": 3.0075,
+									"StartTime": 2.7975,
+									"Type": "pronunciation",
+									"VocabularyFilterMatch": false
+								},
+								{
+									"Content": "the",
+									"EndTime": 3.1175,
+									"StartTime": 3.0075,
+									"Type": "pronunciation",
+									"VocabularyFilterMatch": false
+								},
+								{
+									"Content": "best",
+									"EndTime": 3.5075,
+									"StartTime": 3.1175,
+									"Type": "pronunciation",
+									"VocabularyFilterMatch": false
+								},
+								{
+									"Content": "of",
+									"EndTime": 3.6275,
+									"StartTime": 3.5075,
+									"Type": "pronunciation",
+									"VocabularyFilterMatch": false
+								},
+								{
+									"Content": "times",
+									"EndTime": 4.5125,
+									"StartTime": 3.6275,
+									"Type": "pronunciation",
+									"VocabularyFilterMatch": false
+								},
+								{
+									"Content": ".",
+									"EndTime": 4.5125,
+									"StartTime": 4.5125,
+									"Type": "punctuation",
+									"VocabularyFilterMatch": false
+								},
+								{
+									"Content": "It",
+									"EndTime": 4.6875,
+									"StartTime": 4.5125,
+									"Type": "pronunciation",
+									"VocabularyFilterMatch": false
+								},
+								{
+									"Content": "was",
+									"EndTime": 4.8675,
+									"StartTime": 4.6875,
+									"Type": "pronunciation",
+									"VocabularyFilterMatch": false
+								},
+								{
+									"Content": "the",
+									"EndTime": 4.9975,
+									"StartTime": 4.8675,
+									"Type": "pronunciation",
+									"VocabularyFilterMatch": false
+								},
+								{
+									"Content": "worst",
+									"EndTime": 5.4275,
+									"StartTime": 4.9975,
+									"Type": "pronunciation",
+									"VocabularyFilterMatch": false
+								},
+								{
+									"Content": "of",
+									"EndTime": 5.5475,
+									"StartTime": 5.4275,
+									"Type": "pronunciation",
+									"VocabularyFilterMatch": false
+								},
+								{
+									"Content": "times",
+									"EndTime": 6.4075,
+									"StartTime": 5.5475,
+									"Type": "pronunciation",
+									"VocabularyFilterMatch": false
+								},
+								{
+									"Content": ".",
+									"EndTime": 6.4075,
+									"StartTime": 6.4075,
+									"Type": "punctuation",
+									"VocabularyFilterMatch": false
+								},
+								{
+									"Content": "It",
+									"EndTime": 6.6575,
+									"StartTime": 6.4975,
+									"Type": "pronunciation",
+									"VocabularyFilterMatch": false
+								},
+								{
+									"Content": "was",
+									"EndTime": 6.8175,
+									"StartTime": 6.6575,
+									"Type": "pronunciation",
+									"VocabularyFilterMatch": false
+								},
+								{
+									"Content": "the",
+									"EndTime": 7.0175,
+									"StartTime": 6.8175,
+									"Type": "pronunciation",
+									"VocabularyFilterMatch": false
+								},
+								{
+									"Content": "age",
+									"EndTime": 7.3375,
+									"StartTime": 7.0175,
+									"Type": "pronunciation",
+									"VocabularyFilterMatch": false
+								},
+								{
+									"Content": "of",
+									"EndTime": 7.4775,
+									"StartTime": 7.3375,
+									"Type": "pronunciation",
+									"VocabularyFilterMatch": false
+								},
+								{
+									"Content": "wisdom",
+									"EndTime": 8.1875,
+									"StartTime": 7.4775,
+									"Type": "pronunciation",
+									"VocabularyFilterMatch": false
+								},
+								{
+									"Content": ".",
+									"EndTime": 8.1875,
+									"StartTime": 8.1875,
+									"Type": "punctuation",
+									"VocabularyFilterMatch": false
+								},
+								{
+									"Content": "It",
+									"EndTime": 8.4975,
+									"StartTime": 8.3375,
+									"Type": "pronunciation",
+									"VocabularyFilterMatch": false
+								},
+								{
+									"Content": "was",
+									"EndTime": 8.6375,
+									"StartTime": 8.4975,
+									"Type": "pronunciation",
+									"VocabularyFilterMatch": false
+								},
+								{
+									"Content": "the",
+									"EndTime": 8.845,
+									"StartTime": 8.6375,
+									"Type": "pronunciation",
+									"VocabularyFilterMatch": false
+								}
+							],
+							"Transcript": "It was the best of times. It was the worst of times. It was the age of wisdom. It was the"
+						}
+					],
+					"ChannelId": "ch_0",
+					"EndTime": 8.845,
+					"IsPartial": true,
+					"ResultId": "d4f14fee-883a-4d96-af2b-67a663749857",
+					"StartTime": 2.33
+				}
+			]
+		}
+	},
+	{
+		"Transcript": {
+			"Results": []
+		}
+	},
+	{
+		"Transcript": {
+			"Results": [
+				{
+					"Alternatives": [
+						{
+							"Items": [
+								{
+									"Content": "It",
+									"EndTime": 2.7975,
+									"StartTime": 2.5775,
+									"Type": "pronunciation",
+									"VocabularyFilterMatch": false
+								},
+								{
+									"Content": "was",
+									"EndTime": 3.0075,
+									"StartTime": 2.7975,
+									"Type": "pronunciation",
+									"VocabularyFilterMatch": false
+								},
+								{
+									"Content": "the",
+									"EndTime": 3.1175,
+									"StartTime": 3.0075,
+									"Type": "pronunciation",
+									"VocabularyFilterMatch": false
+								},
+								{
+									"Content": "best",
+									"EndTime": 3.5075,
+									"StartTime": 3.1175,
+									"Type": "pronunciation",
+									"VocabularyFilterMatch": false
+								},
+								{
+									"Content": "of",
+									"EndTime": 3.6275,
+									"StartTime": 3.5075,
+									"Type": "pronunciation",
+									"VocabularyFilterMatch": false
+								},
+								{
+									"Content": "times",
+									"EndTime": 4.5125,
+									"StartTime": 3.6275,
+									"Type": "pronunciation",
+									"VocabularyFilterMatch": false
+								},
+								{
+									"Content": ".",
+									"EndTime": 4.5125,
+									"StartTime": 4.5125,
+									"Type": "punctuation",
+									"VocabularyFilterMatch": false
+								},
+								{
+									"Content": "It",
+									"EndTime": 4.6875,
+									"StartTime": 4.5125,
+									"Type": "pronunciation",
+									"VocabularyFilterMatch": false
+								},
+								{
+									"Content": "was",
+									"EndTime": 4.8675,
+									"StartTime": 4.6875,
+									"Type": "pronunciation",
+									"VocabularyFilterMatch": false
+								},
+								{
+									"Content": "the",
+									"EndTime": 4.9975,
+									"StartTime": 4.8675,
+									"Type": "pronunciation",
+									"VocabularyFilterMatch": false
+								},
+								{
+									"Content": "worst",
+									"EndTime": 5.4275,
+									"StartTime": 4.9975,
+									"Type": "pronunciation",
+									"VocabularyFilterMatch": false
+								},
+								{
+									"Content": "of",
+									"EndTime": 5.5475,
+									"StartTime": 5.4275,
+									"Type": "pronunciation",
+									"VocabularyFilterMatch": false
+								},
+								{
+									"Content": "times",
+									"EndTime": 6.4075,
+									"StartTime": 5.5475,
+									"Type": "pronunciation",
+									"VocabularyFilterMatch": false
+								},
+								{
+									"Content": ".",
+									"EndTime": 6.4075,
+									"StartTime": 6.4075,
+									"Type": "punctuation",
+									"VocabularyFilterMatch": false
+								},
+								{
+									"Content": "It",
+									"EndTime": 6.6575,
+									"StartTime": 6.4975,
+									"Type": "pronunciation",
+									"VocabularyFilterMatch": false
+								},
+								{
+									"Content": "was",
+									"EndTime": 6.8175,
+									"StartTime": 6.6575,
+									"Type": "pronunciation",
+									"VocabularyFilterMatch": false
+								},
+								{
+									"Content": "the",
+									"EndTime": 7.0175,
+									"StartTime": 6.8175,
+									"Type": "pronunciation",
+									"VocabularyFilterMatch": false
+								},
+								{
+									"Content": "age",
+									"EndTime": 7.3375,
+									"StartTime": 7.0175,
+									"Type": "pronunciation",
+									"VocabularyFilterMatch": false
+								},
+								{
+									"Content": "of",
+									"EndTime": 7.4775,
+									"StartTime": 7.3375,
+									"Type": "pronunciation",
+									"VocabularyFilterMatch": false
+								},
+								{
+									"Content": "wisdom",
+									"EndTime": 8.1875,
+									"StartTime": 7.4775,
+									"Type": "pronunciation",
+									"VocabularyFilterMatch": false
+								},
+								{
+									"Content": ".",
+									"EndTime": 8.1875,
+									"StartTime": 8.1875,
+									"Type": "punctuation",
+									"VocabularyFilterMatch": false
+								},
+								{
+									"Content": "It",
+									"EndTime": 8.4975,
+									"StartTime": 8.3375,
+									"Type": "pronunciation",
+									"VocabularyFilterMatch": false
+								},
+								{
+									"Content": "was",
+									"EndTime": 8.6375,
+									"StartTime": 8.4975,
+									"Type": "pronunciation",
+									"VocabularyFilterMatch": false
+								},
+								{
+									"Content": "the",
+									"EndTime": 8.8025,
+									"StartTime": 8.6375,
+									"Type": "pronunciation",
+									"VocabularyFilterMatch": false
+								},
+								{
+									"Content": "age",
+									"EndTime": 9.1575,
+									"StartTime": 8.8025,
+									"Type": "pronunciation",
+									"VocabularyFilterMatch": false
+								},
+								{
+									"Content": "of",
+									"EndTime": 9.345,
+									"StartTime": 9.1575,
+									"Type": "pronunciation",
+									"VocabularyFilterMatch": false
+								}
+							],
+							"Transcript": "It was the best of times. It was the worst of times. It was the age of wisdom. It was the age of"
+						}
+					],
+					"ChannelId": "ch_0",
+					"EndTime": 9.345,
+					"IsPartial": true,
+					"ResultId": "d4f14fee-883a-4d96-af2b-67a663749857",
+					"StartTime": 2.33
+				}
+			]
+		}
+	},
+	{
+		"Transcript": {
+			"Results": [
+				{
+					"Alternatives": [
+						{
+							"Items": [
+								{
+									"Content": "It",
+									"EndTime": 2.7975,
+									"StartTime": 2.5775,
+									"Type": "pronunciation",
+									"VocabularyFilterMatch": false
+								},
+								{
+									"Content": "was",
+									"EndTime": 3.0075,
+									"StartTime": 2.7975,
+									"Type": "pronunciation",
+									"VocabularyFilterMatch": false
+								},
+								{
+									"Content": "the",
+									"EndTime": 3.1175,
+									"StartTime": 3.0075,
+									"Type": "pronunciation",
+									"VocabularyFilterMatch": false
+								},
+								{
+									"Content": "best",
+									"EndTime": 3.5075,
+									"StartTime": 3.1175,
+									"Type": "pronunciation",
+									"VocabularyFilterMatch": false
+								},
+								{
+									"Content": "of",
+									"EndTime": 3.6275,
+									"StartTime": 3.5075,
+									"Type": "pronunciation",
+									"VocabularyFilterMatch": false
+								},
+								{
+									"Content": "times",
+									"EndTime": 4.5125,
+									"StartTime": 3.6275,
+									"Type": "pronunciation",
+									"VocabularyFilterMatch": false
+								},
+								{
+									"Content": ".",
+									"EndTime": 4.5125,
+									"StartTime": 4.5125,
+									"Type": "punctuation",
+									"VocabularyFilterMatch": false
+								},
+								{
+									"Content": "It",
+									"EndTime": 4.6875,
+									"StartTime": 4.5125,
+									"Type": "pronunciation",
+									"VocabularyFilterMatch": false
+								},
+								{
+									"Content": "was",
+									"EndTime": 4.8675,
+									"StartTime": 4.6875,
+									"Type": "pronunciation",
+									"VocabularyFilterMatch": false
+								},
+								{
+									"Content": "the",
+									"EndTime": 4.9975,
+									"StartTime": 4.8675,
+									"Type": "pronunciation",
+									"VocabularyFilterMatch": false
+								},
+								{
+									"Content": "worst",
+									"EndTime": 5.4275,
+									"StartTime": 4.9975,
+									"Type": "pronunciation",
+									"VocabularyFilterMatch": false
+								},
+								{
+									"Content": "of",
+									"EndTime": 5.5475,
+									"StartTime": 5.4275,
+									"Type": "pronunciation",
+									"VocabularyFilterMatch": false
+								},
+								{
+									"Content": "times",
+									"EndTime": 6.4075,
+									"StartTime": 5.5475,
+									"Type": "pronunciation",
+									"VocabularyFilterMatch": false
+								},
+								{
+									"Content": ".",
+									"EndTime": 6.4075,
+									"StartTime": 6.4075,
+									"Type": "punctuation",
+									"VocabularyFilterMatch": false
+								},
+								{
+									"Content": "It",
+									"EndTime": 6.6575,
+									"StartTime": 6.4975,
+									"Type": "pronunciation",
+									"VocabularyFilterMatch": false
+								},
+								{
+									"Content": "was",
+									"EndTime": 6.8175,
+									"StartTime": 6.6575,
+									"Type": "pronunciation",
+									"VocabularyFilterMatch": false
+								},
+								{
+									"Content": "the",
+									"EndTime": 7.0175,
+									"StartTime": 6.8175,
+									"Type": "pronunciation",
+									"VocabularyFilterMatch": false
+								},
+								{
+									"Content": "age",
+									"EndTime": 7.3375,
+									"StartTime": 7.0175,
+									"Type": "pronunciation",
+									"VocabularyFilterMatch": false
+								},
+								{
+									"Content": "of",
+									"EndTime": 7.4775,
+									"StartTime": 7.3375,
+									"Type": "pronunciation",
+									"VocabularyFilterMatch": false
+								},
+								{
+									"Content": "wisdom",
+									"EndTime": 8.1875,
+									"StartTime": 7.4775,
+									"Type": "pronunciation",
+									"VocabularyFilterMatch": false
+								},
+								{
+									"Content": ".",
+									"EndTime": 8.1875,
+									"StartTime": 8.1875,
+									"Type": "punctuation",
+									"VocabularyFilterMatch": false
+								},
+								{
+									"Content": "It",
+									"EndTime": 8.4975,
+									"StartTime": 8.3375,
+									"Type": "pronunciation",
+									"VocabularyFilterMatch": false
+								},
+								{
+									"Content": "was",
+									"EndTime": 8.6375,
+									"StartTime": 8.4975,
+									"Type": "pronunciation",
+									"VocabularyFilterMatch": false
+								},
+								{
+									"Content": "the",
+									"EndTime": 8.8025,
+									"StartTime": 8.6375,
+									"Type": "pronunciation",
+									"VocabularyFilterMatch": false
+								},
+								{
+									"Content": "age",
+									"EndTime": 9.1575,
+									"StartTime": 8.8025,
+									"Type": "pronunciation",
+									"VocabularyFilterMatch": false
+								},
+								{
+									"Content": "of",
+									"EndTime": 9.2975,
+									"StartTime": 9.1575,
+									"Type": "pronunciation",
+									"VocabularyFilterMatch": false
+								},
+								{
+									"Content": "foolish",
+									"EndTime": 9.835,
+									"StartTime": 9.2975,
+									"Type": "pronunciation",
+									"VocabularyFilterMatch": false
+								},
+								{
+									"Content": ".",
+									"EndTime": 9.835,
+									"StartTime": 9.835,
+									"Type": "punctuation",
+									"VocabularyFilterMatch": false
+								}
+							],
+							"Transcript": "It was the best of times. It was the worst of times. It was the age of wisdom. It was the age of foolish."
+						}
+					],
+					"ChannelId": "ch_0",
+					"EndTime": 9.845,
+					"IsPartial": true,
+					"ResultId": "d4f14fee-883a-4d96-af2b-67a663749857",
+					"StartTime": 2.33
+				}
+			]
+		}
+	},
+	{
+		"Transcript": {
+			"Results": [
+				{
+					"Alternatives": [
+						{
+							"Items": [
+								{
+									"Content": "It",
+									"EndTime": 2.7975,
+									"StartTime": 2.5775,
+									"Type": "pronunciation",
+									"VocabularyFilterMatch": false
+								},
+								{
+									"Content": "was",
+									"EndTime": 3.0075,
+									"StartTime": 2.7975,
+									"Type": "pronunciation",
+									"VocabularyFilterMatch": false
+								},
+								{
+									"Content": "the",
+									"EndTime": 3.1175,
+									"StartTime": 3.0075,
+									"Type": "pronunciation",
+									"VocabularyFilterMatch": false
+								},
+								{
+									"Content": "best",
+									"EndTime": 3.5075,
+									"StartTime": 3.1175,
+									"Type": "pronunciation",
+									"VocabularyFilterMatch": false
+								},
+								{
+									"Content": "of",
+									"EndTime": 3.6275,
+									"StartTime": 3.5075,
+									"Type": "pronunciation",
+									"VocabularyFilterMatch": false
+								},
+								{
+									"Content": "times",
+									"EndTime": 4.5125,
+									"StartTime": 3.6275,
+									"Type": "pronunciation",
+									"VocabularyFilterMatch": false
+								},
+								{
+									"Content": ".",
+									"EndTime": 4.5125,
+									"StartTime": 4.5125,
+									"Type": "punctuation",
+									"VocabularyFilterMatch": false
+								},
+								{
+									"Content": "It",
+									"EndTime": 4.6875,
+									"StartTime": 4.5125,
+									"Type": "pronunciation",
+									"VocabularyFilterMatch": false
+								},
+								{
+									"Content": "was",
+									"EndTime": 4.8675,
+									"StartTime": 4.6875,
+									"Type": "pronunciation",
+									"VocabularyFilterMatch": false
+								},
+								{
+									"Content": "the",
+									"EndTime": 4.9975,
+									"StartTime": 4.8675,
+									"Type": "pronunciation",
+									"VocabularyFilterMatch": false
+								},
+								{
+									"Content": "worst",
+									"EndTime": 5.4275,
+									"StartTime": 4.9975,
+									"Type": "pronunciation",
+									"VocabularyFilterMatch": false
+								},
+								{
+									"Content": "of",
+									"EndTime": 5.5475,
+									"StartTime": 5.4275,
+									"Type": "pronunciation",
+									"VocabularyFilterMatch": false
+								},
+								{
+									"Content": "times",
+									"EndTime": 6.4075,
+									"StartTime": 5.5475,
+									"Type": "pronunciation",
+									"VocabularyFilterMatch": false
+								},
+								{
+									"Content": ".",
+									"EndTime": 6.4075,
+									"StartTime": 6.4075,
+									"Type": "punctuation",
+									"VocabularyFilterMatch": false
+								},
+								{
+									"Content": "It",
+									"EndTime": 6.6575,
+									"StartTime": 6.4975,
+									"Type": "pronunciation",
+									"VocabularyFilterMatch": false
+								},
+								{
+									"Content": "was",
+									"EndTime": 6.8175,
+									"StartTime": 6.6575,
+									"Type": "pronunciation",
+									"VocabularyFilterMatch": false
+								},
+								{
+									"Content": "the",
+									"EndTime": 7.0175,
+									"StartTime": 6.8175,
+									"Type": "pronunciation",
+									"VocabularyFilterMatch": false
+								},
+								{
+									"Content": "age",
+									"EndTime": 7.3375,
+									"StartTime": 7.0175,
+									"Type": "pronunciation",
+									"VocabularyFilterMatch": false
+								},
+								{
+									"Content": "of",
+									"EndTime": 7.4775,
+									"StartTime": 7.3375,
+									"Type": "pronunciation",
+									"VocabularyFilterMatch": false
+								},
+								{
+									"Content": "wisdom",
+									"EndTime": 8.1875,
+									"StartTime": 7.4775,
+									"Type": "pronunciation",
+									"VocabularyFilterMatch": false
+								},
+								{
+									"Content": ".",
+									"EndTime": 8.1875,
+									"StartTime": 8.1875,
+									"Type": "punctuation",
+									"VocabularyFilterMatch": false
+								},
+								{
+									"Content": "It",
+									"EndTime": 8.4975,
+									"StartTime": 8.3375,
+									"Type": "pronunciation",
+									"VocabularyFilterMatch": false
+								},
+								{
+									"Content": "was",
+									"EndTime": 8.6375,
+									"StartTime": 8.4975,
+									"Type": "pronunciation",
+									"VocabularyFilterMatch": false
+								},
+								{
+									"Content": "the",
+									"EndTime": 8.8025,
+									"StartTime": 8.6375,
+									"Type": "pronunciation",
+									"VocabularyFilterMatch": false
+								},
+								{
+									"Content": "age",
+									"EndTime": 9.1575,
+									"StartTime": 8.8025,
+									"Type": "pronunciation",
+									"VocabularyFilterMatch": false
+								},
+								{
+									"Content": "of",
+									"EndTime": 9.2975,
+									"StartTime": 9.1575,
+									"Type": "pronunciation",
+									"VocabularyFilterMatch": false
+								},
+								{
+									"Content": "foolishness",
+									"EndTime": 10.345,
+									"StartTime": 9.2975,
+									"Type": "pronunciation",
+									"VocabularyFilterMatch": false
+								},
+								{
+									"Content": ".",
+									"EndTime": 10.345,
+									"StartTime": 10.345,
+									"Type": "punctuation",
+									"VocabularyFilterMatch": false
+								}
+							],
+							"Transcript": "It was the best of times. It was the worst of times. It was the age of wisdom. It was the age of foolishness."
+						}
+					],
+					"ChannelId": "ch_0",
+					"EndTime": 10.345,
+					"IsPartial": true,
+					"ResultId": "d4f14fee-883a-4d96-af2b-67a663749857",
+					"StartTime": 2.33
+				}
+			]
+		}
+	},
+	{
+		"Transcript": {
+			"Results": []
+		}
+	},
+	{
+		"Transcript": {
+			"Results": [
+				{
+					"Alternatives": [
+						{
+							"Items": [
+								{
+									"Content": "It",
+									"EndTime": 2.7975,
+									"StartTime": 2.5775,
+									"Type": "pronunciation",
+									"VocabularyFilterMatch": false
+								},
+								{
+									"Content": "was",
+									"EndTime": 3.0075,
+									"StartTime": 2.7975,
+									"Type": "pronunciation",
+									"VocabularyFilterMatch": false
+								},
+								{
+									"Content": "the",
+									"EndTime": 3.1175,
+									"StartTime": 3.0075,
+									"Type": "pronunciation",
+									"VocabularyFilterMatch": false
+								},
+								{
+									"Content": "best",
+									"EndTime": 3.5075,
+									"StartTime": 3.1175,
+									"Type": "pronunciation",
+									"VocabularyFilterMatch": false
+								},
+								{
+									"Content": "of",
+									"EndTime": 3.6275,
+									"StartTime": 3.5075,
+									"Type": "pronunciation",
+									"VocabularyFilterMatch": false
+								},
+								{
+									"Content": "times",
+									"EndTime": 4.5125,
+									"StartTime": 3.6275,
+									"Type": "pronunciation",
+									"VocabularyFilterMatch": false
+								},
+								{
+									"Content": ".",
+									"EndTime": 4.5125,
+									"StartTime": 4.5125,
+									"Type": "punctuation",
+									"VocabularyFilterMatch": false
+								},
+								{
+									"Content": "It",
+									"EndTime": 4.6875,
+									"StartTime": 4.5125,
+									"Type": "pronunciation",
+									"VocabularyFilterMatch": false
+								},
+								{
+									"Content": "was",
+									"EndTime": 4.8675,
+									"StartTime": 4.6875,
+									"Type": "pronunciation",
+									"VocabularyFilterMatch": false
+								},
+								{
+									"Content": "the",
+									"EndTime": 4.9975,
+									"StartTime": 4.8675,
+									"Type": "pronunciation",
+									"VocabularyFilterMatch": false
+								},
+								{
+									"Content": "worst",
+									"EndTime": 5.4275,
+									"StartTime": 4.9975,
+									"Type": "pronunciation",
+									"VocabularyFilterMatch": false
+								},
+								{
+									"Content": "of",
+									"EndTime": 5.5475,
+									"StartTime": 5.4275,
+									"Type": "pronunciation",
+									"VocabularyFilterMatch": false
+								},
+								{
+									"Content": "times",
+									"EndTime": 6.4075,
+									"StartTime": 5.5475,
+									"Type": "pronunciation",
+									"VocabularyFilterMatch": false
+								},
+								{
+									"Content": ".",
+									"EndTime": 6.4075,
+									"StartTime": 6.4075,
+									"Type": "punctuation",
+									"VocabularyFilterMatch": false
+								},
+								{
+									"Content": "It",
+									"EndTime": 6.6575,
+									"StartTime": 6.4975,
+									"Type": "pronunciation",
+									"VocabularyFilterMatch": false
+								},
+								{
+									"Content": "was",
+									"EndTime": 6.8175,
+									"StartTime": 6.6575,
+									"Type": "pronunciation",
+									"VocabularyFilterMatch": false
+								},
+								{
+									"Content": "the",
+									"EndTime": 7.0175,
+									"StartTime": 6.8175,
+									"Type": "pronunciation",
+									"VocabularyFilterMatch": false
+								},
+								{
+									"Content": "age",
+									"EndTime": 7.3375,
+									"StartTime": 7.0175,
+									"Type": "pronunciation",
+									"VocabularyFilterMatch": false
+								},
+								{
+									"Content": "of",
+									"EndTime": 7.4775,
+									"StartTime": 7.3375,
+									"Type": "pronunciation",
+									"VocabularyFilterMatch": false
+								},
+								{
+									"Content": "wisdom",
+									"EndTime": 8.1875,
+									"StartTime": 7.4775,
+									"Type": "pronunciation",
+									"VocabularyFilterMatch": false
+								},
+								{
+									"Content": ".",
+									"EndTime": 8.1875,
+									"StartTime": 8.1875,
+									"Type": "punctuation",
+									"VocabularyFilterMatch": false
+								},
+								{
+									"Content": "It",
+									"EndTime": 8.4975,
+									"StartTime": 8.3375,
+									"Type": "pronunciation",
+									"VocabularyFilterMatch": false
+								},
+								{
+									"Content": "was",
+									"EndTime": 8.6375,
+									"StartTime": 8.4975,
+									"Type": "pronunciation",
+									"VocabularyFilterMatch": false
+								},
+								{
+									"Content": "the",
+									"EndTime": 8.8025,
+									"StartTime": 8.6375,
+									"Type": "pronunciation",
+									"VocabularyFilterMatch": false
+								},
+								{
+									"Content": "age",
+									"EndTime": 9.1575,
+									"StartTime": 8.8025,
+									"Type": "pronunciation",
+									"VocabularyFilterMatch": false
+								},
+								{
+									"Content": "of",
+									"EndTime": 9.2975,
+									"StartTime": 9.1575,
+									"Type": "pronunciation",
+									"VocabularyFilterMatch": false
+								},
+								{
+									"Content": "foolishness",
+									"EndTime": 10.3575,
+									"StartTime": 9.2975,
+									"Type": "pronunciation",
+									"VocabularyFilterMatch": false
+								},
+								{
+									"Content": ".",
+									"EndTime": 10.3575,
+									"StartTime": 10.3575,
+									"Type": "punctuation",
+									"VocabularyFilterMatch": false
+								}
+							],
+							"Transcript": "It was the best of times. It was the worst of times. It was the age of wisdom. It was the age of foolishness."
+						}
+					],
+					"ChannelId": "ch_0",
+					"EndTime": 10.845,
+					"IsPartial": true,
+					"ResultId": "d4f14fee-883a-4d96-af2b-67a663749857",
+					"StartTime": 2.33
+				}
+			]
+		}
+	},
+	{
+		"Transcript": {
+			"Results": [
+				{
+					"Alternatives": [
+						{
+							"Items": [
+								{
+									"Content": "It",
+									"EndTime": 2.7975,
+									"StartTime": 2.5775,
+									"Type": "pronunciation",
+									"VocabularyFilterMatch": false
+								},
+								{
+									"Content": "was",
+									"EndTime": 3.0075,
+									"StartTime": 2.7975,
+									"Type": "pronunciation",
+									"VocabularyFilterMatch": false
+								},
+								{
+									"Content": "the",
+									"EndTime": 3.1175,
+									"StartTime": 3.0075,
+									"Type": "pronunciation",
+									"VocabularyFilterMatch": false
+								},
+								{
+									"Content": "best",
+									"EndTime": 3.5075,
+									"StartTime": 3.1175,
+									"Type": "pronunciation",
+									"VocabularyFilterMatch": false
+								},
+								{
+									"Content": "of",
+									"EndTime": 3.6275,
+									"StartTime": 3.5075,
+									"Type": "pronunciation",
+									"VocabularyFilterMatch": false
+								},
+								{
+									"Content": "times",
+									"EndTime": 4.5125,
+									"StartTime": 3.6275,
+									"Type": "pronunciation",
+									"VocabularyFilterMatch": false
+								},
+								{
+									"Content": ".",
+									"EndTime": 4.5125,
+									"StartTime": 4.5125,
+									"Type": "punctuation",
+									"VocabularyFilterMatch": false
+								},
+								{
+									"Content": "It",
+									"EndTime": 4.6875,
+									"StartTime": 4.5125,
+									"Type": "pronunciation",
+									"VocabularyFilterMatch": false
+								},
+								{
+									"Content": "was",
+									"EndTime": 4.8675,
+									"StartTime": 4.6875,
+									"Type": "pronunciation",
+									"VocabularyFilterMatch": false
+								},
+								{
+									"Content": "the",
+									"EndTime": 4.9975,
+									"StartTime": 4.8675,
+									"Type": "pronunciation",
+									"VocabularyFilterMatch": false
+								},
+								{
+									"Content": "worst",
+									"EndTime": 5.4275,
+									"StartTime": 4.9975,
+									"Type": "pronunciation",
+									"VocabularyFilterMatch": false
+								},
+								{
+									"Content": "of",
+									"EndTime": 5.5475,
+									"StartTime": 5.4275,
+									"Type": "pronunciation",
+									"VocabularyFilterMatch": false
+								},
+								{
+									"Content": "times",
+									"EndTime": 6.4075,
+									"StartTime": 5.5475,
+									"Type": "pronunciation",
+									"VocabularyFilterMatch": false
+								},
+								{
+									"Content": ".",
+									"EndTime": 6.4075,
+									"StartTime": 6.4075,
+									"Type": "punctuation",
+									"VocabularyFilterMatch": false
+								},
+								{
+									"Content": "It",
+									"EndTime": 6.6575,
+									"StartTime": 6.4975,
+									"Type": "pronunciation",
+									"VocabularyFilterMatch": false
+								},
+								{
+									"Content": "was",
+									"EndTime": 6.8175,
+									"StartTime": 6.6575,
+									"Type": "pronunciation",
+									"VocabularyFilterMatch": false
+								},
+								{
+									"Content": "the",
+									"EndTime": 7.0175,
+									"StartTime": 6.8175,
+									"Type": "pronunciation",
+									"VocabularyFilterMatch": false
+								},
+								{
+									"Content": "age",
+									"EndTime": 7.3375,
+									"StartTime": 7.0175,
+									"Type": "pronunciation",
+									"VocabularyFilterMatch": false
+								},
+								{
+									"Content": "of",
+									"EndTime": 7.4775,
+									"StartTime": 7.3375,
+									"Type": "pronunciation",
+									"VocabularyFilterMatch": false
+								},
+								{
+									"Content": "wisdom",
+									"EndTime": 8.1875,
+									"StartTime": 7.4775,
+									"Type": "pronunciation",
+									"VocabularyFilterMatch": false
+								},
+								{
+									"Content": ".",
+									"EndTime": 8.1875,
+									"StartTime": 8.1875,
+									"Type": "punctuation",
+									"VocabularyFilterMatch": false
+								},
+								{
+									"Content": "It",
+									"EndTime": 8.4975,
+									"StartTime": 8.3375,
+									"Type": "pronunciation",
+									"VocabularyFilterMatch": false
+								},
+								{
+									"Content": "was",
+									"EndTime": 8.6375,
+									"StartTime": 8.4975,
+									"Type": "pronunciation",
+									"VocabularyFilterMatch": false
+								},
+								{
+									"Content": "the",
+									"EndTime": 8.8025,
+									"StartTime": 8.6375,
+									"Type": "pronunciation",
+									"VocabularyFilterMatch": false
+								},
+								{
+									"Content": "age",
+									"EndTime": 9.1575,
+									"StartTime": 8.8025,
+									"Type": "pronunciation",
+									"VocabularyFilterMatch": false
+								},
+								{
+									"Content": "of",
+									"EndTime": 9.2975,
+									"StartTime": 9.1575,
+									"Type": "pronunciation",
+									"VocabularyFilterMatch": false
+								},
+								{
+									"Content": "foolishness",
+									"EndTime": 10.3575,
+									"StartTime": 9.2975,
+									"Type": "pronunciation",
+									"VocabularyFilterMatch": false
+								},
+								{
+									"Content": ".",
+									"EndTime": 10.3575,
+									"StartTime": 10.3575,
+									"Type": "punctuation",
+									"VocabularyFilterMatch": false
+								},
+								{
+									"Content": "It",
+									"EndTime": 10.8175,
+									"StartTime": 10.6175,
+									"Type": "pronunciation",
+									"VocabularyFilterMatch": false
+								},
+								{
+									"Content": "was",
+									"EndTime": 10.9975,
+									"StartTime": 10.8175,
+									"Type": "pronunciation",
+									"VocabularyFilterMatch": false
+								},
+								{
+									"Content": "the",
+									"EndTime": 11.345,
+									"StartTime": 10.9975,
+									"Type": "pronunciation",
+									"VocabularyFilterMatch": false
+								}
+							],
+							"Transcript": "It was the best of times. It was the worst of times. It was the age of wisdom. It was the age of foolishness. It was the"
+						}
+					],
+					"ChannelId": "ch_0",
+					"EndTime": 11.345,
+					"IsPartial": true,
+					"ResultId": "d4f14fee-883a-4d96-af2b-67a663749857",
+					"StartTime": 2.33
+				}
+			]
+		}
+	},
+	{
+		"Transcript": {
+			"Results": []
+		}
+	},
+	{
+		"Transcript": {
+			"Results": [
+				{
+					"Alternatives": [
+						{
+							"Items": [
+								{
+									"Content": "It",
+									"EndTime": 2.7975,
+									"StartTime": 2.5775,
+									"Type": "pronunciation",
+									"VocabularyFilterMatch": false
+								},
+								{
+									"Content": "was",
+									"EndTime": 3.0075,
+									"StartTime": 2.7975,
+									"Type": "pronunciation",
+									"VocabularyFilterMatch": false
+								},
+								{
+									"Content": "the",
+									"EndTime": 3.1175,
+									"StartTime": 3.0075,
+									"Type": "pronunciation",
+									"VocabularyFilterMatch": false
+								},
+								{
+									"Content": "best",
+									"EndTime": 3.5075,
+									"StartTime": 3.1175,
+									"Type": "pronunciation",
+									"VocabularyFilterMatch": false
+								},
+								{
+									"Content": "of",
+									"EndTime": 3.6275,
+									"StartTime": 3.5075,
+									"Type": "pronunciation",
+									"VocabularyFilterMatch": false
+								},
+								{
+									"Content": "times",
+									"EndTime": 4.5125,
+									"StartTime": 3.6275,
+									"Type": "pronunciation",
+									"VocabularyFilterMatch": false
+								},
+								{
+									"Content": ".",
+									"EndTime": 4.5125,
+									"StartTime": 4.5125,
+									"Type": "punctuation",
+									"VocabularyFilterMatch": false
+								},
+								{
+									"Content": "It",
+									"EndTime": 4.6875,
+									"StartTime": 4.5125,
+									"Type": "pronunciation",
+									"VocabularyFilterMatch": false
+								},
+								{
+									"Content": "was",
+									"EndTime": 4.8675,
+									"StartTime": 4.6875,
+									"Type": "pronunciation",
+									"VocabularyFilterMatch": false
+								},
+								{
+									"Content": "the",
+									"EndTime": 4.9975,
+									"StartTime": 4.8675,
+									"Type": "pronunciation",
+									"VocabularyFilterMatch": false
+								},
+								{
+									"Content": "worst",
+									"EndTime": 5.4275,
+									"StartTime": 4.9975,
+									"Type": "pronunciation",
+									"VocabularyFilterMatch": false
+								},
+								{
+									"Content": "of",
+									"EndTime": 5.5475,
+									"StartTime": 5.4275,
+									"Type": "pronunciation",
+									"VocabularyFilterMatch": false
+								},
+								{
+									"Content": "times",
+									"EndTime": 6.4075,
+									"StartTime": 5.5475,
+									"Type": "pronunciation",
+									"VocabularyFilterMatch": false
+								},
+								{
+									"Content": ".",
+									"EndTime": 6.4075,
+									"StartTime": 6.4075,
+									"Type": "punctuation",
+									"VocabularyFilterMatch": false
+								},
+								{
+									"Content": "It",
+									"EndTime": 6.6575,
+									"StartTime": 6.4975,
+									"Type": "pronunciation",
+									"VocabularyFilterMatch": false
+								},
+								{
+									"Content": "was",
+									"EndTime": 6.8175,
+									"StartTime": 6.6575,
+									"Type": "pronunciation",
+									"VocabularyFilterMatch": false
+								},
+								{
+									"Content": "the",
+									"EndTime": 7.0175,
+									"StartTime": 6.8175,
+									"Type": "pronunciation",
+									"VocabularyFilterMatch": false
+								},
+								{
+									"Content": "age",
+									"EndTime": 7.3375,
+									"StartTime": 7.0175,
+									"Type": "pronunciation",
+									"VocabularyFilterMatch": false
+								},
+								{
+									"Content": "of",
+									"EndTime": 7.4775,
+									"StartTime": 7.3375,
+									"Type": "pronunciation",
+									"VocabularyFilterMatch": false
+								},
+								{
+									"Content": "wisdom",
+									"EndTime": 8.1875,
+									"StartTime": 7.4775,
+									"Type": "pronunciation",
+									"VocabularyFilterMatch": false
+								},
+								{
+									"Content": ".",
+									"EndTime": 8.1875,
+									"StartTime": 8.1875,
+									"Type": "punctuation",
+									"VocabularyFilterMatch": false
+								},
+								{
+									"Content": "It",
+									"EndTime": 8.4975,
+									"StartTime": 8.3375,
+									"Type": "pronunciation",
+									"VocabularyFilterMatch": false
+								},
+								{
+									"Content": "was",
+									"EndTime": 8.6375,
+									"StartTime": 8.4975,
+									"Type": "pronunciation",
+									"VocabularyFilterMatch": false
+								},
+								{
+									"Content": "the",
+									"EndTime": 8.8025,
+									"StartTime": 8.6375,
+									"Type": "pronunciation",
+									"VocabularyFilterMatch": false
+								},
+								{
+									"Content": "age",
+									"EndTime": 9.1575,
+									"StartTime": 8.8025,
+									"Type": "pronunciation",
+									"VocabularyFilterMatch": false
+								},
+								{
+									"Content": "of",
+									"EndTime": 9.2975,
+									"StartTime": 9.1575,
+									"Type": "pronunciation",
+									"VocabularyFilterMatch": false
+								},
+								{
+									"Content": "foolishness",
+									"EndTime": 10.3575,
+									"StartTime": 9.2975,
+									"Type": "pronunciation",
+									"VocabularyFilterMatch": false
+								},
+								{
+									"Content": ".",
+									"EndTime": 10.3575,
+									"StartTime": 10.3575,
+									"Type": "punctuation",
+									"VocabularyFilterMatch": false
+								},
+								{
+									"Content": "It",
+									"EndTime": 10.8175,
+									"StartTime": 10.6175,
+									"Type": "pronunciation",
+									"VocabularyFilterMatch": false
+								},
+								{
+									"Content": "was",
+									"EndTime": 10.9975,
+									"StartTime": 10.8175,
+									"Type": "pronunciation",
+									"VocabularyFilterMatch": false
+								},
+								{
+									"Content": "the",
+									"EndTime": 11.2225,
+									"StartTime": 10.9975,
+									"Type": "pronunciation",
+									"VocabularyFilterMatch": false
+								},
+								{
+									"Content": "epoch",
+									"EndTime": 11.845,
+									"StartTime": 11.2225,
+									"Type": "pronunciation",
+									"VocabularyFilterMatch": false
+								},
+								{
+									"Content": ".",
+									"EndTime": 11.845,
+									"StartTime": 11.845,
+									"Type": "punctuation",
+									"VocabularyFilterMatch": false
+								}
+							],
+							"Transcript": "It was the best of times. It was the worst of times. It was the age of wisdom. It was the age of foolishness. It was the epoch."
+						}
+					],
+					"ChannelId": "ch_0",
+					"EndTime": 11.845,
+					"IsPartial": true,
+					"ResultId": "d4f14fee-883a-4d96-af2b-67a663749857",
+					"StartTime": 2.33
+				}
+			]
+		}
+	},
+	{
+		"Transcript": {
+			"Results": []
+		}
+	},
+	{
+		"Transcript": {
+			"Results": [
+				{
+					"Alternatives": [
+						{
+							"Items": [
+								{
+									"Content": "It",
+									"EndTime": 2.7975,
+									"StartTime": 2.5775,
+									"Type": "pronunciation",
+									"VocabularyFilterMatch": false
+								},
+								{
+									"Content": "was",
+									"EndTime": 3.0075,
+									"StartTime": 2.7975,
+									"Type": "pronunciation",
+									"VocabularyFilterMatch": false
+								},
+								{
+									"Content": "the",
+									"EndTime": 3.1175,
+									"StartTime": 3.0075,
+									"Type": "pronunciation",
+									"VocabularyFilterMatch": false
+								},
+								{
+									"Content": "best",
+									"EndTime": 3.5075,
+									"StartTime": 3.1175,
+									"Type": "pronunciation",
+									"VocabularyFilterMatch": false
+								},
+								{
+									"Content": "of",
+									"EndTime": 3.6275,
+									"StartTime": 3.5075,
+									"Type": "pronunciation",
+									"VocabularyFilterMatch": false
+								},
+								{
+									"Content": "times",
+									"EndTime": 4.5125,
+									"StartTime": 3.6275,
+									"Type": "pronunciation",
+									"VocabularyFilterMatch": false
+								},
+								{
+									"Content": ".",
+									"EndTime": 4.5125,
+									"StartTime": 4.5125,
+									"Type": "punctuation",
+									"VocabularyFilterMatch": false
+								},
+								{
+									"Content": "It",
+									"EndTime": 4.6875,
+									"StartTime": 4.5125,
+									"Type": "pronunciation",
+									"VocabularyFilterMatch": false
+								},
+								{
+									"Content": "was",
+									"EndTime": 4.8675,
+									"StartTime": 4.6875,
+									"Type": "pronunciation",
+									"VocabularyFilterMatch": false
+								},
+								{
+									"Content": "the",
+									"EndTime": 4.9975,
+									"StartTime": 4.8675,
+									"Type": "pronunciation",
+									"VocabularyFilterMatch": false
+								},
+								{
+									"Content": "worst",
+									"EndTime": 5.4275,
+									"StartTime": 4.9975,
+									"Type": "pronunciation",
+									"VocabularyFilterMatch": false
+								},
+								{
+									"Content": "of",
+									"EndTime": 5.5475,
+									"StartTime": 5.4275,
+									"Type": "pronunciation",
+									"VocabularyFilterMatch": false
+								},
+								{
+									"Content": "times",
+									"EndTime": 6.4075,
+									"StartTime": 5.5475,
+									"Type": "pronunciation",
+									"VocabularyFilterMatch": false
+								},
+								{
+									"Content": ".",
+									"EndTime": 6.4075,
+									"StartTime": 6.4075,
+									"Type": "punctuation",
+									"VocabularyFilterMatch": false
+								},
+								{
+									"Content": "It",
+									"EndTime": 6.6575,
+									"StartTime": 6.4975,
+									"Type": "pronunciation",
+									"VocabularyFilterMatch": false
+								},
+								{
+									"Content": "was",
+									"EndTime": 6.8175,
+									"StartTime": 6.6575,
+									"Type": "pronunciation",
+									"VocabularyFilterMatch": false
+								},
+								{
+									"Content": "the",
+									"EndTime": 7.0175,
+									"StartTime": 6.8175,
+									"Type": "pronunciation",
+									"VocabularyFilterMatch": false
+								},
+								{
+									"Content": "age",
+									"EndTime": 7.3375,
+									"StartTime": 7.0175,
+									"Type": "pronunciation",
+									"VocabularyFilterMatch": false
+								},
+								{
+									"Content": "of",
+									"EndTime": 7.4775,
+									"StartTime": 7.3375,
+									"Type": "pronunciation",
+									"VocabularyFilterMatch": false
+								},
+								{
+									"Content": "wisdom",
+									"EndTime": 8.1875,
+									"StartTime": 7.4775,
+									"Type": "pronunciation",
+									"VocabularyFilterMatch": false
+								},
+								{
+									"Content": ".",
+									"EndTime": 8.1875,
+									"StartTime": 8.1875,
+									"Type": "punctuation",
+									"VocabularyFilterMatch": false
+								},
+								{
+									"Content": "It",
+									"EndTime": 8.4975,
+									"StartTime": 8.3375,
+									"Type": "pronunciation",
+									"VocabularyFilterMatch": false
+								},
+								{
+									"Content": "was",
+									"EndTime": 8.6375,
+									"StartTime": 8.4975,
+									"Type": "pronunciation",
+									"VocabularyFilterMatch": false
+								},
+								{
+									"Content": "the",
+									"EndTime": 8.8025,
+									"StartTime": 8.6375,
+									"Type": "pronunciation",
+									"VocabularyFilterMatch": false
+								},
+								{
+									"Content": "age",
+									"EndTime": 9.1575,
+									"StartTime": 8.8025,
+									"Type": "pronunciation",
+									"VocabularyFilterMatch": false
+								},
+								{
+									"Content": "of",
+									"EndTime": 9.2975,
+									"StartTime": 9.1575,
+									"Type": "pronunciation",
+									"VocabularyFilterMatch": false
+								},
+								{
+									"Content": "foolishness",
+									"EndTime": 10.3575,
+									"StartTime": 9.2975,
+									"Type": "pronunciation",
+									"VocabularyFilterMatch": false
+								},
+								{
+									"Content": ".",
+									"EndTime": 10.3575,
+									"StartTime": 10.3575,
+									"Type": "punctuation",
+									"VocabularyFilterMatch": false
+								},
+								{
+									"Content": "It",
+									"EndTime": 10.8175,
+									"StartTime": 10.6175,
+									"Type": "pronunciation",
+									"VocabularyFilterMatch": false
+								},
+								{
+									"Content": "was",
+									"EndTime": 10.9975,
+									"StartTime": 10.8175,
+									"Type": "pronunciation",
+									"VocabularyFilterMatch": false
+								},
+								{
+									"Content": "the",
+									"EndTime": 11.2225,
+									"StartTime": 10.9975,
+									"Type": "pronunciation",
+									"VocabularyFilterMatch": false
+								},
+								{
+									"Content": "epoch",
+									"EndTime": 11.8725,
+									"StartTime": 11.2225,
+									"Type": "pronunciation",
+									"VocabularyFilterMatch": false
+								},
+								{
+									"Content": "of",
+									"EndTime": 12.2375,
+									"StartTime": 11.8725,
+									"Type": "pronunciation",
+									"VocabularyFilterMatch": false
+								}
+							],
+							"Transcript": "It was the best of times. It was the worst of times. It was the age of wisdom. It was the age of foolishness. It was the epoch of"
+						}
+					],
+					"ChannelId": "ch_0",
+					"EndTime": 12.345,
+					"IsPartial": true,
+					"ResultId": "d4f14fee-883a-4d96-af2b-67a663749857",
+					"StartTime": 2.33
+				}
+			]
+		}
+	},
+	{
+		"Transcript": {
+			"Results": [
+				{
+					"Alternatives": [
+						{
+							"Items": [
+								{
+									"Content": "It",
+									"EndTime": 2.7975,
+									"StartTime": 2.5775,
+									"Type": "pronunciation",
+									"VocabularyFilterMatch": false
+								},
+								{
+									"Content": "was",
+									"EndTime": 3.0075,
+									"StartTime": 2.7975,
+									"Type": "pronunciation",
+									"VocabularyFilterMatch": false
+								},
+								{
+									"Content": "the",
+									"EndTime": 3.1175,
+									"StartTime": 3.0075,
+									"Type": "pronunciation",
+									"VocabularyFilterMatch": false
+								},
+								{
+									"Content": "best",
+									"EndTime": 3.5075,
+									"StartTime": 3.1175,
+									"Type": "pronunciation",
+									"VocabularyFilterMatch": false
+								},
+								{
+									"Content": "of",
+									"EndTime": 3.6275,
+									"StartTime": 3.5075,
+									"Type": "pronunciation",
+									"VocabularyFilterMatch": false
+								},
+								{
+									"Content": "times",
+									"EndTime": 4.5125,
+									"StartTime": 3.6275,
+									"Type": "pronunciation",
+									"VocabularyFilterMatch": false
+								},
+								{
+									"Content": ".",
+									"EndTime": 4.5125,
+									"StartTime": 4.5125,
+									"Type": "punctuation",
+									"VocabularyFilterMatch": false
+								},
+								{
+									"Content": "It",
+									"EndTime": 4.6875,
+									"StartTime": 4.5125,
+									"Type": "pronunciation",
+									"VocabularyFilterMatch": false
+								},
+								{
+									"Content": "was",
+									"EndTime": 4.8675,
+									"StartTime": 4.6875,
+									"Type": "pronunciation",
+									"VocabularyFilterMatch": false
+								},
+								{
+									"Content": "the",
+									"EndTime": 4.9975,
+									"StartTime": 4.8675,
+									"Type": "pronunciation",
+									"VocabularyFilterMatch": false
+								},
+								{
+									"Content": "worst",
+									"EndTime": 5.4275,
+									"StartTime": 4.9975,
+									"Type": "pronunciation",
+									"VocabularyFilterMatch": false
+								},
+								{
+									"Content": "of",
+									"EndTime": 5.5475,
+									"StartTime": 5.4275,
+									"Type": "pronunciation",
+									"VocabularyFilterMatch": false
+								},
+								{
+									"Content": "times",
+									"EndTime": 6.4075,
+									"StartTime": 5.5475,
+									"Type": "pronunciation",
+									"VocabularyFilterMatch": false
+								},
+								{
+									"Content": ".",
+									"EndTime": 6.4075,
+									"StartTime": 6.4075,
+									"Type": "punctuation",
+									"VocabularyFilterMatch": false
+								},
+								{
+									"Content": "It",
+									"EndTime": 6.6575,
+									"StartTime": 6.4975,
+									"Type": "pronunciation",
+									"VocabularyFilterMatch": false
+								},
+								{
+									"Content": "was",
+									"EndTime": 6.8175,
+									"StartTime": 6.6575,
+									"Type": "pronunciation",
+									"VocabularyFilterMatch": false
+								},
+								{
+									"Content": "the",
+									"EndTime": 7.0175,
+									"StartTime": 6.8175,
+									"Type": "pronunciation",
+									"VocabularyFilterMatch": false
+								},
+								{
+									"Content": "age",
+									"EndTime": 7.3375,
+									"StartTime": 7.0175,
+									"Type": "pronunciation",
+									"VocabularyFilterMatch": false
+								},
+								{
+									"Content": "of",
+									"EndTime": 7.4775,
+									"StartTime": 7.3375,
+									"Type": "pronunciation",
+									"VocabularyFilterMatch": false
+								},
+								{
+									"Content": "wisdom",
+									"EndTime": 8.1875,
+									"StartTime": 7.4775,
+									"Type": "pronunciation",
+									"VocabularyFilterMatch": false
+								},
+								{
+									"Content": ".",
+									"EndTime": 8.1875,
+									"StartTime": 8.1875,
+									"Type": "punctuation",
+									"VocabularyFilterMatch": false
+								},
+								{
+									"Content": "It",
+									"EndTime": 8.4975,
+									"StartTime": 8.3375,
+									"Type": "pronunciation",
+									"VocabularyFilterMatch": false
+								},
+								{
+									"Content": "was",
+									"EndTime": 8.6375,
+									"StartTime": 8.4975,
+									"Type": "pronunciation",
+									"VocabularyFilterMatch": false
+								},
+								{
+									"Content": "the",
+									"EndTime": 8.8025,
+									"StartTime": 8.6375,
+									"Type": "pronunciation",
+									"VocabularyFilterMatch": false
+								},
+								{
+									"Content": "age",
+									"EndTime": 9.1575,
+									"StartTime": 8.8025,
+									"Type": "pronunciation",
+									"VocabularyFilterMatch": false
+								},
+								{
+									"Content": "of",
+									"EndTime": 9.2975,
+									"StartTime": 9.1575,
+									"Type": "pronunciation",
+									"VocabularyFilterMatch": false
+								},
+								{
+									"Content": "foolishness",
+									"EndTime": 10.3575,
+									"StartTime": 9.2975,
+									"Type": "pronunciation",
+									"VocabularyFilterMatch": false
+								},
+								{
+									"Content": ".",
+									"EndTime": 10.3575,
+									"StartTime": 10.3575,
+									"Type": "punctuation",
+									"VocabularyFilterMatch": false
+								},
+								{
+									"Content": "It",
+									"EndTime": 10.8175,
+									"StartTime": 10.6175,
+									"Type": "pronunciation",
+									"VocabularyFilterMatch": false
+								},
+								{
+									"Content": "was",
+									"EndTime": 10.9975,
+									"StartTime": 10.8175,
+									"Type": "pronunciation",
+									"VocabularyFilterMatch": false
+								},
+								{
+									"Content": "the",
+									"EndTime": 11.2225,
+									"StartTime": 10.9975,
+									"Type": "pronunciation",
+									"VocabularyFilterMatch": false
+								},
+								{
+									"Content": "epoch",
+									"EndTime": 11.8725,
+									"StartTime": 11.2225,
+									"Type": "pronunciation",
+									"VocabularyFilterMatch": false
+								},
+								{
+									"Content": "of",
+									"EndTime": 12.1575,
+									"StartTime": 11.8725,
+									"Type": "pronunciation",
+									"VocabularyFilterMatch": false
+								},
+								{
+									"Content": "belief",
+									"EndTime": 12.845,
+									"StartTime": 12.1575,
+									"Type": "pronunciation",
+									"VocabularyFilterMatch": false
+								},
+								{
+									"Content": ".",
+									"EndTime": 12.845,
+									"StartTime": 12.845,
+									"Type": "punctuation",
+									"VocabularyFilterMatch": false
+								}
+							],
+							"Transcript": "It was the best of times. It was the worst of times. It was the age of wisdom. It was the age of foolishness. It was the epoch of belief."
+						}
+					],
+					"ChannelId": "ch_0",
+					"EndTime": 12.845,
+					"IsPartial": true,
+					"ResultId": "d4f14fee-883a-4d96-af2b-67a663749857",
+					"StartTime": 2.33
+				}
+			]
+		}
+	},
+	{
+		"Transcript": {
+			"Results": [
+				{
+					"Alternatives": [
+						{
+							"Items": [
+								{
+									"Content": "It",
+									"EndTime": 2.7975,
+									"StartTime": 2.5775,
+									"Type": "pronunciation",
+									"VocabularyFilterMatch": false
+								},
+								{
+									"Content": "was",
+									"EndTime": 3.0075,
+									"StartTime": 2.7975,
+									"Type": "pronunciation",
+									"VocabularyFilterMatch": false
+								},
+								{
+									"Content": "the",
+									"EndTime": 3.1175,
+									"StartTime": 3.0075,
+									"Type": "pronunciation",
+									"VocabularyFilterMatch": false
+								},
+								{
+									"Content": "best",
+									"EndTime": 3.5075,
+									"StartTime": 3.1175,
+									"Type": "pronunciation",
+									"VocabularyFilterMatch": false
+								},
+								{
+									"Content": "of",
+									"EndTime": 3.6275,
+									"StartTime": 3.5075,
+									"Type": "pronunciation",
+									"VocabularyFilterMatch": false
+								},
+								{
+									"Content": "times",
+									"EndTime": 4.5125,
+									"StartTime": 3.6275,
+									"Type": "pronunciation",
+									"VocabularyFilterMatch": false
+								},
+								{
+									"Content": ".",
+									"EndTime": 4.5125,
+									"StartTime": 4.5125,
+									"Type": "punctuation",
+									"VocabularyFilterMatch": false
+								},
+								{
+									"Content": "It",
+									"EndTime": 4.6875,
+									"StartTime": 4.5125,
+									"Type": "pronunciation",
+									"VocabularyFilterMatch": false
+								},
+								{
+									"Content": "was",
+									"EndTime": 4.8675,
+									"StartTime": 4.6875,
+									"Type": "pronunciation",
+									"VocabularyFilterMatch": false
+								},
+								{
+									"Content": "the",
+									"EndTime": 4.9975,
+									"StartTime": 4.8675,
+									"Type": "pronunciation",
+									"VocabularyFilterMatch": false
+								},
+								{
+									"Content": "worst",
+									"EndTime": 5.4275,
+									"StartTime": 4.9975,
+									"Type": "pronunciation",
+									"VocabularyFilterMatch": false
+								},
+								{
+									"Content": "of",
+									"EndTime": 5.5475,
+									"StartTime": 5.4275,
+									"Type": "pronunciation",
+									"VocabularyFilterMatch": false
+								},
+								{
+									"Content": "times",
+									"EndTime": 6.4075,
+									"StartTime": 5.5475,
+									"Type": "pronunciation",
+									"VocabularyFilterMatch": false
+								},
+								{
+									"Content": ".",
+									"EndTime": 6.4075,
+									"StartTime": 6.4075,
+									"Type": "punctuation",
+									"VocabularyFilterMatch": false
+								},
+								{
+									"Content": "It",
+									"EndTime": 6.6575,
+									"StartTime": 6.4975,
+									"Type": "pronunciation",
+									"VocabularyFilterMatch": false
+								},
+								{
+									"Content": "was",
+									"EndTime": 6.8175,
+									"StartTime": 6.6575,
+									"Type": "pronunciation",
+									"VocabularyFilterMatch": false
+								},
+								{
+									"Content": "the",
+									"EndTime": 7.0175,
+									"StartTime": 6.8175,
+									"Type": "pronunciation",
+									"VocabularyFilterMatch": false
+								},
+								{
+									"Content": "age",
+									"EndTime": 7.3375,
+									"StartTime": 7.0175,
+									"Type": "pronunciation",
+									"VocabularyFilterMatch": false
+								},
+								{
+									"Content": "of",
+									"EndTime": 7.4775,
+									"StartTime": 7.3375,
+									"Type": "pronunciation",
+									"VocabularyFilterMatch": false
+								},
+								{
+									"Content": "wisdom",
+									"EndTime": 8.1875,
+									"StartTime": 7.4775,
+									"Type": "pronunciation",
+									"VocabularyFilterMatch": false
+								},
+								{
+									"Content": ".",
+									"EndTime": 8.1875,
+									"StartTime": 8.1875,
+									"Type": "punctuation",
+									"VocabularyFilterMatch": false
+								},
+								{
+									"Content": "It",
+									"EndTime": 8.4975,
+									"StartTime": 8.3375,
+									"Type": "pronunciation",
+									"VocabularyFilterMatch": false
+								},
+								{
+									"Content": "was",
+									"EndTime": 8.6375,
+									"StartTime": 8.4975,
+									"Type": "pronunciation",
+									"VocabularyFilterMatch": false
+								},
+								{
+									"Content": "the",
+									"EndTime": 8.8025,
+									"StartTime": 8.6375,
+									"Type": "pronunciation",
+									"VocabularyFilterMatch": false
+								},
+								{
+									"Content": "age",
+									"EndTime": 9.1575,
+									"StartTime": 8.8025,
+									"Type": "pronunciation",
+									"VocabularyFilterMatch": false
+								},
+								{
+									"Content": "of",
+									"EndTime": 9.2975,
+									"StartTime": 9.1575,
+									"Type": "pronunciation",
+									"VocabularyFilterMatch": false
+								},
+								{
+									"Content": "foolishness",
+									"EndTime": 10.3575,
+									"StartTime": 9.2975,
+									"Type": "pronunciation",
+									"VocabularyFilterMatch": false
+								},
+								{
+									"Content": ".",
+									"EndTime": 10.3575,
+									"StartTime": 10.3575,
+									"Type": "punctuation",
+									"VocabularyFilterMatch": false
+								},
+								{
+									"Content": "It",
+									"EndTime": 10.8175,
+									"StartTime": 10.6175,
+									"Type": "pronunciation",
+									"VocabularyFilterMatch": false
+								},
+								{
+									"Content": "was",
+									"EndTime": 10.9975,
+									"StartTime": 10.8175,
+									"Type": "pronunciation",
+									"VocabularyFilterMatch": false
+								},
+								{
+									"Content": "the",
+									"EndTime": 11.2225,
+									"StartTime": 10.9975,
+									"Type": "pronunciation",
+									"VocabularyFilterMatch": false
+								},
+								{
+									"Content": "epoch",
+									"EndTime": 11.8725,
+									"StartTime": 11.2225,
+									"Type": "pronunciation",
+									"VocabularyFilterMatch": false
+								},
+								{
+									"Content": "of",
+									"EndTime": 12.1575,
+									"StartTime": 11.8725,
+									"Type": "pronunciation",
+									"VocabularyFilterMatch": false
+								},
+								{
+									"Content": "belief",
+									"EndTime": 12.945,
+									"StartTime": 12.1575,
+									"Type": "pronunciation",
+									"VocabularyFilterMatch": false
+								},
+								{
+									"Content": ".",
+									"EndTime": 12.945,
+									"StartTime": 12.945,
+									"Type": "punctuation",
+									"VocabularyFilterMatch": false
+								}
+							],
+							"Transcript": "It was the best of times. It was the worst of times. It was the age of wisdom. It was the age of foolishness. It was the epoch of belief."
+						}
+					],
+					"ChannelId": "ch_0",
+					"EndTime": 12.945,
+					"IsPartial": true,
+					"ResultId": "d4f14fee-883a-4d96-af2b-67a663749857",
+					"StartTime": 2.33
+				}
+			]
+		}
+	},
+	{
+		"Transcript": {
+			"Results": [
+				{
+					"Alternatives": [
+						{
+							"Items": [
+								{
+									"Confidence": 1,
+									"Content": "It",
+									"EndTime": 2.7975,
+									"StartTime": 2.5775,
+									"Type": "pronunciation",
+									"VocabularyFilterMatch": false
+								},
+								{
+									"Confidence": 1,
+									"Content": "was",
+									"EndTime": 3.0075,
+									"StartTime": 2.7975,
+									"Type": "pronunciation",
+									"VocabularyFilterMatch": false
+								},
+								{
+									"Confidence": 1,
+									"Content": "the",
+									"EndTime": 3.1175,
+									"StartTime": 3.0075,
+									"Type": "pronunciation",
+									"VocabularyFilterMatch": false
+								},
+								{
+									"Confidence": 1,
+									"Content": "best",
+									"EndTime": 3.5075,
+									"StartTime": 3.1175,
+									"Type": "pronunciation",
+									"VocabularyFilterMatch": false
+								},
+								{
+									"Confidence": 1,
+									"Content": "of",
+									"EndTime": 3.6275,
+									"StartTime": 3.5075,
+									"Type": "pronunciation",
+									"VocabularyFilterMatch": false
+								},
+								{
+									"Confidence": 1,
+									"Content": "times",
+									"EndTime": 4.5125,
+									"StartTime": 3.6275,
+									"Type": "pronunciation",
+									"VocabularyFilterMatch": false
+								},
+								{
+									"Content": ".",
+									"EndTime": 4.5125,
+									"StartTime": 4.5125,
+									"Type": "punctuation",
+									"VocabularyFilterMatch": false
+								},
+								{
+									"Confidence": 1,
+									"Content": "It",
+									"EndTime": 4.6875,
+									"StartTime": 4.5125,
+									"Type": "pronunciation",
+									"VocabularyFilterMatch": false
+								},
+								{
+									"Confidence": 1,
+									"Content": "was",
+									"EndTime": 4.8675,
+									"StartTime": 4.6875,
+									"Type": "pronunciation",
+									"VocabularyFilterMatch": false
+								},
+								{
+									"Confidence": 1,
+									"Content": "the",
+									"EndTime": 4.9975,
+									"StartTime": 4.8675,
+									"Type": "pronunciation",
+									"VocabularyFilterMatch": false
+								},
+								{
+									"Confidence": 1,
+									"Content": "worst",
+									"EndTime": 5.4275,
+									"StartTime": 4.9975,
+									"Type": "pronunciation",
+									"VocabularyFilterMatch": false
+								},
+								{
+									"Confidence": 1,
+									"Content": "of",
+									"EndTime": 5.5475,
+									"StartTime": 5.4275,
+									"Type": "pronunciation",
+									"VocabularyFilterMatch": false
+								},
+								{
+									"Confidence": 1,
+									"Content": "times",
+									"EndTime": 6.4075,
+									"StartTime": 5.5475,
+									"Type": "pronunciation",
+									"VocabularyFilterMatch": false
+								},
+								{
+									"Content": ".",
+									"EndTime": 6.4075,
+									"StartTime": 6.4075,
+									"Type": "punctuation",
+									"VocabularyFilterMatch": false
+								},
+								{
+									"Confidence": 1,
+									"Content": "It",
+									"EndTime": 6.6575,
+									"StartTime": 6.4975,
+									"Type": "pronunciation",
+									"VocabularyFilterMatch": false
+								},
+								{
+									"Confidence": 1,
+									"Content": "was",
+									"EndTime": 6.8175,
+									"StartTime": 6.6575,
+									"Type": "pronunciation",
+									"VocabularyFilterMatch": false
+								},
+								{
+									"Confidence": 1,
+									"Content": "the",
+									"EndTime": 7.0175,
+									"StartTime": 6.8175,
+									"Type": "pronunciation",
+									"VocabularyFilterMatch": false
+								},
+								{
+									"Confidence": 1,
+									"Content": "age",
+									"EndTime": 7.3375,
+									"StartTime": 7.0175,
+									"Type": "pronunciation",
+									"VocabularyFilterMatch": false
+								},
+								{
+									"Confidence": 1,
+									"Content": "of",
+									"EndTime": 7.4775,
+									"StartTime": 7.3375,
+									"Type": "pronunciation",
+									"VocabularyFilterMatch": false
+								},
+								{
+									"Confidence": 1,
+									"Content": "wisdom",
+									"EndTime": 8.1875,
+									"StartTime": 7.4775,
+									"Type": "pronunciation",
+									"VocabularyFilterMatch": false
+								},
+								{
+									"Content": ".",
+									"EndTime": 8.1875,
+									"StartTime": 8.1875,
+									"Type": "punctuation",
+									"VocabularyFilterMatch": false
+								},
+								{
+									"Confidence": 1,
+									"Content": "It",
+									"EndTime": 8.4975,
+									"StartTime": 8.3375,
+									"Type": "pronunciation",
+									"VocabularyFilterMatch": false
+								},
+								{
+									"Confidence": 1,
+									"Content": "was",
+									"EndTime": 8.6375,
+									"StartTime": 8.4975,
+									"Type": "pronunciation",
+									"VocabularyFilterMatch": false
+								},
+								{
+									"Confidence": 1,
+									"Content": "the",
+									"EndTime": 8.8025,
+									"StartTime": 8.6375,
+									"Type": "pronunciation",
+									"VocabularyFilterMatch": false
+								},
+								{
+									"Confidence": 1,
+									"Content": "age",
+									"EndTime": 9.1575,
+									"StartTime": 8.8025,
+									"Type": "pronunciation",
+									"VocabularyFilterMatch": false
+								},
+								{
+									"Confidence": 1,
+									"Content": "of",
+									"EndTime": 9.2975,
+									"StartTime": 9.1575,
+									"Type": "pronunciation",
+									"VocabularyFilterMatch": false
+								},
+								{
+									"Confidence": 1,
+									"Content": "foolishness",
+									"EndTime": 10.3575,
+									"StartTime": 9.2975,
+									"Type": "pronunciation",
+									"VocabularyFilterMatch": false
+								},
+								{
+									"Content": ".",
+									"EndTime": 10.3575,
+									"StartTime": 10.3575,
+									"Type": "punctuation",
+									"VocabularyFilterMatch": false
+								},
+								{
+									"Confidence": 1,
+									"Content": "It",
+									"EndTime": 10.8175,
+									"StartTime": 10.6175,
+									"Type": "pronunciation",
+									"VocabularyFilterMatch": false
+								},
+								{
+									"Confidence": 1,
+									"Content": "was",
+									"EndTime": 10.9975,
+									"StartTime": 10.8175,
+									"Type": "pronunciation",
+									"VocabularyFilterMatch": false
+								},
+								{
+									"Confidence": 1,
+									"Content": "the",
+									"EndTime": 11.2225,
+									"StartTime": 10.9975,
+									"Type": "pronunciation",
+									"VocabularyFilterMatch": false
+								},
+								{
+									"Confidence": 0.9949,
+									"Content": "epoch",
+									"EndTime": 11.8725,
+									"StartTime": 11.2225,
+									"Type": "pronunciation",
+									"VocabularyFilterMatch": false
+								},
+								{
+									"Confidence": 1,
+									"Content": "of",
+									"EndTime": 12.1575,
+									"StartTime": 11.8725,
+									"Type": "pronunciation",
+									"VocabularyFilterMatch": false
+								},
+								{
+									"Confidence": 1,
+									"Content": "belief",
+									"EndTime": 12.945,
+									"StartTime": 12.1575,
+									"Type": "pronunciation",
+									"VocabularyFilterMatch": false
+								},
+								{
+									"Content": ".",
+									"EndTime": 12.945,
+									"StartTime": 12.945,
+									"Type": "punctuation",
+									"VocabularyFilterMatch": false
+								}
+							],
+							"Transcript": "It was the best of times. It was the worst of times. It was the age of wisdom. It was the age of foolishness. It was the epoch of belief."
+						}
+					],
+					"ChannelId": "ch_0",
+					"EndTime": 12.945,
+					"IsPartial": false,
+					"ResultId": "d4f14fee-883a-4d96-af2b-67a663749857",
+					"StartTime": 2.33
+				}
+			]
+		}
+	},
+	{
+		"Transcript": {
+			"Results": []
+		}
+	},
+	{
+		"Transcript": {
+			"Results": [
+				{
+					"Alternatives": [
+						{
+							"Items": [
+								{
+									"Content": "It",
+									"EndTime": 13.5475,
+									"StartTime": 13.3375,
+									"Type": "pronunciation",
+									"VocabularyFilterMatch": false
+								},
+								{
+									"Content": ".",
+									"EndTime": 13.5475,
+									"StartTime": 13.5475,
+									"Type": "punctuation",
+									"VocabularyFilterMatch": false
+								}
+							],
+							"Transcript": "It."
+						}
+					],
+					"ChannelId": "ch_0",
+					"EndTime": 13.595,
+					"IsPartial": true,
+					"ResultId": "0667e54d-7b0a-4453-8880-3ee5d6a9454a",
+					"StartTime": 13.08
+				}
+			]
+		}
+	},
+	{
+		"Transcript": {
+			"Results": [
+				{
+					"Alternatives": [
+						{
+							"Items": [
+								{
+									"Content": "It",
+									"EndTime": 13.5575,
+									"StartTime": 13.3375,
+									"Type": "pronunciation",
+									"VocabularyFilterMatch": false
+								},
+								{
+									"Content": "was",
+									"EndTime": 13.7175,
+									"StartTime": 13.5575,
+									"Type": "pronunciation",
+									"VocabularyFilterMatch": false
+								},
+								{
+									"Content": "the",
+									"EndTime": 13.8675,
+									"StartTime": 13.7175,
+									"Type": "pronunciation",
+									"VocabularyFilterMatch": false
+								},
+								{
+									"Content": "EPA",
+									"EndTime": 14.095,
+									"StartTime": 13.8675,
+									"Type": "pronunciation",
+									"VocabularyFilterMatch": false
+								},
+								{
+									"Content": ".",
+									"EndTime": 14.095,
+									"StartTime": 14.095,
+									"Type": "punctuation",
+									"VocabularyFilterMatch": false
+								}
+							],
+							"Transcript": "It was the EPA."
+						}
+					],
+					"ChannelId": "ch_0",
+					"EndTime": 14.095,
+					"IsPartial": true,
+					"ResultId": "0667e54d-7b0a-4453-8880-3ee5d6a9454a",
+					"StartTime": 13.08
+				}
+			]
+		}
+	},
+	{
+		"Transcript": {
+			"Results": []
+		}
+	},
+	{
+		"Transcript": {
+			"Results": [
+				{
+					"Alternatives": [
+						{
+							"Items": [
+								{
+									"Content": "It",
+									"EndTime": 13.5575,
+									"StartTime": 13.3375,
+									"Type": "pronunciation",
+									"VocabularyFilterMatch": false
+								},
+								{
+									"Content": "was",
+									"EndTime": 13.7175,
+									"StartTime": 13.5575,
+									"Type": "pronunciation",
+									"VocabularyFilterMatch": false
+								},
+								{
+									"Content": "the",
+									"EndTime": 13.8675,
+									"StartTime": 13.7175,
+									"Type": "pronunciation",
+									"VocabularyFilterMatch": false
+								},
+								{
+									"Content": "epoch",
+									"EndTime": 14.3575,
+									"StartTime": 13.8675,
+									"Type": "pronunciation",
+									"VocabularyFilterMatch": false
+								},
+								{
+									"Content": "of",
+									"EndTime": 14.595,
+									"StartTime": 14.3575,
+									"Type": "pronunciation",
+									"VocabularyFilterMatch": false
+								}
+							],
+							"Transcript": "It was the epoch of"
+						}
+					],
+					"ChannelId": "ch_0",
+					"EndTime": 14.595,
+					"IsPartial": true,
+					"ResultId": "0667e54d-7b0a-4453-8880-3ee5d6a9454a",
+					"StartTime": 13.08
+				}
+			]
+		}
+	},
+	{
+		"Transcript": {
+			"Results": [
+				{
+					"Alternatives": [
+						{
+							"Items": [
+								{
+									"Content": "It",
+									"EndTime": 13.5575,
+									"StartTime": 13.3375,
+									"Type": "pronunciation",
+									"VocabularyFilterMatch": false
+								},
+								{
+									"Content": "was",
+									"EndTime": 13.7175,
+									"StartTime": 13.5575,
+									"Type": "pronunciation",
+									"VocabularyFilterMatch": false
+								},
+								{
+									"Content": "the",
+									"EndTime": 13.8675,
+									"StartTime": 13.7175,
+									"Type": "pronunciation",
+									"VocabularyFilterMatch": false
+								},
+								{
+									"Content": "epoch",
+									"EndTime": 14.3575,
+									"StartTime": 13.8675,
+									"Type": "pronunciation",
+									"VocabularyFilterMatch": false
+								},
+								{
+									"Content": "of",
+									"EndTime": 14.565,
+									"StartTime": 14.3575,
+									"Type": "pronunciation",
+									"VocabularyFilterMatch": false
+								}
+							],
+							"Transcript": "It was the epoch of"
+						}
+					],
+					"ChannelId": "ch_0",
+					"EndTime": 15.095,
+					"IsPartial": true,
+					"ResultId": "0667e54d-7b0a-4453-8880-3ee5d6a9454a",
+					"StartTime": 13.08
+				}
+			]
+		}
+	},
+	{
+		"Transcript": {
+			"Results": []
+		}
+	},
+	{
+		"Transcript": {
+			"Results": [
+				{
+					"Alternatives": [
+						{
+							"Items": [
+								{
+									"Content": "It",
+									"EndTime": 13.5575,
+									"StartTime": 13.3375,
+									"Type": "pronunciation",
+									"VocabularyFilterMatch": false
+								},
+								{
+									"Content": "was",
+									"EndTime": 13.7175,
+									"StartTime": 13.5575,
+									"Type": "pronunciation",
+									"VocabularyFilterMatch": false
+								},
+								{
+									"Content": "the",
+									"EndTime": 13.8675,
+									"StartTime": 13.7175,
+									"Type": "pronunciation",
+									"VocabularyFilterMatch": false
+								},
+								{
+									"Content": "epoch",
+									"EndTime": 14.3575,
+									"StartTime": 13.8675,
+									"Type": "pronunciation",
+									"VocabularyFilterMatch": false
+								},
+								{
+									"Content": "of",
+									"EndTime": 14.5625,
+									"StartTime": 14.3575,
+									"Type": "pronunciation",
+									"VocabularyFilterMatch": false
+								},
+								{
+									"Content": "incredulity",
+									"EndTime": 15.595,
+									"StartTime": 14.5625,
+									"Type": "pronunciation",
+									"VocabularyFilterMatch": false
+								},
+								{
+									"Content": ".",
+									"EndTime": 15.595,
+									"StartTime": 15.595,
+									"Type": "punctuation",
+									"VocabularyFilterMatch": false
+								}
+							],
+							"Transcript": "It was the epoch of incredulity."
+						}
+					],
+					"ChannelId": "ch_0",
+					"EndTime": 15.595,
+					"IsPartial": true,
+					"ResultId": "0667e54d-7b0a-4453-8880-3ee5d6a9454a",
+					"StartTime": 13.08
+				}
+			]
+		}
+	},
+	{
+		"Transcript": {
+			"Results": [
+				{
+					"Alternatives": [
+						{
+							"Items": [
+								{
+									"Content": "It",
+									"EndTime": 13.5575,
+									"StartTime": 13.3375,
+									"Type": "pronunciation",
+									"VocabularyFilterMatch": false
+								},
+								{
+									"Content": "was",
+									"EndTime": 13.7175,
+									"StartTime": 13.5575,
+									"Type": "pronunciation",
+									"VocabularyFilterMatch": false
+								},
+								{
+									"Content": "the",
+									"EndTime": 13.8675,
+									"StartTime": 13.7175,
+									"Type": "pronunciation",
+									"VocabularyFilterMatch": false
+								},
+								{
+									"Content": "epoch",
+									"EndTime": 14.3575,
+									"StartTime": 13.8675,
+									"Type": "pronunciation",
+									"VocabularyFilterMatch": false
+								},
+								{
+									"Content": "of",
+									"EndTime": 14.5625,
+									"StartTime": 14.3575,
+									"Type": "pronunciation",
+									"VocabularyFilterMatch": false
+								},
+								{
+									"Content": "incredulity",
+									"EndTime": 15.6975,
+									"StartTime": 14.5625,
+									"Type": "pronunciation",
+									"VocabularyFilterMatch": false
+								},
+								{
+									"Content": ".",
+									"EndTime": 15.6975,
+									"StartTime": 15.6975,
+									"Type": "punctuation",
+									"VocabularyFilterMatch": false
+								}
+							],
+							"Transcript": "It was the epoch of incredulity."
+						}
+					],
+					"ChannelId": "ch_0",
+					"EndTime": 16.095,
+					"IsPartial": true,
+					"ResultId": "0667e54d-7b0a-4453-8880-3ee5d6a9454a",
+					"StartTime": 13.08
+				}
+			]
+		}
+	},
+	{
+		"Transcript": {
+			"Results": []
+		}
+	},
+	{
+		"Transcript": {
+			"Results": [
+				{
+					"Alternatives": [
+						{
+							"Items": [
+								{
+									"Content": "It",
+									"EndTime": 13.5575,
+									"StartTime": 13.3375,
+									"Type": "pronunciation",
+									"VocabularyFilterMatch": false
+								},
+								{
+									"Content": "was",
+									"EndTime": 13.7175,
+									"StartTime": 13.5575,
+									"Type": "pronunciation",
+									"VocabularyFilterMatch": false
+								},
+								{
+									"Content": "the",
+									"EndTime": 13.8675,
+									"StartTime": 13.7175,
+									"Type": "pronunciation",
+									"VocabularyFilterMatch": false
+								},
+								{
+									"Content": "epoch",
+									"EndTime": 14.3575,
+									"StartTime": 13.8675,
+									"Type": "pronunciation",
+									"VocabularyFilterMatch": false
+								},
+								{
+									"Content": "of",
+									"EndTime": 14.5625,
+									"StartTime": 14.3575,
+									"Type": "pronunciation",
+									"VocabularyFilterMatch": false
+								},
+								{
+									"Content": "incredulity",
+									"EndTime": 15.6975,
+									"StartTime": 14.5625,
+									"Type": "pronunciation",
+									"VocabularyFilterMatch": false
+								},
+								{
+									"Content": ".",
+									"EndTime": 15.6975,
+									"StartTime": 15.6975,
+									"Type": "punctuation",
+									"VocabularyFilterMatch": false
+								},
+								{
+									"Content": "It",
+									"EndTime": 16.1275,
+									"StartTime": 15.9775,
+									"Type": "pronunciation",
+									"VocabularyFilterMatch": false
+								},
+								{
+									"Content": "was",
+									"EndTime": 16.2875,
+									"StartTime": 16.1275,
+									"Type": "pronunciation",
+									"VocabularyFilterMatch": false
+								},
+								{
+									"Content": "the",
+									"EndTime": 16.3975,
+									"StartTime": 16.2875,
+									"Type": "pronunciation",
+									"VocabularyFilterMatch": false
+								},
+								{
+									"Content": "sea",
+									"EndTime": 16.595,
+									"StartTime": 16.3975,
+									"Type": "pronunciation",
+									"VocabularyFilterMatch": false
+								},
+								{
+									"Content": ".",
+									"EndTime": 16.595,
+									"StartTime": 16.595,
+									"Type": "punctuation",
+									"VocabularyFilterMatch": false
+								}
+							],
+							"Transcript": "It was the epoch of incredulity. It was the sea."
+						}
+					],
+					"ChannelId": "ch_0",
+					"EndTime": 16.595,
+					"IsPartial": true,
+					"ResultId": "0667e54d-7b0a-4453-8880-3ee5d6a9454a",
+					"StartTime": 13.08
+				}
+			]
+		}
+	},
+	{
+		"Transcript": {
+			"Results": [
+				{
+					"Alternatives": [
+						{
+							"Items": [
+								{
+									"Content": "It",
+									"EndTime": 13.5575,
+									"StartTime": 13.3375,
+									"Type": "pronunciation",
+									"VocabularyFilterMatch": false
+								},
+								{
+									"Content": "was",
+									"EndTime": 13.7175,
+									"StartTime": 13.5575,
+									"Type": "pronunciation",
+									"VocabularyFilterMatch": false
+								},
+								{
+									"Content": "the",
+									"EndTime": 13.8675,
+									"StartTime": 13.7175,
+									"Type": "pronunciation",
+									"VocabularyFilterMatch": false
+								},
+								{
+									"Content": "epoch",
+									"EndTime": 14.3575,
+									"StartTime": 13.8675,
+									"Type": "pronunciation",
+									"VocabularyFilterMatch": false
+								},
+								{
+									"Content": "of",
+									"EndTime": 14.5625,
+									"StartTime": 14.3575,
+									"Type": "pronunciation",
+									"VocabularyFilterMatch": false
+								},
+								{
+									"Content": "incredulity",
+									"EndTime": 15.6975,
+									"StartTime": 14.5625,
+									"Type": "pronunciation",
+									"VocabularyFilterMatch": false
+								},
+								{
+									"Content": ".",
+									"EndTime": 15.6975,
+									"StartTime": 15.6975,
+									"Type": "punctuation",
+									"VocabularyFilterMatch": false
+								},
+								{
+									"Content": "It",
+									"EndTime": 16.1275,
+									"StartTime": 15.9775,
+									"Type": "pronunciation",
+									"VocabularyFilterMatch": false
+								},
+								{
+									"Content": "was",
+									"EndTime": 16.2875,
+									"StartTime": 16.1275,
+									"Type": "pronunciation",
+									"VocabularyFilterMatch": false
+								},
+								{
+									"Content": "the",
+									"EndTime": 16.3975,
+									"StartTime": 16.2875,
+									"Type": "pronunciation",
+									"VocabularyFilterMatch": false
+								},
+								{
+									"Content": "season",
+									"EndTime": 16.8575,
+									"StartTime": 16.3975,
+									"Type": "pronunciation",
+									"VocabularyFilterMatch": false
+								},
+								{
+									"Content": "of",
+									"EndTime": 17.095,
+									"StartTime": 16.8575,
+									"Type": "pronunciation",
+									"VocabularyFilterMatch": false
+								}
+							],
+							"Transcript": "It was the epoch of incredulity. It was the season of"
+						}
+					],
+					"ChannelId": "ch_0",
+					"EndTime": 17.095,
+					"IsPartial": true,
+					"ResultId": "0667e54d-7b0a-4453-8880-3ee5d6a9454a",
+					"StartTime": 13.08
+				}
+			]
+		}
+	},
+	{
+		"Transcript": {
+			"Results": []
+		}
+	},
+	{
+		"Transcript": {
+			"Results": [
+				{
+					"Alternatives": [
+						{
+							"Items": [
+								{
+									"Content": "It",
+									"EndTime": 13.5575,
+									"StartTime": 13.3375,
+									"Type": "pronunciation",
+									"VocabularyFilterMatch": false
+								},
+								{
+									"Content": "was",
+									"EndTime": 13.7175,
+									"StartTime": 13.5575,
+									"Type": "pronunciation",
+									"VocabularyFilterMatch": false
+								},
+								{
+									"Content": "the",
+									"EndTime": 13.8675,
+									"StartTime": 13.7175,
+									"Type": "pronunciation",
+									"VocabularyFilterMatch": false
+								},
+								{
+									"Content": "epoch",
+									"EndTime": 14.3575,
+									"StartTime": 13.8675,
+									"Type": "pronunciation",
+									"VocabularyFilterMatch": false
+								},
+								{
+									"Content": "of",
+									"EndTime": 14.5625,
+									"StartTime": 14.3575,
+									"Type": "pronunciation",
+									"VocabularyFilterMatch": false
+								},
+								{
+									"Content": "incredulity",
+									"EndTime": 15.6975,
+									"StartTime": 14.5625,
+									"Type": "pronunciation",
+									"VocabularyFilterMatch": false
+								},
+								{
+									"Content": ".",
+									"EndTime": 15.6975,
+									"StartTime": 15.6975,
+									"Type": "punctuation",
+									"VocabularyFilterMatch": false
+								},
+								{
+									"Content": "It",
+									"EndTime": 16.1275,
+									"StartTime": 15.9775,
+									"Type": "pronunciation",
+									"VocabularyFilterMatch": false
+								},
+								{
+									"Content": "was",
+									"EndTime": 16.2875,
+									"StartTime": 16.1275,
+									"Type": "pronunciation",
+									"VocabularyFilterMatch": false
+								},
+								{
+									"Content": "the",
+									"EndTime": 16.3975,
+									"StartTime": 16.2875,
+									"Type": "pronunciation",
+									"VocabularyFilterMatch": false
+								},
+								{
+									"Content": "season",
+									"EndTime": 16.8575,
+									"StartTime": 16.3975,
+									"Type": "pronunciation",
+									"VocabularyFilterMatch": false
+								},
+								{
+									"Content": "of",
+									"EndTime": 16.9975,
+									"StartTime": 16.8575,
+									"Type": "pronunciation",
+									"VocabularyFilterMatch": false
+								},
+								{
+									"Content": "light",
+									"EndTime": 17.5275,
+									"StartTime": 16.9975,
+									"Type": "pronunciation",
+									"VocabularyFilterMatch": false
+								},
+								{
+									"Content": ".",
+									"EndTime": 17.5275,
+									"StartTime": 17.5275,
+									"Type": "punctuation",
+									"VocabularyFilterMatch": false
+								}
+							],
+							"Transcript": "It was the epoch of incredulity. It was the season of light."
+						}
+					],
+					"ChannelId": "ch_0",
+					"EndTime": 17.595,
+					"IsPartial": true,
+					"ResultId": "0667e54d-7b0a-4453-8880-3ee5d6a9454a",
+					"StartTime": 13.08
+				}
+			]
+		}
+	},
+	{
+		"Transcript": {
+			"Results": [
+				{
+					"Alternatives": [
+						{
+							"Items": [
+								{
+									"Content": "It",
+									"EndTime": 13.5575,
+									"StartTime": 13.3375,
+									"Type": "pronunciation",
+									"VocabularyFilterMatch": false
+								},
+								{
+									"Content": "was",
+									"EndTime": 13.7175,
+									"StartTime": 13.5575,
+									"Type": "pronunciation",
+									"VocabularyFilterMatch": false
+								},
+								{
+									"Content": "the",
+									"EndTime": 13.8675,
+									"StartTime": 13.7175,
+									"Type": "pronunciation",
+									"VocabularyFilterMatch": false
+								},
+								{
+									"Content": "epoch",
+									"EndTime": 14.3575,
+									"StartTime": 13.8675,
+									"Type": "pronunciation",
+									"VocabularyFilterMatch": false
+								},
+								{
+									"Content": "of",
+									"EndTime": 14.5625,
+									"StartTime": 14.3575,
+									"Type": "pronunciation",
+									"VocabularyFilterMatch": false
+								},
+								{
+									"Content": "incredulity",
+									"EndTime": 15.6975,
+									"StartTime": 14.5625,
+									"Type": "pronunciation",
+									"VocabularyFilterMatch": false
+								},
+								{
+									"Content": ".",
+									"EndTime": 15.6975,
+									"StartTime": 15.6975,
+									"Type": "punctuation",
+									"VocabularyFilterMatch": false
+								},
+								{
+									"Content": "It",
+									"EndTime": 16.1275,
+									"StartTime": 15.9775,
+									"Type": "pronunciation",
+									"VocabularyFilterMatch": false
+								},
+								{
+									"Content": "was",
+									"EndTime": 16.2875,
+									"StartTime": 16.1275,
+									"Type": "pronunciation",
+									"VocabularyFilterMatch": false
+								},
+								{
+									"Content": "the",
+									"EndTime": 16.3975,
+									"StartTime": 16.2875,
+									"Type": "pronunciation",
+									"VocabularyFilterMatch": false
+								},
+								{
+									"Content": "season",
+									"EndTime": 16.8575,
+									"StartTime": 16.3975,
+									"Type": "pronunciation",
+									"VocabularyFilterMatch": false
+								},
+								{
+									"Content": "of",
+									"EndTime": 16.9975,
+									"StartTime": 16.8575,
+									"Type": "pronunciation",
+									"VocabularyFilterMatch": false
+								},
+								{
+									"Content": "light",
+									"EndTime": 17.5275,
+									"StartTime": 16.9975,
+									"Type": "pronunciation",
+									"VocabularyFilterMatch": false
+								},
+								{
+									"Content": ".",
+									"EndTime": 17.5275,
+									"StartTime": 17.5275,
+									"Type": "punctuation",
+									"VocabularyFilterMatch": false
+								},
+								{
+									"Content": "It",
+									"EndTime": 17.8875,
+									"StartTime": 17.7375,
+									"Type": "pronunciation",
+									"VocabularyFilterMatch": false
+								},
+								{
+									"Content": "was",
+									"EndTime": 18.095,
+									"StartTime": 17.8875,
+									"Type": "pronunciation",
+									"VocabularyFilterMatch": false
+								}
+							],
+							"Transcript": "It was the epoch of incredulity. It was the season of light. It was"
+						}
+					],
+					"ChannelId": "ch_0",
+					"EndTime": 18.095,
+					"IsPartial": true,
+					"ResultId": "0667e54d-7b0a-4453-8880-3ee5d6a9454a",
+					"StartTime": 13.08
+				}
+			]
+		}
+	},
+	{
+		"Transcript": {
+			"Results": []
+		}
+	},
+	{
+		"Transcript": {
+			"Results": [
+				{
+					"Alternatives": [
+						{
+							"Items": [
+								{
+									"Content": "It",
+									"EndTime": 13.5575,
+									"StartTime": 13.3375,
+									"Type": "pronunciation",
+									"VocabularyFilterMatch": false
+								},
+								{
+									"Content": "was",
+									"EndTime": 13.7175,
+									"StartTime": 13.5575,
+									"Type": "pronunciation",
+									"VocabularyFilterMatch": false
+								},
+								{
+									"Content": "the",
+									"EndTime": 13.8675,
+									"StartTime": 13.7175,
+									"Type": "pronunciation",
+									"VocabularyFilterMatch": false
+								},
+								{
+									"Content": "epoch",
+									"EndTime": 14.3575,
+									"StartTime": 13.8675,
+									"Type": "pronunciation",
+									"VocabularyFilterMatch": false
+								},
+								{
+									"Content": "of",
+									"EndTime": 14.5625,
+									"StartTime": 14.3575,
+									"Type": "pronunciation",
+									"VocabularyFilterMatch": false
+								},
+								{
+									"Content": "incredulity",
+									"EndTime": 15.6975,
+									"StartTime": 14.5625,
+									"Type": "pronunciation",
+									"VocabularyFilterMatch": false
+								},
+								{
+									"Content": ".",
+									"EndTime": 15.6975,
+									"StartTime": 15.6975,
+									"Type": "punctuation",
+									"VocabularyFilterMatch": false
+								},
+								{
+									"Content": "It",
+									"EndTime": 16.1275,
+									"StartTime": 15.9775,
+									"Type": "pronunciation",
+									"VocabularyFilterMatch": false
+								},
+								{
+									"Content": "was",
+									"EndTime": 16.2875,
+									"StartTime": 16.1275,
+									"Type": "pronunciation",
+									"VocabularyFilterMatch": false
+								},
+								{
+									"Content": "the",
+									"EndTime": 16.3975,
+									"StartTime": 16.2875,
+									"Type": "pronunciation",
+									"VocabularyFilterMatch": false
+								},
+								{
+									"Content": "season",
+									"EndTime": 16.8575,
+									"StartTime": 16.3975,
+									"Type": "pronunciation",
+									"VocabularyFilterMatch": false
+								},
+								{
+									"Content": "of",
+									"EndTime": 16.9975,
+									"StartTime": 16.8575,
+									"Type": "pronunciation",
+									"VocabularyFilterMatch": false
+								},
+								{
+									"Content": "light",
+									"EndTime": 17.5275,
+									"StartTime": 16.9975,
+									"Type": "pronunciation",
+									"VocabularyFilterMatch": false
+								},
+								{
+									"Content": ".",
+									"EndTime": 17.5275,
+									"StartTime": 17.5275,
+									"Type": "punctuation",
+									"VocabularyFilterMatch": false
+								},
+								{
+									"Content": "It",
+									"EndTime": 17.8875,
+									"StartTime": 17.7375,
+									"Type": "pronunciation",
+									"VocabularyFilterMatch": false
+								},
+								{
+									"Content": "was",
+									"EndTime": 18.0375,
+									"StartTime": 17.8875,
+									"Type": "pronunciation",
+									"VocabularyFilterMatch": false
+								},
+								{
+									"Content": "the",
+									"EndTime": 18.1575,
+									"StartTime": 18.0375,
+									"Type": "pronunciation",
+									"VocabularyFilterMatch": false
+								},
+								{
+									"Content": "season",
+									"EndTime": 18.595,
+									"StartTime": 18.1575,
+									"Type": "pronunciation",
+									"VocabularyFilterMatch": false
+								},
+								{
+									"Content": ".",
+									"EndTime": 18.595,
+									"StartTime": 18.595,
+									"Type": "punctuation",
+									"VocabularyFilterMatch": false
+								}
+							],
+							"Transcript": "It was the epoch of incredulity. It was the season of light. It was the season."
+						}
+					],
+					"ChannelId": "ch_0",
+					"EndTime": 18.595,
+					"IsPartial": true,
+					"ResultId": "0667e54d-7b0a-4453-8880-3ee5d6a9454a",
+					"StartTime": 13.08
+				}
+			]
+		}
+	},
+	{
+		"Transcript": {
+			"Results": [
+				{
+					"Alternatives": [
+						{
+							"Items": [
+								{
+									"Content": "It",
+									"EndTime": 13.5575,
+									"StartTime": 13.3375,
+									"Type": "pronunciation",
+									"VocabularyFilterMatch": false
+								},
+								{
+									"Content": "was",
+									"EndTime": 13.7175,
+									"StartTime": 13.5575,
+									"Type": "pronunciation",
+									"VocabularyFilterMatch": false
+								},
+								{
+									"Content": "the",
+									"EndTime": 13.8675,
+									"StartTime": 13.7175,
+									"Type": "pronunciation",
+									"VocabularyFilterMatch": false
+								},
+								{
+									"Content": "epoch",
+									"EndTime": 14.3575,
+									"StartTime": 13.8675,
+									"Type": "pronunciation",
+									"VocabularyFilterMatch": false
+								},
+								{
+									"Content": "of",
+									"EndTime": 14.5625,
+									"StartTime": 14.3575,
+									"Type": "pronunciation",
+									"VocabularyFilterMatch": false
+								},
+								{
+									"Content": "incredulity",
+									"EndTime": 15.6975,
+									"StartTime": 14.5625,
+									"Type": "pronunciation",
+									"VocabularyFilterMatch": false
+								},
+								{
+									"Content": ".",
+									"EndTime": 15.6975,
+									"StartTime": 15.6975,
+									"Type": "punctuation",
+									"VocabularyFilterMatch": false
+								},
+								{
+									"Content": "It",
+									"EndTime": 16.1275,
+									"StartTime": 15.9775,
+									"Type": "pronunciation",
+									"VocabularyFilterMatch": false
+								},
+								{
+									"Content": "was",
+									"EndTime": 16.2875,
+									"StartTime": 16.1275,
+									"Type": "pronunciation",
+									"VocabularyFilterMatch": false
+								},
+								{
+									"Content": "the",
+									"EndTime": 16.3975,
+									"StartTime": 16.2875,
+									"Type": "pronunciation",
+									"VocabularyFilterMatch": false
+								},
+								{
+									"Content": "season",
+									"EndTime": 16.8575,
+									"StartTime": 16.3975,
+									"Type": "pronunciation",
+									"VocabularyFilterMatch": false
+								},
+								{
+									"Content": "of",
+									"EndTime": 16.9975,
+									"StartTime": 16.8575,
+									"Type": "pronunciation",
+									"VocabularyFilterMatch": false
+								},
+								{
+									"Content": "light",
+									"EndTime": 17.5275,
+									"StartTime": 16.9975,
+									"Type": "pronunciation",
+									"VocabularyFilterMatch": false
+								},
+								{
+									"Content": ".",
+									"EndTime": 17.5275,
+									"StartTime": 17.5275,
+									"Type": "punctuation",
+									"VocabularyFilterMatch": false
+								},
+								{
+									"Content": "It",
+									"EndTime": 17.8875,
+									"StartTime": 17.7375,
+									"Type": "pronunciation",
+									"VocabularyFilterMatch": false
+								},
+								{
+									"Content": "was",
+									"EndTime": 18.0375,
+									"StartTime": 17.8875,
+									"Type": "pronunciation",
+									"VocabularyFilterMatch": false
+								},
+								{
+									"Content": "the",
+									"EndTime": 18.1575,
+									"StartTime": 18.0375,
+									"Type": "pronunciation",
+									"VocabularyFilterMatch": false
+								},
+								{
+									"Content": "season",
+									"EndTime": 18.6375,
+									"StartTime": 18.1575,
+									"Type": "pronunciation",
+									"VocabularyFilterMatch": false
+								},
+								{
+									"Content": "of",
+									"EndTime": 18.7575,
+									"StartTime": 18.6375,
+									"Type": "pronunciation",
+									"VocabularyFilterMatch": false
+								},
+								{
+									"Content": "dark",
+									"EndTime": 19.095,
+									"StartTime": 18.7575,
+									"Type": "pronunciation",
+									"VocabularyFilterMatch": false
+								},
+								{
+									"Content": ".",
+									"EndTime": 19.095,
+									"StartTime": 19.095,
+									"Type": "punctuation",
+									"VocabularyFilterMatch": false
+								}
+							],
+							"Transcript": "It was the epoch of incredulity. It was the season of light. It was the season of dark."
+						}
+					],
+					"ChannelId": "ch_0",
+					"EndTime": 19.095,
+					"IsPartial": true,
+					"ResultId": "0667e54d-7b0a-4453-8880-3ee5d6a9454a",
+					"StartTime": 13.08
+				}
+			]
+		}
+	},
+	{
+		"Transcript": {
+			"Results": []
+		}
+	},
+	{
+		"Transcript": {
+			"Results": [
+				{
+					"Alternatives": [
+						{
+							"Items": [
+								{
+									"Content": "It",
+									"EndTime": 13.5575,
+									"StartTime": 13.3375,
+									"Type": "pronunciation",
+									"VocabularyFilterMatch": false
+								},
+								{
+									"Content": "was",
+									"EndTime": 13.7175,
+									"StartTime": 13.5575,
+									"Type": "pronunciation",
+									"VocabularyFilterMatch": false
+								},
+								{
+									"Content": "the",
+									"EndTime": 13.8675,
+									"StartTime": 13.7175,
+									"Type": "pronunciation",
+									"VocabularyFilterMatch": false
+								},
+								{
+									"Content": "epoch",
+									"EndTime": 14.3575,
+									"StartTime": 13.8675,
+									"Type": "pronunciation",
+									"VocabularyFilterMatch": false
+								},
+								{
+									"Content": "of",
+									"EndTime": 14.5625,
+									"StartTime": 14.3575,
+									"Type": "pronunciation",
+									"VocabularyFilterMatch": false
+								},
+								{
+									"Content": "incredulity",
+									"EndTime": 15.6975,
+									"StartTime": 14.5625,
+									"Type": "pronunciation",
+									"VocabularyFilterMatch": false
+								},
+								{
+									"Content": ".",
+									"EndTime": 15.6975,
+									"StartTime": 15.6975,
+									"Type": "punctuation",
+									"VocabularyFilterMatch": false
+								},
+								{
+									"Content": "It",
+									"EndTime": 16.1275,
+									"StartTime": 15.9775,
+									"Type": "pronunciation",
+									"VocabularyFilterMatch": false
+								},
+								{
+									"Content": "was",
+									"EndTime": 16.2875,
+									"StartTime": 16.1275,
+									"Type": "pronunciation",
+									"VocabularyFilterMatch": false
+								},
+								{
+									"Content": "the",
+									"EndTime": 16.3975,
+									"StartTime": 16.2875,
+									"Type": "pronunciation",
+									"VocabularyFilterMatch": false
+								},
+								{
+									"Content": "season",
+									"EndTime": 16.8575,
+									"StartTime": 16.3975,
+									"Type": "pronunciation",
+									"VocabularyFilterMatch": false
+								},
+								{
+									"Content": "of",
+									"EndTime": 16.9975,
+									"StartTime": 16.8575,
+									"Type": "pronunciation",
+									"VocabularyFilterMatch": false
+								},
+								{
+									"Content": "light",
+									"EndTime": 17.5275,
+									"StartTime": 16.9975,
+									"Type": "pronunciation",
+									"VocabularyFilterMatch": false
+								},
+								{
+									"Content": ".",
+									"EndTime": 17.5275,
+									"StartTime": 17.5275,
+									"Type": "punctuation",
+									"VocabularyFilterMatch": false
+								},
+								{
+									"Content": "It",
+									"EndTime": 17.8875,
+									"StartTime": 17.7375,
+									"Type": "pronunciation",
+									"VocabularyFilterMatch": false
+								},
+								{
+									"Content": "was",
+									"EndTime": 18.0375,
+									"StartTime": 17.8875,
+									"Type": "pronunciation",
+									"VocabularyFilterMatch": false
+								},
+								{
+									"Content": "the",
+									"EndTime": 18.1575,
+									"StartTime": 18.0375,
+									"Type": "pronunciation",
+									"VocabularyFilterMatch": false
+								},
+								{
+									"Content": "season",
+									"EndTime": 18.6375,
+									"StartTime": 18.1575,
+									"Type": "pronunciation",
+									"VocabularyFilterMatch": false
+								},
+								{
+									"Content": "of",
+									"EndTime": 18.7575,
+									"StartTime": 18.6375,
+									"Type": "pronunciation",
+									"VocabularyFilterMatch": false
+								},
+								{
+									"Content": "darkness",
+									"EndTime": 19.595,
+									"StartTime": 18.7575,
+									"Type": "pronunciation",
+									"VocabularyFilterMatch": false
+								},
+								{
+									"Content": ".",
+									"EndTime": 19.595,
+									"StartTime": 19.595,
+									"Type": "punctuation",
+									"VocabularyFilterMatch": false
+								}
+							],
+							"Transcript": "It was the epoch of incredulity. It was the season of light. It was the season of darkness."
+						}
+					],
+					"ChannelId": "ch_0",
+					"EndTime": 19.595,
+					"IsPartial": true,
+					"ResultId": "0667e54d-7b0a-4453-8880-3ee5d6a9454a",
+					"StartTime": 13.08
+				}
+			]
+		}
+	},
+	{
+		"Transcript": {
+			"Results": [
+				{
+					"Alternatives": [
+						{
+							"Items": [
+								{
+									"Content": "It",
+									"EndTime": 13.5575,
+									"StartTime": 13.3375,
+									"Type": "pronunciation",
+									"VocabularyFilterMatch": false
+								},
+								{
+									"Content": "was",
+									"EndTime": 13.7175,
+									"StartTime": 13.5575,
+									"Type": "pronunciation",
+									"VocabularyFilterMatch": false
+								},
+								{
+									"Content": "the",
+									"EndTime": 13.8675,
+									"StartTime": 13.7175,
+									"Type": "pronunciation",
+									"VocabularyFilterMatch": false
+								},
+								{
+									"Content": "epoch",
+									"EndTime": 14.3575,
+									"StartTime": 13.8675,
+									"Type": "pronunciation",
+									"VocabularyFilterMatch": false
+								},
+								{
+									"Content": "of",
+									"EndTime": 14.5625,
+									"StartTime": 14.3575,
+									"Type": "pronunciation",
+									"VocabularyFilterMatch": false
+								},
+								{
+									"Content": "incredulity",
+									"EndTime": 15.6975,
+									"StartTime": 14.5625,
+									"Type": "pronunciation",
+									"VocabularyFilterMatch": false
+								},
+								{
+									"Content": ".",
+									"EndTime": 15.6975,
+									"StartTime": 15.6975,
+									"Type": "punctuation",
+									"VocabularyFilterMatch": false
+								},
+								{
+									"Content": "It",
+									"EndTime": 16.1275,
+									"StartTime": 15.9775,
+									"Type": "pronunciation",
+									"VocabularyFilterMatch": false
+								},
+								{
+									"Content": "was",
+									"EndTime": 16.2875,
+									"StartTime": 16.1275,
+									"Type": "pronunciation",
+									"VocabularyFilterMatch": false
+								},
+								{
+									"Content": "the",
+									"EndTime": 16.3975,
+									"StartTime": 16.2875,
+									"Type": "pronunciation",
+									"VocabularyFilterMatch": false
+								},
+								{
+									"Content": "season",
+									"EndTime": 16.8575,
+									"StartTime": 16.3975,
+									"Type": "pronunciation",
+									"VocabularyFilterMatch": false
+								},
+								{
+									"Content": "of",
+									"EndTime": 16.9975,
+									"StartTime": 16.8575,
+									"Type": "pronunciation",
+									"VocabularyFilterMatch": false
+								},
+								{
+									"Content": "light",
+									"EndTime": 17.5275,
+									"StartTime": 16.9975,
+									"Type": "pronunciation",
+									"VocabularyFilterMatch": false
+								},
+								{
+									"Content": ".",
+									"EndTime": 17.5275,
+									"StartTime": 17.5275,
+									"Type": "punctuation",
+									"VocabularyFilterMatch": false
+								},
+								{
+									"Content": "It",
+									"EndTime": 17.8875,
+									"StartTime": 17.7375,
+									"Type": "pronunciation",
+									"VocabularyFilterMatch": false
+								},
+								{
+									"Content": "was",
+									"EndTime": 18.0375,
+									"StartTime": 17.8875,
+									"Type": "pronunciation",
+									"VocabularyFilterMatch": false
+								},
+								{
+									"Content": "the",
+									"EndTime": 18.1575,
+									"StartTime": 18.0375,
+									"Type": "pronunciation",
+									"VocabularyFilterMatch": false
+								},
+								{
+									"Content": "season",
+									"EndTime": 18.6375,
+									"StartTime": 18.1575,
+									"Type": "pronunciation",
+									"VocabularyFilterMatch": false
+								},
+								{
+									"Content": "of",
+									"EndTime": 18.7575,
+									"StartTime": 18.6375,
+									"Type": "pronunciation",
+									"VocabularyFilterMatch": false
+								},
+								{
+									"Content": "darkness",
+									"EndTime": 19.7375,
+									"StartTime": 18.7575,
+									"Type": "pronunciation",
+									"VocabularyFilterMatch": false
+								},
+								{
+									"Content": ".",
+									"EndTime": 19.7375,
+									"StartTime": 19.7375,
+									"Type": "punctuation",
+									"VocabularyFilterMatch": false
+								}
+							],
+							"Transcript": "It was the epoch of incredulity. It was the season of light. It was the season of darkness."
+						}
+					],
+					"ChannelId": "ch_0",
+					"EndTime": 20.095,
+					"IsPartial": true,
+					"ResultId": "0667e54d-7b0a-4453-8880-3ee5d6a9454a",
+					"StartTime": 13.08
+				}
+			]
+		}
+	},
+	{
+		"Transcript": {
+			"Results": [
+				{
+					"Alternatives": [
+						{
+							"Items": [
+								{
+									"Content": "It",
+									"EndTime": 13.5575,
+									"StartTime": 13.3375,
+									"Type": "pronunciation",
+									"VocabularyFilterMatch": false
+								},
+								{
+									"Content": "was",
+									"EndTime": 13.7175,
+									"StartTime": 13.5575,
+									"Type": "pronunciation",
+									"VocabularyFilterMatch": false
+								},
+								{
+									"Content": "the",
+									"EndTime": 13.8675,
+									"StartTime": 13.7175,
+									"Type": "pronunciation",
+									"VocabularyFilterMatch": false
+								},
+								{
+									"Content": "epoch",
+									"EndTime": 14.3575,
+									"StartTime": 13.8675,
+									"Type": "pronunciation",
+									"VocabularyFilterMatch": false
+								},
+								{
+									"Content": "of",
+									"EndTime": 14.5625,
+									"StartTime": 14.3575,
+									"Type": "pronunciation",
+									"VocabularyFilterMatch": false
+								},
+								{
+									"Content": "incredulity",
+									"EndTime": 15.6975,
+									"StartTime": 14.5625,
+									"Type": "pronunciation",
+									"VocabularyFilterMatch": false
+								},
+								{
+									"Content": ".",
+									"EndTime": 15.6975,
+									"StartTime": 15.6975,
+									"Type": "punctuation",
+									"VocabularyFilterMatch": false
+								},
+								{
+									"Content": "It",
+									"EndTime": 16.1275,
+									"StartTime": 15.9775,
+									"Type": "pronunciation",
+									"VocabularyFilterMatch": false
+								},
+								{
+									"Content": "was",
+									"EndTime": 16.2875,
+									"StartTime": 16.1275,
+									"Type": "pronunciation",
+									"VocabularyFilterMatch": false
+								},
+								{
+									"Content": "the",
+									"EndTime": 16.3975,
+									"StartTime": 16.2875,
+									"Type": "pronunciation",
+									"VocabularyFilterMatch": false
+								},
+								{
+									"Content": "season",
+									"EndTime": 16.8575,
+									"StartTime": 16.3975,
+									"Type": "pronunciation",
+									"VocabularyFilterMatch": false
+								},
+								{
+									"Content": "of",
+									"EndTime": 16.9975,
+									"StartTime": 16.8575,
+									"Type": "pronunciation",
+									"VocabularyFilterMatch": false
+								},
+								{
+									"Content": "light",
+									"EndTime": 17.5275,
+									"StartTime": 16.9975,
+									"Type": "pronunciation",
+									"VocabularyFilterMatch": false
+								},
+								{
+									"Content": ".",
+									"EndTime": 17.5275,
+									"StartTime": 17.5275,
+									"Type": "punctuation",
+									"VocabularyFilterMatch": false
+								},
+								{
+									"Content": "It",
+									"EndTime": 17.8875,
+									"StartTime": 17.7375,
+									"Type": "pronunciation",
+									"VocabularyFilterMatch": false
+								},
+								{
+									"Content": "was",
+									"EndTime": 18.0375,
+									"StartTime": 17.8875,
+									"Type": "pronunciation",
+									"VocabularyFilterMatch": false
+								},
+								{
+									"Content": "the",
+									"EndTime": 18.1575,
+									"StartTime": 18.0375,
+									"Type": "pronunciation",
+									"VocabularyFilterMatch": false
+								},
+								{
+									"Content": "season",
+									"EndTime": 18.6375,
+									"StartTime": 18.1575,
+									"Type": "pronunciation",
+									"VocabularyFilterMatch": false
+								},
+								{
+									"Content": "of",
+									"EndTime": 18.7575,
+									"StartTime": 18.6375,
+									"Type": "pronunciation",
+									"VocabularyFilterMatch": false
+								},
+								{
+									"Content": "darkness",
+									"EndTime": 19.7375,
+									"StartTime": 18.7575,
+									"Type": "pronunciation",
+									"VocabularyFilterMatch": false
+								},
+								{
+									"Content": ".",
+									"EndTime": 19.7375,
+									"StartTime": 19.7375,
+									"Type": "punctuation",
+									"VocabularyFilterMatch": false
+								},
+								{
+									"Content": "It",
+									"EndTime": 20.2475,
+									"StartTime": 19.9975,
+									"Type": "pronunciation",
+									"VocabularyFilterMatch": false
+								},
+								{
+									"Content": "was",
+									"EndTime": 20.4175,
+									"StartTime": 20.2475,
+									"Type": "pronunciation",
+									"VocabularyFilterMatch": false
+								},
+								{
+									"Content": "the",
+									"EndTime": 20.595,
+									"StartTime": 20.4175,
+									"Type": "pronunciation",
+									"VocabularyFilterMatch": false
+								}
+							],
+							"Transcript": "It was the epoch of incredulity. It was the season of light. It was the season of darkness. It was the"
+						}
+					],
+					"ChannelId": "ch_0",
+					"EndTime": 20.595,
+					"IsPartial": true,
+					"ResultId": "0667e54d-7b0a-4453-8880-3ee5d6a9454a",
+					"StartTime": 13.08
+				}
+			]
+		}
+	},
+	{
+		"Transcript": {
+			"Results": []
+		}
+	},
+	{
+		"Transcript": {
+			"Results": [
+				{
+					"Alternatives": [
+						{
+							"Items": [
+								{
+									"Content": "It",
+									"EndTime": 13.5575,
+									"StartTime": 13.3375,
+									"Type": "pronunciation",
+									"VocabularyFilterMatch": false
+								},
+								{
+									"Content": "was",
+									"EndTime": 13.7175,
+									"StartTime": 13.5575,
+									"Type": "pronunciation",
+									"VocabularyFilterMatch": false
+								},
+								{
+									"Content": "the",
+									"EndTime": 13.8675,
+									"StartTime": 13.7175,
+									"Type": "pronunciation",
+									"VocabularyFilterMatch": false
+								},
+								{
+									"Content": "epoch",
+									"EndTime": 14.3575,
+									"StartTime": 13.8675,
+									"Type": "pronunciation",
+									"VocabularyFilterMatch": false
+								},
+								{
+									"Content": "of",
+									"EndTime": 14.5625,
+									"StartTime": 14.3575,
+									"Type": "pronunciation",
+									"VocabularyFilterMatch": false
+								},
+								{
+									"Content": "incredulity",
+									"EndTime": 15.6975,
+									"StartTime": 14.5625,
+									"Type": "pronunciation",
+									"VocabularyFilterMatch": false
+								},
+								{
+									"Content": ".",
+									"EndTime": 15.6975,
+									"StartTime": 15.6975,
+									"Type": "punctuation",
+									"VocabularyFilterMatch": false
+								},
+								{
+									"Content": "It",
+									"EndTime": 16.1275,
+									"StartTime": 15.9775,
+									"Type": "pronunciation",
+									"VocabularyFilterMatch": false
+								},
+								{
+									"Content": "was",
+									"EndTime": 16.2875,
+									"StartTime": 16.1275,
+									"Type": "pronunciation",
+									"VocabularyFilterMatch": false
+								},
+								{
+									"Content": "the",
+									"EndTime": 16.3975,
+									"StartTime": 16.2875,
+									"Type": "pronunciation",
+									"VocabularyFilterMatch": false
+								},
+								{
+									"Content": "season",
+									"EndTime": 16.8575,
+									"StartTime": 16.3975,
+									"Type": "pronunciation",
+									"VocabularyFilterMatch": false
+								},
+								{
+									"Content": "of",
+									"EndTime": 16.9975,
+									"StartTime": 16.8575,
+									"Type": "pronunciation",
+									"VocabularyFilterMatch": false
+								},
+								{
+									"Content": "light",
+									"EndTime": 17.5275,
+									"StartTime": 16.9975,
+									"Type": "pronunciation",
+									"VocabularyFilterMatch": false
+								},
+								{
+									"Content": ".",
+									"EndTime": 17.5275,
+									"StartTime": 17.5275,
+									"Type": "punctuation",
+									"VocabularyFilterMatch": false
+								},
+								{
+									"Content": "It",
+									"EndTime": 17.8875,
+									"StartTime": 17.7375,
+									"Type": "pronunciation",
+									"VocabularyFilterMatch": false
+								},
+								{
+									"Content": "was",
+									"EndTime": 18.0375,
+									"StartTime": 17.8875,
+									"Type": "pronunciation",
+									"VocabularyFilterMatch": false
+								},
+								{
+									"Content": "the",
+									"EndTime": 18.1575,
+									"StartTime": 18.0375,
+									"Type": "pronunciation",
+									"VocabularyFilterMatch": false
+								},
+								{
+									"Content": "season",
+									"EndTime": 18.6375,
+									"StartTime": 18.1575,
+									"Type": "pronunciation",
+									"VocabularyFilterMatch": false
+								},
+								{
+									"Content": "of",
+									"EndTime": 18.7575,
+									"StartTime": 18.6375,
+									"Type": "pronunciation",
+									"VocabularyFilterMatch": false
+								},
+								{
+									"Content": "darkness",
+									"EndTime": 19.7375,
+									"StartTime": 18.7575,
+									"Type": "pronunciation",
+									"VocabularyFilterMatch": false
+								},
+								{
+									"Content": ".",
+									"EndTime": 19.7375,
+									"StartTime": 19.7375,
+									"Type": "punctuation",
+									"VocabularyFilterMatch": false
+								},
+								{
+									"Content": "It",
+									"EndTime": 20.2475,
+									"StartTime": 19.9975,
+									"Type": "pronunciation",
+									"VocabularyFilterMatch": false
+								},
+								{
+									"Content": "was",
+									"EndTime": 20.4175,
+									"StartTime": 20.2475,
+									"Type": "pronunciation",
+									"VocabularyFilterMatch": false
+								},
+								{
+									"Content": "the",
+									"EndTime": 20.5275,
+									"StartTime": 20.4175,
+									"Type": "pronunciation",
+									"VocabularyFilterMatch": false
+								},
+								{
+									"Content": "spring",
+									"EndTime": 20.8775,
+									"StartTime": 20.5275,
+									"Type": "pronunciation",
+									"VocabularyFilterMatch": false
+								},
+								{
+									"Content": "of",
+									"EndTime": 21.095,
+									"StartTime": 20.8775,
+									"Type": "pronunciation",
+									"VocabularyFilterMatch": false
+								}
+							],
+							"Transcript": "It was the epoch of incredulity. It was the season of light. It was the season of darkness. It was the spring of"
+						}
+					],
+					"ChannelId": "ch_0",
+					"EndTime": 21.095,
+					"IsPartial": true,
+					"ResultId": "0667e54d-7b0a-4453-8880-3ee5d6a9454a",
+					"StartTime": 13.08
+				}
+			]
+		}
+	},
+	{
+		"Transcript": {
+			"Results": []
+		}
+	},
+	{
+		"Transcript": {
+			"Results": [
+				{
+					"Alternatives": [
+						{
+							"Items": [
+								{
+									"Content": "It",
+									"EndTime": 13.5575,
+									"StartTime": 13.3375,
+									"Type": "pronunciation",
+									"VocabularyFilterMatch": false
+								},
+								{
+									"Content": "was",
+									"EndTime": 13.7175,
+									"StartTime": 13.5575,
+									"Type": "pronunciation",
+									"VocabularyFilterMatch": false
+								},
+								{
+									"Content": "the",
+									"EndTime": 13.8675,
+									"StartTime": 13.7175,
+									"Type": "pronunciation",
+									"VocabularyFilterMatch": false
+								},
+								{
+									"Content": "epoch",
+									"EndTime": 14.3575,
+									"StartTime": 13.8675,
+									"Type": "pronunciation",
+									"VocabularyFilterMatch": false
+								},
+								{
+									"Content": "of",
+									"EndTime": 14.5625,
+									"StartTime": 14.3575,
+									"Type": "pronunciation",
+									"VocabularyFilterMatch": false
+								},
+								{
+									"Content": "incredulity",
+									"EndTime": 15.6975,
+									"StartTime": 14.5625,
+									"Type": "pronunciation",
+									"VocabularyFilterMatch": false
+								},
+								{
+									"Content": ".",
+									"EndTime": 15.6975,
+									"StartTime": 15.6975,
+									"Type": "punctuation",
+									"VocabularyFilterMatch": false
+								},
+								{
+									"Content": "It",
+									"EndTime": 16.1275,
+									"StartTime": 15.9775,
+									"Type": "pronunciation",
+									"VocabularyFilterMatch": false
+								},
+								{
+									"Content": "was",
+									"EndTime": 16.2875,
+									"StartTime": 16.1275,
+									"Type": "pronunciation",
+									"VocabularyFilterMatch": false
+								},
+								{
+									"Content": "the",
+									"EndTime": 16.3975,
+									"StartTime": 16.2875,
+									"Type": "pronunciation",
+									"VocabularyFilterMatch": false
+								},
+								{
+									"Content": "season",
+									"EndTime": 16.8575,
+									"StartTime": 16.3975,
+									"Type": "pronunciation",
+									"VocabularyFilterMatch": false
+								},
+								{
+									"Content": "of",
+									"EndTime": 16.9975,
+									"StartTime": 16.8575,
+									"Type": "pronunciation",
+									"VocabularyFilterMatch": false
+								},
+								{
+									"Content": "light",
+									"EndTime": 17.5275,
+									"StartTime": 16.9975,
+									"Type": "pronunciation",
+									"VocabularyFilterMatch": false
+								},
+								{
+									"Content": ".",
+									"EndTime": 17.5275,
+									"StartTime": 17.5275,
+									"Type": "punctuation",
+									"VocabularyFilterMatch": false
+								},
+								{
+									"Content": "It",
+									"EndTime": 17.8875,
+									"StartTime": 17.7375,
+									"Type": "pronunciation",
+									"VocabularyFilterMatch": false
+								},
+								{
+									"Content": "was",
+									"EndTime": 18.0375,
+									"StartTime": 17.8875,
+									"Type": "pronunciation",
+									"VocabularyFilterMatch": false
+								},
+								{
+									"Content": "the",
+									"EndTime": 18.1575,
+									"StartTime": 18.0375,
+									"Type": "pronunciation",
+									"VocabularyFilterMatch": false
+								},
+								{
+									"Content": "season",
+									"EndTime": 18.6375,
+									"StartTime": 18.1575,
+									"Type": "pronunciation",
+									"VocabularyFilterMatch": false
+								},
+								{
+									"Content": "of",
+									"EndTime": 18.7575,
+									"StartTime": 18.6375,
+									"Type": "pronunciation",
+									"VocabularyFilterMatch": false
+								},
+								{
+									"Content": "darkness",
+									"EndTime": 19.7375,
+									"StartTime": 18.7575,
+									"Type": "pronunciation",
+									"VocabularyFilterMatch": false
+								},
+								{
+									"Content": ".",
+									"EndTime": 19.7375,
+									"StartTime": 19.7375,
+									"Type": "punctuation",
+									"VocabularyFilterMatch": false
+								},
+								{
+									"Content": "It",
+									"EndTime": 20.2475,
+									"StartTime": 19.9975,
+									"Type": "pronunciation",
+									"VocabularyFilterMatch": false
+								},
+								{
+									"Content": "was",
+									"EndTime": 20.4175,
+									"StartTime": 20.2475,
+									"Type": "pronunciation",
+									"VocabularyFilterMatch": false
+								},
+								{
+									"Content": "the",
+									"EndTime": 20.5275,
+									"StartTime": 20.4175,
+									"Type": "pronunciation",
+									"VocabularyFilterMatch": false
+								},
+								{
+									"Content": "spring",
+									"EndTime": 20.8775,
+									"StartTime": 20.5275,
+									"Type": "pronunciation",
+									"VocabularyFilterMatch": false
+								},
+								{
+									"Content": "of",
+									"EndTime": 21.0175,
+									"StartTime": 20.8775,
+									"Type": "pronunciation",
+									"VocabularyFilterMatch": false
+								},
+								{
+									"Content": "hope",
+									"EndTime": 21.595,
+									"StartTime": 21.0175,
+									"Type": "pronunciation",
+									"VocabularyFilterMatch": false
+								},
+								{
+									"Content": ".",
+									"EndTime": 21.595,
+									"StartTime": 21.595,
+									"Type": "punctuation",
+									"VocabularyFilterMatch": false
+								}
+							],
+							"Transcript": "It was the epoch of incredulity. It was the season of light. It was the season of darkness. It was the spring of hope."
+						}
+					],
+					"ChannelId": "ch_0",
+					"EndTime": 21.595,
+					"IsPartial": true,
+					"ResultId": "0667e54d-7b0a-4453-8880-3ee5d6a9454a",
+					"StartTime": 13.08
+				}
+			]
+		}
+	},
+	{
+		"Transcript": {
+			"Results": [
+				{
+					"Alternatives": [
+						{
+							"Items": [
+								{
+									"Content": "It",
+									"EndTime": 13.5575,
+									"StartTime": 13.3375,
+									"Type": "pronunciation",
+									"VocabularyFilterMatch": false
+								},
+								{
+									"Content": "was",
+									"EndTime": 13.7175,
+									"StartTime": 13.5575,
+									"Type": "pronunciation",
+									"VocabularyFilterMatch": false
+								},
+								{
+									"Content": "the",
+									"EndTime": 13.8675,
+									"StartTime": 13.7175,
+									"Type": "pronunciation",
+									"VocabularyFilterMatch": false
+								},
+								{
+									"Content": "epoch",
+									"EndTime": 14.3575,
+									"StartTime": 13.8675,
+									"Type": "pronunciation",
+									"VocabularyFilterMatch": false
+								},
+								{
+									"Content": "of",
+									"EndTime": 14.5625,
+									"StartTime": 14.3575,
+									"Type": "pronunciation",
+									"VocabularyFilterMatch": false
+								},
+								{
+									"Content": "incredulity",
+									"EndTime": 15.6975,
+									"StartTime": 14.5625,
+									"Type": "pronunciation",
+									"VocabularyFilterMatch": false
+								},
+								{
+									"Content": ".",
+									"EndTime": 15.6975,
+									"StartTime": 15.6975,
+									"Type": "punctuation",
+									"VocabularyFilterMatch": false
+								},
+								{
+									"Content": "It",
+									"EndTime": 16.1275,
+									"StartTime": 15.9775,
+									"Type": "pronunciation",
+									"VocabularyFilterMatch": false
+								},
+								{
+									"Content": "was",
+									"EndTime": 16.2875,
+									"StartTime": 16.1275,
+									"Type": "pronunciation",
+									"VocabularyFilterMatch": false
+								},
+								{
+									"Content": "the",
+									"EndTime": 16.3975,
+									"StartTime": 16.2875,
+									"Type": "pronunciation",
+									"VocabularyFilterMatch": false
+								},
+								{
+									"Content": "season",
+									"EndTime": 16.8575,
+									"StartTime": 16.3975,
+									"Type": "pronunciation",
+									"VocabularyFilterMatch": false
+								},
+								{
+									"Content": "of",
+									"EndTime": 16.9975,
+									"StartTime": 16.8575,
+									"Type": "pronunciation",
+									"VocabularyFilterMatch": false
+								},
+								{
+									"Content": "light",
+									"EndTime": 17.5275,
+									"StartTime": 16.9975,
+									"Type": "pronunciation",
+									"VocabularyFilterMatch": false
+								},
+								{
+									"Content": ".",
+									"EndTime": 17.5275,
+									"StartTime": 17.5275,
+									"Type": "punctuation",
+									"VocabularyFilterMatch": false
+								},
+								{
+									"Content": "It",
+									"EndTime": 17.8875,
+									"StartTime": 17.7375,
+									"Type": "pronunciation",
+									"VocabularyFilterMatch": false
+								},
+								{
+									"Content": "was",
+									"EndTime": 18.0375,
+									"StartTime": 17.8875,
+									"Type": "pronunciation",
+									"VocabularyFilterMatch": false
+								},
+								{
+									"Content": "the",
+									"EndTime": 18.1575,
+									"StartTime": 18.0375,
+									"Type": "pronunciation",
+									"VocabularyFilterMatch": false
+								},
+								{
+									"Content": "season",
+									"EndTime": 18.6375,
+									"StartTime": 18.1575,
+									"Type": "pronunciation",
+									"VocabularyFilterMatch": false
+								},
+								{
+									"Content": "of",
+									"EndTime": 18.7575,
+									"StartTime": 18.6375,
+									"Type": "pronunciation",
+									"VocabularyFilterMatch": false
+								},
+								{
+									"Content": "darkness",
+									"EndTime": 19.7375,
+									"StartTime": 18.7575,
+									"Type": "pronunciation",
+									"VocabularyFilterMatch": false
+								},
+								{
+									"Content": ".",
+									"EndTime": 19.7375,
+									"StartTime": 19.7375,
+									"Type": "punctuation",
+									"VocabularyFilterMatch": false
+								},
+								{
+									"Content": "It",
+									"EndTime": 20.2475,
+									"StartTime": 19.9975,
+									"Type": "pronunciation",
+									"VocabularyFilterMatch": false
+								},
+								{
+									"Content": "was",
+									"EndTime": 20.4175,
+									"StartTime": 20.2475,
+									"Type": "pronunciation",
+									"VocabularyFilterMatch": false
+								},
+								{
+									"Content": "the",
+									"EndTime": 20.5275,
+									"StartTime": 20.4175,
+									"Type": "pronunciation",
+									"VocabularyFilterMatch": false
+								},
+								{
+									"Content": "spring",
+									"EndTime": 20.8775,
+									"StartTime": 20.5275,
+									"Type": "pronunciation",
+									"VocabularyFilterMatch": false
+								},
+								{
+									"Content": "of",
+									"EndTime": 21.0175,
+									"StartTime": 20.8775,
+									"Type": "pronunciation",
+									"VocabularyFilterMatch": false
+								},
+								{
+									"Content": "hope",
+									"EndTime": 21.6225,
+									"StartTime": 21.0175,
+									"Type": "pronunciation",
+									"VocabularyFilterMatch": false
+								},
+								{
+									"Content": ".",
+									"EndTime": 21.6225,
+									"StartTime": 21.6225,
+									"Type": "punctuation",
+									"VocabularyFilterMatch": false
+								},
+								{
+									"Content": "It",
+									"EndTime": 21.7875,
+									"StartTime": 21.6225,
+									"Type": "pronunciation",
+									"VocabularyFilterMatch": false
+								},
+								{
+									"Content": "was",
+									"EndTime": 21.9875,
+									"StartTime": 21.7875,
+									"Type": "pronunciation",
+									"VocabularyFilterMatch": false
+								},
+								{
+									"Content": "the",
+									"EndTime": 22.095,
+									"StartTime": 21.9875,
+									"Type": "pronunciation",
+									"VocabularyFilterMatch": false
+								}
+							],
+							"Transcript": "It was the epoch of incredulity. It was the season of light. It was the season of darkness. It was the spring of hope. It was the"
+						}
+					],
+					"ChannelId": "ch_0",
+					"EndTime": 22.095,
+					"IsPartial": true,
+					"ResultId": "0667e54d-7b0a-4453-8880-3ee5d6a9454a",
+					"StartTime": 13.08
+				}
+			]
+		}
+	},
+	{
+		"Transcript": {
+			"Results": [
+				{
+					"Alternatives": [
+						{
+							"Items": [
+								{
+									"Content": "It",
+									"EndTime": 13.5575,
+									"StartTime": 13.3375,
+									"Type": "pronunciation",
+									"VocabularyFilterMatch": false
+								},
+								{
+									"Content": "was",
+									"EndTime": 13.7175,
+									"StartTime": 13.5575,
+									"Type": "pronunciation",
+									"VocabularyFilterMatch": false
+								},
+								{
+									"Content": "the",
+									"EndTime": 13.8675,
+									"StartTime": 13.7175,
+									"Type": "pronunciation",
+									"VocabularyFilterMatch": false
+								},
+								{
+									"Content": "epoch",
+									"EndTime": 14.3575,
+									"StartTime": 13.8675,
+									"Type": "pronunciation",
+									"VocabularyFilterMatch": false
+								},
+								{
+									"Content": "of",
+									"EndTime": 14.5625,
+									"StartTime": 14.3575,
+									"Type": "pronunciation",
+									"VocabularyFilterMatch": false
+								},
+								{
+									"Content": "incredulity",
+									"EndTime": 15.6975,
+									"StartTime": 14.5625,
+									"Type": "pronunciation",
+									"VocabularyFilterMatch": false
+								},
+								{
+									"Content": ".",
+									"EndTime": 15.6975,
+									"StartTime": 15.6975,
+									"Type": "punctuation",
+									"VocabularyFilterMatch": false
+								},
+								{
+									"Content": "It",
+									"EndTime": 16.1275,
+									"StartTime": 15.9775,
+									"Type": "pronunciation",
+									"VocabularyFilterMatch": false
+								},
+								{
+									"Content": "was",
+									"EndTime": 16.2875,
+									"StartTime": 16.1275,
+									"Type": "pronunciation",
+									"VocabularyFilterMatch": false
+								},
+								{
+									"Content": "the",
+									"EndTime": 16.3975,
+									"StartTime": 16.2875,
+									"Type": "pronunciation",
+									"VocabularyFilterMatch": false
+								},
+								{
+									"Content": "season",
+									"EndTime": 16.8575,
+									"StartTime": 16.3975,
+									"Type": "pronunciation",
+									"VocabularyFilterMatch": false
+								},
+								{
+									"Content": "of",
+									"EndTime": 16.9975,
+									"StartTime": 16.8575,
+									"Type": "pronunciation",
+									"VocabularyFilterMatch": false
+								},
+								{
+									"Content": "light",
+									"EndTime": 17.5275,
+									"StartTime": 16.9975,
+									"Type": "pronunciation",
+									"VocabularyFilterMatch": false
+								},
+								{
+									"Content": ".",
+									"EndTime": 17.5275,
+									"StartTime": 17.5275,
+									"Type": "punctuation",
+									"VocabularyFilterMatch": false
+								},
+								{
+									"Content": "It",
+									"EndTime": 17.8875,
+									"StartTime": 17.7375,
+									"Type": "pronunciation",
+									"VocabularyFilterMatch": false
+								},
+								{
+									"Content": "was",
+									"EndTime": 18.0375,
+									"StartTime": 17.8875,
+									"Type": "pronunciation",
+									"VocabularyFilterMatch": false
+								},
+								{
+									"Content": "the",
+									"EndTime": 18.1575,
+									"StartTime": 18.0375,
+									"Type": "pronunciation",
+									"VocabularyFilterMatch": false
+								},
+								{
+									"Content": "season",
+									"EndTime": 18.6375,
+									"StartTime": 18.1575,
+									"Type": "pronunciation",
+									"VocabularyFilterMatch": false
+								},
+								{
+									"Content": "of",
+									"EndTime": 18.7575,
+									"StartTime": 18.6375,
+									"Type": "pronunciation",
+									"VocabularyFilterMatch": false
+								},
+								{
+									"Content": "darkness",
+									"EndTime": 19.7375,
+									"StartTime": 18.7575,
+									"Type": "pronunciation",
+									"VocabularyFilterMatch": false
+								},
+								{
+									"Content": ".",
+									"EndTime": 19.7375,
+									"StartTime": 19.7375,
+									"Type": "punctuation",
+									"VocabularyFilterMatch": false
+								},
+								{
+									"Content": "It",
+									"EndTime": 20.2475,
+									"StartTime": 19.9975,
+									"Type": "pronunciation",
+									"VocabularyFilterMatch": false
+								},
+								{
+									"Content": "was",
+									"EndTime": 20.4175,
+									"StartTime": 20.2475,
+									"Type": "pronunciation",
+									"VocabularyFilterMatch": false
+								},
+								{
+									"Content": "the",
+									"EndTime": 20.5275,
+									"StartTime": 20.4175,
+									"Type": "pronunciation",
+									"VocabularyFilterMatch": false
+								},
+								{
+									"Content": "spring",
+									"EndTime": 20.8775,
+									"StartTime": 20.5275,
+									"Type": "pronunciation",
+									"VocabularyFilterMatch": false
+								},
+								{
+									"Content": "of",
+									"EndTime": 21.0175,
+									"StartTime": 20.8775,
+									"Type": "pronunciation",
+									"VocabularyFilterMatch": false
+								},
+								{
+									"Content": "hope",
+									"EndTime": 21.6225,
+									"StartTime": 21.0175,
+									"Type": "pronunciation",
+									"VocabularyFilterMatch": false
+								},
+								{
+									"Content": "It",
+									"EndTime": 21.7875,
+									"StartTime": 21.6225,
+									"Type": "pronunciation",
+									"VocabularyFilterMatch": false
+								},
+								{
+									"Content": "was",
+									"EndTime": 21.9875,
+									"StartTime": 21.7875,
+									"Type": "pronunciation",
+									"VocabularyFilterMatch": false
+								},
+								{
+									"Content": "the",
+									"EndTime": 22.1275,
+									"StartTime": 21.9875,
+									"Type": "pronunciation",
+									"VocabularyFilterMatch": false
+								},
+								{
+									"Content": "winter",
+									"EndTime": 22.595,
+									"StartTime": 22.1275,
+									"Type": "pronunciation",
+									"VocabularyFilterMatch": false
+								},
+								{
+									"Content": ".",
+									"EndTime": 22.595,
+									"StartTime": 22.595,
+									"Type": "punctuation",
+									"VocabularyFilterMatch": false
+								}
+							],
+							"Transcript": "It was the epoch of incredulity. It was the season of light. It was the season of darkness. It was the spring of hope It was the winter."
+						}
+					],
+					"ChannelId": "ch_0",
+					"EndTime": 22.595,
+					"IsPartial": true,
+					"ResultId": "0667e54d-7b0a-4453-8880-3ee5d6a9454a",
+					"StartTime": 13.08
+				}
+			]
+		}
+	},
+	{
+		"Transcript": {
+			"Results": []
+		}
+	},
+	{
+		"Transcript": {
+			"Results": [
+				{
+					"Alternatives": [
+						{
+							"Items": [
+								{
+									"Content": "It",
+									"EndTime": 13.5575,
+									"StartTime": 13.3375,
+									"Type": "pronunciation",
+									"VocabularyFilterMatch": false
+								},
+								{
+									"Content": "was",
+									"EndTime": 13.7175,
+									"StartTime": 13.5575,
+									"Type": "pronunciation",
+									"VocabularyFilterMatch": false
+								},
+								{
+									"Content": "the",
+									"EndTime": 13.8675,
+									"StartTime": 13.7175,
+									"Type": "pronunciation",
+									"VocabularyFilterMatch": false
+								},
+								{
+									"Content": "epoch",
+									"EndTime": 14.3575,
+									"StartTime": 13.8675,
+									"Type": "pronunciation",
+									"VocabularyFilterMatch": false
+								},
+								{
+									"Content": "of",
+									"EndTime": 14.5625,
+									"StartTime": 14.3575,
+									"Type": "pronunciation",
+									"VocabularyFilterMatch": false
+								},
+								{
+									"Content": "incredulity",
+									"EndTime": 15.6975,
+									"StartTime": 14.5625,
+									"Type": "pronunciation",
+									"VocabularyFilterMatch": false
+								},
+								{
+									"Content": ".",
+									"EndTime": 15.6975,
+									"StartTime": 15.6975,
+									"Type": "punctuation",
+									"VocabularyFilterMatch": false
+								},
+								{
+									"Content": "It",
+									"EndTime": 16.1275,
+									"StartTime": 15.9775,
+									"Type": "pronunciation",
+									"VocabularyFilterMatch": false
+								},
+								{
+									"Content": "was",
+									"EndTime": 16.2875,
+									"StartTime": 16.1275,
+									"Type": "pronunciation",
+									"VocabularyFilterMatch": false
+								},
+								{
+									"Content": "the",
+									"EndTime": 16.3975,
+									"StartTime": 16.2875,
+									"Type": "pronunciation",
+									"VocabularyFilterMatch": false
+								},
+								{
+									"Content": "season",
+									"EndTime": 16.8575,
+									"StartTime": 16.3975,
+									"Type": "pronunciation",
+									"VocabularyFilterMatch": false
+								},
+								{
+									"Content": "of",
+									"EndTime": 16.9975,
+									"StartTime": 16.8575,
+									"Type": "pronunciation",
+									"VocabularyFilterMatch": false
+								},
+								{
+									"Content": "light",
+									"EndTime": 17.5275,
+									"StartTime": 16.9975,
+									"Type": "pronunciation",
+									"VocabularyFilterMatch": false
+								},
+								{
+									"Content": ".",
+									"EndTime": 17.5275,
+									"StartTime": 17.5275,
+									"Type": "punctuation",
+									"VocabularyFilterMatch": false
+								},
+								{
+									"Content": "It",
+									"EndTime": 17.8875,
+									"StartTime": 17.7375,
+									"Type": "pronunciation",
+									"VocabularyFilterMatch": false
+								},
+								{
+									"Content": "was",
+									"EndTime": 18.0375,
+									"StartTime": 17.8875,
+									"Type": "pronunciation",
+									"VocabularyFilterMatch": false
+								},
+								{
+									"Content": "the",
+									"EndTime": 18.1575,
+									"StartTime": 18.0375,
+									"Type": "pronunciation",
+									"VocabularyFilterMatch": false
+								},
+								{
+									"Content": "season",
+									"EndTime": 18.6375,
+									"StartTime": 18.1575,
+									"Type": "pronunciation",
+									"VocabularyFilterMatch": false
+								},
+								{
+									"Content": "of",
+									"EndTime": 18.7575,
+									"StartTime": 18.6375,
+									"Type": "pronunciation",
+									"VocabularyFilterMatch": false
+								},
+								{
+									"Content": "darkness",
+									"EndTime": 19.7375,
+									"StartTime": 18.7575,
+									"Type": "pronunciation",
+									"VocabularyFilterMatch": false
+								},
+								{
+									"Content": ".",
+									"EndTime": 19.7375,
+									"StartTime": 19.7375,
+									"Type": "punctuation",
+									"VocabularyFilterMatch": false
+								},
+								{
+									"Content": "It",
+									"EndTime": 20.2475,
+									"StartTime": 19.9975,
+									"Type": "pronunciation",
+									"VocabularyFilterMatch": false
+								},
+								{
+									"Content": "was",
+									"EndTime": 20.4175,
+									"StartTime": 20.2475,
+									"Type": "pronunciation",
+									"VocabularyFilterMatch": false
+								},
+								{
+									"Content": "the",
+									"EndTime": 20.5275,
+									"StartTime": 20.4175,
+									"Type": "pronunciation",
+									"VocabularyFilterMatch": false
+								},
+								{
+									"Content": "spring",
+									"EndTime": 20.8775,
+									"StartTime": 20.5275,
+									"Type": "pronunciation",
+									"VocabularyFilterMatch": false
+								},
+								{
+									"Content": "of",
+									"EndTime": 21.0175,
+									"StartTime": 20.8775,
+									"Type": "pronunciation",
+									"VocabularyFilterMatch": false
+								},
+								{
+									"Content": "hope",
+									"EndTime": 21.6225,
+									"StartTime": 21.0175,
+									"Type": "pronunciation",
+									"VocabularyFilterMatch": false
+								},
+								{
+									"Content": ".",
+									"EndTime": 21.6225,
+									"StartTime": 21.6225,
+									"Type": "punctuation",
+									"VocabularyFilterMatch": false
+								},
+								{
+									"Content": "It",
+									"EndTime": 21.7875,
+									"StartTime": 21.6225,
+									"Type": "pronunciation",
+									"VocabularyFilterMatch": false
+								},
+								{
+									"Content": "was",
+									"EndTime": 21.9875,
+									"StartTime": 21.7875,
+									"Type": "pronunciation",
+									"VocabularyFilterMatch": false
+								},
+								{
+									"Content": "the",
+									"EndTime": 22.1275,
+									"StartTime": 21.9875,
+									"Type": "pronunciation",
+									"VocabularyFilterMatch": false
+								},
+								{
+									"Content": "winter",
+									"EndTime": 22.8275,
+									"StartTime": 22.1275,
+									"Type": "pronunciation",
+									"VocabularyFilterMatch": false
+								},
+								{
+									"Content": "of",
+									"EndTime": 23.095,
+									"StartTime": 22.9375,
+									"Type": "pronunciation",
+									"VocabularyFilterMatch": false
+								}
+							],
+							"Transcript": "It was the epoch of incredulity. It was the season of light. It was the season of darkness. It was the spring of hope. It was the winter of"
+						}
+					],
+					"ChannelId": "ch_0",
+					"EndTime": 23.095,
+					"IsPartial": true,
+					"ResultId": "0667e54d-7b0a-4453-8880-3ee5d6a9454a",
+					"StartTime": 13.08
+				}
+			]
+		}
+	},
+	{
+		"Transcript": {
+			"Results": []
+		}
+	},
+	{
+		"Transcript": {
+			"Results": [
+				{
+					"Alternatives": [
+						{
+							"Items": [
+								{
+									"Content": "It",
+									"EndTime": 13.5575,
+									"StartTime": 13.3375,
+									"Type": "pronunciation",
+									"VocabularyFilterMatch": false
+								},
+								{
+									"Content": "was",
+									"EndTime": 13.7175,
+									"StartTime": 13.5575,
+									"Type": "pronunciation",
+									"VocabularyFilterMatch": false
+								},
+								{
+									"Content": "the",
+									"EndTime": 13.8675,
+									"StartTime": 13.7175,
+									"Type": "pronunciation",
+									"VocabularyFilterMatch": false
+								},
+								{
+									"Content": "epoch",
+									"EndTime": 14.3575,
+									"StartTime": 13.8675,
+									"Type": "pronunciation",
+									"VocabularyFilterMatch": false
+								},
+								{
+									"Content": "of",
+									"EndTime": 14.5625,
+									"StartTime": 14.3575,
+									"Type": "pronunciation",
+									"VocabularyFilterMatch": false
+								},
+								{
+									"Content": "incredulity",
+									"EndTime": 15.6975,
+									"StartTime": 14.5625,
+									"Type": "pronunciation",
+									"VocabularyFilterMatch": false
+								},
+								{
+									"Content": ".",
+									"EndTime": 15.6975,
+									"StartTime": 15.6975,
+									"Type": "punctuation",
+									"VocabularyFilterMatch": false
+								},
+								{
+									"Content": "It",
+									"EndTime": 16.1275,
+									"StartTime": 15.9775,
+									"Type": "pronunciation",
+									"VocabularyFilterMatch": false
+								},
+								{
+									"Content": "was",
+									"EndTime": 16.2875,
+									"StartTime": 16.1275,
+									"Type": "pronunciation",
+									"VocabularyFilterMatch": false
+								},
+								{
+									"Content": "the",
+									"EndTime": 16.3975,
+									"StartTime": 16.2875,
+									"Type": "pronunciation",
+									"VocabularyFilterMatch": false
+								},
+								{
+									"Content": "season",
+									"EndTime": 16.8575,
+									"StartTime": 16.3975,
+									"Type": "pronunciation",
+									"VocabularyFilterMatch": false
+								},
+								{
+									"Content": "of",
+									"EndTime": 16.9975,
+									"StartTime": 16.8575,
+									"Type": "pronunciation",
+									"VocabularyFilterMatch": false
+								},
+								{
+									"Content": "light",
+									"EndTime": 17.5275,
+									"StartTime": 16.9975,
+									"Type": "pronunciation",
+									"VocabularyFilterMatch": false
+								},
+								{
+									"Content": ".",
+									"EndTime": 17.5275,
+									"StartTime": 17.5275,
+									"Type": "punctuation",
+									"VocabularyFilterMatch": false
+								},
+								{
+									"Content": "It",
+									"EndTime": 17.8875,
+									"StartTime": 17.7375,
+									"Type": "pronunciation",
+									"VocabularyFilterMatch": false
+								},
+								{
+									"Content": "was",
+									"EndTime": 18.0375,
+									"StartTime": 17.8875,
+									"Type": "pronunciation",
+									"VocabularyFilterMatch": false
+								},
+								{
+									"Content": "the",
+									"EndTime": 18.1575,
+									"StartTime": 18.0375,
+									"Type": "pronunciation",
+									"VocabularyFilterMatch": false
+								},
+								{
+									"Content": "season",
+									"EndTime": 18.6375,
+									"StartTime": 18.1575,
+									"Type": "pronunciation",
+									"VocabularyFilterMatch": false
+								},
+								{
+									"Content": "of",
+									"EndTime": 18.7575,
+									"StartTime": 18.6375,
+									"Type": "pronunciation",
+									"VocabularyFilterMatch": false
+								},
+								{
+									"Content": "darkness",
+									"EndTime": 19.7375,
+									"StartTime": 18.7575,
+									"Type": "pronunciation",
+									"VocabularyFilterMatch": false
+								},
+								{
+									"Content": ".",
+									"EndTime": 19.7375,
+									"StartTime": 19.7375,
+									"Type": "punctuation",
+									"VocabularyFilterMatch": false
+								},
+								{
+									"Content": "It",
+									"EndTime": 20.2475,
+									"StartTime": 19.9975,
+									"Type": "pronunciation",
+									"VocabularyFilterMatch": false
+								},
+								{
+									"Content": "was",
+									"EndTime": 20.4175,
+									"StartTime": 20.2475,
+									"Type": "pronunciation",
+									"VocabularyFilterMatch": false
+								},
+								{
+									"Content": "the",
+									"EndTime": 20.5275,
+									"StartTime": 20.4175,
+									"Type": "pronunciation",
+									"VocabularyFilterMatch": false
+								},
+								{
+									"Content": "spring",
+									"EndTime": 20.8775,
+									"StartTime": 20.5275,
+									"Type": "pronunciation",
+									"VocabularyFilterMatch": false
+								},
+								{
+									"Content": "of",
+									"EndTime": 21.0175,
+									"StartTime": 20.8775,
+									"Type": "pronunciation",
+									"VocabularyFilterMatch": false
+								},
+								{
+									"Content": "hope",
+									"EndTime": 21.6225,
+									"StartTime": 21.0175,
+									"Type": "pronunciation",
+									"VocabularyFilterMatch": false
+								},
+								{
+									"Content": "It",
+									"EndTime": 21.7875,
+									"StartTime": 21.6225,
+									"Type": "pronunciation",
+									"VocabularyFilterMatch": false
+								},
+								{
+									"Content": "was",
+									"EndTime": 21.9875,
+									"StartTime": 21.7875,
+									"Type": "pronunciation",
+									"VocabularyFilterMatch": false
+								},
+								{
+									"Content": "the",
+									"EndTime": 22.1275,
+									"StartTime": 21.9875,
+									"Type": "pronunciation",
+									"VocabularyFilterMatch": false
+								},
+								{
+									"Content": "winter",
+									"EndTime": 22.8275,
+									"StartTime": 22.1275,
+									"Type": "pronunciation",
+									"VocabularyFilterMatch": false
+								},
+								{
+									"Content": "of",
+									"EndTime": 23.1675,
+									"StartTime": 22.9375,
+									"Type": "pronunciation",
+									"VocabularyFilterMatch": false
+								},
+								{
+									"Content": "despair",
+									"EndTime": 23.595,
+									"StartTime": 23.1675,
+									"Type": "pronunciation",
+									"VocabularyFilterMatch": false
+								},
+								{
+									"Content": ".",
+									"EndTime": 23.595,
+									"StartTime": 23.595,
+									"Type": "punctuation",
+									"VocabularyFilterMatch": false
+								}
+							],
+							"Transcript": "It was the epoch of incredulity. It was the season of light. It was the season of darkness. It was the spring of hope It was the winter of despair."
+						}
+					],
+					"ChannelId": "ch_0",
+					"EndTime": 23.595,
+					"IsPartial": true,
+					"ResultId": "0667e54d-7b0a-4453-8880-3ee5d6a9454a",
+					"StartTime": 13.08
+				}
+			]
+		}
+	},
+	{
+		"Transcript": {
+			"Results": [
+				{
+					"Alternatives": [
+						{
+							"Items": [
+								{
+									"Content": "It",
+									"EndTime": 13.5575,
+									"StartTime": 13.3375,
+									"Type": "pronunciation",
+									"VocabularyFilterMatch": false
+								},
+								{
+									"Content": "was",
+									"EndTime": 13.7175,
+									"StartTime": 13.5575,
+									"Type": "pronunciation",
+									"VocabularyFilterMatch": false
+								},
+								{
+									"Content": "the",
+									"EndTime": 13.8675,
+									"StartTime": 13.7175,
+									"Type": "pronunciation",
+									"VocabularyFilterMatch": false
+								},
+								{
+									"Content": "epoch",
+									"EndTime": 14.3575,
+									"StartTime": 13.8675,
+									"Type": "pronunciation",
+									"VocabularyFilterMatch": false
+								},
+								{
+									"Content": "of",
+									"EndTime": 14.5625,
+									"StartTime": 14.3575,
+									"Type": "pronunciation",
+									"VocabularyFilterMatch": false
+								},
+								{
+									"Content": "incredulity",
+									"EndTime": 15.6975,
+									"StartTime": 14.5625,
+									"Type": "pronunciation",
+									"VocabularyFilterMatch": false
+								},
+								{
+									"Content": ".",
+									"EndTime": 15.6975,
+									"StartTime": 15.6975,
+									"Type": "punctuation",
+									"VocabularyFilterMatch": false
+								},
+								{
+									"Content": "It",
+									"EndTime": 16.1275,
+									"StartTime": 15.9775,
+									"Type": "pronunciation",
+									"VocabularyFilterMatch": false
+								},
+								{
+									"Content": "was",
+									"EndTime": 16.2875,
+									"StartTime": 16.1275,
+									"Type": "pronunciation",
+									"VocabularyFilterMatch": false
+								},
+								{
+									"Content": "the",
+									"EndTime": 16.3975,
+									"StartTime": 16.2875,
+									"Type": "pronunciation",
+									"VocabularyFilterMatch": false
+								},
+								{
+									"Content": "season",
+									"EndTime": 16.8575,
+									"StartTime": 16.3975,
+									"Type": "pronunciation",
+									"VocabularyFilterMatch": false
+								},
+								{
+									"Content": "of",
+									"EndTime": 16.9975,
+									"StartTime": 16.8575,
+									"Type": "pronunciation",
+									"VocabularyFilterMatch": false
+								},
+								{
+									"Content": "light",
+									"EndTime": 17.5275,
+									"StartTime": 16.9975,
+									"Type": "pronunciation",
+									"VocabularyFilterMatch": false
+								},
+								{
+									"Content": ".",
+									"EndTime": 17.5275,
+									"StartTime": 17.5275,
+									"Type": "punctuation",
+									"VocabularyFilterMatch": false
+								},
+								{
+									"Content": "It",
+									"EndTime": 17.8875,
+									"StartTime": 17.7375,
+									"Type": "pronunciation",
+									"VocabularyFilterMatch": false
+								},
+								{
+									"Content": "was",
+									"EndTime": 18.0375,
+									"StartTime": 17.8875,
+									"Type": "pronunciation",
+									"VocabularyFilterMatch": false
+								},
+								{
+									"Content": "the",
+									"EndTime": 18.1575,
+									"StartTime": 18.0375,
+									"Type": "pronunciation",
+									"VocabularyFilterMatch": false
+								},
+								{
+									"Content": "season",
+									"EndTime": 18.6375,
+									"StartTime": 18.1575,
+									"Type": "pronunciation",
+									"VocabularyFilterMatch": false
+								},
+								{
+									"Content": "of",
+									"EndTime": 18.7575,
+									"StartTime": 18.6375,
+									"Type": "pronunciation",
+									"VocabularyFilterMatch": false
+								},
+								{
+									"Content": "darkness",
+									"EndTime": 19.7375,
+									"StartTime": 18.7575,
+									"Type": "pronunciation",
+									"VocabularyFilterMatch": false
+								},
+								{
+									"Content": ".",
+									"EndTime": 19.7375,
+									"StartTime": 19.7375,
+									"Type": "punctuation",
+									"VocabularyFilterMatch": false
+								},
+								{
+									"Content": "It",
+									"EndTime": 20.2475,
+									"StartTime": 19.9975,
+									"Type": "pronunciation",
+									"VocabularyFilterMatch": false
+								},
+								{
+									"Content": "was",
+									"EndTime": 20.4175,
+									"StartTime": 20.2475,
+									"Type": "pronunciation",
+									"VocabularyFilterMatch": false
+								},
+								{
+									"Content": "the",
+									"EndTime": 20.5275,
+									"StartTime": 20.4175,
+									"Type": "pronunciation",
+									"VocabularyFilterMatch": false
+								},
+								{
+									"Content": "spring",
+									"EndTime": 20.8775,
+									"StartTime": 20.5275,
+									"Type": "pronunciation",
+									"VocabularyFilterMatch": false
+								},
+								{
+									"Content": "of",
+									"EndTime": 21.0175,
+									"StartTime": 20.8775,
+									"Type": "pronunciation",
+									"VocabularyFilterMatch": false
+								},
+								{
+									"Content": "hope",
+									"EndTime": 21.6225,
+									"StartTime": 21.0175,
+									"Type": "pronunciation",
+									"VocabularyFilterMatch": false
+								},
+								{
+									"Content": "It",
+									"EndTime": 21.7875,
+									"StartTime": 21.6225,
+									"Type": "pronunciation",
+									"VocabularyFilterMatch": false
+								},
+								{
+									"Content": "was",
+									"EndTime": 21.9875,
+									"StartTime": 21.7875,
+									"Type": "pronunciation",
+									"VocabularyFilterMatch": false
+								},
+								{
+									"Content": "the",
+									"EndTime": 22.1275,
+									"StartTime": 21.9875,
+									"Type": "pronunciation",
+									"VocabularyFilterMatch": false
+								},
+								{
+									"Content": "winter",
+									"EndTime": 22.8275,
+									"StartTime": 22.1275,
+									"Type": "pronunciation",
+									"VocabularyFilterMatch": false
+								},
+								{
+									"Content": "of",
+									"EndTime": 23.1675,
+									"StartTime": 22.9375,
+									"Type": "pronunciation",
+									"VocabularyFilterMatch": false
+								},
+								{
+									"Content": "despair",
+									"EndTime": 23.995,
+									"StartTime": 23.1675,
+									"Type": "pronunciation",
+									"VocabularyFilterMatch": false
+								},
+								{
+									"Content": ".",
+									"EndTime": 23.995,
+									"StartTime": 23.995,
+									"Type": "punctuation",
+									"VocabularyFilterMatch": false
+								}
+							],
+							"Transcript": "It was the epoch of incredulity. It was the season of light. It was the season of darkness. It was the spring of hope It was the winter of despair."
+						}
+					],
+					"ChannelId": "ch_0",
+					"EndTime": 23.995,
+					"IsPartial": true,
+					"ResultId": "0667e54d-7b0a-4453-8880-3ee5d6a9454a",
+					"StartTime": 13.08
+				}
+			]
+		}
+	},
+	{
+		"Transcript": {
+			"Results": [
+				{
+					"Alternatives": [
+						{
+							"Items": [
+								{
+									"Confidence": 1,
+									"Content": "It",
+									"EndTime": 13.5575,
+									"StartTime": 13.3375,
+									"Type": "pronunciation",
+									"VocabularyFilterMatch": false
+								},
+								{
+									"Confidence": 1,
+									"Content": "was",
+									"EndTime": 13.7175,
+									"StartTime": 13.5575,
+									"Type": "pronunciation",
+									"VocabularyFilterMatch": false
+								},
+								{
+									"Confidence": 1,
+									"Content": "the",
+									"EndTime": 13.8675,
+									"StartTime": 13.7175,
+									"Type": "pronunciation",
+									"VocabularyFilterMatch": false
+								},
+								{
+									"Confidence": 0.9949,
+									"Content": "epoch",
+									"EndTime": 14.3575,
+									"StartTime": 13.8675,
+									"Type": "pronunciation",
+									"VocabularyFilterMatch": false
+								},
+								{
+									"Confidence": 1,
+									"Content": "of",
+									"EndTime": 14.5625,
+									"StartTime": 14.3575,
+									"Type": "pronunciation",
+									"VocabularyFilterMatch": false
+								},
+								{
+									"Confidence": 1,
+									"Content": "incredulity",
+									"EndTime": 15.6975,
+									"StartTime": 14.5625,
+									"Type": "pronunciation",
+									"VocabularyFilterMatch": false
+								},
+								{
+									"Content": ".",
+									"EndTime": 15.6975,
+									"StartTime": 15.6975,
+									"Type": "punctuation",
+									"VocabularyFilterMatch": false
+								},
+								{
+									"Confidence": 0.9959,
+									"Content": "It",
+									"EndTime": 16.1275,
+									"StartTime": 15.9775,
+									"Type": "pronunciation",
+									"VocabularyFilterMatch": false
+								},
+								{
+									"Confidence": 1,
+									"Content": "was",
+									"EndTime": 16.2875,
+									"StartTime": 16.1275,
+									"Type": "pronunciation",
+									"VocabularyFilterMatch": false
+								},
+								{
+									"Confidence": 1,
+									"Content": "the",
+									"EndTime": 16.3975,
+									"StartTime": 16.2875,
+									"Type": "pronunciation",
+									"VocabularyFilterMatch": false
+								},
+								{
+									"Confidence": 1,
+									"Content": "season",
+									"EndTime": 16.8575,
+									"StartTime": 16.3975,
+									"Type": "pronunciation",
+									"VocabularyFilterMatch": false
+								},
+								{
+									"Confidence": 1,
+									"Content": "of",
+									"EndTime": 16.9975,
+									"StartTime": 16.8575,
+									"Type": "pronunciation",
+									"VocabularyFilterMatch": false
+								},
+								{
+									"Confidence": 1,
+									"Content": "light",
+									"EndTime": 17.5275,
+									"StartTime": 16.9975,
+									"Type": "pronunciation",
+									"VocabularyFilterMatch": false
+								},
+								{
+									"Content": ".",
+									"EndTime": 17.5275,
+									"StartTime": 17.5275,
+									"Type": "punctuation",
+									"VocabularyFilterMatch": false
+								},
+								{
+									"Confidence": 0.9924,
+									"Content": "It",
+									"EndTime": 17.8875,
+									"StartTime": 17.7375,
+									"Type": "pronunciation",
+									"VocabularyFilterMatch": false
+								},
+								{
+									"Confidence": 1,
+									"Content": "was",
+									"EndTime": 18.0375,
+									"StartTime": 17.8875,
+									"Type": "pronunciation",
+									"VocabularyFilterMatch": false
+								},
+								{
+									"Confidence": 0.9893,
+									"Content": "the",
+									"EndTime": 18.1575,
+									"StartTime": 18.0375,
+									"Type": "pronunciation",
+									"VocabularyFilterMatch": false
+								},
+								{
+									"Confidence": 1,
+									"Content": "season",
+									"EndTime": 18.6375,
+									"StartTime": 18.1575,
+									"Type": "pronunciation",
+									"VocabularyFilterMatch": false
+								},
+								{
+									"Confidence": 1,
+									"Content": "of",
+									"EndTime": 18.7575,
+									"StartTime": 18.6375,
+									"Type": "pronunciation",
+									"VocabularyFilterMatch": false
+								},
+								{
+									"Confidence": 1,
+									"Content": "darkness",
+									"EndTime": 19.7375,
+									"StartTime": 18.7575,
+									"Type": "pronunciation",
+									"VocabularyFilterMatch": false
+								},
+								{
+									"Content": ".",
+									"EndTime": 19.7375,
+									"StartTime": 19.7375,
+									"Type": "punctuation",
+									"VocabularyFilterMatch": false
+								},
+								{
+									"Confidence": 1,
+									"Content": "It",
+									"EndTime": 20.2475,
+									"StartTime": 19.9975,
+									"Type": "pronunciation",
+									"VocabularyFilterMatch": false
+								},
+								{
+									"Confidence": 1,
+									"Content": "was",
+									"EndTime": 20.4175,
+									"StartTime": 20.2475,
+									"Type": "pronunciation",
+									"VocabularyFilterMatch": false
+								},
+								{
+									"Confidence": 1,
+									"Content": "the",
+									"EndTime": 20.5275,
+									"StartTime": 20.4175,
+									"Type": "pronunciation",
+									"VocabularyFilterMatch": false
+								},
+								{
+									"Confidence": 1,
+									"Content": "spring",
+									"EndTime": 20.8775,
+									"StartTime": 20.5275,
+									"Type": "pronunciation",
+									"VocabularyFilterMatch": false
+								},
+								{
+									"Confidence": 1,
+									"Content": "of",
+									"EndTime": 21.0175,
+									"StartTime": 20.8775,
+									"Type": "pronunciation",
+									"VocabularyFilterMatch": false
+								},
+								{
+									"Confidence": 1,
+									"Content": "hope",
+									"EndTime": 21.6225,
+									"StartTime": 21.0175,
+									"Type": "pronunciation",
+									"VocabularyFilterMatch": false
+								},
+								{
+									"Confidence": 1,
+									"Content": "It",
+									"EndTime": 21.7875,
+									"StartTime": 21.6225,
+									"Type": "pronunciation",
+									"VocabularyFilterMatch": false
+								},
+								{
+									"Confidence": 1,
+									"Content": "was",
+									"EndTime": 21.9875,
+									"StartTime": 21.7875,
+									"Type": "pronunciation",
+									"VocabularyFilterMatch": false
+								},
+								{
+									"Confidence": 1,
+									"Content": "the",
+									"EndTime": 22.1275,
+									"StartTime": 21.9875,
+									"Type": "pronunciation",
+									"VocabularyFilterMatch": false
+								},
+								{
+									"Confidence": 1,
+									"Content": "winter",
+									"EndTime": 22.8275,
+									"StartTime": 22.1275,
+									"Type": "pronunciation",
+									"VocabularyFilterMatch": false
+								},
+								{
+									"Confidence": 1,
+									"Content": "of",
+									"EndTime": 23.1675,
+									"StartTime": 22.9375,
+									"Type": "pronunciation",
+									"VocabularyFilterMatch": false
+								},
+								{
+									"Confidence": 1,
+									"Content": "despair",
+									"EndTime": 23.995,
+									"StartTime": 23.1675,
+									"Type": "pronunciation",
+									"VocabularyFilterMatch": false
+								},
+								{
+									"Content": ".",
+									"EndTime": 23.995,
+									"StartTime": 23.995,
+									"Type": "punctuation",
+									"VocabularyFilterMatch": false
+								}
+							],
+							"Transcript": "It was the epoch of incredulity. It was the season of light. It was the season of darkness. It was the spring of hope It was the winter of despair."
+						}
+					],
+					"ChannelId": "ch_0",
+					"EndTime": 23.995,
+					"IsPartial": false,
+					"ResultId": "0667e54d-7b0a-4453-8880-3ee5d6a9454a",
+					"StartTime": 13.08
+				}
+			]
+		}
+	},
+	{
+		"Transcript": {
+			"Results": []
+		}
+	}
+]

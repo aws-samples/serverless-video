@@ -1,9 +1,9 @@
 AWSTemplateFormatVersion: "2010-09-09"
 Transform: AWS::Serverless-2016-10-31
 Description: >
-  serverlessFlix-ml-workflow-service
+  serverlessVideo-ml-workflow-service
 
-  Sample SAM Template for serverlessFlix-ml-workflow-service
+  Sample SAM Template for serverlessVideo-ml-workflow-service
 Parameters:
 
   UserPoolARNParameter:
@@ -77,7 +77,7 @@ Resources:
             EventBusName: default
             Pattern:
               source:
-                - serverlessFlix.Cognito
+                - serverlessVideo.Cognito
               detail-type:
                 - BroadcastUserCreated
       Policies:
@@ -160,7 +160,7 @@ Resources:
                   - dynamodb:Query
                   - dynamodb:DeleteItem
                 Resource: 
-                  - !Sub arn:aws:dynamodb:${AWS::Region}:${AWS::AccountId}:table/serverlessFlix-video-history-table
+                  - !Sub arn:aws:dynamodb:${AWS::Region}:${AWS::AccountId}:table/serverlessVideo-video-history-table
               - Effect: Allow
                 Action:
                   - dynamodb:GetItem
@@ -168,19 +168,19 @@ Resources:
                   - dynamodb:Query
                   - dynamodb:DeleteItem
                 Resource: 
-                  - !Sub arn:aws:dynamodb:${AWS::Region}:${AWS::AccountId}:table/serverlessFlix-Video-table
+                  - !Sub arn:aws:dynamodb:${AWS::Region}:${AWS::AccountId}:table/serverlessVideo-Video-table
               - Effect: Allow
                 Action:
                   - dynamodb:Query
                 Resource: 
-                  - !Sub arn:aws:dynamodb:${AWS::Region}:${AWS::AccountId}:table/serverlessFlix-Video-table/index/*
+                  - !Sub arn:aws:dynamodb:${AWS::Region}:${AWS::AccountId}:table/serverlessVideo-Video-table/index/*
         - PolicyName: SendMessagePolicy
           PolicyDocument:
             Version: '2012-10-17'
             Statement:
               - Effect: Allow
                 Action: sqs:SendMessage
-                Resource: !GetAtt ServerlessFlixChannelQueue.Arn # Specify the ARN of the SQS queue
+                Resource: !GetAtt serverlessVideoChannelQueue.Arn # Specify the ARN of the SQS queue
 
   GenerateChannelInfo:
     Type: AWS::Serverless::Function
@@ -192,10 +192,10 @@ Resources:
 
 
     # Define the SQS queue
-  ServerlessFlixChannelQueue:
+  serverlessVideoChannelQueue:
     Type: AWS::SQS::Queue
     Properties:
-      QueueName: serverlessFlix-channelService-ServerlessFlixChannelQueue
+      QueueName: serverlessVideo-channelService-serverlessVideoChannelQueue
 
  # Function to post metadata (Emojis) to IVS 
   PostMetadataFunction:
@@ -224,7 +224,7 @@ Resources:
         MySQSEvent:
           Type: SQS
           Properties:
-            Queue: !GetAtt ServerlessFlixChannelQueue.Arn
+            Queue: !GetAtt serverlessVideoChannelQueue.Arn
             BatchSize: 5
             MaximumBatchingWindowInSeconds: 5
 
@@ -251,7 +251,7 @@ Resources:
   ChannelTable:
     Type: AWS::DynamoDB::Table
     Properties:
-      TableName: serverlessFlix-channels-table
+      TableName: serverlessVideo-channels-table
       AttributeDefinitions:
         - AttributeName: PK
           AttributeType: S
@@ -262,20 +262,20 @@ Resources:
 
 Outputs:
   QueueConsumerFunction:
-    Description: ServerlessFlixChannelQueue function name
-    Value: !Ref ServerlessFlixChannelQueue
+    Description: serverlessVideoChannelQueue function name
+    Value: !Ref serverlessVideoChannelQueue
   
   SQSqueueName:
     Description: SNS queue name
-    Value: !GetAtt ServerlessFlixChannelQueue.QueueName
+    Value: !GetAtt serverlessVideoChannelQueue.QueueName
 
   SQSqueueARN:
     Description: SQS queue ARN
-    Value: !GetAtt ServerlessFlixChannelQueue.Arn
+    Value: !GetAtt serverlessVideoChannelQueue.Arn
 
   SQSqueueURL:
     Description: SQS queue URL
-    Value: !Ref ServerlessFlixChannelQueue
+    Value: !Ref serverlessVideoChannelQueue
 
 
 

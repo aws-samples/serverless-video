@@ -21,7 +21,7 @@
                     },
                     "DetailType": "MP4ProcessingStarted",
                     "EventBusName": "default",
-                    "Source": "serverlessFlix.videoManager"
+                    "Source": "serverlessVideo.videoManager"
                   }
                 ]
               },
@@ -164,7 +164,7 @@
             },
             "DetailType": "MP4ProcessingComplete",
             "EventBusName": "default",
-            "Source": "serverlessFlix.videoManager"
+            "Source": "serverlessVideo.videoManager"
           }
         ]
       },
@@ -215,7 +215,7 @@
             },
             "DetailType": "MP4ProcessingComplete",
             "EventBusName": "default",
-            "Source": "serverlessFlix.videoManager"
+            "Source": "serverlessVideo.videoManager"
           }
         ]
       },
@@ -309,7 +309,7 @@
             },
             "DetailType": "recording-ready",
             "EventBusName": "default",
-            "Source": "serverlessFlix.videoManager"
+            "Source": "serverlessVideo.videoManager"
           }
         ]
       },

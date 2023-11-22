@@ -1,0 +1,65 @@
+AWSTemplateFormatVersion: "2010-09-09"
+Transform: AWS::Serverless-2016-10-31
+Description: >
+  serverlessVideo-plugin-ExamplePlugin
+
+  Sample SAM Template for serverlessVideo-plugin-simulator
+
+Parameters:
+  pluginTitle:
+    Description: Identifier for this plugin
+    Type: String
+    Default: TestPlugin
+
+  eventHook:
+    Description: Identifier for this plugin
+    Type: String
+    Default: preValidate
+
+Resources:
+
+##############################################################
+#  function to check duration and return TT
+##############################################################
+  PluginTaskSuccessFunction:
+    Type: AWS::Serverless::Function
+    Properties:
+      CodeUri: code/
+      Handler: app.handler
+      Runtime: nodejs18.x
+      Timeout: 3
+      Environment:
+        Variables:
+          PluginLifecycleWorkflow: !Ref PluginLifecycleWorkflow
+      Policies:
+        - Statement:
+            - Effect: Allow
+              Resource: !Ref PluginLifecycleWorkflow
+              Action:
+                - states:sendTaskSuccess
+      Events:
+        pluginSuccess:
+          Type: EventBridgeRule
+          Properties:
+            EventBusName: default
+            Pattern:
+              source:
+                - prefix: serverlessVideo.plugin
+              detail-type:
+                - prefix: plugin-complete
+  
+  PluginLifecycleWorkflow:
+    Type: AWS::Serverless::StateMachine # More info about State Machine Resource: https://docs.aws.amazon.com/serverless-application-model/latest/developerguide/sam-resource-statemachine.html
+    Properties:
+      DefinitionSubstitutions:
+        pluginTitle: !Ref pluginTitle
+        eventHook: !Ref eventHook
+      DefinitionUri: workflow/statemachine.asl.json
+      Policies: # Find out more about SAM policy templates: https://docs.aws.amazon.com/serverless-application-model/latest/developerguide/serverless-policy-templates.html
+        - EventBridgePutEventsPolicy:
+            EventBusName: "default"
+        
+Outputs:
+  PluginLifecycleWorkflow:
+    Description: PluginLifecycleWorkflow Function ARN
+    Value: !GetAtt PluginLifecycleWorkflow.Arn

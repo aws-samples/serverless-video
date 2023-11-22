@@ -5,7 +5,7 @@ Resources:
   MyDashboard:
     Type: "AWS::CloudWatch::Dashboard"
     Properties:
-      DashboardName: "ServerlessVideo-Producer-Dashboard"
+      DashboardName: "serverlessVideo-Producer-Dashboard"
       DashboardBody: !Sub |
         {
             "variables": [
@@ -27,7 +27,7 @@ Resources:
                     "x": 0,
                     "type": "text",
                     "properties": {
-                        "markdown": "# Producer dashboard for ServerlessVideo\n\n\nWhen you are producing for ServerlessVideo, use this dashboard to get key metrics and data that might be useful during a live broadcast.\n(Remember to set the video and refresh rate to the desired rate you need for the broadcast).\n\n\n[View realtime GA information here](https://analytics.google.com/analytics/web/#/p414013319/realtime/overview?params=_u..nav%3Dmaui&collectionId=business-objectives)"
+                        "markdown": "# Producer dashboard for serverlessVideo\n\n\nWhen you are producing for serverlessVideo, use this dashboard to get key metrics and data that might be useful during a live broadcast.\n(Remember to set the video and refresh rate to the desired rate you need for the broadcast).\n\n\n[View realtime GA information here](https://analytics.google.com/analytics/web/#/p414013319/realtime/overview?params=_u..nav%3Dmaui&collectionId=business-objectives)"
                     }
                 },
                 {
@@ -60,7 +60,7 @@ Resources:
                     "x": 0,
                     "type": "text",
                     "properties": {
-                        "markdown": "# ServerlessVideo overall metrics"
+                        "markdown": "# serverlessVideo overall metrics"
                     }
                 },
                 {
@@ -112,7 +112,7 @@ Resources:
                     "type": "metric",
                     "properties": {
                         "metrics": [
-                            [ "AWS/SQS", "NumberOfMessagesSent", "QueueName", "serverlessFlix-channelService-ServerlessFlixChannelQueue" ]
+                            [ "AWS/SQS", "NumberOfMessagesSent", "QueueName", "serverlessVideo-channelService-serverlessVideoChannelQueue" ]
                         ],
                         "view": "singleValue",
                         "stacked": false,

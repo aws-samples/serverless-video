@@ -29,7 +29,7 @@ Resources:
               EventBusName: default
               Pattern:
                 source:
-                  - serverlessFlix.pluginManager
+                  - serverlessVideo.pluginManager
                 detail-type:
                   - prefix: LifeCycleComplete
 ##############################################################
@@ -38,7 +38,7 @@ Resources:
   VideoManagertable:
     Type: AWS::DynamoDB::Table
     Properties:
-      TableName: serverlessFlix-Video-table
+      TableName: serverlessVideo-Video-table
       AttributeDefinitions:
         - AttributeName: PK
           AttributeType: S

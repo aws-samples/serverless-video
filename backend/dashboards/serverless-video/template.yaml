@@ -3,7 +3,7 @@ Transform: AWS::Serverless-2016-10-31
 
 Parameters:
   UserpoolID:
-    Description: Cognito user pool id for ServerlessVideo
+    Description: Cognito user pool id for serverlessVideo
     Type: String
     Default: us-west-2_7HDmAbUnB
   UserpoolClient:
@@ -13,13 +13,13 @@ Parameters:
   PersistVideoLogGroupName:
     Description: Log group name for the persist lambda function
     Type: String
-    Default: /aws/lambda/serverlessFlix-video-serv-LambdaFunctionPersistVid-Hgu8cxT3hDvZ
+    Default: /aws/lambda/serverlessVideo-video-serv-LambdaFunctionPersistVid-Hgu8cxT3hDvZ
 
 Resources:
   MyDashboard:
     Type: "AWS::CloudWatch::Dashboard"
     Properties:
-      DashboardName: "ServerlessVideo-Dashboard"
+      DashboardName: "serverlessVideo-Dashboard"
       DashboardBody: !Sub |
         {
           "widgets": [
@@ -30,7 +30,7 @@ Resources:
                 "x": 0,
                 "type": "text",
                 "properties": {
-                    "markdown": "# ServerlessVideo Dashboard\n\nHigh level overview of ServerlessVideo. Use the [run book](https://quip-amazon.com/RuF8A9FhAaQi/ServerlessVideo-Run-book) to manage features and redirects."
+                    "markdown": "# serverlessVideo Dashboard\n\nHigh level overview of serverlessVideo. Use the [run book](https://quip-amazon.com/RuF8A9FhAaQi/serverlessVideo-Run-book) to manage features and redirects."
                 }
             },
             {
@@ -55,7 +55,7 @@ Resources:
                 "type": "metric",
                 "properties": {
                     "metrics": [
-                        [ "AWS/ApiGateway", "4XXError", "ApiName", "ServerlessFlixChannelServiceAPI", { "stat": "Sum", "color": "#ff7f0e" } ],
+                        [ "AWS/ApiGateway", "4XXError", "ApiName", "serverlessVideoChannelServiceAPI", { "stat": "Sum", "color": "#ff7f0e" } ],
                         [ ".", "5XXError", ".", ".", { "color": "#d62728" } ]
                     ],
                     "view": "timeSeries",
@@ -85,7 +85,7 @@ Resources:
                 "type": "metric",
                 "properties": {
                     "metrics": [
-                        [ "AWS/ApiGateway", "Count", "ApiName", "ServerlessFlixChannelServiceAPI", { "region": "${AWS::Region}" } ]
+                        [ "AWS/ApiGateway", "Count", "ApiName", "serverlessVideoChannelServiceAPI", { "region": "${AWS::Region}" } ]
                     ],
                     "sparkline": false,
                     "view": "singleValue",
@@ -237,7 +237,7 @@ Resources:
                 "type": "metric",
                 "properties": {
                     "metrics": [
-                        [ "AWS/ApiGateway", "Count", "ApiName", "ServerlessFlixChannelServiceAPI", { "region": "${AWS::Region}", "stat": "Sum" } ],
+                        [ "AWS/ApiGateway", "Count", "ApiName", "serverlessVideoChannelServiceAPI", { "region": "${AWS::Region}", "stat": "Sum" } ],
                         [ ".", "Latency", ".", ".", { "region": "${AWS::Region}" } ],
                         [ ".", "IntegrationLatency", ".", ".", { "region": "${AWS::Region}" } ]
                     ],
@@ -320,7 +320,7 @@ Resources:
                     "sparkline": true,
                     "view": "singleValue",
                     "metrics": [
-                        [ "AWS/S3", "NumberOfObjects", "StorageType", "AllStorageTypes", "BucketName", "serverlessflix-ivs-video-archive-1", { "period": 86400 } ],
+                        [ "AWS/S3", "NumberOfObjects", "StorageType", "AllStorageTypes", "BucketName", "serverlessVideo-ivs-video-archive-1", { "period": 86400 } ],
                         [ ".", "BucketSizeBytes", ".", "StandardStorage", ".", ".", { "period": 86400 } ]
                     ],
                     "region": "${AWS::Region}"
@@ -496,7 +496,7 @@ Resources:
                 "type": "metric",
                 "properties": {
                     "metrics": [
-                        [ "ServerlessVideo", "invalid", "By EventHook", "preValidate", { "region": "${AWS::Region}", "label": "Invalid video found" } ],
+                        [ "serverlessVideo", "invalid", "By EventHook", "preValidate", { "region": "${AWS::Region}", "label": "Invalid video found" } ],
                         [ ".", "success", ".", ".", { "region": "${AWS::Region}", "label": "Video passed validation (preValid)" } ],
                         [ "...", "postValidate", { "region": "${AWS::Region}", "label": "postValidate-success" } ],
                         [ "...", "preMetaData", { "region": "${AWS::Region}", "label": "preMetaData-success" } ],
@@ -567,7 +567,7 @@ Resources:
                 "type": "metric",
                 "properties": {
                     "metrics": [
-                        [ "AWS/SQS", "NumberOfMessagesSent", "QueueName", "serverlessFlix-channelService-ServerlessFlixChannelQueue" ]
+                        [ "AWS/SQS", "NumberOfMessagesSent", "QueueName", "serverlessVideo-channelService-serverlessVideoChannelQueue" ]
                     ],
                     "view": "singleValue",
                     "stacked": false,

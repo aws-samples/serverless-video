@@ -1,6 +1,6 @@
 AWSTemplateFormatVersion: "2010-09-09"
 Transform: AWS::Serverless-2016-10-31
-Description: ServerlessFlix CDN
+Description: serverlessVideo CDN
 
 Parameters:
   API:
@@ -56,7 +56,7 @@ Resources:
     Type: AWS::CloudFront::Distribution
     Properties: 
       DistributionConfig:
-        Comment: cloudFront API for ServerlessFlix
+        Comment: cloudFront API for serverlessVideo
         DefaultCacheBehavior:
           AllowedMethods: ["GET", "HEAD", "OPTIONS"]
           CachedMethods: ["GET", "HEAD"]
@@ -108,7 +108,7 @@ Resources:
     Type: AWS::CloudFront::Distribution
     Properties: 
       DistributionConfig:
-        Comment: CDN for ServerlessFlix
+        Comment: CDN for serverlessVideo
         DefaultCacheBehavior:
           AllowedMethods: ["GET", "HEAD", "OPTIONS"]
           CachedMethods: ["GET", "HEAD"]

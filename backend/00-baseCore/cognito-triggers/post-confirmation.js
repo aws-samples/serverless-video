@@ -22,7 +22,7 @@ exports.handler = async (event) => {
         Detail: JSON.stringify(event),
         DetailType: 'BroadcastUserCreated',
         EventBusName: 'default',
-        Source: 'serverlessFlix.Cognito',
+        Source: 'serverlessVideo.Cognito',
         Time: new Date
       }
     ]

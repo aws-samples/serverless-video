@@ -1,0 +1,76 @@
+AWSTemplateFormatVersion: "2010-09-09"
+Transform: AWS::Serverless-2016-10-31
+Description: >
+  serverlessVideo-plugin-ExamplePlugin
+
+  Sample SAM Template for serverlessVideo-example_plugin
+
+Globals:
+  Function:
+    Tracing: Active
+    Environment:
+      Variables:
+        POWERTOOLS_SERVICE_NAME: rollup_stats
+        LOG_LEVEL: DEBUG
+        POWERTOOLS_METRIC_NAMESPACE: serverlessVideo
+
+Resources:
+##############################################################
+#  function to check duration and return TT
+##############################################################
+  RollupStatsPluginFunction:
+    Type: AWS::Serverless::Function
+    Properties:
+      CodeUri: functions/
+      Handler: app.lambda_handler
+      Runtime: python3.11
+      Timeout: 29
+      MemorySize: 1024
+      Layers:
+        - arn:aws:lambda:us-west-2:017000801446:layer:AWSLambdaPowertoolsPythonV2-Arm64:42
+      Architectures:
+        - arm64
+      Environment:
+        Variables: 
+          ROLLUP_TABLE: !Ref rollupTable
+      Policies:
+          - EventBridgePutEventsPolicy:
+              EventBusName: default
+          - DynamoDBCrudPolicy:
+              TableName: !Ref rollupTable
+          - SQSSendMessagePolicy:
+              QueueName:
+                !GetAtt dlque.QueueName
+      Events:
+        pluginTrigger:
+          Type: EventBridgeRule
+          Properties:
+            EventBusName: default # a rule for the default event bus
+            Pattern:
+              source:
+                - serverlessVideo.pluginManager
+              detail-type:
+                  - postMetadata.rollupStats # this will be trigerred on the metadata hook event
+      EventInvokeConfig:
+        DestinationConfig:
+          OnFailure:
+            Type: SQS
+            Destination: !GetAtt dlque.Arn
+  rollupTable:
+    Type: AWS::DynamoDB::Table
+    Properties:
+      AttributeDefinitions:
+        - AttributeName: "hkey"
+          AttributeType: "S"
+        - AttributeName: "skey"
+          AttributeType: "S"
+      KeySchema:
+        - AttributeName: hkey
+          KeyType: "HASH"
+        - AttributeName: skey
+          KeyType: "RANGE"
+      BillingMode: PAY_PER_REQUEST
+      PointInTimeRecoverySpecification:
+        PointInTimeRecoveryEnabled: True
+  dlque:
+    Type: AWS::SQS::Queue

@@ -1,9 +1,9 @@
 AWSTemplateFormatVersion: "2010-09-09"
 Transform: AWS::Serverless-2016-10-31
 Description: >
-  ServerlessFlix-plugin-manager
+  serverlessVideo-plugin-manager
 
-  Sample SAM Template for ServerlessFlix-plugin-manager
+  Sample SAM Template for serverlessVideo-plugin-manager
 
 Resources:
   PluginLifecycleWorkflow:
@@ -15,7 +15,7 @@ Resources:
           Properties:
             Pattern:
               source:
-                - "serverlessFlix.videoManager"
+                - "serverlessVideo.videoManager"
               detail-type:
                     - "recording-ready"
       Name:
@@ -30,7 +30,7 @@ Resources:
         ]
       DefinitionUri: statemachine/workflow.asl.json
       DefinitionSubstitutions:
-        DDBTable: !Ref ServerlessFlixPluginHooksTable
+        DDBTable: !Ref serverlessVideoPluginHooksTable
       Policies: # Find out more about SAM policy templates: https://docs.aws.amazon.com/serverless-application-model/latest/developerguide/serverless-policy-templates.html
         - StepFunctionsExecutionPolicy:
             StateMachineName:  
@@ -44,7 +44,7 @@ Resources:
                 ],
               ]
         - DynamoDBReadPolicy:
-            TableName: !Ref ServerlessFlixPluginHooksTable
+            TableName: !Ref serverlessVideoPluginHooksTable
         - EventBridgePutEventsPolicy:
             EventBusName: "default"
         - CloudWatchPutMetricPolicy: {}
@@ -73,16 +73,16 @@ Resources:
             EventBusName: default
             Pattern:
               source:
-                - prefix: serverlessFlix.plugin
+                - prefix: serverlessVideo.plugin
               detail-type:
                 - prefix: plugin-complete
 
 
 
-  ServerlessFlixPluginHooksTable:
+  serverlessVideoPluginHooksTable:
     Type: AWS::DynamoDB::Table # More info about SimpleTable Resource: https://docs.aws.amazon.com/serverless-application-model/latest/developerguide/sam-resource-simpletable.html
     Properties:
-      TableName: ServerlessFlixPluginHooksTable
+      TableName: serverlessVideoPluginHooksTable
       AttributeDefinitions:
         - AttributeName: PK
           AttributeType: S

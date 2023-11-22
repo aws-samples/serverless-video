@@ -8,7 +8,7 @@ const client = new DynamoDBClient({});
 const docClient = DynamoDBDocumentClient.from(client);
 
 const metrics = new Metrics({
-  namespace: 'ServerlessVideo',
+  namespace: 'serverlessVideo',
   serviceName: 'videoManagerService',
 });
 
@@ -57,7 +57,7 @@ exports.lambdaHandler = async (event) => {
       new PutEventsCommand({
         Entries: [
           {
-            Source: 'serverlessFlix.videoManager',
+            Source: 'serverlessVideo.videoManager',
             DetailType: 'VideoStatusUpdated',
             Detail: JSON.stringify({
               ...event.detail,

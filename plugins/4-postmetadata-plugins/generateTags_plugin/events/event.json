@@ -1,0 +1,49 @@
+{
+  "version": "0",
+  "id": "9d738a56-6d7d-0e3b-385c-d57952754bfe",
+  "detail-type": "postMetadata.generateTagsPlugin",
+  "source": "serverlessVideo.pluginManager",
+  "account": "048972532408",
+  "time": "2023-10-04T12:19:02Z",
+  "region": "us-west-2",
+  "resources": [],
+  "detail": {
+      "video": {
+          "createdAt": "2023-08-30T14:57:51.169Z",
+          "durationmillis": 24000,
+          "thumbnail": "https://dmpdx8pmqxo3f.cloudfront.net/media/ivs/v1/832196373597/ERaAhUZnrHJG/2023/8/30/14/57/ovoTjGdG38Mk/media/hls/720p30/thumbnails/thumb0.jpg",
+          "playbackUrl": "https://dmpdx8pmqxo3f.cloudfront.net/media/ivs/v1/832196373597/ERaAhUZnrHJG/2023/8/30/14/57/ovoTjGdG38Mk/media/hls/720p30/output.mp4",
+          "channel": "08d143f0-00f1-7052-f97a-cbcda39ff077",
+          "id": "new-postMetadata-event-2"
+      },
+      "pluginData": {
+          "preValidate": [
+              {
+                  "OutputKey": "plugin-duration_plugin",
+                  "OutputValue": {
+                      "valid": true
+                  }
+              }
+          ],
+          "postValidate": [
+              {
+                  "Entries": [
+                      {
+                          "EventId": "b784478f-a460-6f1a-af50-5cc42e895b80"
+                      }
+                  ],
+                  "FailedEntryCount": 0
+              }
+          ],
+          "preMetadata": [
+              {
+                  "OutputKey": "plugin-transcribeplugin",
+                  "OutputValue": {
+                      "transcript": "Hello, everyone.\n\n              Thanks for joining me.\n              \n              I'm live at Reinvent outside the Bellagio.\n              \n              And I just wanted to take a couple of minutes to tell you about a fantastic talk that's coming up later this week.\n              \n              Now, this is not a talk by myself.\n              \n              It's actually by James Bee who's uh the senior manager of the servers developer advocate team.\n              \n              And he's going to be talking all about a very interesting servers, event driven application called server espresso.\n              \n              Now, for those that haven't heard of server Espresso, it's an application that allows you to order a cup of coffee from your mobile phone.\n              \n              And actually if there's anyone watching me right now, uh I can see there's a few people.\n              \n              Can you throw me some emoji? So I can know that you're, you're there and you're listening.\n              \n              Great.\n              \n              I can see that.\n              \n              Thank you.\n              \n              So, yes.\n              \n              Seven Espresso is an application that lets you order a cup of coffee from your mobile phone.\n              \n              It's powered by services such as step functions, a vet bridge Dynamo DB API gateway and of course, Lambda and we built this two years ago for Aws Reinvent to showcase a real production ready serverless application and since then, it's kind of traveled all over the world at various Aws summits and third party conferences.\n              \n              There's even a workshop here at Reinvent this week.\n              \n              So you can build serve espresso for yourself.\n              \n              And James Beit will be talk, talking all about the kind of journey that we went on and the different challenges that the team faced when building server espresso.\n              \n              So it's a very interesting talk.\n              \n              It's one of the highest rated talks of last year's reinvent.\n              \n              So I encourage you to give that a look.\n              \n              OK? Thanks for tuning in and I look forward to uh my next broadcast which will be later on today.\n              \n              Thanks.\n              \n              Bye bye."
+                  }
+              }
+          ]
+      },
+      "taskToken": "AQCgAAAAKgAAAAMAAAAAAAAAAZiPlrHGCTsL4I66zysrOw4pXGoGeECfKjSmHgAVLj9uQ5hocHhVxPHbOCjQS3xIa7QEsP27+MiU2a5fxp+Uwo0ft6YbgJhddLR7KRbB+LlyvRe098LSOREVUdhbO4AEWDwaMc4r8w==OlhIwTvLrVhnfr1A2UCyUinqpK0WQn/FnROd+7Q3viKLGB3RpdkCjT/j1jw71aU5GkQoapmi4O+dJZN5LCbkZMcJ5LIQ6PsYQvLkQ55Vuzv4UnwSRHzt9BcpGzqv+q1PgYdAJIVKJsb82a9KwBIzE4620bhSrpdQL/2Zq++AoCgjBGSkT2lDyZ99iqErDTtGk0wkBtZvWrONhmVxXU3QmA7ouVm4dgjTVl4qQHWZG9U33uUuQHw/t1KfIp4WL0ds+hJ/hPDefFwH791qj6fo0MXm0apOA2JXcURD84j8/0QOkPx3zbGVBuYr8AzMeCE++5e9FjcJu1w913FSpvnDkLf92C8Cp1QvcPJ1SnQKTokz1YE8oqwlHM2zo1Mzu6tX5nAUN5m8hHfndhcA6u6sUSSqAzhtICN64t9KPl9AmNy4CdZE6+lGMZuqxeL2xCHVXySb7nsnnpe/KujCkoQhVbdvGJcZJ01q+SWUXCVyS+0mopueDiwjMR6S/QqjoIjgQNP5NtA7ee2/u5XVQnNj"
+  }
+}

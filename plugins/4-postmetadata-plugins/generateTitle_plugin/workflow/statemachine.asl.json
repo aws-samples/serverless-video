@@ -1,0 +1,73 @@
+{
+    "Comment": "A State Machine that generates titles from transcribes",
+    "StartAt": "Parallel",
+    "States": {
+      "Parallel": {
+        "Type": "Parallel",
+        "Next": "EventBridge PutEvents",
+        "Branches": [
+          {
+            "StartAt": "CallGenAIAgentFunction",
+            "States": {
+              "CallGenAIAgentFunction": {
+                "Type": "Task",
+                "Resource": "arn:aws:states:::lambda:invoke",
+                "OutputPath": "$.Payload",
+                "Parameters": {
+                  "Payload.$": "$",
+                  "FunctionName": "${genAIFunction}"
+                },
+                "Retry": [
+                  {
+                    "ErrorEquals": [
+                      "Lambda.ServiceException",
+                      "Lambda.AWSLambdaException",
+                      "Lambda.SdkClientException",
+                      "Lambda.TooManyRequestsException"
+                    ],
+                    "IntervalSeconds": 2,
+                    "MaxAttempts": 6,
+                    "BackoffRate": 2
+                  }
+                ],
+                "End": true
+              }
+            }
+          },
+          {
+            "StartAt": "Keep Task Token",
+            "States": {
+              "Keep Task Token": {
+                "Type": "Pass",
+                "End": true,
+                "InputPath": "$.detail.taskToken",
+                "Parameters": {
+                  "taskToken.$": "$"
+                }
+              }
+            }
+          }
+        ]
+      },
+      "EventBridge PutEvents": {
+        "Type": "Task",
+        "Resource": "arn:aws:states:::events:putEvents",
+        "Parameters": {
+          "Entries": [
+            {
+              "Detail": {
+                "Message": {
+                  "title.$": "$[0].body"
+                },
+                "TaskToken.$": "$[1].taskToken"
+              },
+              "DetailType": "plugin-complete",
+              "EventBusName": "default",
+              "Source": "serverlessVideo.plugin.generateTitle"
+            }
+          ]
+        },
+        "End": true
+      }
+    }
+  }

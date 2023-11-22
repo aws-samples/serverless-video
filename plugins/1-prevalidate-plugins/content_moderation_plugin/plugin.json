@@ -1,0 +1,29 @@
+{
+  "name": "content_moderation_plugin",
+  "description": "Moderates the content and returns false if video is inappropriate, unwanted, or offensive content analysis results for a Amazon Rekognition Video analysis, otherwise returns true.",
+  "author": "Dhiraj Mahapatro",
+  "version": "1.0.0",
+  "tags": [
+    "video",
+    "streaming",
+    "AWS",
+    "serverless"
+  ],
+  "eventHook": "preValidate",
+  "average_completion_time": "30 seconds",
+  "services": [
+    "StepFunctions",
+    "Lambda",
+    "Rekognition",
+    "SNS"
+  ],
+  "deployment_template": "template.yaml",
+  "output_example": {
+    "valid": false,
+    "reason": "video has offensive content",
+    "moderationLabels": [
+      "Middle Finger",
+      "Hate Symbols"
+    ]
+  }
+}

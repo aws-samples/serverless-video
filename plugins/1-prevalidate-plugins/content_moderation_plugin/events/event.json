@@ -1,0 +1,8 @@
+[
+    {
+      "Source": "serverlessVideo.pluginManager",
+      "DetailType": "preValidate.content_moderation_plugin",
+      "Detail": "{\"video\":{\"createdAt\":\"2023-08-30T14:57:51.169Z\",\"durationmillis\":24000,\"thumbnail\":\"https://dmpdx8pmqxo3f.cloudfront.net/media/ivs/v1/123456789012/ERaAhUZnrHJG/2023/8/30/14/57/ovoTjGdG38Mk/media/hls/720p30/thumbnails/thumb0.jpg\",\"playbackUrl\":\"https://d3ih6h9pkrghoj.cloudfront.net/ivs/v1/093675026797/nIET8AxYI7Nq/2023/10/2/15/11/9KIMsgHzrIHb/media/hls/720p30/output.mp4\",\"channel\":\"08d143f0-00f1-7052-f97a-cbcda39ff077\",\"id\":\"st-1E4rsUkhLinpvScDxzDQ7q\"},\"taskToken\":\"AQCgAAAAKgAAAAMAAAAAAAAAAUC4eMR4Uc1R6eeI7Wix57TZyVXjUqGO6wQFqVwBjYZNeSGscdle6NIxMHe7sd5H5CwycI8xW6TVo8dXAlJ+fxZ1qLtimUm2RvKupphOz2OFG2EPJf6ePseJuwmWzXexJdG4hfGPCg==01oRgdjVAhaGG/vU0ifZFMDHAjneOpAdkYvnyMu12gE8XNOahINzUVEfb2b8ukz4zL9GHA4SpzbSsK5ZQT65KDKU/HyqbJi/owwZIcd47YtX1RU8CMqBqcMc4H4xrJ52iqGfA0eQxPhjOux0QcQbv8iSk/XiUl4N7ZMFuUcJ5Yq+Ms0Eh4uO1N+ZcwqYHoOVY4aljcGuy0DhUnDx8VGjQwqDxMPuAMJy9ec+esqO1rKXuhqK6lz14J9Gt1SMpAZGX8HbaCZspr820S2M10VC5nikhTgdYEGOwaltolyMKjsEYVxi/uxKl/Z2SMGaaQW0/Swr5d7PeVoJX9znu36lIyVHQlTlc3LJUASf3fyMa16lPnl37wj5VR3kf7sy4nw25gVR5yjU5PHPDXjq3Kv4QeZRSg4Otk+yQcfoVuSSiXWZHGQ/8H0ONvNCnmS/xn7UTI4FgUzG7ZqGXsHdrynM/3hSyxvbZZXCMgyxaRUdFJzfCI2/zPs1hcbV0NX9N0dbkLjA54OvZuPswGcos8H9\"}}",
+      "EventBusName": "default"
+    }
+]

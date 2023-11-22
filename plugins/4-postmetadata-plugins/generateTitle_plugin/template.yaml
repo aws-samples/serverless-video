@@ -1,0 +1,80 @@
+AWSTemplateFormatVersion: "2010-09-09"
+Transform: AWS::Serverless-2016-10-31
+Description: >
+  serverlessVideo-plugin-GenerateTitle
+
+  Sample SAM Template for serverlessVideo-plugin-Transcribe
+
+Parameters:
+  serverlessVideoGenAIKey:
+    Description: serverlessVideoGenAIKey.
+    Type: String
+    MinLength: 1
+    MaxLength: 950
+  
+  serverlessVideoGenAIBaseUrl:
+    Description: serverlessVideoGenAIBaseUrl.
+    Type: String
+    MinLength: 1
+    MaxLength: 950
+
+  DataBucket:
+    Description: coreSVideoBucket.
+    Type: String
+    MinLength: 1
+    MaxLength: 950
+
+Resources:
+
+  serverlessVideoGenAIKeySSMParameter:
+    Type: AWS::SSM::Parameter
+    Properties:
+      Type: String
+      Value: !Ref serverlessVideoGenAIKey
+      Description: SSM Parameter for connecting to GenAIAgent.
+
+##############################################################
+#  workflow triggerred 
+##############################################################
+  StatemachineGenerateTitleplugin:
+    Type: AWS::Serverless::StateMachine
+    Properties:    
+      Type: "STANDARD"
+      DefinitionSubstitutions:
+          genAIFunction: !Ref genAIFunction
+      DefinitionUri: workflow/statemachine.asl.json
+      Policies:
+        - EventBridgePutEventsPolicy:
+            EventBusName: default
+        - LambdaInvokePolicy:
+            FunctionName: !Ref genAIFunction
+      Events:
+        pluginTrigger:
+          Type: EventBridgeRule
+          Properties:
+            EventBusName: default
+            Pattern:
+              source:
+                - serverlessVideo.pluginManager
+              detail-type:
+                  - postMetadata.generateTitlePlugin
+
+
+  genAIFunction:
+    Type: AWS::Serverless::Function
+    Properties:
+        FunctionName: serverlessVideo-plugin-GenAi-generateTitle
+        CodeUri: functions/
+        Handler: app.handler
+        Runtime: nodejs18.x
+        Timeout: 30
+        MemorySize: 10240
+        Environment:
+          Variables:
+            serverlessVideoGenAIKeySSMParameter: !Ref serverlessVideoGenAIKeySSMParameter
+            baseURL: !Ref serverlessVideoGenAIBaseUrl
+        Policies:
+          - SSMParameterReadPolicy:
+              ParameterName: !Ref serverlessVideoGenAIKeySSMParameter
+          - S3ReadPolicy:
+              BucketName: !Ref DataBucket

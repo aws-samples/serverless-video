@@ -1,0 +1,292 @@
+---
+AWSTemplateFormatVersion: "2010-09-09"
+
+Transform: AWS::Serverless-2016-10-31
+
+Description: >
+  serverlessVideo-plugin-LeaderboardPlugin
+
+  Leaderboard service
+
+Parameters:
+  ServiceName:
+    Description: The name of the service being created.
+    Type: String
+    Default: leaderboard-service
+
+Mappings:
+  SubnetConfig:
+    VPC:
+      CIDR: "10.0.0.0/16"
+    Private0:
+      CIDR: "10.0.0.0/24"
+    Private1:
+      CIDR: "10.0.1.0/24"
+
+  # This mapping accounts for the scenario when certain AZs
+  # are not available to use (this differs on a per account
+  # per customer basis). E.g., if the 'b' AZ is not available
+  # in a specific region in one's account then updating the
+  # list contained in the mapping below here will allow a
+  # different AZ to be chosen.
+  AZRegions:
+    ap-northeast-1:
+      AZs: ["a", "b"]
+    ap-northeast-2:
+      AZs: ["a", "b"]
+    ap-south-1:
+      AZs: ["a", "b"]
+    ap-southeast-1:
+      AZs: ["a", "b"]
+    ap-southeast-2:
+      AZs: ["a", "b"]
+    ca-central-1:
+      AZs: ["a", "b"]
+    eu-central-1:
+      AZs: ["a", "b"]
+    eu-west-1:
+      AZs: ["a", "b"]
+    eu-west-2:
+      AZs: ["a", "b"]
+    sa-east-1:
+      AZs: ["a", "b"]
+    us-east-1:
+      AZs: ["a", "b"]
+    us-east-2:
+      AZs: ["a", "b"]
+    us-west-1:
+      AZs: ["a", "b"]
+    us-west-2:
+      AZs: ["a", "b"]
+
+Globals:
+  Function:
+    Architectures:
+      - arm64
+    MemorySize: 256
+    Runtime: nodejs18.x
+    Timeout: 30
+    Environment:
+      Variables:
+        LOG_LEVEL: DEBUG
+
+Resources:
+  ## VPC ##
+  VPC:
+    Type: AWS::EC2::VPC
+    Properties:
+      EnableDnsSupport: true
+      EnableDnsHostnames: true
+      CidrBlock: !FindInMap [ SubnetConfig, VPC, CIDR ]
+      Tags:
+        - Key: "Network"
+          Value: "Private"
+        - Key: "Name"
+          Value: !Sub "${ServiceName}-VPC"
+
+  PrivateSubnet0:
+    Type: AWS::EC2::Subnet
+    Properties:
+      VpcId: !Ref VPC
+      AvailabilityZone: !Sub
+        - "${AWS::Region}${AZ}"
+        - AZ: !Select [ 0, !FindInMap [ "AZRegions", !Ref "AWS::Region", "AZs" ] ]
+      CidrBlock: !FindInMap [ SubnetConfig, Private0, CIDR ]
+      Tags:
+        - Key: Network
+          Value: Private
+        - Key: Name
+          Value: !Sub
+            - "${ServiceName}-VPC-private-${AZ}"
+            - AZ: !Select [ 0, !FindInMap [ "AZRegions", !Ref "AWS::Region", "AZs" ] ]
+
+  PrivateSubnet1:
+    Type: AWS::EC2::Subnet
+    Properties:
+      VpcId: !Ref VPC
+      AvailabilityZone: !Sub
+        - "${AWS::Region}${AZ}"
+        - AZ: !Select [ 1, !FindInMap [ "AZRegions", !Ref "AWS::Region", "AZs" ] ]
+      CidrBlock: !FindInMap [ SubnetConfig, Private1, CIDR ]
+      Tags:
+        - Key: Network
+          Value: Private
+        - Key: Name
+          Value: !Sub
+            - "${ServiceName}-VPC-private-${AZ}"
+            - AZ: !Select [ 1, !FindInMap [ "AZRegions", !Ref "AWS::Region", "AZs" ] ]
+
+  PrivateRouteTable0:
+    Type: AWS::EC2::RouteTable
+    Properties:
+      VpcId: !Ref VPC
+      Tags:
+        - Key: "Name"
+          Value: !Sub "${ServiceName}-VPC-private-route-table"
+
+  PrivateSubnetRouteTableAssociation0:
+    Type: AWS::EC2::SubnetRouteTableAssociation
+    Properties:
+      SubnetId: !Ref PrivateSubnet0
+      RouteTableId: !Ref PrivateRouteTable0
+
+  PrivateSubnetRouteTableAssociation1:
+    Type: AWS::EC2::SubnetRouteTableAssociation
+    Properties:
+      SubnetId: !Ref PrivateSubnet1
+      RouteTableId: !Ref PrivateRouteTable0
+
+  EventBridgeInterfaceEndpoint:
+    Type: AWS::EC2::VPCEndpoint
+    Properties:
+      ServiceName: !Sub "com.amazonaws.${AWS::Region}.events"
+      VpcEndpointType: Interface
+      VpcId: !Ref VPC
+      SubnetIds:
+        - !Ref PrivateSubnet0
+        - !Ref PrivateSubnet1
+
+  CloudWatchLogsInterfaceEndpoint:
+    Type: AWS::EC2::VPCEndpoint
+    Properties:
+      ServiceName: !Sub "com.amazonaws.${AWS::Region}.logs"
+      VpcEndpointType: Interface
+      VpcId: !Ref VPC
+      SubnetIds:
+        - !Ref PrivateSubnet0
+        - !Ref PrivateSubnet1
+  
+  ## VPC Lattice ##
+  ServiceNetwork:
+    Type: AWS::VpcLattice::ServiceNetwork
+    Properties:
+      AuthType: NONE
+      Name: !Sub "${ServiceName}-service-network"
+  
+  ServiceNetworkVpcAssociation:
+    Type: AWS::VpcLattice::ServiceNetworkVpcAssociation
+    Properties:
+      ServiceNetworkIdentifier: !Ref ServiceNetwork
+      VpcIdentifier: !Ref VPC
+
+  LeaderboardService:
+    Type: AWS::VpcLattice::Service
+    Properties:
+      AuthType: AWS_IAM
+      Name: !Sub "${ServiceName}"
+
+  LeaderboardServiceNetworkAssociation:
+    Type: AWS::VpcLattice::ServiceNetworkServiceAssociation
+    Properties:
+      ServiceIdentifier: !Ref LeaderboardService
+      ServiceNetworkIdentifier: !Ref ServiceNetwork
+
+  LeaderboardServiceAuthPolicy:
+    Type: AWS::VpcLattice::AuthPolicy
+    Properties:
+      ResourceIdentifier: !GetAtt LeaderboardService.Arn
+      Policy:
+        Statement:
+          - Effect: Allow
+            Principal:
+              AWS: "*"
+            Action: "vpc-lattice-svcs:Invoke"
+            Resource: "*"
+            Condition:
+              StringNotEquals:
+                aws:PrincipalType: "Anonymous"
+              StringEquals:
+                vpc-lattice-svcs:ServiceNetworkArn: !Sub "${ServiceNetwork.Arn}"
+
+  LeaderboardServiceListener:
+    Type: AWS::VpcLattice::Listener
+    Properties:
+      Port: 443
+      Protocol: HTTPS
+      ServiceIdentifier: !Ref LeaderboardService
+      DefaultAction:
+        Forward:
+          TargetGroups:
+            - TargetGroupIdentifier: !Ref LeaderboarServiceTargetGroup
+              Weight: 100
+
+  # add some rules
+
+  LeaderboarServiceTargetGroup:
+    Type: AWS::VpcLattice::TargetGroup
+    Properties:
+      Type: LAMBDA
+      Targets:
+        - Id: !GetAtt LeaderboardServiceFunction.Arn
+
+  LeaderboardServiceFunction:
+    Type: AWS::Serverless::Function
+    Properties:
+      Handler: leaderboard-service-function.handler
+    Metadata:
+      BuildMethod: esbuild
+      BuildProperties:
+        Minify: true
+        Target: "ES2020"
+        Sourcemap: true
+        External:
+          - "ioredis"
+        EntryPoints:
+          - functions/leaderboard-service-function.ts
+
+  ## MemoryDB ##
+  CacheSubnetGroup:
+    Type: AWS::MemoryDB::SubnetGroup
+    Properties:
+      SubnetGroupName: !Sub "${ServiceName}-cache-subnet-group"
+      SubnetIds:
+        - !Ref PrivateSubnet0
+        - !Ref PrivateSubnet1
+  
+  CacheSecurityGroup:
+    Type: AWS::EC2::SecurityGroup
+    Properties:
+      GroupDescription: MemoryDB cluster access
+      VpcId: !Ref VPC
+      SecurityGroupIngress:
+        - IpProtocol: tcp
+          SourceSecurityGroupId: !GetAtt ServiceSecurityGroup.GroupId
+          ToPort: 6379
+          FromPort: 6379
+
+  ServiceSecurityGroup:
+    Type: AWS::EC2::SecurityGroup
+    Properties:
+      GroupDescription: Service / app access to MemoryDB cluster
+      VpcId: !Ref VPC
+  
+  CacheCluster:
+    Type: AWS::MemoryDB::Cluster
+    Properties:
+      ClusterName: !Sub "${ServiceName}-memorydb-cluster"
+      Description: !Sub "${ServiceName} cache cluster"
+      ACLName: open-access
+      EngineVersion: 7.0
+      NodeType: db.t4g.small
+      SecurityGroupIds:
+        - !Ref CacheSecurityGroup
+      SubnetGroupName: !Ref CacheSubnetGroup
+      TLSEnabled: true
+  
+Outputs:
+  LeaderboardServiceEndpoint:
+    Description: Leaderboard service endpoint
+    Value: !GetAtt LeaderboardService.DnsEntry.DomainName
+
+  LeaderboardServiceVpc:
+    Description: Leaderboard service VPC
+    Value: !Ref VPC
+
+  LeaderboardServiceSubnet0:
+    Description: Leaderboard service subnet IDs
+    Value: !Ref PrivateSubnet0
+
+  LeaderboardServiceSubnet1:
+    Description: Leaderboard service subnet IDs
+    Value: !Ref PrivateSubnet1
+  

@@ -7,7 +7,7 @@ Resources:
   VideoHistoryTable:
     Type: AWS::DynamoDB::Table
     Properties:
-      TableName: serverlessFlix-video-history-table
+      TableName: serverlessVideo-video-history-table
       AttributeDefinitions:
         - AttributeName: PK
           AttributeType: S
@@ -102,7 +102,7 @@ Resources:
       EventBusName: default
       EventPattern:
         source:
-          - serverlessFlix.pluginManager
+          - serverlessVideo.pluginManager
         detail-type:
           - prefix: LifeCycleStarted
       State: 'ENABLED'
@@ -117,7 +117,7 @@ Resources:
       EventBusName: default
       EventPattern:
         source:
-          - serverlessFlix.pluginManager
+          - serverlessVideo.pluginManager
         detail-type:
           - prefix: LifeCycleComplete
       State: 'ENABLED'
@@ -132,7 +132,7 @@ Resources:
       EventBusName: default
       EventPattern:
         source:
-          - serverlessFlix.videoManager
+          - serverlessVideo.videoManager
         detail-type:
           - prefix: MP4ProcessingStarted
       State: 'ENABLED'
@@ -147,7 +147,7 @@ Resources:
       EventBusName: default
       EventPattern:
         source:
-          - serverlessFlix.videoManager
+          - serverlessVideo.videoManager
         detail-type:
           - prefix: MP4ProcessingComplete
       State: 'ENABLED'

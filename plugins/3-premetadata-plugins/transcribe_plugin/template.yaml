@@ -1,0 +1,105 @@
+AWSTemplateFormatVersion: "2010-09-09"
+Transform: AWS::Serverless-2016-10-31
+Description: >
+  serverlessVideo-plugin-Transcribe
+
+  Sample SAM Template for serverlessVideo-plugin-Transcribe
+
+
+
+Parameters:
+  DataBucket:
+    Description: coreSVideoBucket.
+    Type: String
+    MinLength: 1
+    MaxLength: 950
+  
+  CDN:
+    Description: cloudfront domain.
+    Type: String
+    MinLength: 1
+    MaxLength: 50
+    Default: https://d3ih6h9pkrghoj.cloudfront.net
+
+Resources:
+  ##############################################################
+  #  workflow triggerred Going Live or Ending Stream event
+  ##############################################################
+  StateMachineProcessVideoFile:
+    Type: AWS::Serverless::StateMachine
+    Properties:
+      Type: "STANDARD"
+      Role: !GetAtt ApplicationRole.Arn
+      Name: "video-transcription-workflow"
+      DefinitionSubstitutions:
+        S3BucketName: !Ref DataBucket
+        CDN: !Ref CDN
+        ApplicationRoleArn: !GetAtt ApplicationRole.Arn
+        CloudFrontDownloaderFunction: !Ref CloudFrontDownloaderFunction
+      DefinitionUri: workflow/statemachine.asl.json
+      Events:
+        pluginTrigger:
+          Type: EventBridgeRule
+          Properties:
+            EventBusName: default
+            Pattern:
+              source:
+                - serverlessVideo.pluginManager
+              detail-type:
+                - preMetadata.transcribeplugin
+
+  CloudFrontDownloaderFunction:
+    Type: AWS::Serverless::Function
+    Properties:
+      CodeUri: functions/
+      Handler: app.lambdaHandler
+      Runtime: nodejs18.x
+      Timeout: 30
+      MemorySize: 10240
+      Environment:
+        Variables:
+          BucketName: !Ref DataBucket
+      Policies:
+        - S3CrudPolicy:
+            BucketName: !Ref DataBucket
+
+  ApplicationRole:
+    Type: AWS::IAM::Role
+    Properties:
+      AssumeRolePolicyDocument:
+        Version: "2012-10-17"
+        Statement:
+          - Effect: "Allow"
+            Principal:
+              Service:
+                - "states.amazonaws.com"
+                - "transcribe.amazonaws.com"
+            Action:
+              - "sts:AssumeRole"
+      Policies:
+        - PolicyName: AppPolicy
+          PolicyDocument:
+            Version: 2012-10-17
+            Statement:
+              - Effect: Allow
+                Action:
+                  - xray:PutTraceSegments
+                  - xray:PutTelemetryRecords
+                  - xray:GetSamplingRules
+                  - xray:GetSamplingTargets
+                  - transcribe:StartTranscriptionJob
+                  - transcribe:GetTranscriptionJob
+                  - translate:TranslateText
+                Resource: "*"
+              - Effect: Allow
+                Action:
+                  - s3:*
+                Resource: "*"
+              - Effect: Allow
+                Action:
+                  - lambda:InvokeFunction
+                Resource: !GetAtt CloudFrontDownloaderFunction.Arn
+              - Effect: Allow
+                Action:
+                  - events:PutEvents
+                Resource: "*"

@@ -1,0 +1,15 @@
+{
+    "name": "rollupStats",
+    "description": "updates roll-up statistics around the total number of videos on the site",
+    "author": "Adam Wagner",
+    "version": "1.0.0",
+    "tags": ["video", "streaming", "AWS", "serverless"],
+    "eventHook": "postMetadata",
+    "average_completion_time": "30 seconds",
+    "services":["Lambda", "DynamoDB"],
+    "deployment_template":"template.yaml",
+    "output_example":{
+      "total_video_count": "645",
+      "total_hours_of_video": "42.0345"
+    }
+  }

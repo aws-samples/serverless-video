@@ -85,8 +85,8 @@ Resources:
       UserPoolId: !Ref UserPool
       ProviderName: "LoginWithAmazon"
       ProviderDetails:
-        client_id: '{{resolve:secretsmanager:serverlessflix:SecretString:amazon-identity-id}}'
-        client_secret: '{{resolve:secretsmanager:serverlessflix:SecretString:amazon-identity-secret}}'
+        client_id: '{{resolve:secretsmanager:serverlessVideo:SecretString:amazon-identity-id}}'
+        client_secret: '{{resolve:secretsmanager:serverlessVideo:SecretString:amazon-identity-secret}}'
         authorize_scopes: "profile profile:user_id"
       ProviderType: "LoginWithAmazon"
       AttributeMapping:
@@ -99,8 +99,8 @@ Resources:
       UserPoolId: !Ref UserPool
       ProviderName: "Google"
       ProviderDetails:
-        client_id: '{{resolve:secretsmanager:serverlessflix:SecretString:google-identity-id}}'
-        client_secret: '{{resolve:secretsmanager:serverlessflix:SecretString:google-identity-secret}}'
+        client_id: '{{resolve:secretsmanager:serverlessVideo:SecretString:google-identity-id}}'
+        client_secret: '{{resolve:secretsmanager:serverlessVideo:SecretString:google-identity-secret}}'
         authorize_scopes: "openid email profile"
       ProviderType: "Google"
       AttributeMapping:
@@ -113,8 +113,8 @@ Resources:
   #     UserPoolId: !Ref UserPool
   #     ProviderName: "Facebook"
   #     ProviderDetails:
-  #       client_id: '{{resolve:secretsmanager:serverlessflix:SecretString:facebook-identity-id}}'
-  #       client_secret: '{{resolve:secretsmanager:serverlessflix:SecretString:facebook-identity-secret}}'
+  #       client_id: '{{resolve:secretsmanager:serverlessVideo:SecretString:facebook-identity-id}}'
+  #       client_secret: '{{resolve:secretsmanager:serverlessVideo:SecretString:facebook-identity-secret}}'
   #       authorize_scopes: "public_profile,email"
   #     ProviderType: "Facebook"
   #     AttributeMapping:
@@ -148,7 +148,7 @@ Resources:
               - Effect: Allow
                 Action:
                   - iot:Connect
-                Resource: !Join [ "", [ "arn:aws:iot:", !Ref "AWS::Region", ":", !Ref "AWS::AccountId", ":client/serverlessFlix-*" ] ]
+                Resource: !Join [ "", [ "arn:aws:iot:", !Ref "AWS::Region", ":", !Ref "AWS::AccountId", ":client/serverlessVideo-*" ] ]
               - Effect: Allow
                 Action:
                   - iot:Subscribe
@@ -187,7 +187,7 @@ Resources:
               - Effect: Allow
                 Action:
                   - iot:Connect
-                Resource: !Join [ "", [ "arn:aws:iot:", !Ref "AWS::Region", ":", !Ref "AWS::AccountId", ":client/serverlessFlix-*" ] ]
+                Resource: !Join [ "", [ "arn:aws:iot:", !Ref "AWS::Region", ":", !Ref "AWS::AccountId", ":client/serverlessVideo-*" ] ]
               - Effect: Allow
                 Action:
                   - iot:Subscribe
@@ -229,7 +229,7 @@ Resources:
                - Effect: Allow
                  Action:
                    - iot:Connect
-                 Resource: !Join [ "", [ "arn:aws:iot:", !Ref "AWS::Region", ":", !Ref "AWS::AccountId", ":client/serverlessFlix-*" ] ]
+                 Resource: !Join [ "", [ "arn:aws:iot:", !Ref "AWS::Region", ":", !Ref "AWS::AccountId", ":client/serverlessVideo-*" ] ]
                - Effect: Allow
                  Action:
                    - iot:Subscribe

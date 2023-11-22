@@ -1,0 +1,66 @@
+AWSTemplateFormatVersion: "2010-09-09"
+Transform: AWS::Serverless-2016-10-31
+Description: >
+  serverlessVideo-plugin-GenerateTags
+
+  Sample SAM Template for serverlessVideo-example_plugin
+
+Parameters:
+  serverlessVideoGenAIKey:
+    Description: serverlessVideoGenAIKey.
+    Type: String
+    MinLength: 1
+    MaxLength: 950
+  
+  serverlessVideoGenAIBaseUrl:
+    Description: serverlessVideoGenAIBaseUrl.
+    Type: String
+    MinLength: 1
+    MaxLength: 950
+  
+  DataBucket:
+    Description: coreSVideoBucket.
+    Type: String
+    MinLength: 1
+    MaxLength: 950
+
+Resources:
+
+  serverlessVideoGenAIKeySSMParameter:
+    Type: AWS::SSM::Parameter
+    Properties:
+      Type: String
+      Value: !Ref serverlessVideoGenAIKey
+      Description: SSM Parameter for connecting to GenAIAgent.
+
+  GenerateTagsPluginFunction:
+    Type: AWS::Serverless::Function
+    Properties:
+      FunctionName: serverlessVideo-plugin-generate-tags
+      CodeUri: functions/
+      Handler: app.handler
+      Runtime: nodejs18.x
+      Timeout: 30
+      MemorySize: 10240
+      Policies:
+        - EventBridgePutEventsPolicy:
+            EventBusName: default
+        - SSMParameterReadPolicy:
+            ParameterName: !Ref serverlessVideoGenAIKeySSMParameter   
+        - S3ReadPolicy:
+              BucketName: !Ref DataBucket           
+      Environment:
+        Variables:
+          serverlessVideoGenAIKeySSMParameter: !Ref serverlessVideoGenAIKeySSMParameter
+          baseURL: !Ref serverlessVideoGenAIBaseUrl
+      Events:
+        pluginTrigger:
+          Type: EventBridgeRule
+          Properties:
+            EventBusName: default # a rule for the default event bus
+            Pattern:
+              source:
+                - serverlessVideo.pluginManager
+              detail-type:
+                  - postMetadata.generateTagsPlugin # this will be trigerred on the metadata hook event
+            

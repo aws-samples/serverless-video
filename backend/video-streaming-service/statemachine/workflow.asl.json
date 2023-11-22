@@ -33,7 +33,7 @@
               },
               "DetailType": "ViewCountUpdated",
               "EventBusName": "default",
-              "Source": "serverlessFlix.viewCounter"
+              "Source": "serverlessVideo.viewCounter"
             }
           ]
         },

@@ -39,7 +39,7 @@
       "Type": "Task",
       "Resource": "arn:aws:states:::dynamodb:putItem",
       "Parameters": {
-        "TableName": "serverlessFlix-channels-table",
+        "TableName": "serverlessVideo-channels-table",
         "Item": {
           "PK": {
             "S.$": "$.Channel.Name"

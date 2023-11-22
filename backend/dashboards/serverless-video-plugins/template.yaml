@@ -5,7 +5,7 @@ Resources:
   MyDashboard:
     Type: "AWS::CloudWatch::Dashboard"
     Properties:
-      DashboardName: "ServerlessVideo-Plugins-Dashboard"
+      DashboardName: "serverlessVideo-Plugins-Dashboard"
       DashboardBody: !Sub |
         {
             "widgets": [
@@ -27,7 +27,7 @@ Resources:
                     "type": "metric",
                     "properties": {
                         "metrics": [
-                            [ "ServerlessVideo", "invalid", "By EventHook", "preValidate", { "region": "${AWS::Region}", "color": "#d62728" } ]
+                            [ "serverlessVideo", "invalid", "By EventHook", "preValidate", { "region": "${AWS::Region}", "color": "#d62728" } ]
                         ],
                         "sparkline": false,
                         "view": "singleValue",
@@ -49,7 +49,7 @@ Resources:
                         "sparkline": false,
                         "view": "singleValue",
                         "metrics": [
-                            [ "ServerlessVideo", "success", "By EventHook", "preValidate", { "region": "${AWS::Region}" } ]
+                            [ "serverlessVideo", "success", "By EventHook", "preValidate", { "region": "${AWS::Region}" } ]
                         ],
                         "region": "${AWS::Region}",
                         "title": "Videos successfull validaiton",
