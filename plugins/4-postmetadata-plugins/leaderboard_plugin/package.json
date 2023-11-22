@@ -38,7 +38,7 @@
     "@aws-sdk/util-format-url": "^3.398.0",
     "@middy/core": "^4.6.2",
     "@smithy/signature-v4": "^2.0.10",
-    "axios": "^1.4.0",
+    "axios": "^1.6.0",
     "esbuild": "^0.19.3",
     "ioredis": "^5.3.2"
   }
