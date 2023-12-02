@@ -133,7 +133,7 @@ serverlessVideo thrives on community collaboration and welcomes contributions fr
 
 ### 11.1 GitHub Repository
 
-serverlessVideo maintains an open-source GitHub repository that hosts the application's source code, documentation, and issue tracker. To get started, visit the repository at [https://github.com/aws-samples/serverless-video-streaming](https://github.com/aws-samples/serverlessSideo).
+serverlessVideo maintains an open-source GitHub repository that hosts the application's source code, documentation, and issue tracker. To get started, visit the repository at [https://github.com/aws-samples/serverless-video](https://github.com/aws-samples/serverless-video).
 
 ###  Code Contribution
 
