@@ -3,6 +3,6 @@
   "version": "1.0.0",
   "description": "",
   "dependencies": {
-    "@aws-lambda-powertools/metrics": "^1.14.2"
+    "@aws-lambda-powertools/metrics": "^2.13.1"
   }
 }

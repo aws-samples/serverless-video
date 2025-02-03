@@ -13,9 +13,9 @@
   "author": "James Beswick",
   "license": "MIT-0",
   "devDependencies": {
-    "aws-sdk": "^2.962.0"
+    "aws-sdk": "^2.1692.0"
   },
   "dependencies": {
-    "@aws-sdk/client-sfn": "^3.370.0"
+    "@aws-sdk/client-sfn": "^3.738.0"
   }
 }

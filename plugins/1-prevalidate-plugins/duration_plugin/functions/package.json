@@ -9,7 +9,7 @@
   "author": "benjasl",
   "license": "ISC",
   "dependencies": {
-    "@aws-sdk/client-s3": "^3.373.0",
-    "axios": "^1.6.0"
+    "@aws-sdk/client-s3": "^3.740.0",
+    "axios": "^1.7.9"
   }
 }
