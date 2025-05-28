@@ -144,3 +144,7 @@ Outputs:
   DomainName:
     Description: Url for the cloudfront distro
     Value: !GetAtt CloudFrontDistro.DomainName
+
+  CloudFrontDistroId:
+    Description: Id for the cloudfront distro
+    Value: !Ref CloudFrontDistro

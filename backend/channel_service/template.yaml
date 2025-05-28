@@ -188,7 +188,7 @@ Resources:
       FunctionName: serverlessVideo-channelService-GenerateChannelInfo
       CodeUri: ./functions/
       Handler: generate-channel-info.handler
-      Runtime: nodejs14.x
+      Runtime: nodejs16.x
 
 
     # Define the SQS queue
@@ -239,7 +239,7 @@ Resources:
     Properties:
       CodeUri: ./functions/
       Handler: app.handler
-      Runtime: nodejs14.x
+      Runtime: nodejs16.x
       Policies:
         - DynamoDBReadPolicy:
             TableName: !Ref ChannelTable

@@ -5,6 +5,11 @@ Description: >
 
   Sample SAM Template for serverlessVideo-video-streaming-service
 
+Parameters:
+  CloudFrontDistro:
+    Type: String
+    Description: Id for the cloudfront distro
+
 Resources:
 
 ##############################################################
@@ -42,6 +47,9 @@ Resources:
               Service: "cloudfront.amazonaws.com"
             Action: s3:GetObject
             Resource: !Join [ "", [ "arn:aws:s3:::", !Ref S3Bucket, "/*" ] ]
+            Condition:
+              StringEquals:
+                AWS:SourceArn: !Sub arn:aws:cloudfront::${AWS::AccountId}:distribution/${CloudFrontDistro}
 
 ##############################################################
 #  workflow triggerred Going Live stream

@@ -1,10 +1,6 @@
 AWSTemplateFormatVersion: "2010-09-09"
 Transform: AWS::Serverless-2016-10-31
-<<<<<<< HEAD
 Description: serverlessVideo core stack.
-=======
-Description: ServerlessVideo core stack.
->>>>>>> 8f8d9757b5e2eb908650d426c8b6156d8ad0d4d7
 
 Parameters:
   AuthDomainName:
@@ -31,11 +27,7 @@ Resources:
 #############################################
 # Resources for IoT Core realtime messaging # ${AWS::AccountId}
 #############################################
-<<<<<<< HEAD
-  serverlessVideoRealtime:
-=======
   ServerlessVideoRealtime:
->>>>>>> 8f8d9757b5e2eb908650d426c8b6156d8ad0d4d7
     Type: "AWS::IoT::Thing"
     Properties:
       ThingName: "serverlessVideo" 
@@ -46,7 +38,7 @@ Resources:
     Type: 'AWS::Serverless::Function'
     Properties:
       Handler: GetIoTEndpoint.handler
-      Runtime: nodejs14.x
+      Runtime: nodejs16.x
       CodeUri: ./
       MemorySize: 128
       Timeout: 3
@@ -86,11 +78,7 @@ Resources:
 Outputs:
   IoTRealtimeName:
     Description: IoTRealtime Name
-<<<<<<< HEAD
-    Value: !Ref serverlessVideoRealtime
-=======
     Value: !Ref ServerlessVideoRealtime
->>>>>>> 8f8d9757b5e2eb908650d426c8b6156d8ad0d4d7
 
   IotEndpointAddress:
     Description: IotEndpointAddress URL
@@ -132,3 +120,7 @@ Outputs:
   CDNDomainName:
     Description: Domain name for CloudFront distro
     Value: !GetAtt CDNStack.Outputs.DomainName
+
+  CloudFrontDistroId:
+    Description: Id for the cloudfront distro
+    Value: !GetAtt CDNStack.Outputs.CloudFrontDistroId
