@@ -1,6 +1,12 @@
 const { S3Client, PutObjectCommand } = require('@aws-sdk/client-s3');
 const axios = require('axios');
 
+// Define allow-list of trusted CloudFront hostnames (use actual distribution domains you control)
+const ALLOWED_CLOUDFRONT_HOSTNAMES = [
+  "YOUR_DISTRIBUTION.cloudfront.net",
+  // You can add more trusted hostnames here
+];
+
 const destinationBucketName = process.env.BucketName;
 const s3 = new S3Client({ region: process.env.AWS_REGION });
 
@@ -10,13 +16,8 @@ function isValidCloudFrontUrl(urlString) {
     const url = new URL(urlString);
     // Only allow HTTPS
     if (url.protocol !== "https:") return false;
-    // Only allow trusted CloudFront domain(s)
-    // Replace the domain as needed for your setup.
-    // Example: pattern matches standard CloudFront, or specific domain (safer!)
-    // const allowedDomain = "YOUR_DISTRIBUTION.cloudfront.net";
-    // return url.hostname === allowedDomain;
-    // Or allow any .cloudfront.net domain (less strict)
-    if (!url.hostname.endsWith(".cloudfront.net")) return false;
+    // Only allow trusted CloudFront distribution domains
+    if (!ALLOWED_CLOUDFRONT_HOSTNAMES.includes(url.hostname)) return false;
     // Optionally, validate path or other properties
     return true;
   } catch (e) {
