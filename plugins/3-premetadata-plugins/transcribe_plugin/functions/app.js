@@ -8,6 +8,18 @@ exports.lambdaHandler = async (event) => {
   console.log(JSON.stringify(event, null, 4));
 
   const cloudFrontUrl = event.detail.video.playbackUrl;
+  // Validate the playBackUrl to prevent SSRF attacks
+  let parsedUrl;
+  try {
+    parsedUrl = new URL(cloudFrontUrl);
+  } catch (err) {
+    throw new Error('Invalid CloudFront URL');
+  }
+  // Allow only CloudFront domains. You can update this allowlist as needed for your environment.
+  const allowedHostSuffix = '.cloudfront.net';
+  if (!parsedUrl.hostname.endsWith(allowedHostSuffix)) {
+    throw new Error('CloudFront URL is not allowed.');
+  }
   // Split the string using the delimiter '/'
   const urlParts = cloudFrontUrl.split('/ivs');
   // Get the last item (which is the object key)
