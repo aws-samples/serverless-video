@@ -1,4 +1,5 @@
 const { faker } = require('@faker-js/faker');
+const crypto = require('crypto');
 const awsUsernames = [
   "LambdaLancer",
   "S3Sorcerer",
@@ -26,8 +27,8 @@ const awsUsernames = [
 ];
 
 exports.handler = async () => {
-  const awsName = awsUsernames[Math.floor(Math.random()*awsUsernames.length)];
-  const username = `${awsName}${faker.number.int({max: 1000})}`;
+  const awsName = awsUsernames[crypto.randomInt(awsUsernames.length)];
+  const username = `${awsName}${crypto.randomInt(1000)}`;
   return {
     username
   };
