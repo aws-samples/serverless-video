@@ -8,8 +8,8 @@
     "test": "npx jest"
   },
   "devDependencies": {
-    "@aws-sdk/client-cloudformation": "^3.738.0",
-    "@aws-sdk/client-sfn": "^3.738.0",
+    "@aws-sdk/client-cloudformation": "^3.888.0",
+    "@aws-sdk/client-sfn": "^3.888.0",
     "@types/aws-lambda": "^8.10.147",
     "@types/jest": "^29.5.14",
     "@types/node": "^22.13.0",
@@ -33,9 +33,9 @@
     "@aws-lambda-powertools/logger": "^2.13.1",
     "@aws-lambda-powertools/metrics": "^2.13.1",
     "@aws-lambda-powertools/tracer": "^2.13.1",
-    "@aws-sdk/client-eventbridge": "^3.740.0",
-    "@aws-sdk/credential-providers": "^3.738.0",
-    "@aws-sdk/util-format-url": "^3.734.0",
+    "@aws-sdk/client-eventbridge": "^3.888.0",
+    "@aws-sdk/credential-providers": "^3.888.0",
+    "@aws-sdk/util-format-url": "^3.888.0",
     "@middy/core": "^6.0.0",
     "@smithy/signature-v4": "^5.0.1",
     "axios": "^1.7.9",

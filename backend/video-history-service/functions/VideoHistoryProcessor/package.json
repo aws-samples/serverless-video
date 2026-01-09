@@ -10,8 +10,8 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "@aws-sdk/client-dynamodb": "^3.738.0",
-    "@aws-sdk/util-dynamodb": "^3.738.0",
+    "@aws-sdk/client-dynamodb": "^3.888.0",
+    "@aws-sdk/util-dynamodb": "^3.888.0",
     "date-fns": "^4.1.0"
   }
 }

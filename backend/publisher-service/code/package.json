@@ -12,7 +12,7 @@
   "keywords": [],
   "author": "James Beswick",
   "license": "MIT-0",
-  "devDependencies": {
-    "aws-sdk": "^2.1692.0"
+  "dependencies": {
+    "@aws-sdk/client-iot-data-plane": "^3.888.0"
   }
 }

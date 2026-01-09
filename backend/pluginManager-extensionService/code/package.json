@@ -12,10 +12,7 @@
   "keywords": [],
   "author": "James Beswick",
   "license": "MIT-0",
-  "devDependencies": {
-    "aws-sdk": "^2.1692.0"
-  },
   "dependencies": {
-    "@aws-sdk/client-sfn": "^3.738.0"
+    "@aws-sdk/client-sfn": "^3.888.0"
   }
 }
